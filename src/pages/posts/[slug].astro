@@ -32,8 +32,6 @@ if (!post) {
 	return Astro.redirect("/404");
 }
 
-Astro.cache.set(cacheHint);
-
 // Get featured image URL for OG fallback
 // The image may have src (external) or meta.storageKey (local)
 function getImageUrl(img: unknown): string | undefined {
