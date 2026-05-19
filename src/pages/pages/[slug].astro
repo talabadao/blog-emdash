@@ -9,6 +9,11 @@ if (!slug) {
 	return Astro.redirect("/404");
 }
 
+// Redirect legacy CMS routes to their canonical static pages
+if (slug === "about") {
+	return Astro.redirect("/about", 301);
+}
+
 const { entry: page, cacheHint } = await getEmDashEntry("pages", slug);
 
 if (!page) {

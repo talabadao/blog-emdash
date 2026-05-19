@@ -1,0 +1,192 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+	title="Contact"
+	description="Get in touch với Le Hoang Tin — SEO Specialist, open to freelance consulting và collaboration."
+>
+	<div class="contact-page">
+		<header class="page-header">
+			<p class="page-kicker">Get in Touch</p>
+			<h1 class="page-title">Contact</h1>
+			<p class="page-lead">
+				Open to freelance SEO consulting and collaboration.
+			</p>
+		</header>
+
+		<div class="contact-grid">
+			<div class="contact-primary">
+				<h2 class="contact-section-title">Say hello</h2>
+				<ul class="contact-list">
+					<li class="contact-item">
+						<span class="contact-label">Email</span>
+						<a href="mailto:tinledoihoa@gmail.com" class="contact-value">
+							tinledoihoa@gmail.com
+						</a>
+					</li>
+					<li class="contact-item">
+						<span class="contact-label">LinkedIn</span>
+						<a
+							href="https://www.linkedin.com/in/tin-le-hoang"
+							class="contact-value"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Tin Le Hoang ↗
+						</a>
+					</li>
+					<li class="contact-item">
+						<span class="contact-label">Phone</span>
+						<a href="tel:+84357669476" class="contact-value">0357.669.476</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="contact-note">
+				<h2 class="contact-section-title">What I can help with</h2>
+				<ul class="services-list">
+					<li>Technical SEO audits</li>
+					<li>AI search optimisation (ChatGPT / Claude / SGE visibility)</li>
+					<li>Content strategy &amp; keyword research</li>
+					<li>SEO cho thị trường Việt Nam và quốc tế</li>
+					<li>Conversion Rate Optimisation (CRO)</li>
+				</ul>
+				<p class="availability-note">
+					Based in Ho Chi Minh City, Vietnam. Available for remote engagements globally.
+				</p>
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.contact-page {
+		max-width: 860px;
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+	}
+
+	.page-header {
+		margin-bottom: var(--spacing-16);
+		padding-bottom: var(--spacing-12);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.page-kicker {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-3);
+	}
+
+	.page-title {
+		font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
+		font-weight: 700;
+		font-style: italic;
+		line-height: var(--leading-tight);
+		letter-spacing: var(--tracking-tight);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.page-lead {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		max-width: 50ch;
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-16);
+	}
+
+	.contact-section-title {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-muted);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.contact-list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-6);
+	}
+
+	.contact-item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+	}
+
+	.contact-label {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--color-muted);
+	}
+
+	.contact-value {
+		font-size: var(--font-size-lg);
+		color: var(--color-text);
+		text-decoration: none;
+		font-weight: 500;
+		transition: color var(--transition-fast);
+	}
+
+	.contact-value:hover {
+		color: var(--color-accent);
+	}
+
+	.services-list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+		margin-bottom: var(--spacing-8);
+	}
+
+	.services-list li {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
+		color: var(--color-text-secondary);
+		padding-left: var(--spacing-5);
+		position: relative;
+		line-height: var(--leading-relaxed);
+	}
+
+	.services-list li::before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: var(--color-accent);
+		font-size: var(--font-size-sm);
+	}
+
+	.availability-note {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		color: var(--color-muted);
+		line-height: var(--leading-relaxed);
+		padding-top: var(--spacing-6);
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	@media (max-width: 700px) {
+		.contact-grid { grid-template-columns: 1fr; gap: var(--spacing-12); }
+	}
+
+	@media (max-width: 600px) {
+		.contact-page { padding: var(--spacing-8) var(--spacing-4) var(--spacing-16); }
+	}
+</style>

@@ -1,0 +1,353 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+	title="About"
+	description="Le Hoang Tin — SEO Specialist với gần 3 năm kinh nghiệm tại GTV SEO Agency, Ho Chi Minh City."
+>
+	<div class="about-page">
+		<header class="about-header">
+			<div class="about-header-text">
+				<p class="page-kicker">About Me</p>
+				<h1 class="page-title">Le Hoang Tin</h1>
+				<p class="page-subtitle">SEO Specialist · Ho Chi Minh City</p>
+			</div>
+			<div class="about-portrait">
+				<div class="portrait-frame">
+					<img
+						src="/tin_le_hoang.jpg"
+						alt="Le Hoang Tin — SEO Specialist, Ho Chi Minh City"
+						class="portrait-img"
+						width="280"
+						height="280"
+						loading="eager"
+					/>
+				</div>
+				<p class="portrait-caption">Ho Chi Minh City, 2025</p>
+			</div>
+		</header>
+
+		<div class="about-body">
+			<section class="bio-section">
+				<p class="bio-lead">
+					Le Hoang Tin là SEO Specialist với gần 3 năm kinh nghiệm dẫn dắt các dự án SEO tại
+					<strong>GTV SEO</strong> — một trong những agency SEO hàng đầu tại TP. Hồ Chí Minh.
+				</p>
+				<p class="bio-text">
+					Chuyên về data-driven SEO strategy, Conversion Rate Optimization (CRO), và tối ưu nội dung
+					cho AI-driven search channels như ChatGPT, Claude, và Google SGE. Có sự quan tâm đặc biệt
+					đến cách AI đang thay đổi cách mọi người tìm kiếm và khám phá thông tin trực tuyến.
+				</p>
+			</section>
+
+			<div class="about-grid">
+				<section class="about-section">
+					<h2 class="section-heading">Education</h2>
+					<ul class="detail-list">
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>International Business</strong> — Đại học Kinh tế TP.HCM (UEH)
+								<br />
+								<span class="detail-sub">GPA: 3.27/4.0</span>
+							</span>
+						</li>
+					</ul>
+				</section>
+
+				<section class="about-section">
+					<h2 class="section-heading">Skills</h2>
+					<ul class="detail-list">
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>ChatGPT &amp; Claude APIs</strong> — SEO content analysis &amp; AI search optimization
+							</span>
+						</li>
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>Google Search Console &amp; Screaming Frog</strong> — Technical SEO audits
+							</span>
+						</li>
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>SEMrush &amp; Ahrefs</strong> — Keyword research &amp; competitor analysis
+							</span>
+						</li>
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>Google Analytics 4</strong> — Conversion tracking &amp; user behavior
+							</span>
+						</li>
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>SEO Project Management</strong> — KPI delivery &amp; timeline management
+							</span>
+						</li>
+					</ul>
+				</section>
+
+				<section class="about-section">
+					<h2 class="section-heading">Recognition</h2>
+					<ul class="detail-list">
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								<strong>3rd Prize</strong> — AI Application for SEO (GTV SEO internal competition)
+							</span>
+						</li>
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								Author of training documents &amp; e-books for GTV SEO courses
+							</span>
+						</li>
+						<li>
+							<span class="detail-arrow">→</span>
+							<span>
+								Planned 10+ projects helping GTV SEO win new client bids (local &amp; global)
+							</span>
+						</li>
+					</ul>
+				</section>
+
+				<section class="about-section">
+					<h2 class="section-heading">Contact</h2>
+					<ul class="detail-list contact-list">
+						<li>
+							<span class="detail-label">Email</span>
+							<a href="mailto:tinledoihoa@gmail.com" class="detail-link">tinledoihoa@gmail.com</a>
+						</li>
+						<li>
+							<span class="detail-label">LinkedIn</span>
+							<a
+								href="https://www.linkedin.com/in/tin-le-hoang"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="detail-link"
+							>
+								Tin Le Hoang ↗
+							</a>
+						</li>
+						<li>
+							<span class="detail-label">Phone</span>
+							<a href="tel:+84357669476" class="detail-link">0357.669.476</a>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.about-page {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+	}
+
+	/* ── Header ── */
+	.about-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--spacing-12);
+		padding-bottom: var(--spacing-16);
+		border-bottom: 1px solid var(--color-border-subtle);
+		margin-bottom: var(--spacing-16);
+	}
+
+	.about-header-text {
+		flex: 1;
+		max-width: 560px;
+	}
+
+	.page-kicker {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.page-title {
+		font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
+		font-weight: 900;
+		font-style: italic;
+		line-height: var(--leading-tight);
+		letter-spacing: var(--tracking-tight);
+		margin-bottom: var(--spacing-3);
+	}
+
+	.page-subtitle {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+	}
+
+	/* ── Portrait ── */
+	.about-portrait {
+		flex-shrink: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--spacing-3);
+	}
+
+	.portrait-frame {
+		width: 280px;
+		height: 280px;
+		border-radius: 50%;
+		overflow: hidden;
+		border: 3px solid var(--color-border);
+		background: var(--color-surface);
+	}
+
+	.portrait-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		display: block;
+	}
+
+	.portrait-caption {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		text-align: center;
+	}
+
+	/* ── Body ── */
+	.about-body {
+		max-width: 860px;
+	}
+
+	.bio-section {
+		margin-bottom: var(--spacing-16);
+	}
+
+	.bio-lead {
+		font-size: var(--font-size-xl);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text);
+		margin-bottom: var(--spacing-5);
+	}
+
+	.bio-text {
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	/* ── Sections grid ── */
+	.about-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-12);
+	}
+
+	.about-section {
+		border-top: 1px solid var(--color-border-subtle);
+		padding-top: var(--spacing-6);
+	}
+
+	.section-heading {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-muted);
+		margin-bottom: var(--spacing-5);
+	}
+
+	.detail-list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.detail-list li {
+		display: flex;
+		gap: var(--spacing-3);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	.detail-arrow {
+		color: var(--color-accent);
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	.detail-sub {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	/* Contact sub-list */
+	.contact-list li {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding-left: var(--spacing-5);
+	}
+
+	.detail-label {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--color-muted);
+	}
+
+	.detail-link {
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		color: var(--color-text);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.detail-link:hover {
+		color: var(--color-accent);
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 800px) {
+		.about-header {
+			flex-direction: column-reverse;
+			align-items: center;
+			text-align: center;
+		}
+
+		.portrait-frame {
+			width: 200px;
+			height: 200px;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.about-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.about-page {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+		}
+	}
+</style>

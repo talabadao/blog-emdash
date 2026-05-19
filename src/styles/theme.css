@@ -1,108 +1,105 @@
 /*
-  theme.css -- override any :root variable here to retheme the blog.
-
-  This is the only file you need to edit to customize the site's visual
-  appearance. All defaults are listed below as comments. Uncomment and
-  change any value to override it.
-
-  Base.astro puts its defaults inside @layer base, so declarations here
-  (which are unlayered) always take priority -- no specificity tricks needed.
-
-  Note: this template defines explicit dark mode colors in Base.astro.
-  Overriding light-mode --color-* variables here won't affect dark mode.
-  To customize dark mode, also override --color-* variables inside a
-  @media (prefers-color-scheme: dark) block and/or in the :root.dark rule.
+  theme.css — Le Hoang Tin personal site theme.
+  Warm editorial palette: cream bg, deep forest green accent (from CV headings),
+  amber secondary (from CV "SEO Specialist" label).
 */
 
 :root {
-	/* --- Colors ---
-	--color-bg: #ffffff;
-	--color-bg-subtle: #fafafa;
-	--color-text: #1a1a1a;
-	--color-text-secondary: #525252;
-	--color-muted: #8b8b8b;
-	--color-border: #e5e5e5;
-	--color-border-subtle: #f0f0f0;
-	--color-surface: #f7f7f7;
-	--color-accent: #0066cc;
-	--color-accent-hover: #0052a3;
-	--color-on-accent: white;
-	--color-accent-ring: color-mix(in srgb, var(--color-accent) 25%, transparent);
-	*/
+	/* Warm editorial color palette */
+	--color-bg: #F5F0E6;
+	--color-bg-subtle: #ede8de;
+	--color-text: #1A2E1A;
+	--color-text-secondary: #4a4540;
+	--color-muted: #8b8480;
+	--color-text-muted: #6B7B6B;
+	--color-border: #d6cfc0;
+	--color-border-subtle: #e4dfda;
+	--color-surface: #FFFFFF;
 
-	/* --- Type scale ---
-	--font-size-xs: 0.8125rem;
-	--font-size-sm: 0.875rem;
-	--font-size-base: 1rem;
-	--font-size-lg: 1.125rem;
-	--font-size-xl: 1.25rem;
-	--font-size-2xl: 1.5rem;
-	--font-size-3xl: 2rem;
-	--font-size-4xl: 2.5rem;
-	--font-size-5xl: 3.5rem;
-	*/
+	/* Primary — dark forest green for navbar / structural chrome */
+	--color-primary: #2D4A2D;
 
-	/* --- Line heights ---
-	--leading-tight: 1.15;
-	--leading-snug: 1.3;
-	--leading-normal: 1.5;
-	--leading-relaxed: 1.7;
-	*/
+	/* Accent — warm orange CTA */
+	--color-accent: #E8772A;
+	--color-accent-hover: #d0651f;
+	--color-on-accent: #FFFFFF;
+	--color-accent-ring: color-mix(in srgb, var(--color-accent) 20%, transparent);
 
-	/* --- Letter spacing ---
-	--tracking-tight: -0.03em;    used on h1 and large titles
-	--tracking-snug: -0.02em;     used on h2–h6, site/card titles
-	--tracking-wide: 0.06em;      used on meta labels, TOC/widget titles
-	--tracking-wider: 0.08em;     used on footer headings, section labels
-	*/
+	/* Amber secondary */
+	--color-amber: #c17f4a;
+	--color-amber-hover: #a86d3c;
 
-	/* --- Spacing ---
-	--spacing-1: 0.25rem;
-	--spacing-2: 0.5rem;
-	--spacing-3: 0.75rem;
-	--spacing-4: 1rem;
-	--spacing-5: 1.25rem;
-	--spacing-6: 1.5rem;
-	--spacing-8: 2rem;
-	--spacing-10: 2.5rem;
-	--spacing-12: 3rem;
-	--spacing-16: 4rem;
-	--spacing-20: 5rem;
-	--spacing-24: 6rem;
-	*/
+	/* Font overrides */
+	--font-heading: 'DM Serif Display', serif;
+	--font-body: 'Inter', sans-serif;
+}
 
-	/* --- Layout ---
-	--content-width: 680px;       article/page body column width
-	--wide-width: 1200px;         max container width (home, archives)
-	--gutter-width: 200px;        right sidebar column (TOC) on article pages
-	--meta-col-width: 180px;      left meta column on article pages
-	--nav-height: 64px;           sticky header height
-	--search-input-width: 180px;  nav search box width
-	*/
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+	:root:not(.light) {
+		--color-bg: #1c1c1a;
+		--color-bg-subtle: #242420;
+		--color-text: #f0ebe1;
+		--color-text-secondary: #b5afa7;
+		--color-muted: #7a7570;
+		--color-border: #3a3830;
+		--color-border-subtle: #2e2c28;
+		--color-surface: #252420;
+		--color-accent: #5a9034;
+		--color-accent-hover: #6daa42;
+		--color-amber: #d4975e;
+		--color-amber-hover: #e0a870;
+	}
+}
 
-	/* --- Borders & radius ---
-	--radius: 4px;
-	--radius-lg: 8px;
-	*/
+:root.dark {
+	--color-bg: #1c1c1a;
+	--color-bg-subtle: #242420;
+	--color-text: #f0ebe1;
+	--color-text-secondary: #b5afa7;
+	--color-muted: #7a7570;
+	--color-border: #3a3830;
+	--color-border-subtle: #2e2c28;
+	--color-surface: #252420;
+	--color-accent: #5a9034;
+	--color-accent-hover: #6daa42;
+	--color-amber: #d4975e;
+	--color-amber-hover: #e0a870;
+}
 
-	/* --- Transitions ---
-	--transition-fast: 120ms ease;
-	--transition-base: 180ms ease;
-	*/
+/*
+ * Typography — unlayered rules beat @layer base in Base.astro.
+ */
+body {
+	font-family: var(--font-body);
+}
 
-	/* --- Avatars ---
-	--avatar-size-xs: 18px;    card byline avatars
-	--avatar-size-sm: 20px;    post list byline avatars
-	--avatar-size-md: 24px;    featured post byline avatars
-	--avatar-size-lg: 32px;    single post byline avatars
-	*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+}
 
-	/* --- Shadows ---
-	--shadow-dropdown: 0 8px 30px rgba(0, 0, 0, 0.12);
-	--shadow-btn-active: 0 1px 2px rgba(0, 0, 0, 0.05);
-	*/
-
-	/* --- Misc ---
-	--tag-padding-y: 2px;    vertical padding on tag pills
-	*/
+/* Keep UI chrome in DM Sans */
+.site-title,
+.nav-links a,
+.nav-admin,
+.footer-heading,
+.footer-links,
+.footer-copyright,
+.footer-logo,
+.footer-tagline,
+.theme-btn,
+.section-title,
+.section-link,
+.page-description,
+.btn,
+input,
+button,
+select,
+textarea {
+	font-family: var(--font-sans);
 }

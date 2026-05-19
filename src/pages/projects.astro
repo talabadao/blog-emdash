@@ -1,0 +1,326 @@
+---
+import Base from "../layouts/Base.astro";
+
+const projects = [
+	{
+		id: "furniture-global",
+		name: "Global E-commerce",
+		domain: null,
+		timeline: "Nov 2024 – Apr 2025",
+		industry: "Furniture Dropshipping",
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "3", label: "orders/month from organic" },
+			{ value: "100%", label: "KPI in 5 months" },
+		],
+		description:
+			"Phân tích Entity, Technical, Content và xây dựng chiến lược SEO toàn diện cho website dropshipping nội thất toàn cầu. Đạt KPI đề ra trong 5 tháng triển khai.",
+		caseStudySlug: null,
+	},
+	{
+		id: "repair-au",
+		name: "Electronic Equipment Service",
+		domain: "repaircentrevic.com.au",
+		timeline: "Feb 2025",
+		industry: "Local Service — Australia",
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "Top 3–5", label: "trong 2 tuần" },
+			{ value: "85%", label: "KPI delivered" },
+		],
+		description:
+			"Audit phát hiện Keyword Cannibalization và Duplicate Content. Tối ưu On-page sprint cuối, thêm Local schema và Google Business Profile để đạt KPI cho thị trường Australia.",
+		caseStudySlug: "top-3-rankings-in-two-weeks",
+	},
+	{
+		id: "gtv-agency",
+		name: "GTV SEO Agency",
+		domain: "gtvseo.com",
+		timeline: "Apr 2023 – Dec 2024",
+		industry: "SEO Agency",
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "#1", label: "ChatGPT / Claude / Grok" },
+			{ value: "Top 1–3", label: "từ khóa SEO chính" },
+		],
+		description:
+			"Đạt Top 1 recommendation trên ChatGPT, Grok, Claude cho từ khóa 'seo agency hcm' bằng White Hat SEO. Duy trì Top 1–3 Google cho các từ khóa SEO lớn tại Việt Nam.",
+		caseStudySlug: "three-years-at-gtv-seo-what-i-learned",
+	},
+	{
+		id: "vinamilk",
+		name: "Vinamilk Nutrition",
+		domain: "vinamilk.com.vn",
+		timeline: "Nov 2023 – Mar 2024",
+		industry: "FMCG / E-commerce",
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "300K", label: "clicks / tháng" },
+			{ value: "100%", label: "KPI achieved" },
+		],
+		description:
+			"Xây dựng chiến lược Topical Map, Content Outlines và Onpage Checklist cho category dinh dưỡng mẹ và bé. Đưa vinamilk.com.vn lên Top 1–3 cho các từ khóa dinh dưỡng cạnh tranh nhất.",
+		caseStudySlug: null,
+	},
+	{
+		id: "flashlight",
+		name: "Flashlight E-commerce",
+		domain: null,
+		timeline: "Apr 2023 – Nov 2023",
+		industry: "E-commerce",
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "100%", label: "SEO KPI achieved" },
+			{ value: "+25%", label: "Revenue YoY Q4/2023" },
+		],
+		description:
+			"Tối ưu Product Page Views và Time Onsite, xây dựng content cluster cho các dòng sản phẩm đèn pin chiến thuật. Đạt 100% KPI và ký được hợp đồng cung cấp đèn pin cho quân đội.",
+		caseStudySlug: null,
+	},
+	{
+		id: "eurotravel",
+		name: "European Travel",
+		domain: "eurotravel.com.vn",
+		timeline: "Nov 2022 – May 2023",
+		industry: "Travel",
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "80K", label: "clicks / tháng" },
+			{ value: "120%", label: "KPI in 6 months" },
+		],
+		description:
+			"Đạt Top 1 tour Châu Âu theo quốc gia, Top 3 theo tuyến đường. Đưa traffic lên 80,000–100,000 lượt/tháng. Vượt KPI 20% trong 6 tháng triển khai bằng chiến lược content cluster + internal linking.",
+		caseStudySlug: null,
+	},
+];
+---
+
+<Base
+	title="Projects"
+	description="SEO case studies và projects của Le Hoang Tin — kết quả tăng trưởng organic trên e-commerce, travel, B2B và local services."
+>
+	<div class="projects-page">
+		<header class="page-header">
+			<p class="page-kicker">Work</p>
+			<h1 class="page-title">Projects &amp; Case Studies</h1>
+			<p class="page-description">
+				6 dự án SEO tiêu biểu trên các thị trường Việt Nam, Australia và toàn cầu.
+			</p>
+		</header>
+
+		<div class="projects-grid">
+			{
+				projects.map((project) => (
+					<article class="project-card" id={project.id}>
+						<div class="card-top">
+							<div class="card-meta-row">
+								<span class="industry-tag">{project.industry}</span>
+								<span class="timeline">{project.timeline}</span>
+							</div>
+							<h2 class="project-name">{project.name}</h2>
+							<div class="card-sub-row">
+								{project.domain && (
+									<span class="project-domain">{project.domain}</span>
+								)}
+								<span class="project-role">{project.role}</span>
+							</div>
+						</div>
+
+						<div class="metrics-row">
+							{project.metrics.map((m) => (
+								<div class="metric">
+									<span class="metric-value">{m.value}</span>
+									<span class="metric-label">{m.label}</span>
+								</div>
+							))}
+						</div>
+
+						<p class="project-description">{project.description}</p>
+
+						{project.caseStudySlug && (
+							<a href={`/posts/${project.caseStudySlug}`} class="case-study-link">
+								Read case study →
+							</a>
+						)}
+					</article>
+				))
+			}
+		</div>
+	</div>
+</Base>
+
+<style>
+	.projects-page {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+	}
+
+	.page-header {
+		max-width: 640px;
+		margin-bottom: var(--spacing-16);
+	}
+
+	.page-kicker {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-3);
+	}
+
+	.page-title {
+		font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+		font-weight: 700;
+		font-style: italic;
+		line-height: var(--leading-tight);
+		letter-spacing: var(--tracking-tight);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.page-description {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-lg);
+		color: var(--color-text-secondary);
+		line-height: var(--leading-relaxed);
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--spacing-6);
+	}
+
+	.project-card {
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-5);
+		transition: border-color var(--transition-base);
+	}
+
+	.project-card:hover {
+		border-color: var(--color-accent);
+	}
+
+	.card-top {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+	}
+
+	.card-meta-row {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.industry-tag {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.timeline {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.project-name {
+		font-size: var(--font-size-2xl);
+		font-weight: 700;
+		line-height: var(--leading-snug);
+		letter-spacing: var(--tracking-snug);
+	}
+
+	.card-sub-row {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.project-domain {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.project-role {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		color: var(--color-text-secondary);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius);
+		padding: 1px var(--spacing-2);
+	}
+
+	.metrics-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-5);
+		padding: var(--spacing-5) 0;
+		border-top: 1px solid var(--color-border-subtle);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.metric {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.metric-value {
+		font-family: var(--font-display);
+		font-size: var(--font-size-2xl);
+		font-weight: 700;
+		line-height: 1;
+		color: var(--color-accent);
+	}
+
+	.metric-label {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		line-height: var(--leading-snug);
+		max-width: 14ch;
+	}
+
+	.project-description {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		flex: 1;
+	}
+
+	.case-study-link {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		color: var(--color-accent);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+		align-self: flex-start;
+	}
+
+	.case-study-link:hover {
+		color: var(--color-accent-hover);
+	}
+
+	@media (max-width: 900px) {
+		.projects-grid { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 600px) {
+		.projects-page { padding: var(--spacing-8) var(--spacing-4) var(--spacing-16); }
+	}
+</style>

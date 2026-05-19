@@ -3,42 +3,51 @@ import { getEmDashCollection, getTermsForEntries } from "emdash";
 import Base from "../../layouts/Base.astro";
 import { getReadingTime } from "../../utils/reading-time";
 
-// Sort in the database rather than in JS — lets the DB use its index on
-// published_at and avoids a full-table scan on the client.
-const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
+const { entries: posts } = await getEmDashCollection("posts", {
 	orderBy: { published_at: "desc" },
 });
 
-// Single batched query for tags across all posts, instead of one
-// getEntryTerms() call per post (which would be N round-trips).
-// Bylines are already hydrated on entry.data.bylines.
-const tagsByEntry = await getTermsForEntries(
-	"posts",
-	posts.map((p) => p.data.id),
-	"tag",
-);
+const categoriesByEntry =
+	posts.length > 0
+		? await getTermsForEntries(
+				"posts",
+				posts.map((p) => p.data.id),
+				"category",
+			)
+		: new Map();
 
-const postsWithTags = posts.map((post) => ({
-	post,
-	tags: tagsByEntry.get(post.data.id) ?? [],
-	bylines: post.data.bylines ?? [],
-}));
+function formatDate(date: Date | null | undefined): string {
+	if (!date) return "";
+	return date.toISOString().slice(0, 10).replace(/-/g, "·");
+}
 
-const formatDate = (date: Date) =>
-	date.toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	});
+// Group posts by year for the archive view
+type PostWithMeta = {
+	post: (typeof posts)[number];
+	category: { slug: string; label: string } | null;
+};
+
+const grouped = new Map<number, PostWithMeta[]>();
+
+for (const post of posts) {
+	const cats = categoriesByEntry.get(post.data.id);
+	const category = cats && cats.length > 0 ? { slug: cats[0].slug, label: cats[0].label } : null;
+	const year = post.data.publishedAt?.getFullYear() ?? 0;
+
+	if (!grouped.has(year)) grouped.set(year, []);
+	grouped.get(year)!.push({ post, category });
+}
+
+const years = [...grouped.keys()].sort((a, b) => b - a);
 ---
 
-<Base title="All Posts" description="Browse all blog posts">
+<Base title="Blog" description="All articles by Le Hoang Tin — SEO, AI search, case studies, and personal writing.">
 	<div class="posts-page">
 		<header class="page-header">
-			<h1 class="page-title">All Posts</h1>
+			<p class="page-kicker">Writing</p>
+			<h1 class="page-title">All Articles</h1>
 			<p class="page-description">
-				{posts.length}
-				{posts.length === 1 ? "article" : "articles"}
+				{posts.length} {posts.length === 1 ? "article" : "articles"} on SEO, AI search, case studies, and more.
 			</p>
 		</header>
 
@@ -46,59 +55,36 @@ const formatDate = (date: Date) =>
 			posts.length === 0 ? (
 				<p class="empty">No posts yet.</p>
 			) : (
-				<div class="posts-list">
-					{postsWithTags.map(({ post, tags, bylines }) => (
-						<article class="post-item">
-							<a href={`/posts/${post.id}`} class="post-link">
-								<div class="post-meta">
-									{bylines.length > 0 && (
-										<>
-											<div class="post-bylines">
-												{bylines.slice(0, 2).map((credit, index) => (
-													<>
-														{index > 0 && <span class="byline-sep">,</span>}
-														<span class="post-byline">
-															{credit.byline.avatarMediaId && (
-																<img
-																	src={`/_emdash/api/media/file/${credit.byline.avatarMediaId}`}
-																	alt={credit.byline.displayName}
-																	class="post-byline-avatar"
-																/>
-															)}
-															<span class="post-byline-name">
-																{credit.byline.displayName}
-															</span>
-														</span>
-													</>
-												))}
-												{bylines.length > 2 && (
-													<span class="byline-more">+{bylines.length - 2}</span>
-												)}
-											</div>
-											<span class="meta-dot" />
-										</>
-									)}
-									{post.data.publishedAt && (
-										<time>{formatDate(post.data.publishedAt)}</time>
-									)}
-									{post.data.publishedAt && <span class="meta-dot" />}
-									<span>{getReadingTime(post.data.content)} min read</span>
-								</div>
-								<h2 class="post-title">{post.data.title}</h2>
-								{post.data.excerpt && (
-									<p class="post-excerpt">{post.data.excerpt}</p>
-								)}
-							</a>
-							{tags.length > 0 && (
-								<div class="post-tags">
-									{tags.slice(0, 3).map((t) => (
-										<a href={`/tag/${t.slug}`} class="post-tag">
-											{t.label}
-										</a>
-									))}
-								</div>
-							)}
-						</article>
+				<div class="archive">
+					{years.map((year) => (
+						<div class="year-group">
+							<h2 class="year-label">{year === 0 ? "Undated" : year}</h2>
+							<div class="article-list" role="list">
+								{grouped.get(year)!.map(({ post, category }) => (
+									<a
+										href={`/posts/${post.id}`}
+										class="article-row"
+										role="listitem"
+									>
+										<span class="article-num">
+											{post.data.number != null ? `№ ${post.data.number}` : "—"}
+										</span>
+										<time class="article-date">
+											{formatDate(post.data.publishedAt)}
+										</time>
+										{category ? (
+											<span class="article-cat">{category.label}</span>
+										) : (
+											<span class="article-cat" />
+										)}
+										<span class="article-title-col">{post.data.title}</span>
+										<span class="article-time">
+											{getReadingTime(post.data.content)} min
+										</span>
+									</a>
+								))}
+							</div>
+						</div>
 					))}
 				</div>
 			)
@@ -108,163 +94,189 @@ const formatDate = (date: Date) =>
 
 <style>
 	.posts-page {
-		max-width: var(--content-width);
+		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-8) var(--spacing-6) var(--spacing-16);
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
 	}
 
 	.page-header {
-		margin-bottom: var(--spacing-12);
+		max-width: 640px;
+		margin-bottom: var(--spacing-16);
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.page-kicker {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-3);
 	}
 
 	.page-title {
-		font-size: var(--font-size-4xl);
+		font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
 		font-weight: 700;
+		font-style: italic;
+		line-height: var(--leading-tight);
 		letter-spacing: var(--tracking-tight);
-		margin-bottom: var(--spacing-2);
+		margin-bottom: var(--spacing-3);
 	}
 
 	.page-description {
-		font-size: var(--font-size-lg);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-base);
 		color: var(--color-muted);
 	}
 
 	.empty {
+		font-family: var(--font-sans);
 		color: var(--color-muted);
-		font-size: var(--font-size-lg);
 	}
 
-	.posts-list {
+	.archive {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-12);
+	}
+
+	.year-label {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--color-muted);
+		font-weight: 400;
+		margin-bottom: var(--spacing-4);
+		padding-bottom: var(--spacing-4);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.article-list {
 		display: flex;
 		flex-direction: column;
 	}
 
-	.post-item {
-		padding: var(--spacing-8) 0;
+	.article-row {
+		display: grid;
+		grid-template-columns: 3.5rem 7.5rem 6rem 1fr 4rem;
+		align-items: baseline;
+		gap: var(--spacing-4);
+		padding: var(--spacing-4) 0;
 		border-bottom: 1px solid var(--color-border-subtle);
+		text-decoration: none;
+		color: inherit;
+		transition: background var(--transition-fast);
 	}
 
-	.post-item:first-child {
-		padding-top: 0;
-	}
-
-	.post-item:last-child {
+	.article-row:last-child {
 		border-bottom: none;
 	}
 
-	.post-link {
-		display: block;
-		text-decoration: none;
-		color: inherit;
+	.article-row:hover {
+		background: color-mix(in srgb, var(--color-accent) 5%, transparent);
 	}
 
-	.post-meta {
-		display: flex;
-		align-items: center;
-		gap: var(--spacing-3);
-		font-size: var(--font-size-sm);
-		color: var(--color-muted);
-		margin-bottom: var(--spacing-2);
-	}
-
-	.meta-dot {
-		width: 3px;
-		height: 3px;
-		border-radius: 50%;
-		background: var(--color-muted);
-	}
-
-	/* Post bylines */
-	.post-bylines {
-		display: flex;
-		align-items: center;
-		gap: 2px;
-	}
-
-	.post-byline {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--spacing-1);
-	}
-
-	.post-byline-avatar {
-		width: var(--avatar-size-sm);
-		height: var(--avatar-size-sm);
-		border-radius: 50%;
-		object-fit: cover;
-	}
-
-	.post-byline-name {
-		font-weight: 500;
-		color: var(--color-text-secondary);
-	}
-
-	.byline-sep {
-		color: var(--color-muted);
-		margin-right: 2px;
-	}
-
-	.byline-more {
-		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-		margin-left: 2px;
-	}
-
-	.post-title {
-		font-size: var(--font-size-2xl);
-		font-weight: 600;
-		line-height: var(--leading-snug);
-		letter-spacing: var(--tracking-snug);
-		margin-bottom: var(--spacing-2);
-		transition: color var(--transition-fast);
-	}
-
-	.post-link:hover .post-title {
+	.article-row:hover .article-title-col {
 		color: var(--color-accent);
 	}
 
-	.post-excerpt {
-		font-size: var(--font-size-lg);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
-	}
-
-	.post-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--spacing-2);
-		margin-top: var(--spacing-4);
-	}
-
-	.post-tag {
-		display: inline-block;
-		padding: var(--tag-padding-y) var(--spacing-2);
+	.article-num {
+		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
-		color: var(--color-text-secondary);
-		background: var(--color-surface);
-		border-radius: var(--radius);
-		text-decoration: none;
-		transition:
-			color var(--transition-fast),
-			background var(--transition-fast);
+		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
-	.post-tag:hover {
+	.article-date {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.article-cat {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--color-amber);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.article-title-col {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-snug);
 		color: var(--color-text);
-		background: var(--color-border);
+		font-weight: 500;
+		transition: color var(--transition-fast);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.article-time {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	/* Responsive */
+	@media (max-width: 900px) {
+		.article-row {
+			grid-template-columns: 3rem 1fr auto;
+			grid-template-rows: auto auto;
+		}
+
+		.article-num {
+			grid-row: 1;
+			grid-column: 1;
+		}
+
+		.article-title-col {
+			grid-row: 1;
+			grid-column: 2 / 4;
+			white-space: normal;
+		}
+
+		.article-date {
+			grid-row: 2;
+			grid-column: 2;
+		}
+
+		.article-cat {
+			grid-row: 2;
+			grid-column: 3;
+		}
+
+		.article-time {
+			display: none;
+		}
 	}
 
 	@media (max-width: 600px) {
 		.posts-page {
-			padding: var(--spacing-6) var(--spacing-4) var(--spacing-12);
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
 		}
 
-		.page-title {
-			font-size: var(--font-size-3xl);
+		.article-row {
+			grid-template-columns: 2.5rem 1fr;
+			gap: var(--spacing-2) var(--spacing-3);
 		}
 
-		.post-title {
-			font-size: var(--font-size-xl);
+		.article-date,
+		.article-cat,
+		.article-time {
+			display: none;
+		}
+
+		.article-title-col {
+			grid-column: 2;
+			white-space: normal;
 		}
 	}
 </style>

@@ -2,13 +2,13 @@
 	"$schema": "https://emdashcms.com/seed.schema.json",
 	"version": "1",
 	"meta": {
-		"name": "Blog Starter",
-		"description": "A blog with posts and pages",
-		"author": "EmDash"
+		"name": "Le Hoang Tin — SEO & Blog",
+		"description": "Personal blog and portfolio of Le Hoang Tin, SEO Specialist",
+		"author": "Le Hoang Tin"
 	},
 	"settings": {
-		"title": "My Blog",
-		"tagline": "Thoughts on building for the web"
+		"title": "TLH",
+		"tagline": "SEO Specialist from Ho Chi Minh City."
 	},
 	"collections": [
 		{
@@ -16,7 +16,7 @@
 			"label": "Posts",
 			"labelSingular": "Post",
 			"supports": ["drafts", "revisions", "search", "seo"],
-			"commentsEnabled": true,
+			"commentsEnabled": false,
 			"fields": [
 				{
 					"slug": "title",
@@ -24,6 +24,11 @@
 					"type": "string",
 					"required": true,
 					"searchable": true
+				},
+				{
+					"slug": "number",
+					"label": "Article Number",
+					"type": "integer"
 				},
 				{
 					"slug": "featured_image",
@@ -70,21 +75,15 @@
 			"name": "category",
 			"label": "Categories",
 			"labelSingular": "Category",
-			"hierarchical": true,
+			"hierarchical": false,
 			"collections": ["posts"],
 			"terms": [
-				{
-					"slug": "development",
-					"label": "Development"
-				},
-				{
-					"slug": "design",
-					"label": "Design"
-				},
-				{
-					"slug": "notes",
-					"label": "Notes"
-				}
+				{ "slug": "seo", "label": "SEO" },
+				{ "slug": "ai", "label": "AI" },
+				{ "slug": "case-study", "label": "Case Study" },
+				{ "slug": "agency", "label": "Agency" },
+				{ "slug": "personal", "label": "Personal" },
+				{ "slug": "tools", "label": "Tools" }
 			]
 		},
 		{
@@ -94,36 +93,19 @@
 			"hierarchical": false,
 			"collections": ["posts"],
 			"terms": [
-				{
-					"slug": "webdev",
-					"label": "Web Development"
-				},
-				{
-					"slug": "opinion",
-					"label": "Opinion"
-				},
-				{
-					"slug": "tools",
-					"label": "Tools"
-				},
-				{
-					"slug": "creativity",
-					"label": "Creativity"
-				}
+				{ "slug": "ai-search", "label": "AI Search" },
+				{ "slug": "technical-seo", "label": "Technical SEO" },
+				{ "slug": "keyword-research", "label": "Keyword Research" },
+				{ "slug": "content-strategy", "label": "Content Strategy" },
+				{ "slug": "link-building", "label": "Link Building" }
 			]
 		}
 	],
 	"bylines": [
 		{
-			"id": "byline-editorial",
-			"slug": "emdash-editorial",
-			"displayName": "EmDash Editorial"
-		},
-		{
-			"id": "byline-guest",
-			"slug": "guest-contributor",
-			"displayName": "Guest Contributor",
-			"isGuest": true
+			"id": "byline-tin",
+			"slug": "le-hoang-tin",
+			"displayName": "Le Hoang Tin"
 		}
 	],
 	"menus": [
@@ -131,20 +113,26 @@
 			"name": "primary",
 			"label": "Primary Navigation",
 			"items": [
+				{ "type": "custom", "label": "Blog", "url": "/posts" },
+				{ "type": "custom", "label": "About", "url": "/about" },
+				{ "type": "custom", "label": "Projects", "url": "/projects" },
+				{ "type": "custom", "label": "Contact", "url": "/contact" }
+			]
+		},
+		{
+			"name": "social",
+			"label": "Social Links",
+			"items": [
 				{
 					"type": "custom",
-					"label": "Home",
-					"url": "/"
+					"label": "LinkedIn",
+					"url": "https://www.linkedin.com/in/tinlehoang",
+					"target": "_blank"
 				},
 				{
 					"type": "custom",
-					"label": "About",
-					"url": "/pages/about"
-				},
-				{
-					"type": "custom",
-					"label": "Posts",
-					"url": "/posts"
+					"label": "Email",
+					"url": "mailto:tinledoihoa@gmail.com"
 				}
 			]
 		}
@@ -167,73 +155,31 @@
 				},
 				{
 					"type": "component",
-					"componentId": "core:tags",
-					"title": "Tags"
-				},
-				{
-					"type": "component",
 					"componentId": "core:recent-posts",
 					"title": "Recent Posts",
-					"settings": {
-						"count": 5,
-						"showDate": true
-					}
-				},
-				{
-					"type": "component",
-					"componentId": "core:archives",
-					"title": "Archives",
-					"settings": {
-						"type": "monthly",
-						"limit": 6
-					}
+					"settings": { "count": 5, "showDate": true }
 				}
 			]
 		},
 		{
 			"name": "footer",
 			"label": "Footer",
-			"description": "Widget area displayed in the site footer",
-			"widgets": [
-				{
-					"type": "content",
-					"title": "About",
-					"content": [
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "A blog about software, design, and the occasional stray thought.",
-									"_key": "k1"
-								}
-							],
-							"_key": "k0"
-						}
-					]
-				}
-			]
+			"description": "Widget area in the site footer",
+			"widgets": []
 		}
 	],
 	"sections": [
 		{
 			"slug": "newsletter-signup",
 			"title": "Newsletter Signup",
-			"description": "A call-to-action block for newsletter subscriptions",
-			"keywords": ["newsletter", "subscribe", "email", "cta"],
+			"description": "Call-to-action for newsletter subscriptions",
+			"keywords": ["newsletter", "subscribe", "email"],
 			"source": "theme",
 			"content": [
 				{
 					"_type": "block",
 					"style": "h3",
-					"children": [
-						{
-							"_type": "span",
-							"text": "Stay in the loop",
-							"_key": "k1"
-						}
-					],
+					"children": [{ "_type": "span", "text": "Stay in the loop", "_key": "k1" }],
 					"_key": "k0"
 				},
 				{
@@ -242,32 +188,11 @@
 					"children": [
 						{
 							"_type": "span",
-							"text": "Get notified when new posts are published. No spam, unsubscribe anytime.",
+							"text": "Get notified when new SEO insights are published. No spam, unsubscribe anytime.",
 							"_key": "k3"
 						}
 					],
 					"_key": "k2"
-				}
-			]
-		},
-		{
-			"slug": "about-author",
-			"title": "About the Author",
-			"description": "Brief author bio for use in posts or pages",
-			"keywords": ["author", "bio", "about"],
-			"source": "theme",
-			"content": [
-				{
-					"_type": "block",
-					"style": "normal",
-					"children": [
-						{
-							"_type": "span",
-							"text": "A software developer who writes about building things on the web. Based somewhere with good coffee and reliable internet.",
-							"_key": "k1"
-						}
-					],
-					"_key": "k0"
 				}
 			]
 		}
@@ -287,11 +212,11 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "A place for writing about software, design, and the occasional stray thought. No posting schedule, no newsletter funnel. Just things I wanted to write down.",
-									"_key": "k1"
+									"text": "Le Hoang Tin is an SEO Specialist with nearly 3 years of experience leading SEO projects at GTV SEO — one of Ho Chi Minh City's leading digital marketing agencies.",
+									"_key": "a1"
 								}
 							],
-							"_key": "k0"
+							"_key": "a0"
 						},
 						{
 							"_type": "block",
@@ -299,11 +224,137 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Built with Astro and EmDash. The source is open if you want to see how it works.",
-									"_key": "k3"
+									"text": "He specializes in data-driven SEO strategy, Conversion Rate Optimization (CRO), and optimizing content for AI-driven search channels like ChatGPT, Claude, and Google SGE. He has a particular interest in how AI is reshaping the way people search and discover information online.",
+									"_key": "a3"
 								}
 							],
-							"_key": "k2"
+							"_key": "a2"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Education", "_key": "a5" }],
+							"_key": "a4"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "International Business, University of Economics Ho Chi Minh City (UEH) — GPA: 3.27/4.0",
+									"_key": "a7"
+								}
+							],
+							"_key": "a6"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Skills", "_key": "a9" }],
+							"_key": "a8"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "ChatGPT & Claude APIs — SEO content analysis & AI search optimization",
+									"_key": "a11"
+								}
+							],
+							"_key": "a10"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Google Search Console & Screaming Frog — Technical SEO audits",
+									"_key": "a13"
+								}
+							],
+							"_key": "a12"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "SEMrush & Ahrefs — Keyword research & competitor analysis",
+									"_key": "a15"
+								}
+							],
+							"_key": "a14"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Google Analytics 4 — Conversion tracking & user behavior analysis",
+									"_key": "a17"
+								}
+							],
+							"_key": "a16"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "SEO Project Management — KPI delivery, timeline management, client reporting",
+									"_key": "a19"
+								}
+							],
+							"_key": "a18"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Recognition", "_key": "a21" }],
+							"_key": "a20"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "3rd Prize — AI Application for SEO (GTV SEO internal competition)",
+									"_key": "a23"
+								}
+							],
+							"_key": "a22"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Author of training documents and e-books for GTV SEO courses",
+									"_key": "a25"
+								}
+							],
+							"_key": "a24"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Planned 10+ projects helping GTV SEO win new client bids (local and global markets)",
+									"_key": "a27"
+								}
+							],
+							"_key": "a26"
 						}
 					]
 				}
@@ -311,17 +362,18 @@
 		],
 		"posts": [
 			{
-				"id": "post-1",
-				"slug": "building-for-the-long-term",
+				"id": "post-ai-keyword-research",
+				"slug": "how-ai-search-changed-keyword-research",
 				"status": "published",
 				"data": {
-					"title": "Building for the Long Term",
-					"excerpt": "The frameworks will change. The databases will change. What survives is the clarity of your thinking.",
+					"title": "How AI Search Changed Keyword Research Forever",
+					"number": 5,
+					"excerpt": "ChatGPT, Claude, and Google SGE don't rank pages — they synthesize answers. Here's how I've adapted my keyword research process for the era of AI search.",
 					"featured_image": {
 						"$media": {
-							"url": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop",
-							"alt": "Code on a monitor in a dark room",
-							"filename": "building-long-term.jpg"
+							"url": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&h=800&fit=crop",
+							"alt": "Abstract AI neural network visualization",
+							"filename": "ai-keyword-research.jpg"
 						}
 					},
 					"content": [
@@ -331,11 +383,11 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Every few years the industry collectively decides that everything we've been doing is wrong and there's a better way. New frameworks, new paradigms, new build tools. The churn is relentless, and if you're not careful, you spend more time migrating than building.",
-									"_key": "k1"
+									"text": "Two years ago, keyword research meant finding the right search volume and ranking difficulty balance. Today, when I research keywords for a client, I'm asking a different question: will this content get cited when someone asks ChatGPT about this topic?",
+									"_key": "p1k1"
 								}
 							],
-							"_key": "k0"
+							"_key": "p1k0"
 						},
 						{
 							"_type": "block",
@@ -343,23 +395,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "I've been writing software long enough to have seen several of these cycles. jQuery to Backbone to Angular to React to whatever comes next. Each transition felt urgent at the time. Looking back, the things that actually mattered were rarely about the framework.",
-									"_key": "k3"
+									"text": "The shift is real. According to data we've tracked at GTV SEO, a growing percentage of our clients' target audiences now get their first answer from an AI assistant — not from a Google results page. For informational queries especially, AI chat is the new first touch.",
+									"_key": "p1k3"
 								}
 							],
-							"_key": "k2"
+							"_key": "p1k2"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "What survives",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "What changed and what didn't", "_key": "p1k5" }],
+							"_key": "p1k4"
 						},
 						{
 							"_type": "block",
@@ -367,11 +413,11 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Clean data models survive. Clear boundaries between systems survive. Good naming survives. The decision to keep things simple when you could have made them clever - that definitely survives.",
-									"_key": "k7"
+									"text": "What changed: the end destination. Users no longer reliably click through to websites for informational queries. AI models synthesize the answer inline, citing two or three sources. Being source #1 in the AI's response is the new Page 1 ranking.",
+									"_key": "p1k7"
 								}
 							],
-							"_key": "k6"
+							"_key": "p1k6"
 						},
 						{
 							"_type": "block",
@@ -379,90 +425,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "What doesn't survive is code that was written to impress, abstractions built for problems that never materialized, and architectures designed around a framework's opinions rather than the domain's reality.",
-									"_key": "k9"
+									"text": "What didn't change: the importance of depth, authority, and specificity. AI models cite pages that answer questions clearly and completely. Thin content fails in AI search for the same reason it failed in Google — it doesn't actually help the person asking.",
+									"_key": "p1k9"
 								}
 							],
-							"_key": "k8"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "The best code I've written is boring. It reads like prose, does one thing well, and doesn't require a PhD in category theory to understand. The worst code I've written was technically impressive at the time.",
-									"_key": "k11"
-								}
-							],
-							"_key": "k10"
-						}
-					]
-				},
-				"bylines": [
-					{
-						"byline": "byline-editorial"
-					},
-					{
-						"byline": "byline-guest",
-						"roleLabel": "Guest essay"
-					}
-				],
-				"taxonomies": {
-					"category": ["development"],
-					"tag": ["opinion"]
-				}
-			},
-			{
-				"id": "post-2",
-				"slug": "the-case-for-static",
-				"status": "published",
-				"data": {
-					"title": "The Case for Static",
-					"excerpt": "Static sites aren't a step backwards. They're what you get when you take performance and simplicity seriously.",
-					"featured_image": {
-						"$media": {
-							"url": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=800&fit=crop",
-							"alt": "Laptop and coffee on a wooden table",
-							"filename": "case-for-static.jpg"
-						}
-					},
-					"content": [
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "There's a certain irony in the fact that the web started static, went dynamic, and is now swinging back toward static again. But the static sites of today aren't the hand-coded HTML pages of 1998. They're generated, optimized, and deployed to edge networks that serve them in milliseconds.",
-									"_key": "k1"
-								}
-							],
-							"_key": "k0"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "The pitch for server-rendered everything was compelling: dynamic content, personalization, real-time data. But most sites don't need most of that most of the time. A blog post doesn't need to be rendered on every request. A product page doesn't change every second.",
-									"_key": "k3"
-								}
-							],
-							"_key": "k2"
+							"_key": "p1k8"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "The performance argument",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "My updated keyword research process", "_key": "p1k11" }],
+							"_key": "p1k10"
 						},
 						{
 							"_type": "block",
@@ -470,11 +443,11 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "A static file served from a CDN is as fast as the web gets. No cold starts, no database queries, no server-side rendering overhead. The Time to First Byte is essentially the network latency to your nearest edge node. You can't beat physics.",
-									"_key": "k7"
+									"text": "For every target keyword, I now run it through three tools: Google, ChatGPT, and Claude. The Google results tell me who's ranking. The AI responses tell me what answer is already considered authoritative enough to cite. The gap between the two is where the opportunity lives.",
+									"_key": "p1k13"
 								}
 							],
-							"_key": "k6"
+							"_key": "p1k12"
 						},
 						{
 							"_type": "block",
@@ -482,36 +455,33 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "And when you do need dynamic behavior, you can add it surgically. An island of interactivity in a sea of static HTML. The best of both worlds, without paying the cost of either at all times.",
-									"_key": "k9"
+									"text": "If a competing page ranks #1 on Google but doesn't appear in AI citations, that's a signal the content is technically optimized but lacks depth. If a source is consistently cited by AI but ranks #5 on Google, it's probably genuinely good content that deserves stronger distribution. Both are actionable insights.",
+									"_key": "p1k15"
 								}
 							],
-							"_key": "k8"
+							"_key": "p1k14"
 						}
 					]
 				},
-				"bylines": [
-					{
-						"byline": "byline-editorial"
-					}
-				],
+				"bylines": [{ "byline": "byline-tin" }],
 				"taxonomies": {
-					"category": ["development"],
-					"tag": ["webdev", "opinion"]
+					"category": ["seo"],
+					"tag": ["ai-search", "keyword-research"]
 				}
 			},
 			{
-				"id": "post-3",
-				"slug": "learning-in-public",
+				"id": "post-gtv-lessons",
+				"slug": "three-years-at-gtv-seo-what-i-learned",
 				"status": "published",
 				"data": {
-					"title": "Learning in Public",
-					"excerpt": "Writing about what you're learning is the fastest way to find out what you don't actually understand.",
+					"title": "3 Years at GTV SEO: What I Learned",
+					"number": 4,
+					"excerpt": "From my first client audit to leading 10+ projects simultaneously — the honest lessons from building a career at one of Vietnam's leading SEO agencies.",
 					"featured_image": {
 						"$media": {
-							"url": "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=1200&h=800&fit=crop",
-							"alt": "Notebook and pen on a desk",
-							"filename": "learning-in-public.jpg"
+							"url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=800&fit=crop",
+							"alt": "Team working around a table with laptops",
+							"filename": "gtv-lessons.jpg"
 						}
 					},
 					"content": [
@@ -521,35 +491,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "I started writing about things I was learning not because I had anything original to say, but because I kept forgetting what I'd figured out. The blog posts were notes to my future self, published publicly more out of laziness than courage.",
-									"_key": "k1"
+									"text": "I joined GTV SEO Agency in April 2023 as a junior SEO executive. I had textbook knowledge, reasonable English, and a lot to prove. By the time I was leading national-scale campaigns for brands like Vinamilk, I understood why agencies either make you or break you — there's no slow lane.",
+									"_key": "p2k1"
 								}
 							],
-							"_key": "k0"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "What I didn't expect was how much the writing itself would accelerate the learning. There's a particular kind of clarity that comes from trying to explain something to someone else. The gaps in your understanding, which you can happily ignore when the knowledge lives only in your head, become painfully obvious when you try to put it into sentences.",
-									"_key": "k3"
-								}
-							],
-							"_key": "k2"
+							"_key": "p2k0"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "The fear of being wrong",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "Lesson 1: Clients don't buy SEO, they buy certainty", "_key": "p2k3" }],
+							"_key": "p2k2"
 						},
 						{
 							"_type": "block",
@@ -557,11 +509,11 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "The biggest barrier isn't time or writing skill. It's the fear of publishing something that turns out to be wrong. But here's the thing: being wrong publicly is one of the most efficient ways to learn. Someone will correct you, often kindly, and you'll remember that correction forever.",
-									"_key": "k7"
+									"text": "The first time I presented a strategy to a client, I focused entirely on the technical work — crawl budget optimization, internal linking, schema markup. They stopped me midway. They didn't care about schema. They cared about whether their phone would ring more in 90 days.",
+									"_key": "p2k5"
 								}
 							],
-							"_key": "k6"
+							"_key": "p2k4"
 						},
 						{
 							"_type": "block",
@@ -569,31 +521,81 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "The posts that helped me most weren't written by experts. They were written by people one step ahead of me on the same path, in language that hadn't yet been polished into abstraction. There's a place for that kind of writing, and it's more valuable than most people realize.",
-									"_key": "k9"
+									"text": "Every proposal I write now opens with the business problem, not the solution. The technical roadmap is page two. This shift — from SEO deliverables to business outcomes — changed how we win pitches. It's also the reason I helped GTV close 10+ new client bids.",
+									"_key": "p2k7"
 								}
 							],
-							"_key": "k8"
+							"_key": "p2k6"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Lesson 2: Speed beats perfection, always", "_key": "p2k9" }],
+							"_key": "p2k8"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Agency life teaches you to ship. In my first month I spent three days perfecting a content brief that should have taken half a day. My manager reviewed it in 20 minutes and sent it to the client. The client was happy. The extra two days of refinement changed nothing.",
+									"_key": "p2k11"
+								}
+							],
+							"_key": "p2k10"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "The best SEO results I've achieved weren't from perfect strategies. They were from good strategies executed fast, with weekly adjustments based on what the data was actually showing.",
+									"_key": "p2k13"
+								}
+							],
+							"_key": "p2k12"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Lesson 3: GTV's own SEO was the hardest brief", "_key": "p2k15" }],
+							"_key": "p2k14"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "The project I'm most proud of isn't a client campaign. It's GTV's own brand SEO. Getting our agency to rank #1 on ChatGPT, Claude, and Grok for 'SEO agency HCMC' — and maintaining Top 1–3 on Google for our main keywords — required a level of consistency and experimentation that no paid engagement would have allowed.",
+									"_key": "p2k17"
+								}
+							],
+							"_key": "p2k16"
 						}
 					]
 				},
+				"bylines": [{ "byline": "byline-tin" }],
 				"taxonomies": {
-					"category": ["notes"],
-					"tag": ["opinion"]
+					"category": ["agency"],
+					"tag": ["content-strategy"]
 				}
 			},
 			{
-				"id": "post-4",
-				"slug": "small-tools-big-impact",
+				"id": "post-repair-case-study",
+				"slug": "top-3-rankings-in-two-weeks",
 				"status": "published",
 				"data": {
-					"title": "Small Tools, Big Impact",
-					"excerpt": "The best developer tools do one thing well and get out of your way. A love letter to focused software.",
+					"title": "How I Hit Top 3 Rankings in 2 Weeks",
+					"number": 3,
+					"excerpt": "A case study on taking repaircentrevic.com.au from obscurity to Top 3–5 in Australia for iPhone and Samsung repair queries — in under two weeks.",
 					"featured_image": {
 						"$media": {
-							"url": "https://images.unsplash.com/photo-1575026615908-666710ae5e47?w=1200&h=800&fit=crop",
-							"alt": "Wrenches and hand tools hanging on a workshop wall",
-							"filename": "small-tools.jpg"
+							"url": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=800&fit=crop",
+							"alt": "Phone repair tools on a clean white desk",
+							"filename": "repair-case-study.jpg"
 						}
 					},
 					"content": [
@@ -603,35 +605,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "There's a class of software that doesn't get enough appreciation. Not the frameworks or the platforms or the IDEs, but the small, sharp tools that solve one problem so well you stop thinking about them. They become invisible, which is the highest compliment you can pay a tool.",
-									"_key": "k1"
+									"text": "The client came to us in February 2025 with a website that had been live for 18 months but was invisible in search. Their target: rank for iPhone repair and Samsung repair keywords in Melbourne, Australia. Their timeline: as fast as possible.",
+									"_key": "p3k1"
 								}
 							],
-							"_key": "k0"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "I'm talking about things like ripgrep, which searches code so fast it changed how I think about searching. Or jq, which makes JSON feel like a first-class data format in the terminal. Or curl, which has been quietly powering the internet's plumbing for decades.",
-									"_key": "k3"
-								}
-							],
-							"_key": "k2"
+							"_key": "p3k0"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "The Unix philosophy, revisited",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "The diagnosis", "_key": "p3k3" }],
+							"_key": "p3k2"
 						},
 						{
 							"_type": "block",
@@ -639,11 +623,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Do one thing well. The advice is old enough to be a cliche, but the best modern tools still follow it. They don't try to be platforms. They don't have plugin ecosystems or configuration languages or startup wizards. They do their job and they compose with other tools that do theirs.",
-									"_key": "k7"
+									"text": "A Screaming Frog crawl immediately showed the problem: 47 pages, only 3 had unique meta descriptions, zero structured data, and the homepage title tag was 'Home — Welcome'. The site had authority — several decent backlinks from Australian tech directories — but Google had no idea what the site was actually about.",
+									"_key": "p3k5"
 								}
 							],
-							"_key": "k6"
+							"_key": "p3k4"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "The fix", "_key": "p3k7" }],
+							"_key": "p3k6"
 						},
 						{
 							"_type": "block",
@@ -651,31 +641,63 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "The temptation is always to add more. One more feature, one more option, one more integration. But every addition is a decision someone has to make, a path through the code that has to be maintained, a thing that can break. The best tools resist this. They stay small, and in staying small, they stay reliable.",
-									"_key": "k9"
+									"text": "Week one was entirely on-page: rewrote every title tag and meta description with the target city and device model in the right positions, added LocalBusiness and Repair schema JSON-LD, and consolidated duplicate service pages into single authoritative URLs.",
+									"_key": "p3k9"
 								}
 							],
-							"_key": "k8"
+							"_key": "p3k8"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Week two: Google Business Profile optimization with photos, service categories, and a Q&A section answering the exact questions users search before booking a repair. We requested re-indexing via Search Console immediately after each batch of changes.",
+									"_key": "p3k11"
+								}
+							],
+							"_key": "p3k10"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "The result", "_key": "p3k13" }],
+							"_key": "p3k12"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "By day 11, the site was showing in position 3–5 for 'iPhone repair Melbourne' and 'Samsung screen repair Melbourne'. We hit 85% of the agreed KPIs within the first month. The lesson: technical debt creates ranking debt. Paying it down quickly is usually enough to move fast.",
+									"_key": "p3k15"
+								}
+							],
+							"_key": "p3k14"
 						}
 					]
 				},
+				"bylines": [{ "byline": "byline-tin" }],
 				"taxonomies": {
-					"category": ["development"],
-					"tag": ["tools"]
+					"category": ["case-study"],
+					"tag": ["technical-seo"]
 				}
 			},
 			{
-				"id": "post-5",
-				"slug": "designing-with-constraints",
+				"id": "post-ai-future-seo",
+				"slug": "ai-assistants-are-the-new-search-engines",
 				"status": "published",
 				"data": {
-					"title": "Designing with Constraints",
-					"excerpt": "Limitations aren't obstacles to creativity. They're the structure that makes creativity possible.",
+					"title": "AI Assistants Are the New Search Engines",
+					"number": 2,
+					"excerpt": "When your target customer asks ChatGPT instead of Googling, do they hear your brand's name? That's the question every SEO should be answering right now.",
 					"featured_image": {
 						"$media": {
-							"url": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=1200&h=800&fit=crop",
-							"alt": "Pencils and design tools on a desk",
-							"filename": "designing-with-constraints.jpg"
+							"url": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=800&fit=crop",
+							"alt": "Futuristic AI assistant interface",
+							"filename": "ai-search-engines.jpg"
 						}
 					},
 					"content": [
@@ -685,11 +707,11 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Give a designer a blank canvas and unlimited time, and they'll often produce something mediocre. Give them a tight brief, a small screen, and a deadline, and they'll surprise you. This isn't a paradox - it's how creativity actually works.",
-									"_key": "k1"
+									"text": "I tested something recently: I asked ChatGPT 'What are the best SEO agencies in Ho Chi Minh City?' and then asked the same question on Google. ChatGPT named GTV SEO first. Google showed a map pack. Different answers, different user experiences — but the same underlying question.",
+									"_key": "p4k1"
 								}
 							],
-							"_key": "k0"
+							"_key": "p4k0"
 						},
 						{
 							"_type": "block",
@@ -697,23 +719,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Constraints force decisions. When you can't use more than two typefaces, you have to choose carefully. When the page has to load in under a second, every element earns its place. When the interface has to work on a 320px screen, you discover what's truly essential.",
-									"_key": "k3"
+									"text": "The reason ChatGPT named GTV first is because we had built the right content signals: articles, mentions in industry publications, structured data that made our services unambiguous to machines. Everything we did for traditional SEO turned out to also work for AI citation — it just works through a different mechanism.",
+									"_key": "p4k3"
 								}
 							],
-							"_key": "k2"
+							"_key": "p4k2"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "Embracing the box",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "How AI models decide what to cite", "_key": "p4k5" }],
+							"_key": "p4k4"
 						},
 						{
 							"_type": "block",
@@ -721,11 +737,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "The web itself is a constraint. HTML flows in one direction. CSS has a box model. Browsers have viewport sizes and font rendering quirks. You can fight these constraints or you can work with them, and the results are dramatically different.",
-									"_key": "k7"
+									"text": "Large language models are trained on a snapshot of the web, plus they can retrieve content in real time (for models with browsing). Citations tend to go to pages that are: clear about what they are (schema helps), consistent across sources (your brand name appearing the same way everywhere matters), and genuinely useful to someone asking that specific question.",
+									"_key": "p4k7"
 								}
 							],
-							"_key": "k6"
+							"_key": "p4k6"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "What to do about it", "_key": "p4k9" }],
+							"_key": "p4k8"
 						},
 						{
 							"_type": "block",
@@ -733,31 +755,33 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "The designs I admire most don't look like they were forced through a framework. They look like they grew naturally from the medium, respecting its grain rather than working against it. That only happens when you treat constraints as creative partners rather than enemies.",
-									"_key": "k9"
+									"text": "I recommend clients audit their brand presence in AI tools quarterly: ask ChatGPT and Claude about their target keywords and see if they appear. If they don't, the gap is usually either: no content that directly answers the question at depth, or inconsistent brand signals across the web. Both are fixable with traditional SEO methods.",
+									"_key": "p4k11"
 								}
 							],
-							"_key": "k8"
+							"_key": "p4k10"
 						}
 					]
 				},
+				"bylines": [{ "byline": "byline-tin" }],
 				"taxonomies": {
-					"category": ["design"],
-					"tag": ["creativity"]
+					"category": ["ai"],
+					"tag": ["ai-search", "content-strategy"]
 				}
 			},
 			{
-				"id": "post-6",
-				"slug": "a-weekend-with-a-side-project",
+				"id": "post-seo-toolkit",
+				"slug": "my-technical-seo-toolkit",
 				"status": "published",
 				"data": {
-					"title": "A Weekend with a Side Project",
-					"excerpt": "No stakeholders, no deadlines, no Jira tickets. Just you and a dumb idea that might turn into something.",
+					"title": "My Technical SEO Toolkit: What I Use Every Week",
+					"number": 1,
+					"excerpt": "Screaming Frog, GSC, Ahrefs, and a few less obvious tools. Here's the exact stack I use for technical audits and how each one earns its place.",
 					"featured_image": {
 						"$media": {
-							"url": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&h=800&fit=crop",
-							"alt": "Code on a screen with a dark theme",
-							"filename": "weekend-side-project.jpg"
+							"url": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1200&h=800&fit=crop",
+							"alt": "Developer tools and analytics on a screen",
+							"filename": "seo-toolkit.jpg"
 						}
 					},
 					"content": [
@@ -767,35 +791,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Saturday morning. Coffee's made, the house is quiet, and I've got an idea that's been nagging at me all week. Not a good idea, necessarily - just a persistent one. A small tool that does a thing I keep doing manually. How hard could it be?",
-									"_key": "k1"
+									"text": "Every SEO has their tool stack. Mine has stabilized over the past year into a core set of four tools that I use on every project, plus a few specialized ones that I pull out when the situation calls for it. Here's what I use and why.",
+									"_key": "p5k1"
 								}
 							],
-							"_key": "k0"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "This is the best kind of programming. No requirements document, no sprint planning, no pull request reviews. Just a text editor and a problem. The freedom to make terrible architectural decisions, rewrite everything twice, and follow tangents that turn out to be dead ends.",
-									"_key": "k3"
-								}
-							],
-							"_key": "k2"
+							"_key": "p5k0"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "Why side projects matter",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "Screaming Frog — the foundation", "_key": "p5k3" }],
+							"_key": "p5k2"
 						},
 						{
 							"_type": "block",
@@ -803,81 +809,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Side projects are where you learn things your day job would never teach you. Not because the problems are harder, but because you're free to take risks. Try a language you've never used. Build something without a framework. Deploy to a platform you've only read about. The stakes are zero, which makes the learning maximum.",
-									"_key": "k7"
+									"text": "Every new client engagement starts with a full crawl. Screaming Frog gives me a complete picture of the site's technical health in minutes: missing titles and descriptions, duplicate content, broken links, redirect chains, orphaned pages. I use the custom extraction feature to pull structured data from pages and verify schema implementation.",
+									"_key": "p5k5"
 								}
 							],
-							"_key": "k6"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "By Sunday evening, the thing sort of works. It's rough, the error handling is nonexistent, and the README is a single sentence. But it solves the problem I set out to solve, and I learned three things I didn't know on Friday. Not a bad weekend.",
-									"_key": "k9"
-								}
-							],
-							"_key": "k8"
-						}
-					]
-				},
-				"taxonomies": {
-					"category": ["development"],
-					"tag": ["creativity"]
-				}
-			},
-			{
-				"id": "post-7",
-				"slug": "notes-on-simplicity",
-				"status": "published",
-				"data": {
-					"title": "Notes on Simplicity",
-					"excerpt": "Simplicity isn't the absence of complexity. It's the result of understanding a problem well enough to solve it cleanly.",
-					"featured_image": {
-						"$media": {
-							"url": "https://images.unsplash.com/photo-1559051668-e1fa58f25786?w=1200&h=800&fit=crop",
-							"alt": "Geometric pattern carved into white paper",
-							"filename": "notes-on-simplicity.jpg"
-						}
-					},
-					"content": [
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "Every piece of software starts simple. A few files, a clear purpose, a small surface area. Then features get added, edge cases get handled, and before long you're looking at something that requires a diagram to understand. This isn't inevitable, but it takes discipline to prevent.",
-									"_key": "k1"
-								}
-							],
-							"_key": "k0"
-						},
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "The hard part of simplicity isn't the initial design. It's the ongoing resistance to complication. Every feature request, every bug fix, every refactor is an opportunity to add complexity. Saying no is the most important design skill, and the least celebrated.",
-									"_key": "k3"
-								}
-							],
-							"_key": "k2"
+							"_key": "p5k4"
 						},
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [
-								{
-									"_type": "span",
-									"text": "Removing as a feature",
-									"_key": "k5"
-								}
-							],
-							"_key": "k4"
+							"children": [{ "_type": "span", "text": "Google Search Console — the ground truth", "_key": "p5k7" }],
+							"_key": "p5k6"
 						},
 						{
 							"_type": "block",
@@ -885,11 +827,17 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "The best version of a product often has fewer features than the previous one. Not because features were missing, but because someone had the courage to remove things that weren't earning their keep. Every feature has a cost - in maintenance, in cognitive load, in the weight of the interface.",
-									"_key": "k7"
+									"text": "GSC is the only tool that shows you what Google actually thinks about your site. I use it primarily for: identifying pages with impressions but low CTR (title/description problem), finding keywords where a page ranks 5–15 (quick win candidates), and monitoring Core Web Vitals trends after site changes.",
+									"_key": "p5k9"
 								}
 							],
-							"_key": "k6"
+							"_key": "p5k8"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Ahrefs — for the competitive picture", "_key": "p5k11" }],
+							"_key": "p5k10"
 						},
 						{
 							"_type": "block",
@@ -897,40 +845,36 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Simplicity is a practice, not a destination. You never arrive at simple. You just keep asking: is this necessary? Could this be clearer? Is there a way to solve this problem by removing something instead of adding something? The answer is yes more often than you'd expect.",
-									"_key": "k9"
+									"text": "Ahrefs is my primary tool for backlink analysis and keyword research. The Site Explorer shows me a competitor's full organic footprint — what they rank for, what content drives their traffic, where their links come from. That competitive intelligence shapes about 40% of my content strategy recommendations.",
+									"_key": "p5k13"
 								}
 							],
-							"_key": "k8"
+							"_key": "p5k12"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "ChatGPT & Claude — the new research layer", "_key": "p5k15" }],
+							"_key": "p5k14"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "I use AI assistants to understand how topics are framed in conversational search, to identify semantic gaps in existing content, and to quickly draft content briefs. They've replaced about half of my manual research time. More importantly, testing a client's target keywords in ChatGPT and Claude has become a standard part of every competitive audit.",
+									"_key": "p5k17"
+								}
+							],
+							"_key": "p5k16"
 						}
 					]
 				},
+				"bylines": [{ "byline": "byline-tin" }],
 				"taxonomies": {
-					"category": ["notes"],
-					"tag": ["opinion"]
-				}
-			},
-			{
-				"id": "post-draft",
-				"slug": "work-in-progress",
-				"status": "draft",
-				"data": {
-					"title": "Work in Progress",
-					"excerpt": "This post is still being written.",
-					"content": [
-						{
-							"_type": "block",
-							"style": "normal",
-							"children": [
-								{
-									"_type": "span",
-									"text": "This is a draft post that won't appear in the public listing.",
-									"_key": "k1"
-								}
-							],
-							"_key": "k0"
-						}
-					]
+					"category": ["tools"],
+					"tag": ["technical-seo", "keyword-research"]
 				}
 			}
 		]
