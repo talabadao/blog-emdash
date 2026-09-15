@@ -4,7 +4,16 @@
       "PowerShell(New-Item *)",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\HP VICTUS\\\\blog-emdash\\\\src\" -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object @{N='Path';E={$_.FullName.Replace\\('C:\\\\Users\\\\HP VICTUS\\\\blog-emdash\\\\',''\\)}}, Length | Format-Table -AutoSize)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git config *)",
+      "Bash(git push *)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;\" 2>&1)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT sql FROM sqlite_master WHERE name='ec_posts';\" 2>&1)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT sql FROM sqlite_master WHERE name='revisions';\" 2>&1)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT id, slug, status, title, excerpt FROM ec_posts LIMIT 3;\" 2>&1)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT content FROM ec_posts WHERE slug='building-for-the-long-term';\" 2>&1)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT r.id, r.data FROM revisions r JOIN ec_posts p ON p.live_revision_id = r.id LIMIT 1;\" 2>&1)",
+      "PowerShell(npx wrangler d1 execute blog-emdash --remote --command \"SELECT id, slug, status, title, published_at FROM ec_posts WHERE slug='log-file-la-gi-huong-dan-phan-tich-seo';\" 2>&1)"
     ]
   }
 }
