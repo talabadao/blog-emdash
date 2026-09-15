@@ -3,9 +3,13 @@ import react from "@astrojs/react";
 import { d1, r2, sandbox } from "@emdash-cms/cloudflare";
 import { formsPlugin } from "@emdash-cms/plugin-forms";
 import { webhookNotifierPlugin } from "@emdash-cms/plugin-webhook-notifier";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 import emdash from "emdash/astro";
 
+// Fonts are self-hosted (Euclid Circular A, see public/fonts/) or pulled via a
+// plain Google Fonts @import (Plus Jakarta Sans fallback, Source Code Pro) in
+// src/styles/theme.css — see "Tin Le Hoang Design System" handoff. Not routed
+// through Astro's Fonts API since Euclid Circular A isn't a Google/Bunny font.
 export default defineConfig({
 	output: "server",
 	adapter: cloudflare(),
@@ -23,38 +27,6 @@ export default defineConfig({
 			sandboxRunner: sandbox(),
 			marketplace: "https://marketplace.emdashcms.com",
 		}),
-	],
-	fonts: [
-		{
-			provider: fontProviders.google(),
-			name: "Playfair Display",
-			cssVariable: "--font-display",
-			weights: [400, 700, 900],
-			styles: ["normal", "italic"],
-			fallbacks: ["Georgia", "Times New Roman", "serif"],
-		},
-		{
-			provider: fontProviders.google(),
-			name: "Lora",
-			cssVariable: "--font-body",
-			weights: [400, 500, 600, 700],
-			styles: ["normal", "italic"],
-			fallbacks: ["Georgia", "serif"],
-		},
-		{
-			provider: fontProviders.google(),
-			name: "DM Sans",
-			cssVariable: "--font-sans",
-			weights: [300, 400, 500, 600, 700],
-			fallbacks: ["system-ui", "sans-serif"],
-		},
-		{
-			provider: fontProviders.google(),
-			name: "JetBrains Mono",
-			cssVariable: "--font-mono",
-			weights: [400, 500],
-			fallbacks: ["monospace"],
-		},
 	],
 	devToolbar: { enabled: false },
 });

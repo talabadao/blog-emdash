@@ -200,11 +200,14 @@ const projects = [
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-5);
-		transition: border-color var(--transition-base);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
 	}
 
 	.project-card:hover {
 		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
 	}
 
 	.card-top {

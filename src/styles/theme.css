@@ -2,7 +2,22 @@
   theme.css — Le Hoang Tin personal site theme.
   Warm editorial palette: cream bg, deep forest green accent (from CV headings),
   amber secondary (from CV "SEO Specialist" label).
+  Typeface + component shape (pill buttons, 12px cards) integrated from the
+  "Tin Le Hoang Design System" handoff (Claude Design), retuned to this palette.
 */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap");
+
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
 
 :root {
 	/* Warm editorial color palette */
@@ -29,9 +44,20 @@
 	--color-amber: #c17f4a;
 	--color-amber-hover: #a86d3c;
 
-	/* Font overrides */
-	--font-heading: 'DM Serif Display', serif;
-	--font-body: 'Inter', sans-serif;
+	/* Font overrides — Euclid Circular A (self-hosted, from the design system handoff) */
+	--font-heading: 'Euclid Circular A', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-body: 'Euclid Circular A', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-sans: 'Euclid Circular A', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--font-mono: 'Source Code Pro', 'SF Mono', Menlo, Consolas, monospace;
+	--font-display: var(--font-heading);
+
+	/* Shape — from the design system (pill buttons, 12px cards) */
+	--radius-full: 9999px;
+	--radius-lg: 12px;
+
+	/* Elevation — from the design system */
+	--shadow-tile-raised: rgba(26, 46, 26, 0.06) 0 1px 2px 0;
+	--shadow-feature: rgba(26, 46, 26, 0.1) 0 4px 12px 0;
 }
 
 /* Dark mode */
@@ -83,7 +109,7 @@ h6 {
 	font-family: var(--font-heading);
 }
 
-/* Keep UI chrome in DM Sans */
+/* Keep UI chrome on the sans axis (vs. the heading font, which is unified with it anyway now) */
 .site-title,
 .nav-links a,
 .nav-admin,

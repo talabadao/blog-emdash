@@ -8,7 +8,6 @@ import {
 } from "emdash/ui";
 import { createPublicPageContext } from "emdash/page";
 import LiveSearch from "emdash/ui/search";
-import { Font } from "astro:assets";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 import "../styles/theme.css";
 
@@ -78,13 +77,8 @@ const isLoggedIn = !!Astro.locals.user;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-		<Font cssVariable="--font-display" preload />
-		<Font cssVariable="--font-body" preload />
-		<Font cssVariable="--font-sans" />
-		<Font cssVariable="--font-mono" />
+		<link rel="preload" href="/fonts/EuclidCircularA-Regular.ttf" as="font" type="font/ttf" crossorigin />
+		<link rel="preload" href="/fonts/EuclidCircularA-Medium.ttf" as="font" type="font/ttf" crossorigin />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
 		<script is:inline>
@@ -129,6 +123,7 @@ const isLoggedIn = !!Astro.locals.user;
 							))
 						}
 					</div>
+					<a href="/contact" class="nav-cta">Work with me</a>
 					{
 						isLoggedIn && (
 							<a href="/_emdash/admin" class="nav-admin">
@@ -648,6 +643,27 @@ const isLoggedIn = !!Astro.locals.user;
 				color: #ffffff;
 			}
 
+			/* Pill CTA — from the design system's button-on-dark spec */
+			.nav-cta {
+				display: inline-flex;
+				align-items: center;
+				flex-shrink: 0;
+				padding: var(--spacing-2) var(--spacing-5);
+				font-family: var(--font-sans);
+				font-size: var(--font-size-sm);
+				font-weight: 600;
+				color: var(--color-on-accent);
+				background: var(--color-accent);
+				border-radius: var(--radius-full);
+				text-decoration: none;
+				transition: background var(--transition-fast);
+			}
+
+			.nav-cta:hover {
+				background: var(--color-accent-hover);
+				color: var(--color-on-accent);
+			}
+
 			/* Search styling */
 			.site-search {
 				position: relative;
@@ -979,8 +995,14 @@ const isLoggedIn = !!Astro.locals.user;
 					justify-content: flex-start;
 				}
 
-				.nav-admin {
+				.nav-cta {
 					order: 2;
+					padding: var(--spacing-1) var(--spacing-4);
+					font-size: var(--font-size-xs);
+				}
+
+				.nav-admin {
+					order: 3;
 					position: absolute;
 					right: var(--spacing-4);
 					top: var(--spacing-3);

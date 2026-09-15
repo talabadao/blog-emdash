@@ -114,6 +114,7 @@
 			"label": "Primary Navigation",
 			"items": [
 				{ "type": "custom", "label": "Blog", "url": "/posts" },
+				{ "type": "custom", "label": "Services", "url": "/services" },
 				{ "type": "custom", "label": "About", "url": "/about" },
 				{ "type": "custom", "label": "Projects", "url": "/projects" },
 				{ "type": "custom", "label": "Contact", "url": "/contact" }
