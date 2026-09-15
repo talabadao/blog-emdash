@@ -1,8 +1,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
-import { d1, r2, sandbox } from "@emdash-cms/cloudflare";
+import { d1, r2 } from "@emdash-cms/cloudflare";
 import { formsPlugin } from "@emdash-cms/plugin-forms";
-import { webhookNotifierPlugin } from "@emdash-cms/plugin-webhook-notifier";
 import { defineConfig } from "astro/config";
 import emdash from "emdash/astro";
 
@@ -23,9 +22,11 @@ export default defineConfig({
 			database: d1({ binding: "DB", session: "auto" }),
 			storage: r2({ binding: "MEDIA" }),
 			plugins: [formsPlugin()],
-			sandboxed: [webhookNotifierPlugin()],
-			sandboxRunner: sandbox(),
-			marketplace: "https://marketplace.emdashcms.com",
+			// Marketplace (browsing/installing plugins from the admin UI) requires a
+			// sandboxRunner, which needs Cloudflare's Worker Loader — a paid-plan-only
+			// binding. Disabled so the site fits the Free plan. Currently-used plugins
+			// (forms) are unaffected; this only turns off installing NEW plugins from
+			// the marketplace via /_emdash/admin.
 		}),
 	],
 	devToolbar: { enabled: false },
