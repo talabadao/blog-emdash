@@ -7,13 +7,15 @@ import {
 import Base from "../layouts/Base.astro";
 import { getReadingTime } from "../utils/reading-time";
 
-const [{ entries: posts }, settings] = await Promise.all([
+const [{ entries: posts, cacheHint }, settings] = await Promise.all([
 	getEmDashCollection("posts", {
 		orderBy: { published_at: "desc" },
 		limit: 7,
 	}),
 	getSiteSettings(),
 ]);
+
+Astro.cache.set(cacheHint);
 
 // Batch-fetch categories
 const postIds = posts.map((p) => p.data.id);

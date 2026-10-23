@@ -3,12 +3,12 @@
 	"version": "1",
 	"meta": {
 		"name": "Le Hoang Tin — SEO & Blog",
-		"description": "Personal blog and portfolio of Le Hoang Tin, SEO Specialist",
+		"description": "Personal blog and portfolio of Le Hoang Tin, Senior SEO & GEO Specialist",
 		"author": "Le Hoang Tin"
 	},
 	"settings": {
 		"title": "TLH",
-		"tagline": "SEO Specialist from Ho Chi Minh City."
+		"tagline": "Senior SEO & GEO Specialist from Ho Chi Minh City."
 	},
 	"collections": [
 		{
@@ -127,7 +127,7 @@
 				{
 					"type": "custom",
 					"label": "LinkedIn",
-					"url": "https://www.linkedin.com/in/tinlehoang",
+					"url": "https://www.linkedin.com/in/tin-le-hoang",
 					"target": "_blank"
 				},
 				{
