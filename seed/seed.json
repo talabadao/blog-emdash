@@ -367,6 +367,294 @@
 		],
 		"posts": [
 			{
+				"id": "post-geo-playbook",
+				"slug": "geo-playbook-ranking-number-1-on-chatgpt-claude-and-grok",
+				"status": "published",
+				"data": {
+					"title": "The GEO Playbook: How We Ranked #1 on ChatGPT, Claude, and Grok for Commercial B2B Queries",
+					"number": 7,
+					"excerpt": "A technical breakdown of the entity salience, JSON-LD knowledge graph, and co-occurrence architecture that secured #1 AI citations and +61.4% organic CTR for GTV SEO.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
+							"alt": "Analytics dashboard showing AI search citation metrics and organic CTR growth",
+							"filename": "geo-playbook-case-study.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "When B2B founders and marketing directors evaluate an agency today, their research rarely begins and ends on a ten-blue-links SERP. Increasingly, they open ChatGPT, Claude, Perplexity, or Grok and ask a high-intent commercial prompt: 'What is the best SEO agency in Ho Chi Minh City for technical and enterprise growth?'",
+									"_key": "p7k1"
+								}
+							],
+							"_key": "p7k0"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "At GTV SEO, we treated our own brand domain (gtvseo.com) as a live laboratory for Generative Engine Optimization (GEO). Over a structured multi-quarter execution cycle, we engineered our entity footprint so that ChatGPT, Claude, and Grok consistently recommend GTV SEO in the #1 slot — while simultaneously lifting our Google Search Console organic click-through rate (CTR) by 61.4% and defending Top 1–3 positions across our core commercial keywords.",
+									"_key": "p7k3"
+								}
+							],
+							"_key": "p7k2"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "The diagnosis: Why ranking on Google is not enough for LLM citation", "_key": "p7k5" }],
+							"_key": "p7k4"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Traditional search engines rank individual documents based on relevance and link equity. Large Language Models and retrieval-augmented generation (RAG) systems resolve entities and synthesize consensus across multiple trusted sources. Before our overhaul, GTV SEO had strong blog traffic, but our commercial entity attributes — service scope, methodology, leadership credentials, and verifiable client outcomes — were scattered across unstructured landing pages.",
+									"_key": "p7k7"
+								}
+							],
+							"_key": "p7k6"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Step 1: JSON-LD entity graph & disambiguation architecture", "_key": "p7k9" }],
+							"_key": "p7k8"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Our first engineering sprint standardized the site-wide JSON-LD knowledge graph. We connected Organization, ProfessionalService, Person (leadership and specialist authors), and FAQPage nodes using persistent @id URIs. Every service page explicitly declared its areaServed, knowsAbout taxonomy, and verifiable sameAs links to authoritative industry profiles.",
+									"_key": "p7k11"
+								}
+							],
+							"_key": "p7k10"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Crucially, we aligned on-page factual copy with the structured data. When an AI crawler parses a service page, it looks for concise, quotable definitions and explicit entity triples (Brand -> Delivers -> Service -> With Verifiable Metric) within the first 200 words.",
+									"_key": "p7k13"
+								}
+							],
+							"_key": "p7k12"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Step 2: High-information-gain clusters & co-occurrence engineering", "_key": "p7k15" }],
+							"_key": "p7k14"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "LLMs discount derivative content that merely repeats consensus definitions. To become the primary citation source, we overhauled our core B2B clusters around high-information-gain assets: original benchmark data from Vietnamese and international campaigns, reproducible technical checklists, and transparent case study teardowns.",
+									"_key": "p7k17"
+								}
+							],
+							"_key": "p7k16"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Alongside on-site depth, we engineered third-party brand co-occurrence. By securing contextual mentions, speaking citations, and comparative inclusions across reputable marketing publications and directories in Vietnam, we reinforced the statistical association between 'GTV SEO', 'technical SEO', and 'Ho Chi Minh City' in both pre-training corpora and live retrieval indexes.",
+									"_key": "p7k19"
+								}
+							],
+							"_key": "p7k18"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "The outcome: #1 AI citations and +61.4% organic CTR", "_key": "p7k21" }],
+							"_key": "p7k20"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Across standardized prompt testing on ChatGPT (GPT-4o with browsing), Claude, and Grok, GTV SEO secured and maintained the #1 recommended agency position for Ho Chi Minh City and Vietnam B2B SEO queries. Simultaneously, our title tag, meta snippet, and rich-result restructuring drove a +61.4% increase in organic CTR on Google while holding Top 1–3 rankings on our highest-converting commercial terms.",
+									"_key": "p7k23"
+								}
+							],
+							"_key": "p7k22"
+						}
+					]
+				},
+				"bylines": [{ "byline": "byline-tin" }],
+				"taxonomies": {
+					"category": ["ai", "case-study"],
+					"tag": ["ai-search", "technical-seo", "content-strategy"]
+				}
+			},
+			{
+				"id": "post-vinamilk-case-study",
+				"slug": "scaling-vinamilk-to-300k-monthly-organic-clicks",
+				"status": "published",
+				"data": {
+					"title": "Scaling an Enterprise Nutrition Hub to 300,000+ Monthly Organic Clicks",
+					"number": 6,
+					"excerpt": "How full-funnel semantic topical mapping, YMYL E-E-A-T editorial governance, and hub-and-spoke internal linking drove 300K+ monthly clicks and Top 3 rankings in two weeks.",
+					"featured_image": {
+						"$media": {
+							"url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop",
+							"alt": "Enterprise search growth chart and content architecture diagram",
+							"filename": "vinamilk-case-study.jpg"
+						}
+					},
+					"content": [
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Scaling organic search for a household enterprise FMCG brand like Vinamilk (vinamilk.com.vn) presents a fundamentally different challenge than a startup growth campaign. Domain authority is already strong, but the target vertical — maternal, infant, and family nutrition — falls squarely under Google's strictest Your Money or Your Life (YMYL) quality thresholds.",
+									"_key": "p6k1"
+								}
+							],
+							"_key": "p6k0"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Between November 2023 and March 2024, I served as Lead SEO Implementer on the campaign. Our mandate was clear: capture Top 1–3 rankings across high-volume maternal and baby nutrition queries and scale sustainable monthly organic traffic to 300,000+ clicks without sacrificing medical or brand compliance.",
+									"_key": "p6k3"
+								}
+							],
+							"_key": "p6k2"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "The challenge: Fragmented intent in a hyper-competitive YMYL vertical", "_key": "p6k5" }],
+							"_key": "p6k4"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "In Vietnam's maternal and infant nutrition space, major hospital networks, specialized medical portals, and global formula brands compete aggressively for every informational query. Prior to our sprint, existing articles operated as isolated blog posts rather than interconnected semantic clusters, leaving topical gaps across developmental stages and nutritional ingredients.",
+									"_key": "p6k7"
+								}
+							],
+							"_key": "p6k6"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Strategy 1: Full-funnel semantic topical map", "_key": "p6k9" }],
+							"_key": "p6k8"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Instead of chasing individual keywords by search volume alone, we architected a full-funnel semantic topical map organized by parent journey stages: prenatal nutrition, infant milestone development, micronutrient science (DHA, HMO, probiotics, calcium absorption), and product-specific nutritional guidance.",
+									"_key": "p6k11"
+								}
+							],
+							"_key": "p6k10"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Each cluster paired a comprehensive pillar guide with tightly scoped supporting articles. This prevented keyword cannibalization at scale — ensuring every URL had a distinct search intent, primary entity focus, and clear position in the hierarchy.",
+									"_key": "p6k13"
+								}
+							],
+							"_key": "p6k12"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "Strategy 2: YMYL E-E-A-T editorial governance & hub-and-spoke linking", "_key": "p6k15" }],
+							"_key": "p6k14"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "To satisfy YMYL evaluation standards, we enforced a strict editorial SOP on every outline before a single paragraph was drafted. Articles were structured to lead with direct, citation-ready nutritional answers, backed by referenceable health data, clear age-group tables, and transparent editorial review formatting.",
+									"_key": "p6k17"
+								}
+							],
+							"_key": "p6k16"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "On the technical side, we deployed a disciplined hub-and-spoke internal linking matrix. Every newly published informational spoke linked upward to its category pillar and laterally to adjacent developmental guides using natural, entity-rich anchor text — allowing Googlebot to discover, crawl, and index new clusters rapidly.",
+									"_key": "p6k19"
+								}
+							],
+							"_key": "p6k18"
+						},
+						{
+							"_type": "block",
+							"style": "h2",
+							"children": [{ "_type": "span", "text": "The outcome: 300,000+ monthly clicks and 100% enterprise KPI delivery", "_key": "p6k21" }],
+							"_key": "p6k20"
+						},
+						{
+							"_type": "block",
+							"style": "normal",
+							"children": [
+								{
+									"_type": "span",
+									"text": "Because the domain's existing authority was finally channeled through clean semantic architecture and rigorous on-page checklists, newly published priority topics regularly entered Google Vietnam's Top 3 within two weeks of indexation. Over the campaign lifecycle, the nutrition hub scaled to 300,000+ monthly organic clicks, achieving 100% of committed enterprise KPIs.",
+									"_key": "p6k23"
+								}
+							],
+							"_key": "p6k22"
+						}
+					]
+				},
+				"bylines": [{ "byline": "byline-tin" }],
+				"taxonomies": {
+					"category": ["case-study", "seo"],
+					"tag": ["content-strategy", "keyword-research", "technical-seo"]
+				}
+			},
+			{
 				"id": "post-ai-keyword-research",
 				"slug": "how-ai-search-changed-keyword-research",
 				"status": "published",

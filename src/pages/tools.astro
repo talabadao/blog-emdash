@@ -1,0 +1,1943 @@
+---
+import Base from "../layouts/Base.astro";
+
+interface AuditCheckpoint {
+	id: string;
+	num: string;
+	pillarId: "technical" | "entity" | "geo";
+	points: number;
+	label: string;
+	detail: string;
+	remediation: string;
+}
+
+interface AuditPillar {
+	id: "technical" | "entity" | "geo";
+	index: string;
+	title: string;
+	subtitle: string;
+	maxPoints: number;
+	checkpoints: AuditCheckpoint[];
+}
+
+const auditPillars: AuditPillar[] = [
+	{
+		id: "technical",
+		index: "PILLAR 01",
+		title: "Technical & Crawl Foundation",
+		subtitle: "Indexation hygiene, architecture, and rendering signals for Googlebot & AI crawlers.",
+		maxPoints: 35,
+		checkpoints: [
+			{
+				id: "chk-01",
+				num: "01",
+				pillarId: "technical",
+				points: 7,
+				label: "Clean indexation hygiene (no duplicate service URLs or parameter bloat in GSC)",
+				detail: "Prevents crawl budget waste and diluted ranking signals across redundant URLs.",
+				remediation: "Audit Google Search Console Indexing report; prune or canonicalize duplicate service and parameter URLs.",
+			},
+			{
+				id: "chk-02",
+				num: "02",
+				pillarId: "technical",
+				points: 7,
+				label: "Zero keyword cannibalization across core commercial landing pages",
+				detail: "Ensures one unambiguous URL targets each high-intent commercial query.",
+				remediation: "Consolidate competing pages targeting identical commercial intent using 301 redirects and content merges.",
+			},
+			{
+				id: "chk-03",
+				num: "03",
+				pillarId: "technical",
+				points: 7,
+				label: "Core Web Vitals passing (LCP < 2.5s, INP < 200ms, CLS < 0.1)",
+				detail: "Fast server response and stable rendering improve both user conversion and bot crawl efficiency.",
+				remediation: "Optimize LCP hero assets, defer non-critical JavaScript to lower INP, and reserve explicit layout dimensions.",
+			},
+			{
+				id: "chk-04",
+				num: "04",
+				pillarId: "technical",
+				points: 7,
+				label: "Hub-and-spoke internal linking connecting informational guides to money pages",
+				detail: "Transfers topical authority and user intent directly from research articles to revenue pages.",
+				remediation: "Build descriptive anchor-text pathways linking supporting cluster articles back to pillar commercial URLs.",
+			},
+			{
+				id: "chk-05",
+				num: "05",
+				pillarId: "technical",
+				points: 7,
+				label: "Valid XML sitemap & unambiguous canonical tag governance",
+				detail: "Gives search engines a single source of truth for indexable, canonical URLs.",
+				remediation: "Ensure XML sitemaps list only 200-status canonical URLs and remove conflicting self-referencing canonicals.",
+			},
+		],
+	},
+	{
+		id: "entity",
+		index: "PILLAR 02",
+		title: "Entity & Structured Data Salience",
+		subtitle: "Machine-readable schema graphs and E-E-A-T signals that disambiguate your brand.",
+		maxPoints: 35,
+		checkpoints: [
+			{
+				id: "chk-06",
+				num: "06",
+				pillarId: "entity",
+				points: 7,
+				label: "Organization / LocalBusiness / Person JSON-LD graph with @id & sameAs links",
+				detail: "Connects your domain to verified knowledge graph nodes (LinkedIn, directories, press).",
+				remediation: "Deploy a site-wide JSON-LD @graph with persistent @id URIs and authoritative sameAs profile references.",
+			},
+			{
+				id: "chk-07",
+				num: "07",
+				pillarId: "entity",
+				points: 7,
+				label: "Product, Service, or FAQPage schema deployed on commercial pages",
+				detail: "Exposes pricing, specifications, deliverables, and common buyer questions directly to parsers.",
+				remediation: "Implement validated Service, Product, and FAQPage structured data across high-margin landing pages.",
+			},
+			{
+				id: "chk-08",
+				num: "08",
+				pillarId: "entity",
+				points: 7,
+				label: "Consistent entity naming, NAP, and brand descriptions across external directories",
+				detail: "Eliminates ambiguity when LLMs cross-reference your brand across third-party sources.",
+				remediation: "Standardize canonical brand naming, address/phone (NAP), and boilerplate positioning across all profiles.",
+			},
+			{
+				id: "chk-09",
+				num: "09",
+				pillarId: "entity",
+				points: 7,
+				label: "Author bylines and verifiable E-E-A-T credentials on editorial content",
+				detail: "Establishes accountable domain expertise required for YMYL and competitive B2B rankings.",
+				remediation: "Attach structured Person author bylines with real credentials, career proof, and profile links to all articles.",
+			},
+			{
+				id: "chk-10",
+				num: "10",
+				pillarId: "entity",
+				points: 7,
+				label: "Dedicated About / Entity fact page disambiguating brand identity",
+				detail: "Serves as the ground-truth reference page when AI assistants verify who you are and what you do.",
+				remediation: "Publish a structured /about or /ai-information fact page stating canonical entity attributes and scope.",
+			},
+		],
+	},
+	{
+		id: "geo",
+		index: "PILLAR 03",
+		title: "Generative Engine (GEO) & Citation Readiness",
+		subtitle: "LLM ingestion endpoints, crawler permissions, and high-information-gain citation assets.",
+		maxPoints: 30,
+		checkpoints: [
+			{
+				id: "chk-11",
+				num: "11",
+				pillarId: "geo",
+				points: 6,
+				label: "Machine-readable /llms.txt index deployed at root domain",
+				detail: "Provides AI agents with a curated Markdown map of your core pages, services, and case studies.",
+				remediation: "Deploy a concise /llms.txt file at your root domain indexing canonical entity facts and priority URLs.",
+			},
+			{
+				id: "chk-12",
+				num: "12",
+				pillarId: "geo",
+				points: 6,
+				label: "Full-corpus /llms-full.txt or structured Markdown documentation available for RAG",
+				detail: "Allows retrieval-augmented generation systems to ingest complete case data without HTML noise.",
+				remediation: "Expose a clean /llms-full.txt corpus containing your core service specifications and published research.",
+			},
+			{
+				id: "chk-13",
+				num: "13",
+				pillarId: "geo",
+				points: 6,
+				label: "AI crawler access permitted in robots.txt (GPTBot, ClaudeBot, PerplexityBot, Google-Extended)",
+				detail: "Blocking retrieval bots prevents your brand from appearing in live AI search citations.",
+				remediation: "Verify robots.txt and WAF rules explicitly allow GPTBot, OAI-SearchBot, ClaudeBot, and PerplexityBot.",
+			},
+			{
+				id: "chk-14",
+				num: "14",
+				pillarId: "geo",
+				points: 6,
+				label: "High-information-gain statistics, original case data, and quotable definitions in articles",
+				detail: "LLMs prioritize citing primary sources with specific numbers over generic rewritten summaries.",
+				remediation: "Enrich key articles with original KPI benchmarks, structured comparison tables, and concise definitions.",
+			},
+			{
+				id: "chk-15",
+				num: "15",
+				pillarId: "geo",
+				points: 6,
+				label: "Brand co-occurrence and third-party citations on authoritative industry publications",
+				detail: "External mentions alongside category keywords reinforce entity authority in LLM weights and retrieval.",
+				remediation: "Secure contextual brand mentions, case study features, and expert quotes on trusted industry domains.",
+			},
+		],
+	},
+];
+
+const toolkitSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebApplication",
+	"@id": "https://tinlehoang.info.vn/tools/#toolkit",
+	name: "SEO & AI Search (GEO) Readiness Toolkit",
+	url: "https://tinlehoang.info.vn/tools",
+	applicationCategory: "BusinessApplication",
+	operatingSystem: "All",
+	description:
+		"Interactive 15-point SEO & Generative Engine Optimization (GEO) readiness scorecard and instant /llms.txt + JSON-LD entity schema generator by Le Hoang Tin.",
+	author: {
+		"@id": "https://tinlehoang.info.vn/#person",
+	},
+	offers: {
+		"@type": "Offer",
+		price: "0",
+		priceCurrency: "USD",
+	},
+};
+---
+
+<Base
+	title="SEO & AI Search Readiness Toolkit"
+	description="Benchmark your domain's readiness for Google Search and Generative AI engines (ChatGPT, Claude, Perplexity, Gemini, AI Overviews) with this interactive 15-point SEO/GEO scorecard and instant /llms.txt + JSON-LD generator."
+	jsonLd={toolkitSchema}
+>
+	<div class="tools-page">
+		<!-- ── Editorial Header ── -->
+		<header class="page-header">
+			<span class="editorial-kicker">INTERACTIVE DIAGNOSTICS · SEO &amp; GEO TOOLKIT</span>
+			<h1 class="page-title">SEO &amp; AI Search Readiness Toolkit</h1>
+			<p class="page-lead">
+				Founders, marketing leaders, and in-house SEO teams can use this interactive diagnostic scorecard and schema generator to benchmark their domain's readiness for Google Search and Generative AI engines (<strong>ChatGPT, Claude, Perplexity, Gemini, AI Overviews</strong>) — and generate deployment-ready <code>/llms.txt</code> and <code>JSON-LD</code> entity templates in seconds.
+			</p>
+			<div class="header-anchor-bar">
+				<a href="#scorecard-section" class="btn-secondary anchor-pill">
+					<span>§ I · 15-Point Readiness Scorecard</span>
+					<span aria-hidden="true">→</span>
+				</a>
+				<a href="#generator-section" class="btn-secondary anchor-pill">
+					<span>§ II · /llms.txt &amp; JSON-LD Generator</span>
+					<span aria-hidden="true">→</span>
+				</a>
+				<a href="/ai-information" class="btn-secondary anchor-pill">
+					<span>Live Entity Reference</span>
+					<span aria-hidden="true">→</span>
+				</a>
+			</div>
+		</header>
+
+		<!-- ── § I — Interactive 15-Point SEO & GEO Readiness Scorecard ── -->
+		<section
+			id="scorecard-section"
+			class="scorecard-section"
+			aria-labelledby="section-scorecard-heading"
+		>
+			<div class="section-index-header">
+				<span class="section-index-badge">§ I</span>
+				<h2 class="section-index-title" id="section-scorecard-heading">
+					15-Point SEO &amp; GEO Readiness Scorecard · Interactive Domain Audit
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+				<span class="section-meta-mono" id="checked-counter-label">
+					0 / 15 CHECKPOINTS VERIFIED
+				</span>
+			</div>
+
+			<!-- Domain Input & Quick Controls Bar -->
+			<div class="domain-input-bar">
+				<div class="domain-field-group">
+					<label for="target-domain-input" class="domain-label">
+						TARGET DOMAIN (OPTIONAL)
+					</label>
+					<input
+						type="text"
+						id="target-domain-input"
+						class="domain-input"
+						placeholder="https://yourdomain.com"
+						autocomplete="url"
+					/>
+				</div>
+				<div class="domain-bar-actions">
+					<button
+						type="button"
+						id="scorecard-check-all-btn"
+						class="btn-secondary utility-pill-btn"
+					>
+						Select All (100/100)
+					</button>
+					<button
+						type="button"
+						id="scorecard-reset-btn"
+						class="btn-secondary utility-pill-btn"
+					>
+						Reset Scorecard
+					</button>
+				</div>
+			</div>
+
+			<div class="scorecard-layout">
+				<!-- Left Column: 3 Weighted Audit Pillars -->
+				<div class="pillars-column">
+					{
+						auditPillars.map((pillar) => (
+							<article class="pillar-card" data-pillar-card={pillar.id}>
+								<div class="pillar-header">
+									<div class="pillar-header-left">
+										<span class="pillar-badge">{pillar.index}</span>
+										<h3 class="pillar-title">{pillar.title}</h3>
+									</div>
+									<span
+										class="pillar-score-pill"
+										data-pillar-score-display={pillar.id}
+									>
+										0 / {pillar.maxPoints} PTS
+									</span>
+								</div>
+								<p class="pillar-subtitle">{pillar.subtitle}</p>
+
+								<div class="checkpoint-list" role="group" aria-label={pillar.title}>
+									{pillar.checkpoints.map((item) => (
+										<label class="checkpoint-item" for={item.id}>
+											<input
+												type="checkbox"
+												id={item.id}
+												class="checkpoint-checkbox"
+												data-pillar={item.pillarId}
+												data-points={item.points}
+												data-num={item.num}
+												data-label={item.label}
+												data-remediation={item.remediation}
+											/>
+											<span class="checkpoint-box" aria-hidden="true"></span>
+											<span class="checkpoint-body">
+												<span class="checkpoint-top-line">
+													<span class="checkpoint-num">#{item.num}</span>
+													<span class="checkpoint-label-text">{item.label}</span>
+													<span class="checkpoint-pts">+{item.points} pts</span>
+												</span>
+												<span class="checkpoint-detail">{item.detail}</span>
+											</span>
+										</label>
+									))}
+								</div>
+							</article>
+						))
+					}
+				</div>
+
+				<!-- Right Column: Sticky Live Score & Diagnostic Output Panel -->
+				<aside class="diagnostic-panel" aria-label="Live SEO and GEO diagnostic score">
+					<div class="diagnostic-card">
+						<div class="diagnostic-top">
+							<span class="editorial-kicker">LIVE READINESS DIAGNOSTIC</span>
+							<div
+								id="readiness-tier-badge"
+								class="tier-badge"
+								data-tier="4"
+							>
+								TIER 04 · CRITICAL SEARCH &amp; AI DISCOVERY GAP
+							</div>
+						</div>
+
+						<div class="score-display-row">
+							<div class="score-number-wrap">
+								<span id="live-score-value" class="score-number">0</span>
+								<span class="score-max">/ 100</span>
+							</div>
+							<span id="live-domain-tag" class="domain-tag-mono">
+								UNSPECIFIED DOMAIN
+							</span>
+						</div>
+
+						<!-- Visual Progress Bar -->
+						<div
+							class="score-progress-track"
+							role="progressbar"
+							aria-valuemin="0"
+							aria-valuemax="100"
+							aria-valuenow="0"
+							id="score-progressbar"
+						>
+							<div id="score-progress-fill" class="score-progress-fill" style="width: 0%"></div>
+						</div>
+
+						<p id="tier-summary-text" class="tier-summary">
+							Check the technical, entity, and GEO criteria your domain currently satisfies on the left to calculate your readiness score and generate prioritized next steps.
+						</p>
+
+						<!-- Pillar Sub-Scores Breakdown -->
+						<div class="subscores-box">
+							<div class="subscore-row">
+								<span class="subscore-name">01 · Technical &amp; Crawl</span>
+								<span id="subscore-technical" class="subscore-val">0 / 35</span>
+							</div>
+							<div class="subscore-row">
+								<span class="subscore-name">02 · Entity &amp; Schema</span>
+								<span id="subscore-entity" class="subscore-val">0 / 35</span>
+							</div>
+							<div class="subscore-row">
+								<span class="subscore-name">03 · GEO &amp; Citation</span>
+								<span id="subscore-geo" class="subscore-val">0 / 30</span>
+							</div>
+						</div>
+
+						<!-- Dynamic Top Priority Next Steps -->
+						<div class="priorities-block">
+							<div class="priorities-header">
+								<span class="priorities-title">TOP PRIORITY NEXT STEPS</span>
+								<span id="gaps-count-badge" class="gaps-count-mono">15 GAPS</span>
+							</div>
+							<ul id="priority-steps-list" class="priority-steps-list">
+								<li>
+									<span class="step-arrow" aria-hidden="true">→</span>
+									<span>Audit Google Search Console Indexing report; prune or canonicalize duplicate service and parameter URLs.</span>
+								</li>
+								<li>
+									<span class="step-arrow" aria-hidden="true">→</span>
+									<span>Consolidate competing pages targeting identical commercial intent using 301 redirects and content merges.</span>
+								</li>
+								<li>
+									<span class="step-arrow" aria-hidden="true">→</span>
+									<span>Deploy a site-wide JSON-LD @graph with persistent @id URIs and authoritative sameAs profile references.</span>
+								</li>
+								<li>
+									<span class="step-arrow" aria-hidden="true">→</span>
+									<span>Deploy a concise /llms.txt file at your root domain indexing canonical entity facts and priority URLs.</span>
+								</li>
+							</ul>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="diagnostic-actions">
+							<a
+								id="request-audit-cta"
+								href="/contact?model=audit&score=0"
+								class="btn-primary action-full-btn"
+							>
+								Request Full Audit for This Domain →
+							</a>
+							<button
+								type="button"
+								id="copy-report-btn"
+								class="btn-secondary action-full-btn"
+							>
+								Copy Diagnostic Report →
+							</button>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<!-- ── § II — Instant /llms.txt & Entity JSON-LD Generator ── -->
+		<section
+			id="generator-section"
+			class="generator-section"
+			aria-labelledby="section-generator-heading"
+		>
+			<div class="section-index-header">
+				<span class="section-index-badge">§ II</span>
+				<h2 class="section-index-title" id="section-generator-heading">
+					Instant /llms.txt &amp; Entity JSON-LD Generator
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+				<a href="/llms.txt" class="section-index-link">
+					Inspect live /llms.txt →
+				</a>
+			</div>
+
+			<div class="generator-grid">
+				<!-- Left Column: Generator Input Controls -->
+				<div class="generator-form-card">
+					<div class="generator-card-header">
+						<div>
+							<span class="editorial-kicker">ENTITY ATTRIBUTES INPUT</span>
+							<h3 class="generator-card-title">Configure Your Brand or Person Entity</h3>
+						</div>
+						<button
+							type="button"
+							id="gen-load-sample-btn"
+							class="btn-secondary utility-pill-btn"
+						>
+							Load Sample (TLH)
+						</button>
+					</div>
+
+					<p class="generator-card-desc">
+						Enter your canonical entity details below. Both the <code>/llms.txt</code> starter index and the Schema.org <code>JSON-LD</code> entity graph update in real time.
+					</p>
+
+					<div class="generator-fields">
+						<div class="gen-row-two">
+							<div class="gen-field">
+								<label for="gen-entity-type" class="gen-label">ENTITY TYPE</label>
+								<select id="gen-entity-type" class="gen-select">
+									<option value="Organization">Organization / Brand</option>
+									<option value="Person">Person / Specialist</option>
+								</select>
+							</div>
+							<div class="gen-field">
+								<label for="gen-entity-name" class="gen-label">BRAND / PERSON NAME</label>
+								<input
+									type="text"
+									id="gen-entity-name"
+									class="gen-input"
+									placeholder="e.g. Acme Growth Studio"
+									value="Acme Growth Studio"
+								/>
+							</div>
+						</div>
+
+						<div class="gen-field">
+							<label for="gen-website-url" class="gen-label">CANONICAL WEBSITE URL</label>
+							<input
+								type="url"
+								id="gen-website-url"
+								class="gen-input"
+								placeholder="https://yourdomain.com"
+								value="https://yourdomain.com"
+							/>
+						</div>
+
+						<div class="gen-field">
+							<label for="gen-positioning" class="gen-label">
+								PRIMARY ROLE / INDUSTRY POSITIONING (1 SENTENCE)
+							</label>
+							<textarea
+								id="gen-positioning"
+								class="gen-textarea"
+								rows="3"
+								placeholder="One clear sentence describing who you are, who you serve, and your core specialization."
+							>B2B technical SEO and Generative Engine Optimization (GEO) consultancy helping SaaS and enterprise brands capture organic pipeline and AI citations.</textarea>
+						</div>
+
+						<div class="gen-row-two">
+							<div class="gen-field">
+								<label for="gen-email" class="gen-label">CONTACT EMAIL</label>
+								<input
+									type="email"
+									id="gen-email"
+									class="gen-input"
+									placeholder="contact@yourdomain.com"
+									value="hello@yourdomain.com"
+								/>
+							</div>
+							<div class="gen-field">
+								<label for="gen-social-url" class="gen-label">
+									PRIMARY SOCIAL URL (LINKEDIN)
+								</label>
+								<input
+									type="url"
+									id="gen-social-url"
+									class="gen-input"
+									placeholder="https://www.linkedin.com/company/yourbrand"
+									value="https://www.linkedin.com/company/yourbrand"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Column: Switchable Monospace Code Preview Tabs -->
+				<div class="generator-output-card">
+					<div class="output-toolbar">
+						<div class="output-tabs" role="tablist" aria-label="Generated template format">
+							<button
+								type="button"
+								role="tab"
+								id="tab-btn-llms"
+								class="output-tab active"
+								data-tab="llms"
+								aria-selected="true"
+								aria-controls="panel-llms"
+							>
+								Tab 1: llms.txt Starter Template
+							</button>
+							<button
+								type="button"
+								role="tab"
+								id="tab-btn-jsonld"
+								class="output-tab"
+								data-tab="jsonld"
+								aria-selected="false"
+								aria-controls="panel-jsonld"
+							>
+								Tab 2: JSON-LD Entity Graph
+							</button>
+						</div>
+
+						<button
+							type="button"
+							id="copy-snippet-btn"
+							class="btn-primary copy-snippet-btn"
+						>
+							Copy Snippet →
+						</button>
+					</div>
+
+					<div id="panel-llms" role="tabpanel" aria-labelledby="tab-btn-llms" class="code-panel">
+						<pre class="generator-pre"><code id="code-preview-llms"></code></pre>
+					</div>
+
+					<div
+						id="panel-jsonld"
+						role="tabpanel"
+						aria-labelledby="tab-btn-jsonld"
+						class="code-panel"
+						hidden
+					>
+						<pre class="generator-pre"><code id="code-preview-jsonld"></code></pre>
+					</div>
+
+					<div class="output-footer">
+						<span class="output-hint" id="output-deploy-hint">
+							Deploy at <code>https://yourdomain.com/llms.txt</code> with <code>Content-Type: text/plain; charset=utf-8</code>.
+						</span>
+						<a href="/contact?model=audit" class="output-consult-link">
+							Need custom multi-page schema architecture? Book an audit →
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</Base>
+
+<script>
+	// ── § I: Interactive 15-Point Scorecard Logic ──
+	const domainInput = document.getElementById(
+		"target-domain-input"
+	) as HTMLInputElement | null;
+	const checkboxes = Array.from(
+		document.querySelectorAll<HTMLInputElement>(".checkpoint-checkbox")
+	);
+	const checkAllBtn = document.getElementById("scorecard-check-all-btn");
+	const resetBtn = document.getElementById("scorecard-reset-btn");
+
+	const checkedCounterLabel = document.getElementById("checked-counter-label");
+	const tierBadge = document.getElementById("readiness-tier-badge");
+	const liveScoreValue = document.getElementById("live-score-value");
+	const liveDomainTag = document.getElementById("live-domain-tag");
+	const progressBar = document.getElementById("score-progressbar");
+	const progressFill = document.getElementById("score-progress-fill");
+	const tierSummaryText = document.getElementById("tier-summary-text");
+
+	const subscoreTechnical = document.getElementById("subscore-technical");
+	const subscoreEntity = document.getElementById("subscore-entity");
+	const subscoreGeo = document.getElementById("subscore-geo");
+
+	const gapsCountBadge = document.getElementById("gaps-count-badge");
+	const priorityStepsList = document.getElementById("priority-steps-list");
+	const requestAuditCta = document.getElementById(
+		"request-audit-cta"
+	) as HTMLAnchorElement | null;
+	const copyReportBtn = document.getElementById(
+		"copy-report-btn"
+	) as HTMLButtonElement | null;
+
+	const pillarScoreDisplays: Record<string, HTMLElement | null> = {
+		technical: document.querySelector('[data-pillar-score-display="technical"]'),
+		entity: document.querySelector('[data-pillar-score-display="entity"]'),
+		geo: document.querySelector('[data-pillar-score-display="geo"]'),
+	};
+
+	const pillarMax: Record<string, number> = {
+		technical: 35,
+		entity: 35,
+		geo: 30,
+	};
+
+	interface TierMeta {
+		code: string;
+		tierAttr: string;
+		summary: string;
+	}
+
+	function resolveTier(score: number): TierMeta {
+		if (score >= 85) {
+			return {
+				code: "TIER 01 · AI-CITATION & SEARCH AUTHORITY READY",
+				tierAttr: "1",
+				summary:
+					"Your domain has strong technical hygiene, unambiguous entity schema, and active GEO infrastructure. Focus on compounding original research data and authoritative third-party co-occurrences.",
+			};
+		}
+		if (score >= 60) {
+			return {
+				code: "TIER 02 · SOLID FOUNDATION · GEO GAPS REMAIN",
+				tierAttr: "2",
+				summary:
+					"Core SEO fundamentals are largely in place, but missing entity disambiguation or machine-readable /llms.txt endpoints limit consistent citations in ChatGPT, Claude, and Perplexity.",
+			};
+		}
+		if (score >= 35) {
+			return {
+				code: "TIER 03 · TECHNICAL & ENTITY DEBT DETECTED",
+				tierAttr: "3",
+				summary:
+					"Significant crawl, cannibalization, or structured data gaps are holding back both traditional Google rankings and LLM entity retrieval. A targeted technical & GEO sprint is recommended.",
+			};
+		}
+		return {
+			code: "TIER 04 · CRITICAL SEARCH & AI DISCOVERY GAP",
+			tierAttr: "4",
+			summary:
+				"Foundational crawlability, schema graphs, and AI ingestion signals are unverified or missing. Priority action is required to establish baseline indexation and entity recognition.",
+		};
+	}
+
+	function cleanDomainDisplay(raw: string): string {
+		const trimmed = raw.trim();
+		if (!trimmed) return "";
+		return trimmed.replace(/^https?:\/\//i, "").replace(/\/+$/, "");
+	}
+
+	let latestReportMarkdown = "";
+
+	function updateScorecard() {
+		const subscores: Record<string, number> = {
+			technical: 0,
+			entity: 0,
+			geo: 0,
+		};
+		let checkedCount = 0;
+		const uncheckedItems: Array<{
+			num: string;
+			label: string;
+			remediation: string;
+			pillar: string;
+		}> = [];
+		const checkedItems: Array<{ num: string; label: string }> = [];
+
+		checkboxes.forEach((cb) => {
+			const pillar = cb.dataset.pillar || "technical";
+			const pts = Number(cb.dataset.points || 0);
+			const num = cb.dataset.num || "";
+			const label = cb.dataset.label || "";
+			const remediation = cb.dataset.remediation || "";
+			const parentRow = cb.closest(".checkpoint-item");
+
+			if (cb.checked) {
+				checkedCount++;
+				subscores[pillar] = (subscores[pillar] || 0) + pts;
+				checkedItems.push({ num, label });
+				parentRow?.classList.add("is-checked");
+			} else {
+				uncheckedItems.push({ num, label, remediation, pillar });
+				parentRow?.classList.remove("is-checked");
+			}
+		});
+
+		const totalScore = Math.min(
+			100,
+			subscores.technical + subscores.entity + subscores.geo
+		);
+		const tier = resolveTier(totalScore);
+		const rawDomain = domainInput?.value.trim() || "";
+		const displayDomain = cleanDomainDisplay(rawDomain);
+
+		if (checkedCounterLabel) {
+			checkedCounterLabel.textContent = `${checkedCount} / 15 CHECKPOINTS VERIFIED`;
+		}
+		if (liveScoreValue) {
+			liveScoreValue.textContent = String(totalScore);
+		}
+		if (liveDomainTag) {
+			liveDomainTag.textContent = displayDomain
+				? displayDomain.toUpperCase()
+				: "UNSPECIFIED DOMAIN";
+		}
+		if (tierBadge) {
+			tierBadge.textContent = tier.code;
+			tierBadge.setAttribute("data-tier", tier.tierAttr);
+		}
+		if (tierSummaryText) {
+			tierSummaryText.textContent = tier.summary;
+		}
+		if (progressBar) {
+			progressBar.setAttribute("aria-valuenow", String(totalScore));
+		}
+		if (progressFill) {
+			progressFill.style.width = `${totalScore}%`;
+		}
+
+		// Pillar sub-scores
+		if (subscoreTechnical) {
+			subscoreTechnical.textContent = `${subscores.technical} / 35`;
+		}
+		if (subscoreEntity) {
+			subscoreEntity.textContent = `${subscores.entity} / 35`;
+		}
+		if (subscoreGeo) {
+			subscoreGeo.textContent = `${subscores.geo} / 30`;
+		}
+
+		Object.keys(pillarScoreDisplays).forEach((key) => {
+			const el = pillarScoreDisplays[key];
+			if (el) {
+				el.textContent = `${subscores[key]} / ${pillarMax[key]} PTS`;
+			}
+		});
+
+		// Priority Next Steps
+		if (gapsCountBadge) {
+			gapsCountBadge.textContent =
+				uncheckedItems.length === 0
+					? "0 GAPS · COMPLETE"
+					: `${uncheckedItems.length} ${uncheckedItems.length === 1 ? "GAP" : "GAPS"}`;
+		}
+
+		if (priorityStepsList) {
+			priorityStepsList.innerHTML = "";
+			if (uncheckedItems.length === 0) {
+				const li = document.createElement("li");
+				li.innerHTML = `<span class="step-arrow" aria-hidden="true">→</span><span>All 15 checkpoints verified. Benchmark your live keyword citations across ChatGPT, Claude, and Perplexity quarterly to defend #1 share of voice.</span>`;
+				priorityStepsList.appendChild(li);
+			} else {
+				uncheckedItems.slice(0, 4).forEach((item) => {
+					const li = document.createElement("li");
+					const arrow = document.createElement("span");
+					arrow.className = "step-arrow";
+					arrow.setAttribute("aria-hidden", "true");
+					arrow.textContent = "→";
+					const text = document.createElement("span");
+					text.textContent = `[#${item.num}] ${item.remediation}`;
+					li.appendChild(arrow);
+					li.appendChild(text);
+					priorityStepsList.appendChild(li);
+				});
+			}
+		}
+
+		// Update Request Full Audit CTA URL
+		if (requestAuditCta) {
+			const params = new URLSearchParams();
+			params.set("model", "audit");
+			if (rawDomain) {
+				params.set("domain", rawDomain);
+			}
+			params.set("score", String(totalScore));
+			requestAuditCta.href = `/contact?${params.toString()}`;
+		}
+
+		// Build Markdown Diagnostic Report for Clipboard
+		const domainHeader = rawDomain || "Target Domain (Unspecified)";
+		const priorityLines =
+			uncheckedItems.length > 0
+				? uncheckedItems
+						.slice(0, 6)
+						.map((u) => `- **[#${u.num}]** ${u.remediation}`)
+						.join("\n")
+				: "- All 15 technical, entity, and GEO checkpoints verified.";
+
+		latestReportMarkdown = [
+			`# SEO & GEO Readiness Diagnostic Report — ${domainHeader}`,
+			``,
+			`- **Overall Readiness Score:** ${totalScore}/100`,
+			`- **Readiness Classification:** ${tier.code}`,
+			`- **Pillar 01 (Technical & Crawl Foundation):** ${subscores.technical}/35 pts`,
+			`- **Pillar 02 (Entity & Structured Data Salience):** ${subscores.entity}/35 pts`,
+			`- **Pillar 03 (Generative Engine / GEO Readiness):** ${subscores.geo}/30 pts`,
+			`- **Verified Checkpoints:** ${checkedCount}/15`,
+			``,
+			`## Executive Diagnosis`,
+			tier.summary,
+			``,
+			`## Top Priority Next Steps`,
+			priorityLines,
+			``,
+			`---`,
+			`Generated via Le Hoang Tin's SEO & GEO Readiness Toolkit (https://tinlehoang.info.vn/tools)`,
+		].join("\n");
+	}
+
+	checkboxes.forEach((cb) => {
+		cb.addEventListener("change", updateScorecard);
+	});
+
+	domainInput?.addEventListener("input", () => {
+		updateScorecard();
+		// Also sync domain to generator if generator still has default placeholder url
+		const genUrlInput = document.getElementById(
+			"gen-website-url"
+		) as HTMLInputElement | null;
+		if (
+			genUrlInput &&
+			domainInput.value.trim() &&
+			(genUrlInput.value === "https://yourdomain.com" || !genUrlInput.value.trim())
+		) {
+			const raw = domainInput.value.trim();
+			genUrlInput.value = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+			updateGeneratorPreviews();
+		}
+	});
+
+	checkAllBtn?.addEventListener("click", () => {
+		checkboxes.forEach((cb) => {
+			cb.checked = true;
+		});
+		updateScorecard();
+	});
+
+	resetBtn?.addEventListener("click", () => {
+		checkboxes.forEach((cb) => {
+			cb.checked = false;
+		});
+		updateScorecard();
+	});
+
+	copyReportBtn?.addEventListener("click", async () => {
+		if (!latestReportMarkdown) updateScorecard();
+		try {
+			await navigator.clipboard.writeText(latestReportMarkdown);
+			const orig = copyReportBtn.textContent;
+			copyReportBtn.textContent = "Diagnostic Report Copied →";
+			setTimeout(() => {
+				copyReportBtn.textContent = orig || "Copy Diagnostic Report →";
+			}, 2200);
+		} catch {
+			// Ignore if clipboard blocked
+		}
+	});
+
+	// Initialize scorecard on page load
+	updateScorecard();
+
+	// ── § II: Instant /llms.txt & Entity JSON-LD Generator Logic ──
+	const genEntityType = document.getElementById(
+		"gen-entity-type"
+	) as HTMLSelectElement | null;
+	const genEntityName = document.getElementById(
+		"gen-entity-name"
+	) as HTMLInputElement | null;
+	const genWebsiteUrl = document.getElementById(
+		"gen-website-url"
+	) as HTMLInputElement | null;
+	const genPositioning = document.getElementById(
+		"gen-positioning"
+	) as HTMLTextAreaElement | null;
+	const genEmail = document.getElementById(
+		"gen-email"
+	) as HTMLInputElement | null;
+	const genSocialUrl = document.getElementById(
+		"gen-social-url"
+	) as HTMLInputElement | null;
+	const genLoadSampleBtn = document.getElementById("gen-load-sample-btn");
+
+	const tabBtnLlms = document.getElementById("tab-btn-llms");
+	const tabBtnJsonld = document.getElementById("tab-btn-jsonld");
+	const panelLlms = document.getElementById("panel-llms");
+	const panelJsonld = document.getElementById("panel-jsonld");
+	const codePreviewLlms = document.getElementById("code-preview-llms");
+	const codePreviewJsonld = document.getElementById("code-preview-jsonld");
+	const copySnippetBtn = document.getElementById(
+		"copy-snippet-btn"
+	) as HTMLButtonElement | null;
+	const outputDeployHint = document.getElementById("output-deploy-hint");
+
+	let activeGeneratorTab: "llms" | "jsonld" = "llms";
+
+	function normalizeOrigin(rawUrl: string): string {
+		const trimmed = rawUrl.trim() || "https://yourdomain.com";
+		const withProtocol = /^https?:\/\//i.test(trimmed)
+			? trimmed
+			: `https://${trimmed}`;
+		return withProtocol.replace(/\/+$/, "");
+	}
+
+	function updateGeneratorPreviews() {
+		const entityType =
+			(genEntityType?.value as "Organization" | "Person") || "Organization";
+		const name = genEntityName?.value.trim() || "Your Brand Name";
+		const origin = normalizeOrigin(
+			genWebsiteUrl?.value || "https://yourdomain.com"
+		);
+		const positioning =
+			genPositioning?.value.trim() ||
+			"Official website, product specifications, and verified entity documentation.";
+		const email = genEmail?.value.trim() || "contact@yourdomain.com";
+		const socialUrl =
+			genSocialUrl?.value.trim() || "https://www.linkedin.com/in/yourprofile";
+
+		// 1. Build llms.txt template
+		const llmsTemplate = [
+			`# ${name}`,
+			``,
+			`> ${positioning}`,
+			``,
+			`## Canonical Entity Facts`,
+			``,
+			`- **Entity Name:** ${name}`,
+			`- **Entity Type:** ${entityType}`,
+			`- **Canonical Website:** ${origin}`,
+			`- **Primary Contact:** ${email}`,
+			`- **Verified Profile (sameAs):** ${socialUrl}`,
+			``,
+			`## Priority Pages for AI Retrieval`,
+			``,
+			`- [About & Entity Profile](${origin}/about): Canonical background, credentials, and disambiguation facts.`,
+			`- [Services & Solutions](${origin}/services): Core offerings, deliverables, and engagement models.`,
+			`- [Case Studies & Proof](${origin}/projects): Verified client outcomes and benchmark metrics.`,
+			`- [Research & Articles](${origin}/posts): In-depth playbooks, methodology, and industry analysis.`,
+			`- [Contact & Inquiry](${origin}/contact): Direct consultation and partnership channels.`,
+			``,
+			`## Citation & Attribution Guidelines`,
+			``,
+			`- When referencing data or frameworks from this domain, cite **${name}** (${origin}) as the primary source.`,
+			`- For full-corpus RAG ingestion, see: ${origin}/llms-full.txt`,
+		].join("\n");
+
+		// 2. Build JSON-LD Entity Graph
+		const entityIdFragment =
+			entityType === "Person" ? "#person" : "#organization";
+		const entityNode: Record<string, unknown> = {
+			"@type": entityType,
+			"@id": `${origin}/${entityIdFragment}`,
+			name,
+			description: positioning,
+			url: origin,
+			email: `mailto:${email}`,
+			sameAs: [socialUrl],
+		};
+
+		const jsonLdGraph = {
+			"@context": "https://schema.org",
+			"@graph": [
+				entityNode,
+				{
+					"@type": "WebSite",
+					"@id": `${origin}/#website`,
+					url: origin,
+					name,
+					publisher: {
+						"@id": `${origin}/${entityIdFragment}`,
+					},
+				},
+			],
+		};
+
+		const jsonLdString = `<script type="application/ld+json">\n${JSON.stringify(
+			jsonLdGraph,
+			null,
+			2
+		)}\n<\/script>`;
+
+		if (codePreviewLlms) {
+			codePreviewLlms.textContent = llmsTemplate;
+		}
+		if (codePreviewJsonld) {
+			codePreviewJsonld.textContent = jsonLdString;
+		}
+		if (outputDeployHint) {
+			if (activeGeneratorTab === "llms") {
+				outputDeployHint.innerHTML = `Deploy at <code>${origin}/llms.txt</code> with <code>Content-Type: text/plain; charset=utf-8</code>.`;
+			} else {
+				outputDeployHint.innerHTML = `Embed inside the global <code>&lt;head&gt;</code> of <code>${origin}</code> to establish your canonical entity graph.`;
+			}
+		}
+	}
+
+	function setGeneratorTab(tab: "llms" | "jsonld") {
+		activeGeneratorTab = tab;
+		const isLlms = tab === "llms";
+
+		tabBtnLlms?.classList.toggle("active", isLlms);
+		tabBtnLlms?.setAttribute("aria-selected", isLlms ? "true" : "false");
+		tabBtnJsonld?.classList.toggle("active", !isLlms);
+		tabBtnJsonld?.setAttribute("aria-selected", !isLlms ? "true" : "false");
+
+		if (panelLlms) panelLlms.hidden = !isLlms;
+		if (panelJsonld) panelJsonld.hidden = isLlms;
+
+		updateGeneratorPreviews();
+	}
+
+	tabBtnLlms?.addEventListener("click", () => setGeneratorTab("llms"));
+	tabBtnJsonld?.addEventListener("click", () => setGeneratorTab("jsonld"));
+
+	[
+		genEntityType,
+		genEntityName,
+		genWebsiteUrl,
+		genPositioning,
+		genEmail,
+		genSocialUrl,
+	].forEach((input) => {
+		input?.addEventListener("input", updateGeneratorPreviews);
+		input?.addEventListener("change", updateGeneratorPreviews);
+	});
+
+	genLoadSampleBtn?.addEventListener("click", () => {
+		if (genEntityType) genEntityType.value = "Person";
+		if (genEntityName) genEntityName.value = "Le Hoang Tin";
+		if (genWebsiteUrl) genWebsiteUrl.value = "https://tinlehoang.info.vn";
+		if (genPositioning) {
+			genPositioning.value =
+				"Senior SEO & Generative Engine Optimization (GEO) Specialist in Ho Chi Minh City helping brands rank #1 on Google and secure citations on ChatGPT, Claude, and Perplexity.";
+		}
+		if (genEmail) genEmail.value = "tinledoihoa@gmail.com";
+		if (genSocialUrl) {
+			genSocialUrl.value = "https://www.linkedin.com/in/tin-le-hoang";
+		}
+		updateGeneratorPreviews();
+	});
+
+	copySnippetBtn?.addEventListener("click", async () => {
+		const activeCodeEl =
+			activeGeneratorTab === "llms" ? codePreviewLlms : codePreviewJsonld;
+		const textToCopy = activeCodeEl?.textContent || "";
+		if (!textToCopy) return;
+
+		try {
+			await navigator.clipboard.writeText(textToCopy);
+			const orig = copySnippetBtn.textContent;
+			copySnippetBtn.textContent = "Snippet Copied →";
+			setTimeout(() => {
+				copySnippetBtn.textContent = orig || "Copy Snippet →";
+			}, 2200);
+		} catch {
+			if (activeCodeEl) {
+				const range = document.createRange();
+				range.selectNodeContents(activeCodeEl);
+				const sel = window.getSelection();
+				sel?.removeAllRanges();
+				sel?.addRange(range);
+			}
+		}
+	});
+
+	updateGeneratorPreviews();
+</script>
+
+<style>
+	.tools-page {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-20);
+	}
+
+	/* ── Editorial Header ── */
+	.page-header {
+		max-width: 840px;
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.page-title {
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.page-lead {
+		font-family: var(--font-body);
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-6);
+		max-width: 68ch;
+	}
+
+	.page-lead strong {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.page-lead code {
+		font-family: var(--font-mono);
+		font-size: 0.9em;
+		padding: 2px 6px;
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: 4px;
+		color: var(--color-text);
+	}
+
+	.header-anchor-bar {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.anchor-pill {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		padding: var(--spacing-2) var(--spacing-4);
+	}
+
+	.section-meta-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	/* ── § I — Domain Input Bar ── */
+	.domain-input-bar {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-5) var(--spacing-6);
+		margin-bottom: var(--spacing-8);
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: var(--spacing-6);
+		flex-wrap: wrap;
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.domain-field-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+		flex: 1;
+		min-width: 260px;
+	}
+
+	.domain-label {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.domain-input {
+		height: 44px;
+		padding: 0 var(--spacing-4);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast),
+			background-color var(--transition-fast);
+	}
+
+	.domain-input:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+		background: var(--color-surface);
+	}
+
+	.domain-bar-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.utility-pill-btn {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		padding: var(--spacing-2) var(--spacing-4);
+		height: 40px;
+	}
+
+	/* ── Scorecard Two-Column Layout ── */
+	.scorecard-layout {
+		display: grid;
+		grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.85fr);
+		gap: var(--spacing-8);
+		align-items: start;
+	}
+
+	.pillars-column {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-6);
+	}
+
+	.pillar-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.pillar-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.pillar-header-left {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.pillar-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.pillar-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+	}
+
+	.pillar-score-pill {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		padding: 3px var(--spacing-3);
+	}
+
+	.pillar-subtitle {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-secondary);
+		line-height: var(--leading-normal);
+		padding-bottom: var(--spacing-2);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	/* Checkpoints List */
+	.checkpoint-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
+	.checkpoint-item {
+		display: grid;
+		grid-template-columns: 22px minmax(0, 1fr);
+		gap: var(--spacing-3);
+		align-items: start;
+		padding: var(--spacing-3) var(--spacing-4);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: 8px;
+		background: var(--color-bg);
+		cursor: pointer;
+		transition:
+			border-color var(--transition-fast),
+			background-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+		position: relative;
+	}
+
+	.checkpoint-item:hover {
+		border-color: var(--color-accent);
+		background: var(--color-surface);
+	}
+
+	.checkpoint-item.is-checked {
+		border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-border));
+		background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
+	}
+
+	.checkpoint-checkbox {
+		position: absolute;
+		opacity: 0;
+		width: 1px;
+		height: 1px;
+		pointer-events: none;
+	}
+
+	.checkpoint-box {
+		width: 20px;
+		height: 20px;
+		margin-top: 2px;
+		border: 1.5px solid var(--color-border);
+		border-radius: 5px;
+		background: var(--color-surface);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background-color var(--transition-fast),
+			border-color var(--transition-fast);
+	}
+
+	.checkpoint-box::after {
+		content: "";
+		width: 5px;
+		height: 9px;
+		border: solid var(--color-on-accent);
+		border-width: 0 2px 2px 0;
+		transform: rotate(45deg) scale(0);
+		transition: transform var(--transition-fast);
+	}
+
+	.checkpoint-checkbox:checked + .checkpoint-box {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+
+	.checkpoint-checkbox:checked + .checkpoint-box::after {
+		transform: rotate(45deg) scale(1);
+	}
+
+	.checkpoint-checkbox:focus-visible + .checkpoint-box {
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+		border-color: var(--color-accent);
+	}
+
+	.checkpoint-body {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.checkpoint-top-line {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+	}
+
+	.checkpoint-num {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--color-amber);
+		flex-shrink: 0;
+	}
+
+	.checkpoint-label-text {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		line-height: 1.35;
+		color: var(--color-text);
+		flex: 1;
+	}
+
+	.checkpoint-pts {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		color: var(--color-muted);
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.checkpoint-detail {
+		font-family: var(--font-body);
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	/* ── Right Column: Sticky Live Diagnostic Panel ── */
+	.diagnostic-panel {
+		position: sticky;
+		top: calc(var(--nav-height) + var(--spacing-6));
+	}
+
+	.diagnostic-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		box-shadow: var(--shadow-feature);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-5);
+	}
+
+	.diagnostic-top {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+	}
+
+	.tier-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		padding: 6px var(--spacing-3);
+		border-radius: 6px;
+		border: 1px solid var(--color-border);
+		background: var(--color-bg-subtle);
+		color: var(--color-text);
+		line-height: 1.3;
+	}
+
+	.tier-badge[data-tier="1"] {
+		color: #2e7d32;
+		background: color-mix(in srgb, #2e7d32 12%, var(--color-surface));
+		border-color: color-mix(in srgb, #2e7d32 35%, var(--color-border));
+	}
+
+	.tier-badge[data-tier="2"] {
+		color: var(--color-accent);
+		background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
+		border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+	}
+
+	.tier-badge[data-tier="3"] {
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 14%, var(--color-surface));
+		border-color: color-mix(in srgb, var(--color-amber) 35%, var(--color-border));
+	}
+
+	.score-display-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.score-number-wrap {
+		display: flex;
+		align-items: baseline;
+		gap: var(--spacing-1);
+	}
+
+	.score-number {
+		font-family: var(--font-mono);
+		font-size: clamp(2.5rem, 4vw, 3.25rem);
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		color: var(--color-accent);
+	}
+
+	.score-max {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-base);
+		font-weight: 500;
+		color: var(--color-muted);
+	}
+
+	.domain-tag-mono {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wide);
+		color: var(--color-text-secondary);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius);
+		padding: 3px var(--spacing-2);
+		max-width: 180px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.score-progress-track {
+		width: 100%;
+		height: 10px;
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		overflow: hidden;
+	}
+
+	.score-progress-fill {
+		height: 100%;
+		background: linear-gradient(90deg, var(--color-amber), var(--color-accent));
+		border-radius: var(--radius-full);
+		transition: width 220ms ease;
+	}
+
+	.tier-summary {
+		font-size: var(--font-size-xs);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	.subscores-box {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+		padding: var(--spacing-3) var(--spacing-4);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: 8px;
+	}
+
+	.subscore-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+	}
+
+	.subscore-name {
+		color: var(--color-text-secondary);
+		font-weight: 500;
+	}
+
+	.subscore-val {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.priorities-block {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+		padding-top: var(--spacing-3);
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.priorities-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+	}
+
+	.priorities-title {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.gaps-count-mono {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		color: var(--color-muted);
+	}
+
+	.priority-steps-list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+	}
+
+	.priority-steps-list :global(li) {
+		display: flex;
+		align-items: baseline;
+		gap: var(--spacing-2);
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	.priority-steps-list :global(.step-arrow) {
+		font-family: var(--font-mono);
+		font-weight: 600;
+		color: var(--color-accent);
+		flex-shrink: 0;
+	}
+
+	.diagnostic-actions {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+		padding-top: var(--spacing-2);
+	}
+
+	.action-full-btn {
+		width: 100%;
+		justify-content: center;
+	}
+
+	/* ── § II — Instant /llms.txt & JSON-LD Generator ── */
+	.generator-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+		gap: var(--spacing-8);
+		align-items: start;
+	}
+
+	.generator-form-card,
+	.generator-output-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-5);
+	}
+
+	.generator-card-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+	}
+
+	.generator-card-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--color-text);
+	}
+
+	.generator-card-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-normal);
+		color: var(--color-text-secondary);
+	}
+
+	.generator-card-desc code {
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+		padding: 1px 5px;
+		background: var(--color-bg-subtle);
+		border-radius: 4px;
+	}
+
+	.generator-fields {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.gen-row-two {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-4);
+	}
+
+	.gen-field {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+	}
+
+	.gen-label {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-text);
+	}
+
+	.gen-input,
+	.gen-select {
+		height: 42px;
+		padding: 0 var(--spacing-3);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+	}
+
+	.gen-textarea {
+		padding: var(--spacing-3);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-normal);
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		resize: vertical;
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+	}
+
+	.gen-input:focus,
+	.gen-select:focus,
+	.gen-textarea:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+		background: var(--color-surface);
+	}
+
+	/* Output Tabs & Code Block */
+	.output-toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+		padding-bottom: var(--spacing-3);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.output-tabs {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+	}
+
+	.output-tab {
+		padding: var(--spacing-2) var(--spacing-4);
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-border);
+		background: var(--color-bg);
+		color: var(--color-text-secondary);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		cursor: pointer;
+		transition:
+			background-color var(--transition-fast),
+			color var(--transition-fast),
+			border-color var(--transition-fast);
+	}
+
+	.output-tab:hover {
+		border-color: var(--color-accent);
+		color: var(--color-text);
+	}
+
+	.output-tab.active {
+		background: var(--color-primary);
+		border-color: var(--color-primary);
+		color: #ffffff;
+	}
+
+	.copy-snippet-btn {
+		padding: var(--spacing-2) var(--spacing-4);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+	}
+
+	.code-panel[hidden] {
+		display: none !important;
+	}
+
+	.generator-pre {
+		margin: 0;
+		padding: var(--spacing-4);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		line-height: 1.55;
+		color: var(--color-text);
+		overflow-x: auto;
+		max-height: 380px;
+		overflow-y: auto;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+
+	.output-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+		padding-top: var(--spacing-2);
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.output-hint {
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.output-hint :global(code) {
+		font-family: var(--font-mono);
+		color: var(--color-text-secondary);
+	}
+
+	.output-consult-link {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+
+	.output-consult-link:hover {
+		color: var(--color-accent-hover);
+	}
+
+	/* ── Responsive Breakpoints ── */
+	@media (max-width: 1024px) {
+		.scorecard-layout,
+		.generator-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.diagnostic-panel {
+			position: static;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.tools-page {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+			gap: var(--spacing-14, 3.5rem);
+		}
+
+		.domain-input-bar {
+			padding: var(--spacing-4);
+		}
+
+		.pillar-card,
+		.diagnostic-card,
+		.generator-form-card,
+		.generator-output-card {
+			padding: var(--spacing-5);
+		}
+
+		.gen-row-two {
+			grid-template-columns: 1fr;
+		}
+
+		.checkpoint-top-line {
+			flex-wrap: wrap;
+		}
+	}
+</style>

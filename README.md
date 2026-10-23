@@ -46,7 +46,7 @@ This site blends two reference philosophies:
 - [x] **Sprint 3:** Upgrade `/projects` (Case Studies Hub with filter & deep breakdowns), `/services` (social proof & comparison), and `/about` (timeline & entity clarity).
 - [x] **Sprint 4:** Conversion & Reading UX — interactive Contact Form + Zalo/WhatsApp CTAs on `/contact`, reading progress bar + author box on `/posts/[slug]`, category filter pills on `/posts`.
 - [x] **Sprint 5:** AI/GEO Infrastructure & Technical SEO — `/llms.txt`, `/llms-full.txt`, `/ai-information`, and JSON-LD structured data (`Person`, `WebSite`, `Article`, `ProfessionalService`, `FAQPage`).
-- [ ] **Sprint 6:** Interactive SEO/GEO Mini-Tool (`/tools`) + complete case study articles in `seed/seed.json`.
+- [x] **Sprint 6:** Interactive SEO/GEO Mini-Tool (`/tools`) + complete case study articles in `seed/seed.json`.
 
 ---
 

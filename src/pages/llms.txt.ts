@@ -42,6 +42,7 @@ export const GET: APIRoute = async () => {
 - [SEO & GEO Consulting Services](${CANONICAL_ORIGIN}/services): Full-stack capabilities, engagement tiers (Audit, Growth Retainer, Project Sprint), and FAQ.
 - [Contact & Consultation](${CANONICAL_ORIGIN}/contact): Direct inquiry form and fast-response channels (Email, Phone/Zalo, WhatsApp, LinkedIn).
 - [Writing Archive](${CANONICAL_ORIGIN}/posts): Complete chronological index of published essays and research notes.
+- [SEO & GEO Readiness Toolkit](${CANONICAL_ORIGIN}/tools): Interactive 15-point SEO & AI Search readiness scorecard and instant /llms.txt + JSON-LD entity schema generator.
 - [AI Information & Entity Record](${CANONICAL_ORIGIN}/ai-information): Official ground-truth entity fact sheet, disambiguation rules, and JSON-LD citation schema for AI systems.
 - [Full Knowledge Corpus (llms-full.txt)](${CANONICAL_ORIGIN}/llms-full.txt): Single-file complete Markdown corpus containing entity records, services, case study breakdowns, and full article texts.
 - [RSS 2.0 Feed](${CANONICAL_ORIGIN}/rss.xml): Syndicated XML feed of recent publications.

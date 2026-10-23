@@ -133,12 +133,12 @@ const nextSteps = [
 
 						<div class="form-row-two">
 							<div class="form-field">
-								<label for="inquiry-domain" class="field-label">
+								<label for="inquiry-website" class="field-label">
 									Website / Domain URL
 								</label>
 								<input
-									type="url"
-									id="inquiry-domain"
+									type="text"
+									id="inquiry-website"
 									name="domain"
 									class="field-input"
 									placeholder="https://yourdomain.com"
@@ -308,7 +308,8 @@ const nextSteps = [
 	const form = document.getElementById("consulting-inquiry-form") as HTMLFormElement | null;
 	const nameInput = document.getElementById("inquiry-name") as HTMLInputElement | null;
 	const emailInput = document.getElementById("inquiry-email") as HTMLInputElement | null;
-	const domainInput = document.getElementById("inquiry-domain") as HTMLInputElement | null;
+	const domainInput = (document.getElementById("inquiry-website") ||
+		document.getElementById("inquiry-domain")) as HTMLInputElement | null;
 	const modelSelect = document.getElementById("inquiry-model") as HTMLSelectElement | null;
 	const goalsTextarea = document.getElementById("inquiry-goals") as HTMLTextAreaElement | null;
 
@@ -390,18 +391,40 @@ const nextSteps = [
 		const params = new URLSearchParams(window.location.search);
 		const modelKey = (params.get("model") || "").toLowerCase().trim();
 		const projectKey = (params.get("project") || "").toLowerCase().trim();
+		const domainParam = (params.get("domain") || "").trim();
+		const scoreParam = (params.get("score") || "").trim();
 
 		const matched = projectMap[projectKey] || modelMap[modelKey];
-		if (!matched) return;
+		const bannerParts: string[] = [];
 
-		if (modelSelect) {
-			modelSelect.value = matched.optionValue;
+		if (matched) {
+			if (modelSelect) {
+				modelSelect.value = matched.optionValue;
+			}
+			if (goalsTextarea && !goalsTextarea.value.trim()) {
+				goalsTextarea.value = matched.template;
+			}
+			bannerParts.push(matched.banner);
 		}
-		if (goalsTextarea && !goalsTextarea.value.trim()) {
-			goalsTextarea.value = matched.template;
+
+		if (domainParam && domainInput) {
+			domainInput.value = domainParam;
+			bannerParts.push(`Target Domain: ${domainParam}`);
 		}
-		if (prefillBanner && prefillText) {
-			prefillText.textContent = matched.banner;
+
+		if (scoreParam && goalsTextarea) {
+			const scoreContext = `Completed the SEO & GEO Readiness Scorecard (Score: ${scoreParam}/100)`;
+			if (!goalsTextarea.value.includes("Completed the SEO & GEO Readiness Scorecard")) {
+				const existing = goalsTextarea.value.trim();
+				goalsTextarea.value = existing
+					? `${existing}\n\n${scoreContext}`
+					: `${scoreContext}\n\nPrimary goals & timeline:\n- `;
+			}
+			bannerParts.push(`Diagnostic Score: ${scoreParam}/100`);
+		}
+
+		if (bannerParts.length > 0 && prefillBanner && prefillText) {
+			prefillText.textContent = bannerParts.join(" · ");
 			prefillBanner.hidden = false;
 		}
 	}
