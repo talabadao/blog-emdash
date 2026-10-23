@@ -1,195 +1,398 @@
 ---
 import Base from "../layouts/Base.astro";
 
-const serviceTiles = [
+const coreCapabilities = [
 	{
-		title: "Technical SEO Audits",
+		number: "01",
+		kicker: "Crawl & Indexation",
+		title: "Technical SEO Audits & Architecture",
 		description:
-			"Full-site crawl analysis, Core Web Vitals, indexation, and crawl-budget fixes using Google Search Console and Screaming Frog.",
+			"Deep crawl diagnostics using Screaming Frog and Google Search Console to resolve indexation bloat, keyword cannibalization, Core Web Vitals bottlenecks, and complex JavaScript rendering issues.",
+		deliverables: "Crawl Audit · Core Web Vitals · Canonical & Schema Graphs",
 	},
 	{
-		title: "AI Search Optimization",
+		number: "02",
+		kicker: "AI Citation Engineering",
+		title: "GEO & AI Search Optimization",
 		description:
-			"Getting brands surfaced and recommended inside ChatGPT, Claude, Grok, and Google SGE — not just ranked in classic blue links.",
+			"Structuring brand entities, machine-readable endpoints, and high-authority citation pathways so your company is recommended inside ChatGPT, Claude, Perplexity, Grok, and Google AI Overviews.",
+		deliverables: "Entity Graphs · /llms.txt · LLM Citation Audits",
 	},
 	{
-		title: "Content Strategy & Keyword Research",
+		number: "03",
+		kicker: "Semantic Coverage",
+		title: "Topical Authority & Content Strategy",
 		description:
-			"Topical maps, content clusters, and on-page outlines built from SEMrush/Ahrefs research and real search intent.",
+			"Full-funnel semantic topical maps, competitive gap analysis (Ahrefs/SEMrush), and E-E-A-T editorial briefs that build durable category leadership rather than isolated keyword spikes.",
+		deliverables: "Topical Maps · Content Cluster Briefs · Internal Link Architecture",
 	},
 	{
-		title: "Conversion Rate Optimization",
+		number: "04",
+		kicker: "Revenue Attribution",
+		title: "Conversion Rate Optimization (CRO)",
 		description:
-			"Turning organic traffic into revenue — GA4 funnel analysis, on-page CRO, and iterative testing.",
+			"Turning organic sessions into qualified pipeline and revenue through GA4 funnel diagnostics, search-intent alignment on commercial landing pages, and iterative UX improvements.",
+		deliverables: "GA4 Funnel Audits · Money-Page UX · Lead Capture Optimization",
 	},
 	{
-		title: "SEO Project Management",
+		number: "05",
+		kicker: "Execution Governance",
+		title: "SEO Program & Sprint Management",
 		description:
-			"KPI-driven delivery and timeline management for in-house teams and agencies running multi-market SEO programs.",
+			"KPI-driven roadmap governance, sprint prioritization, and SOP creation for in-house marketing, content, and engineering teams executing complex organic growth initiatives.",
+		deliverables: "KPI Roadmaps · Editorial SOPs · In-House Team Enablement",
 	},
 	{
-		title: "Vietnam & International SEO",
+		number: "06",
+		kicker: "Cross-Border Growth",
+		title: "Vietnam & International Market SEO",
 		description:
-			"Bilingual SEO strategy for brands operating in both the Vietnamese domestic market and global English-language search.",
+			"Bilingual search strategy for domestic market leaders in Vietnam and international brands scaling across Australia, North America, and global English-language SERPs.",
+		deliverables: "VN/EN Strategy · LocalBusiness Schema · Multi-Region Hreflang",
 	},
 ];
 
 const proofStats = [
-	{ stat: "3 yrs", label: "Leading SEO strategy at GTV SEO Agency" },
-	{ stat: "6", label: "SEO projects across e-commerce, travel, FMCG & local service" },
-	{ stat: "Top 1–3", label: "Google rankings held for the agency's core keywords" },
-	{ stat: "100%", label: "KPI delivered on most engagements — see the case studies" },
+	{
+		stat: "3+ yrs",
+		label: "Leading SEO & GEO strategy across agency and enterprise engagements",
+	},
+	{
+		stat: "#1 AI Cited",
+		label: 'Recommended on ChatGPT, Claude & Grok for "SEO agency HCMC"',
+	},
+	{
+		stat: "300K+ Clicks/mo",
+		label: "Peak monthly organic traffic scaled for enterprise FMCG",
+	},
+	{
+		stat: "100% KPI Delivery",
+		label: "Consistent target delivery across multi-market campaigns",
+	},
+];
+
+const brandExperience = [
+	{
+		name: "GTV SEO",
+		sector: "B2B SEO & GEO · Vietnam",
+		highlight: "#1 on ChatGPT, Claude & Grok + Top 1–3 core Google rankings",
+		href: "/projects#gtv-agency",
+	},
+	{
+		name: "Vinamilk",
+		sector: "Enterprise FMCG · Vietnam",
+		highlight: "300K+ monthly clicks & Top 1–3 maternal nutrition keywords",
+		href: "/projects#vinamilk",
+	},
+	{
+		name: "EuroTravel",
+		sector: "High-Ticket Travel · Vietnam",
+		highlight: "80K–100K monthly clicks & 120% KPI achieved in 6 months",
+		href: "/projects#eurotravel",
+	},
+	{
+		name: "Repair Centre VIC",
+		sector: "Local Service · Australia",
+		highlight: "Top 3–5 Google AU rankings in 14 days via technical sprint",
+		href: "/projects#repair-au",
+	},
+	{
+		name: "Tactical Flashlight E-Commerce",
+		sector: "Specialty Retail · B2C & B2G",
+		highlight: "100% SEO KPI, +25% Q4 YoY revenue & military supply contract",
+		href: "/projects#flashlight",
+	},
+	{
+		name: "Global Furniture Dropshipping",
+		sector: "International E-Commerce · Global",
+		highlight: "100% 5-month KPI & recurring high-ticket organic orders",
+		href: "/projects#furniture-global",
+	},
 ];
 
 const engagementModels = [
 	{
-		name: "SEO Audit",
-		blurb: "A one-time technical + content audit with a prioritized action plan.",
+		tier: "TIER 01 · DIAGNOSTIC",
+		name: "SEO & GEO Audit",
+		blurb:
+			"A comprehensive one-time technical, topical, and AI-citation diagnostic with a prioritized 90-day execution roadmap.",
+		timeline: "2–3 Weeks Delivery",
 		features: [
-			"Full technical crawl & Core Web Vitals review",
-			"Keyword & competitor gap analysis",
-			"Prioritized fix list with expected impact",
+			"Full Screaming Frog & GSC crawl, indexation & Core Web Vitals audit",
+			"Keyword cannibalization & competitor semantic gap analysis",
+			"ChatGPT, Claude, Perplexity & AI Overview brand citation benchmark",
+			"JSON-LD entity graph & /llms.txt implementation blueprint",
+			"Prioritized engineering & editorial backlog with impact scoring",
 		],
+		ctaLabel: "Request an audit scope →",
+		ctaHref: "/contact?model=audit",
+		featured: false,
 	},
 	{
+		tier: "TIER 02 · ONGOING PARTNERSHIP",
 		name: "Growth Retainer",
-		blurb: "Ongoing SEO strategy and execution, KPI-driven.",
+		blurb:
+			"End-to-end monthly SEO & GEO leadership, combining technical governance, topical cluster execution, and AI citation tracking.",
+		timeline: "3–6+ Months Commitment",
+		badge: "Most Popular",
 		features: [
-			"Monthly strategy, content & technical roadmap",
-			"AI search (ChatGPT / Claude / SGE) visibility tracking",
-			"Reporting against agreed KPIs",
+			"Monthly technical SEO, semantic topical map & content brief execution",
+			"Continuous GEO entity optimization & AI assistant visibility tracking",
+			"On-page CRO, internal linking sprints & cannibalization defense",
+			"Direct collaboration with your writers, developers & product leads",
+			"Transparent monthly KPI reporting tied to organic traffic & pipeline",
 		],
+		ctaLabel: "Start a retainer conversation →",
+		ctaHref: "/contact?model=retainer",
 		featured: true,
 	},
 	{
-		name: "Project-Based",
-		blurb: "A defined scope for a launch, migration, or content push.",
+		tier: "TIER 03 · FIXED SCOPE",
+		name: "Project-Based Sprint",
+		blurb:
+			"A focused, high-velocity engagement built for site migrations, penalty/ranking turnarounds, or new market launches.",
+		timeline: "4–8 Weeks Sprint",
 		features: [
-			"Fixed timeline & deliverables",
-			"Content cluster or migration plan",
-			"Handoff documentation for your team",
+			"Defined milestone scope for launches, redesigns, or ranking recovery",
+			"Complete topical cluster architecture or URL consolidation plan",
+			"LocalBusiness / Product / Organization structured data deployment",
+			"Pre- and post-launch crawl verification & indexation monitoring",
+			"Custom SOPs and handoff training for your internal marketing team",
 		],
+		ctaLabel: "Scope a sprint →",
+		ctaHref: "/contact?model=sprint",
+		featured: false,
 	},
 ];
 
 const faqs = [
 	{
 		q: "How do we start working together?",
-		a: "Send a short note via the contact page with your site and what you're trying to fix or grow. I'll follow up with a couple of questions and, if it's a fit, a proposed scope.",
+		a: "Send a brief note via the contact page with your domain, target market, and primary growth objective. I review your current search footprint and AI visibility beforehand so our first conversation focuses directly on bottlenecks, realistic timelines, and a tailored scope.",
 	},
 	{
-		q: "Do you work with international clients, not just Vietnam?",
-		a: "Yes — projects like Repair Centre VIC (Australia) and this list are mostly non-Vietnam markets. I work remotely and async-friendly across time zones.",
+		q: "Do you work with international clients outside Vietnam?",
+		a: "Yes. Alongside enterprise campaigns in Vietnam (such as Vinamilk and EuroTravel), I lead engagements for Australian and global English-language businesses like Repair Centre VIC. Workflows are structured for asynchronous clarity across APAC, European, and North American time zones.",
 	},
 	{
-		q: "What does pricing look like?",
-		a: "It depends on scope — audits are one-time, retainers are monthly. Rather than a fixed price list, tell me about the site and goal and I'll quote it directly.",
+		q: "What does pricing look like across audits, sprints, and retainers?",
+		a: "Engagements are scoped to site complexity, market competitiveness, and whether my role is advisory or hands-on execution. Audits and sprints are billed as fixed-fee projects, while retainers are structured monthly against clear deliverables and KPIs. Share your domain for a direct, transparent quote.",
 	},
 	{
-		q: "How is AI search optimization different from regular SEO?",
-		a: "Classic SEO targets ranking in the ten blue links. AI search optimization targets being the source an LLM cites or recommends — that means structured, entity-clear content and technical signals AI crawlers can parse cleanly.",
+		q: "How is Generative Engine Optimization (GEO) different from traditional SEO?",
+		a: "Traditional SEO focuses on ranking URLs in Google's classic ten blue links. GEO ensures Large Language Models (ChatGPT, Claude, Perplexity, Grok) and Google AI Overviews recognize your brand as a verified entity and cite you when buyers ask comparative or commercial questions.",
+	},
+	{
+		q: "How do llms.txt, entity schema, and GEO work alongside our existing Google SEO?",
+		a: "GEO does not replace technical and topical SEO — it compounds it. Search-connected AI systems rely on clean crawlability, authoritative topical clusters, unambiguous JSON-LD entity graphs (Organization, Person, Product, FAQPage), and machine-readable index files like /llms.txt to verify facts. Optimizing for both secures traffic from traditional search while capturing high-intent zero-click AI recommendations.",
 	},
 ];
 ---
 
 <Base
-	title="Services"
-	description="SEO consulting services from Le Hoang Tin — technical audits, AI search optimization, content strategy, and CRO for teams in Vietnam and globally."
+	title="SEO & GEO Consulting Services"
+	description="SEO and Generative Engine Optimization (GEO) consulting services by Le Hoang Tin — technical audits, AI search citation engineering, topical authority, and CRO."
 >
 	<div class="services-page">
+		<!-- ── Page Header ── -->
 		<header class="page-header">
-			<p class="page-kicker">Services</p>
-			<h1 class="page-title">Work with me</h1>
+			<span class="editorial-kicker">CONSULTING &amp; ADVISORY</span>
+			<h1 class="page-title">SEO &amp; GEO Consulting Services</h1>
 			<p class="page-lead">
-				SEO consulting for teams who want to grow organic revenue — and show up
-				in AI search, not just Google's blue links.
+				Helping ambitious brands rank on Google and get recommended inside ChatGPT, Claude, Perplexity, and Google AI Overviews.
 			</p>
 			<div class="header-ctas">
-				<a href="/contact" class="cta-primary">Get in touch →</a>
-				<a href="/projects" class="cta-secondary">See past results</a>
+				<a href="/contact" class="btn-primary">
+					Start a conversation →
+				</a>
+				<a href="/projects" class="btn-secondary">
+					Review case studies →
+				</a>
 			</div>
 		</header>
 
-		<!-- ── What I help with ── -->
-		<section class="tiles-section">
-			<h2 class="section-title">What I help with</h2>
-			<div class="tiles-grid">
+		<!-- ── § I — Core Capabilities ── -->
+		<section class="capabilities-section" aria-labelledby="section-capabilities">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ I</span>
+				<h2 class="section-index-title" id="section-capabilities">
+					Core Capabilities · Full-Stack Organic &amp; AI Search
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+			</div>
+
+			<div class="capabilities-grid">
 				{
-					serviceTiles.map((tile) => (
-						<div class="service-tile">
-							<h3 class="tile-title">{tile.title}</h3>
-							<p class="tile-description">{tile.description}</p>
-						</div>
+					coreCapabilities.map((item) => (
+						<article class="capability-card">
+							<div class="capability-card-top">
+								<span class="capability-badge">{item.number}</span>
+								<span class="capability-kicker">{item.kicker}</span>
+							</div>
+							<h3 class="capability-title">{item.title}</h3>
+							<p class="capability-description">{item.description}</p>
+							<div class="capability-footer">
+								<span class="deliverables-label">Key Deliverables</span>
+								<span class="deliverables-mono">{item.deliverables}</span>
+							</div>
+						</article>
 					))
 				}
 			</div>
 		</section>
 
-		<!-- ── Proof stats ── -->
-		<section class="proof-section">
-			<div class="proof-grid">
+		<!-- ── § II — Track Record & Brand Experience ── -->
+		<section class="proof-section" aria-labelledby="section-track-record">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ II</span>
+				<h2 class="section-index-title" id="section-track-record">
+					Track Record &amp; Brand Experience
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+				<a href="/projects" class="section-index-link">
+					Explore all 6 case studies →
+				</a>
+			</div>
+
+			<!-- 4-Stat Proof Strip -->
+			<div class="proof-stats-grid">
 				{
 					proofStats.map((item) => (
-						<div class="proof-stat">
+						<div class="proof-stat-card">
 							<span class="stat-value">{item.stat}</span>
 							<span class="stat-label">{item.label}</span>
 						</div>
 					))
 				}
 			</div>
+
+			<!-- Brand Experience Wall -->
+			<div class="brand-wall">
+				<div class="brand-wall-header">
+					<span class="editorial-kicker">VERIFIED CAMPAIGN PORTFOLIO</span>
+					<p class="brand-wall-subtitle">
+						Selected organizations and verticals where these frameworks delivered measurable search and revenue outcomes:
+					</p>
+				</div>
+				<div class="brand-wall-grid">
+					{
+						brandExperience.map((brand) => (
+							<a href={brand.href} class="brand-card">
+								<div class="brand-card-top">
+									<span class="brand-name">{brand.name}</span>
+									<span class="brand-arrow" aria-hidden="true">→</span>
+								</div>
+								<span class="brand-sector">{brand.sector}</span>
+								<p class="brand-highlight">{brand.highlight}</p>
+							</a>
+						))
+					}
+				</div>
+			</div>
 		</section>
 
-		<!-- ── Engagement models ── -->
-		<section class="pricing-section">
-			<h2 class="section-title">How we can work together</h2>
+		<!-- ── § III — Engagement Models ── -->
+		<section class="pricing-section" aria-labelledby="section-engagement">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ III</span>
+				<h2 class="section-index-title" id="section-engagement">
+					Engagement Models · How We Work Together
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+			</div>
+
 			<div class="pricing-grid">
 				{
-					engagementModels.map((tier) => (
-						<div class:list={["pricing-card", { featured: tier.featured }]}>
-							{tier.featured && <span class="pricing-badge">Most common</span>}
-							<h3 class="pricing-name">{tier.name}</h3>
-							<p class="pricing-blurb">{tier.blurb}</p>
-							<a href="/contact" class="pricing-cta">
-								{tier.featured ? "Start a retainer" : "Get a quote"}
-							</a>
+					engagementModels.map((model) => (
+						<article
+							class:list={["pricing-card", { featured: model.featured }]}
+						>
+							{model.badge && (
+								<span class="pricing-badge">{model.badge}</span>
+							)}
+							<div class="pricing-card-head">
+								<span class="pricing-tier-mono">{model.tier}</span>
+								<h3 class="pricing-name">{model.name}</h3>
+								<span class="pricing-timeline-mono">{model.timeline}</span>
+							</div>
+
+							<p class="pricing-blurb">{model.blurb}</p>
+
 							<ul class="pricing-features">
-								{tier.features.map((f) => (
+								{model.features.map((f) => (
 									<li>
-										<span class="check-mark">✓</span>
-										{f}
+										<span class="feature-arrow" aria-hidden="true">→</span>
+										<span>{f}</span>
 									</li>
 								))}
 							</ul>
-						</div>
+
+							<div class="pricing-card-foot">
+								<a
+									href={model.ctaHref}
+									class:list={[
+										model.featured ? "btn-primary" : "btn-secondary",
+										"pricing-cta-btn",
+									]}
+								>
+									{model.ctaLabel}
+								</a>
+							</div>
+						</article>
 					))
 				}
 			</div>
 		</section>
 
-		<!-- ── FAQ ── -->
-		<section class="faq-section">
-			<h2 class="section-title">Questions</h2>
-			<div class="faq-list">
-				{
-					faqs.map((item) => (
-						<details class="faq-item">
-							<summary class="faq-question">{item.q}</summary>
-							<p class="faq-answer">{item.a}</p>
-						</details>
-					))
-				}
+		<!-- ── § IV — Frequently Asked Questions ── -->
+		<section class="faq-section" aria-labelledby="section-faq">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ IV</span>
+				<h2 class="section-index-title" id="section-faq">
+					Frequently Asked Questions
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+			</div>
+
+			<div class="faq-container">
+				<div class="faq-list">
+					{
+						faqs.map((item, idx) => (
+							<details class="faq-item" open={idx === 0}>
+								<summary class="faq-question">
+									<span class="faq-num">0{idx + 1}</span>
+									<span class="faq-question-text">{item.q}</span>
+									<span class="faq-icon" aria-hidden="true"></span>
+								</summary>
+								<div class="faq-answer-wrap">
+									<p class="faq-answer">{item.a}</p>
+								</div>
+							</details>
+						))
+					}
+				</div>
 			</div>
 		</section>
 
-		<!-- ── CTA banner ── -->
-		<section class="cta-banner">
-			<h2 class="cta-headline">Have a site that should be ranking better?</h2>
-			<p class="cta-subtitle">
-				Tell me about it — I'll reply with a quick read on where the opportunity is.
-			</p>
-			<a href="mailto:tinledoihoa@gmail.com" class="cta-banner-btn">
-				tinledoihoa@gmail.com
-			</a>
+		<!-- ── Closing High-Contrast Forest-Green CTA Banner ── -->
+		<section class="cta-banner" aria-labelledby="services-closing-cta">
+			<div class="cta-banner-inner">
+				<span class="cta-banner-kicker">READY TO SCALE ORGANIC &amp; AI VISIBILITY?</span>
+				<h2 class="cta-headline" id="services-closing-cta">
+					Let’s diagnose your domain’s highest-leverage growth opportunities.
+				</h2>
+				<p class="cta-subtitle">
+					Send over your website URL and key objectives. I will reply within 24 hours with an initial assessment of your technical SEO foundation and AI search footprint.
+				</p>
+				<div class="cta-banner-actions">
+					<a href="/contact" class="btn-primary">
+						Book a consultation →
+					</a>
+					<a href="mailto:tinledoihoa@gmail.com" class="cta-email-link">
+						tinledoihoa@gmail.com →
+					</a>
+				</div>
+			</div>
 		</section>
 	</div>
 </Base>
@@ -198,7 +401,7 @@ const faqs = [
 	.services-page {
 		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-20);
@@ -206,94 +409,140 @@ const faqs = [
 
 	/* ── Header ── */
 	.page-header {
-		max-width: 700px;
-	}
-
-	.page-kicker {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-amber);
-		margin-bottom: var(--spacing-3);
+		max-width: 780px;
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.page-title {
-		font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
-		font-weight: 900;
-		font-style: italic;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		font-style: normal;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
 		margin-bottom: var(--spacing-4);
 	}
 
 	.page-lead {
-		font-family: var(--font-sans);
+		font-family: var(--font-body);
 		font-size: var(--font-size-lg);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
-		max-width: 56ch;
-		margin-bottom: var(--spacing-6);
+		max-width: 62ch;
+		margin-bottom: var(--spacing-8);
 	}
 
 	.header-ctas {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-5);
+		gap: var(--spacing-4);
 		flex-wrap: wrap;
 	}
 
-	.cta-primary {
-		display: inline-block;
-		padding: var(--spacing-3) var(--spacing-6);
-		background: var(--color-accent);
-		color: var(--color-on-accent);
-		text-decoration: none;
-		border-radius: var(--radius-full);
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		transition: background var(--transition-fast);
-	}
-
-	.cta-primary:hover {
-		background: var(--color-accent-hover);
-		color: var(--color-on-accent);
-	}
-
-	.cta-secondary {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		color: var(--color-text-secondary);
-		text-decoration: none;
-		transition: color var(--transition-fast);
-	}
-
-	.cta-secondary:hover {
-		color: var(--color-accent);
-	}
-
-	/* ── Shared section title ── */
-	.section-title {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		color: var(--color-muted);
-		margin-bottom: var(--spacing-8);
-		padding-bottom: var(--spacing-4);
-		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	/* ── Service tiles ── */
-	.tiles-grid {
+	/* ── § I — Core Capabilities ── */
+	.capabilities-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--spacing-6);
 	}
 
-	.service-tile {
+	.capability-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
+	}
+
+	.capability-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.capability-card-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+	}
+
+	.capability-badge {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.capability-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.capability-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.22;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+	}
+
+	.capability-description {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		flex: 1;
+	}
+
+	.capability-footer {
+		padding-top: var(--spacing-4);
+		border-top: 1px solid var(--color-border-subtle);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.deliverables-label {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.deliverables-mono {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		line-height: 1.4;
+	}
+
+	/* ── § II — Track Record & Brand Experience ── */
+	.proof-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--spacing-4);
+		margin-bottom: var(--spacing-8);
+	}
+
+	.proof-stat-card {
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
@@ -301,63 +550,113 @@ const faqs = [
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-2);
-		transition: box-shadow var(--transition-base);
-	}
-
-	.service-tile:hover {
 		box-shadow: var(--shadow-tile-raised);
 	}
 
-	.tile-title {
-		font-size: var(--font-size-lg);
-		font-weight: 600;
-		letter-spacing: var(--tracking-snug);
-	}
-
-	.tile-description {
-		font-size: var(--font-size-sm);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
-	}
-
-	/* ── Proof stats ── */
-	.proof-section {
-		background: var(--color-bg-subtle);
-		border-radius: var(--radius-lg);
-		padding: var(--spacing-10) var(--spacing-8);
-	}
-
-	.proof-grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: var(--spacing-8);
-	}
-
-	.proof-stat {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-2);
-	}
-
 	.stat-value {
-		font-family: var(--font-display);
-		font-size: var(--font-size-3xl);
-		font-weight: 700;
-		line-height: 1;
+		font-family: var(--font-mono);
+		font-size: clamp(1.4rem, 2.2vw, 1.875rem);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
 		color: var(--color-accent);
 	}
 
 	.stat-label {
-		font-size: var(--font-size-sm);
-		line-height: var(--leading-snug);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		line-height: var(--leading-normal);
 		color: var(--color-text-secondary);
-		max-width: 20ch;
 	}
 
-	/* ── Pricing / engagement models ── */
+	.brand-wall {
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+	}
+
+	.brand-wall-header {
+		margin-bottom: var(--spacing-6);
+	}
+
+	.brand-wall-subtitle {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-secondary);
+		line-height: var(--leading-normal);
+	}
+
+	.brand-wall-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-4);
+	}
+
+	.brand-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: calc(var(--radius-lg) - 2px);
+		padding: var(--spacing-5);
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+	}
+
+	.brand-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.brand-card-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+	}
+
+	.brand-name {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.brand-arrow {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--color-accent);
+		transition: transform var(--transition-fast);
+	}
+
+	.brand-card:hover .brand-arrow {
+		transform: translateX(3px);
+	}
+
+	.brand-sector {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-1);
+	}
+
+	.brand-highlight {
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	/* ── § III — Engagement Models ── */
 	.pricing-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--spacing-6);
 		align-items: stretch;
 	}
@@ -366,15 +665,16 @@ const faqs = [
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-4);
+		gap: var(--spacing-5);
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		padding: var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
 	}
 
 	.pricing-card.featured {
-		background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
+		background: color-mix(in srgb, var(--color-accent) 4%, var(--color-surface));
 		border: 2px solid var(--color-accent);
 		box-shadow: var(--shadow-feature);
 	}
@@ -384,59 +684,50 @@ const faqs = [
 		top: var(--spacing-6);
 		right: var(--spacing-6);
 		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-on-accent);
 		background: var(--color-accent);
 		border-radius: var(--radius-full);
-		padding: 2px var(--spacing-3);
+		padding: 3px var(--spacing-3);
+	}
+
+	.pricing-card-head {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+	}
+
+	.pricing-tier-mono {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
 	}
 
 	.pricing-name {
-		font-size: var(--font-size-xl);
-		font-weight: 700;
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.pricing-timeline-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
 	}
 
 	.pricing-blurb {
 		font-size: var(--font-size-sm);
 		color: var(--color-text-secondary);
 		line-height: var(--leading-relaxed);
-		margin-top: calc(var(--spacing-2) * -1);
-	}
-
-	.pricing-cta {
-		display: block;
-		text-align: center;
-		padding: var(--spacing-3) var(--spacing-5);
-		border-radius: var(--radius-full);
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		text-decoration: none;
-		transition:
-			background var(--transition-fast),
-			color var(--transition-fast);
-	}
-
-	.pricing-card:not(.featured) .pricing-cta {
-		background: transparent;
-		color: var(--color-text);
-		border: 1px solid var(--color-border);
-	}
-
-	.pricing-card:not(.featured) .pricing-cta:hover {
-		background: var(--color-bg-subtle);
-	}
-
-	.pricing-card.featured .pricing-cta {
-		background: var(--color-accent);
-		color: var(--color-on-accent);
-	}
-
-	.pricing-card.featured .pricing-cta:hover {
-		background: var(--color-accent-hover);
 	}
 
 	.pricing-features {
@@ -444,37 +735,51 @@ const faqs = [
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-3);
-		padding-top: var(--spacing-4);
+		padding-top: var(--spacing-5);
 		border-top: 1px solid var(--color-border-subtle);
+		flex: 1;
 	}
 
 	.pricing-features li {
 		display: flex;
-		align-items: flex-start;
+		align-items: baseline;
 		gap: var(--spacing-2);
 		font-size: var(--font-size-sm);
 		color: var(--color-text-secondary);
-		line-height: var(--leading-snug);
+		line-height: var(--leading-normal);
 	}
 
-	.check-mark {
+	.feature-arrow {
+		font-family: var(--font-mono);
+		font-weight: 600;
 		color: var(--color-accent);
 		flex-shrink: 0;
 	}
 
-	/* ── FAQ ── */
+	.pricing-card-foot {
+		padding-top: var(--spacing-4);
+	}
+
+	.pricing-cta-btn {
+		width: 100%;
+	}
+
+	/* ── § IV — FAQ Accordion ── */
+	.faq-container {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-2) var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
 	.faq-list {
 		display: flex;
 		flex-direction: column;
 	}
 
 	.faq-item {
-		padding: var(--spacing-5) 0;
 		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	.faq-item:first-child {
-		padding-top: 0;
 	}
 
 	.faq-item:last-child {
@@ -483,89 +788,140 @@ const faqs = [
 
 	.faq-question {
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+		padding: var(--spacing-6) 0;
+		list-style: none;
+		font-family: var(--font-heading);
 		font-size: var(--font-size-lg);
 		font-weight: 600;
 		color: var(--color-text);
-		list-style: none;
+		transition: color var(--transition-fast);
 	}
 
 	.faq-question::-webkit-details-marker {
 		display: none;
 	}
 
-	.faq-question::after {
-		content: "+";
-		float: right;
-		color: var(--color-muted);
-		font-weight: 400;
+	.faq-question:hover {
+		color: var(--color-accent);
 	}
 
-	.faq-item[open] .faq-question::after {
+	.faq-num {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		flex-shrink: 0;
+	}
+
+	.faq-question-text {
+		flex: 1;
+		line-height: 1.3;
+	}
+
+	.faq-icon::before {
+		content: "+";
+		font-family: var(--font-mono);
+		font-size: var(--font-size-lg);
+		font-weight: 500;
+		color: var(--color-muted);
+	}
+
+	.faq-item[open] .faq-icon::before {
 		content: "−";
+		color: var(--color-accent);
+	}
+
+	.faq-answer-wrap {
+		padding: 0 0 var(--spacing-6) calc(var(--spacing-4) + 1.5rem);
 	}
 
 	.faq-answer {
-		margin-top: var(--spacing-3);
 		font-size: var(--font-size-base);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
-		max-width: 65ch;
+		max-width: 68ch;
 	}
 
-	/* ── CTA banner ── */
+	/* ── Closing Dark/Primary CTA Banner ── */
 	.cta-banner {
 		background: var(--color-primary);
 		color: #ffffff;
+		border: 1px solid rgba(255, 255, 255, 0.12);
 		border-radius: var(--radius-lg);
-		padding: var(--spacing-16) var(--spacing-8);
-		text-align: center;
+		padding: var(--spacing-16) var(--spacing-10);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.cta-banner-inner {
+		max-width: 680px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: flex-start;
 		gap: var(--spacing-4);
 	}
 
+	.cta-banner-kicker {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
 	.cta-headline {
-		font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
-		font-weight: 700;
-		letter-spacing: var(--tracking-tight);
-		max-width: 24ch;
+		font-family: var(--font-heading);
+		font-size: clamp(1.875rem, 3.6vw, 2.75rem);
+		font-weight: 600;
+		line-height: 1.15;
+		letter-spacing: -0.025em;
+		color: #ffffff;
 	}
 
 	.cta-subtitle {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-lg);
-		color: rgba(255, 255, 255, 0.75);
-		max-width: 50ch;
+		font-family: var(--font-body);
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: rgba(255, 255, 255, 0.82);
+		max-width: 58ch;
+		margin-bottom: var(--spacing-2);
 	}
 
-	.cta-banner-btn {
-		display: inline-block;
-		margin-top: var(--spacing-2);
-		padding: var(--spacing-3) var(--spacing-6);
-		background: var(--color-accent);
-		color: var(--color-on-accent);
-		border-radius: var(--radius-full);
-		text-decoration: none;
-		font-family: var(--font-sans);
+	.cta-banner-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-5);
+		flex-wrap: wrap;
+	}
+
+	.cta-email-link {
+		font-family: var(--font-mono);
 		font-size: var(--font-size-sm);
-		font-weight: 600;
-		transition: background var(--transition-fast);
+		font-weight: 500;
+		color: rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		transition: color var(--transition-fast);
 	}
 
-	.cta-banner-btn:hover {
-		background: var(--color-accent-hover);
+	.cta-email-link:hover {
+		color: var(--color-accent);
 	}
 
-	/* ── Responsive ── */
-	@media (max-width: 900px) {
-		.tiles-grid {
-			grid-template-columns: repeat(2, 1fr);
+	/* ── Responsive Breakpoints ── */
+	@media (max-width: 980px) {
+		.capabilities-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
-		.proof-grid {
-			grid-template-columns: repeat(2, 1fr);
-			row-gap: var(--spacing-6);
+		.proof-stats-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.brand-wall-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		.pricing-grid {
@@ -573,22 +929,32 @@ const faqs = [
 		}
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 640px) {
 		.services-page {
 			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
 			gap: var(--spacing-16);
 		}
 
-		.tiles-grid {
+		.capabilities-grid,
+		.proof-stats-grid,
+		.brand-wall-grid {
 			grid-template-columns: 1fr;
 		}
 
-		.proof-grid {
-			grid-template-columns: 1fr;
+		.brand-wall {
+			padding: var(--spacing-6);
+		}
+
+		.faq-container {
+			padding: var(--spacing-2) var(--spacing-5);
+		}
+
+		.faq-answer-wrap {
+			padding-left: 0;
 		}
 
 		.cta-banner {
-			padding: var(--spacing-10) var(--spacing-5);
+			padding: var(--spacing-10) var(--spacing-6);
 		}
 	}
 </style>

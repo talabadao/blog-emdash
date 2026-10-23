@@ -1,147 +1,362 @@
 ---
 import Base from "../layouts/Base.astro";
+
+const entityFacts = [
+	{ label: "Experience", value: "3+ Years" },
+	{ label: "Location", value: "HCMC, Vietnam" },
+	{ label: "Focus", value: "Technical SEO, Topical Authority & GEO" },
+];
+
+const timelineItems = [
+	{
+		period: "2025 – 2026",
+		badge: "CURRENT",
+		role: "Senior SEO & GEO Specialist",
+		organization: "Independent Advisory & GTV SEO Agency · Ho Chi Minh City",
+		summary:
+			"Leading Generative Engine Optimization (GEO) citation engineering, technical site architecture, and multi-market organic growth sprints across Vietnam, Australia, and global English SERPs.",
+		highlights: [
+			"Engineered entity authority and structured citation signals that secured #1 recommendations on ChatGPT, Claude, and Grok for competitive B2B search terms.",
+			"Led rapid technical turnaround for Repair Centre VIC (Australia), resolving keyword cannibalization to reach Google AU Top 3–5 within 14 days (85% total KPI in Sprint 1).",
+			"Scaled a newly launched global English furniture e-commerce storefront from zero authority to 100% of 5-month organic KPIs and recurring high-ticket orders.",
+		],
+	},
+	{
+		period: "2023 – 2025",
+		badge: "AGENCY LEADERSHIP",
+		role: "SEO Specialist & Project Lead at GTV SEO",
+		organization: "GTV SEO Agency · Ho Chi Minh City, Vietnam",
+		summary:
+			"Directed end-to-end SEO strategy, technical audits, semantic topical maps, and cross-functional execution for enterprise FMCG, travel, B2B, and specialty retail brands.",
+		highlights: [
+			"Scaled Vinamilk's maternal and infant nutrition hub (vinamilk.com.vn) to 300,000+ monthly organic clicks and Top 1–3 Google rankings (100% KPI).",
+			"Grew EuroTravel (eurotravel.com.vn) to 80,000–100,000 monthly clicks, achieving 120% of campaign KPIs in 6 months across high-ticket European tour routes.",
+			"Delivered 100% SEO KPI and +25% YoY Q4 revenue for a tactical flashlight e-commerce brand, generating the inbound lead for a military supply contract.",
+		],
+	},
+	{
+		period: "EDUCATION · GRADUATED",
+		badge: "ACADEMIC FOUNDATION",
+		role: "UEH — B.A. in International Business, GPA 3.27/4.0",
+		organization: "Đại học Kinh tế TP.HCM (UEH — University of Economics Ho Chi Minh City)",
+		summary:
+			"Trained in cross-border commerce, market research, international marketing strategy, and quantitative business analytics — forming the commercial foundation behind revenue-focused SEO.",
+		highlights: [
+			"Cumulative GPA: 3.27 / 4.0 in the International Business program.",
+			"Specialized in global market entry, buyer behavior analysis, and unit-economics attribution.",
+		],
+	},
+];
+
+const methodologyPillars = [
+	{
+		number: "01",
+		title: "AI Search & GEO Stack",
+		kicker: "LLM Retrieval & Entity Signals",
+		description:
+			"Engineering unambiguous entity graphs and machine-readable documentation so AI assistants verify, trust, and recommend your brand.",
+		tools: [
+			"ChatGPT / OpenAI & Claude APIs for semantic & entity auditing",
+			"Perplexity, Grok & Google AI Overviews citation tracking",
+			"/llms.txt & /llms-full.txt corpus architecture",
+			"JSON-LD Entity Graphs (Person, Organization, LocalBusiness, Product, FAQPage)",
+		],
+	},
+	{
+		number: "02",
+		title: "Technical & Crawl Diagnostics",
+		kicker: "Indexation & Site Architecture",
+		description:
+			"Eliminating crawl traps, duplicate indexation, and rendering friction so search engines and AI bots parse your site cleanly.",
+		tools: [
+			"Google Search Console (GSC) & Screaming Frog SEO Spider",
+			"Core Web Vitals, JavaScript rendering & crawl-budget optimization",
+			"Keyword cannibalization resolution, 301 consolidation & canonical rules",
+			"International SEO, hreflang & LocalBusiness GBP alignment",
+		],
+	},
+	{
+		number: "03",
+		title: "Keyword, Content & CRO Analytics",
+		kicker: "Topical Authority & Pipeline",
+		description:
+			"Connecting semantic topical depth with commercial buyer intent and conversion tracking that proves revenue impact.",
+		tools: [
+			"Ahrefs & SEMrush competitive gap & intent cluster research",
+			"Hub-and-spoke semantic topical maps & E-E-A-T editorial briefs",
+			"Google Analytics 4 (GA4) funnel attribution & event tracking",
+			"Commercial landing page CRO, dwell-time optimization & KPI governance",
+		],
+	},
+];
+
+const recognitions = [
+	{
+		badge: "AWARD · AI INNOVATION",
+		title: "3rd Prize — AI Application for SEO at GTV SEO",
+		description:
+			"Recognized in GTV SEO's internal innovation competition for designing reproducible LLM-assisted workflows that automated semantic gap analysis, entity extraction, and E-E-A-T content brief engineering.",
+	},
+	{
+		badge: "CURRICULUM & SOP AUTHOR",
+		title: "Author of GTV SEO Training E-Books & Documentation",
+		description:
+			"Authored comprehensive technical SEO playbooks, on-page checklists, and training e-books used across GTV SEO's educational courses and internal specialist onboarding.",
+	},
+	{
+		badge: "COMMERCIAL STRATEGY",
+		title: "10+ Winning Client Pitch Strategies (Local & Global)",
+		description:
+			"Architected pre-sale technical diagnostics, competitive opportunity models, and 6-to-12-month growth roadmaps that helped GTV SEO win over 10 domestic and international client bids.",
+	},
+];
 ---
 
 <Base
-	title="About"
-	description="Le Hoang Tin — SEO Specialist với gần 3 năm kinh nghiệm tại GTV SEO Agency, Ho Chi Minh City."
+	title="About Le Hoang Tin — Senior SEO & GEO Specialist"
+	description="Entity profile and career timeline of Le Hoang Tin (Tin Le Hoang) — Senior SEO & GEO Specialist in Ho Chi Minh City, Vietnam with 3+ years leading campaigns at GTV SEO."
 >
 	<div class="about-page">
+		<!-- ── Page Header & Entity Bio ── -->
 		<header class="about-header">
 			<div class="about-header-text">
-				<p class="page-kicker">About Me</p>
+				<span class="editorial-kicker">ABOUT THE AUTHOR · ENTITY PROFILE</span>
 				<h1 class="page-title">Le Hoang Tin</h1>
-				<p class="page-subtitle">SEO Specialist · Ho Chi Minh City</p>
-			</div>
-			<div class="about-portrait">
-				<div class="portrait-frame">
-					<img
-						src="/tin_le_hoang.jpg"
-						alt="Le Hoang Tin — SEO Specialist, Ho Chi Minh City"
-						class="portrait-img"
-						width="280"
-						height="280"
-						loading="eager"
-					/>
+				<p class="page-subtitle">
+					Senior SEO &amp; GEO Specialist · Ho Chi Minh City, Vietnam
+				</p>
+
+				<div class="bio-copy">
+					<p class="bio-lead">
+						<strong>Le Hoang Tin (Tin Le Hoang)</strong> is a Senior SEO &amp; Generative Engine Optimization (GEO) Specialist based in Ho Chi Minh City, Vietnam, with over 3 years of hands-on experience leading high-impact search campaigns at <strong>GTV SEO</strong>.
+					</p>
+					<p class="bio-paragraph">
+						Bridging Vietnamese enterprise market fluency with international English-language search execution, he has architected organic growth systems for category leaders including <strong>Vinamilk</strong> (300,000+ monthly clicks), <strong>EuroTravel</strong> (120% KPI delivery), <strong>Repair Centre VIC</strong> (Australia Top 3 in 14 days), and global e-commerce brands.
+					</p>
+					<p class="bio-paragraph">
+						A graduate in International Business from <strong>Đại học Kinh tế TP.HCM (UEH)</strong>, Tin approaches search as a commercial revenue channel — combining deep technical crawl diagnostics, semantic topical authority, Conversion Rate Optimization (CRO), and structured entity engineering so brands rank at the top of Google and get cited inside <strong>ChatGPT, Claude, Perplexity, Grok, and Google AI Overviews</strong>.
+					</p>
 				</div>
-				<p class="portrait-caption">Ho Chi Minh City, 2025</p>
+
+				<div class="header-actions">
+					<a href="/contact" class="btn-primary">
+						Work with me →
+					</a>
+					<a href="/projects" class="btn-secondary">
+						View 6 case studies →
+					</a>
+				</div>
 			</div>
+
+			<!-- Editorial Portrait Card -->
+			<aside class="about-portrait-col" aria-label="Le Hoang Tin portrait and entity summary">
+				<div class="portrait-card">
+					<div class="portrait-frame">
+						<img
+							src="/tin_le_hoang.jpg"
+							alt="Le Hoang Tin — Senior SEO & GEO Specialist in Ho Chi Minh City, Vietnam"
+							class="portrait-img"
+							width="280"
+							height="300"
+							loading="eager"
+						/>
+					</div>
+					<div class="portrait-meta">
+						<p class="portrait-caption">FIG. 01 — LE HOANG TIN · HCMC, VN</p>
+						<dl class="entity-facts">
+							{
+								entityFacts.map((fact) => (
+									<div class="entity-fact-row">
+										<dt>{fact.label}</dt>
+										<dd>{fact.value}</dd>
+									</div>
+								))
+							}
+						</dl>
+					</div>
+				</div>
+			</aside>
 		</header>
 
-		<div class="about-body">
-			<section class="bio-section">
-				<p class="bio-lead">
-					Le Hoang Tin là SEO Specialist với gần 3 năm kinh nghiệm dẫn dắt các dự án SEO tại
-					<strong>GTV SEO</strong> — một trong những agency SEO hàng đầu tại TP. Hồ Chí Minh.
-				</p>
-				<p class="bio-text">
-					Chuyên về data-driven SEO strategy, Conversion Rate Optimization (CRO), và tối ưu nội dung
-					cho AI-driven search channels như ChatGPT, Claude, và Google SGE. Có sự quan tâm đặc biệt
-					đến cách AI đang thay đổi cách mọi người tìm kiếm và khám phá thông tin trực tuyến.
-				</p>
-			</section>
-
-			<div class="about-grid">
-				<section class="about-section">
-					<h2 class="section-heading">Education</h2>
-					<ul class="detail-list">
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>International Business</strong> — Đại học Kinh tế TP.HCM (UEH)
-								<br />
-								<span class="detail-sub">GPA: 3.27/4.0</span>
-							</span>
-						</li>
-					</ul>
-				</section>
-
-				<section class="about-section">
-					<h2 class="section-heading">Skills</h2>
-					<ul class="detail-list">
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>ChatGPT &amp; Claude APIs</strong> — SEO content analysis &amp; AI search optimization
-							</span>
-						</li>
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>Google Search Console &amp; Screaming Frog</strong> — Technical SEO audits
-							</span>
-						</li>
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>SEMrush &amp; Ahrefs</strong> — Keyword research &amp; competitor analysis
-							</span>
-						</li>
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>Google Analytics 4</strong> — Conversion tracking &amp; user behavior
-							</span>
-						</li>
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>SEO Project Management</strong> — KPI delivery &amp; timeline management
-							</span>
-						</li>
-					</ul>
-				</section>
-
-				<section class="about-section">
-					<h2 class="section-heading">Recognition</h2>
-					<ul class="detail-list">
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								<strong>3rd Prize</strong> — AI Application for SEO (GTV SEO internal competition)
-							</span>
-						</li>
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								Author of training documents &amp; e-books for GTV SEO courses
-							</span>
-						</li>
-						<li>
-							<span class="detail-arrow">→</span>
-							<span>
-								Planned 10+ projects helping GTV SEO win new client bids (local &amp; global)
-							</span>
-						</li>
-					</ul>
-				</section>
-
-				<section class="about-section">
-					<h2 class="section-heading">Contact</h2>
-					<ul class="detail-list contact-list">
-						<li>
-							<span class="detail-label">Email</span>
-							<a href="mailto:tinledoihoa@gmail.com" class="detail-link">tinledoihoa@gmail.com</a>
-						</li>
-						<li>
-							<span class="detail-label">LinkedIn</span>
-							<a
-								href="https://www.linkedin.com/in/tin-le-hoang"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="detail-link"
-							>
-								Tin Le Hoang ↗
-							</a>
-						</li>
-						<li>
-							<span class="detail-label">Phone</span>
-							<a href="tel:+84357669476" class="detail-link">0357.669.476</a>
-						</li>
-					</ul>
-				</section>
+		<!-- ── § I — Career & Impact Timeline ── -->
+		<section class="timeline-section" aria-labelledby="section-timeline">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ I</span>
+				<h2 class="section-index-title" id="section-timeline">
+					Career &amp; Impact Timeline
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
 			</div>
-		</div>
+
+			<div class="timeline-list">
+				{
+					timelineItems.map((item) => (
+						<article class="timeline-card">
+							<div class="timeline-aside">
+								<span class="timeline-period">{item.period}</span>
+								<span class="timeline-badge">{item.badge}</span>
+							</div>
+							<div class="timeline-body">
+								<h3 class="timeline-role">{item.role}</h3>
+								<p class="timeline-org">{item.organization}</p>
+								<p class="timeline-summary">{item.summary}</p>
+								<ul class="timeline-highlights">
+									{item.highlights.map((point) => (
+										<li>
+											<span class="highlight-arrow" aria-hidden="true">→</span>
+											<span>{point}</span>
+										</li>
+									))}
+								</ul>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- ── § II — Methodology & Technical Stack ── -->
+		<section class="stack-section" aria-labelledby="section-stack">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ II</span>
+				<h2 class="section-index-title" id="section-stack">
+					Methodology &amp; Technical Stack
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+			</div>
+
+			<div class="stack-grid">
+				{
+					methodologyPillars.map((pillar) => (
+						<article class="stack-card">
+							<div class="stack-card-top">
+								<span class="stack-num">{pillar.number}</span>
+								<span class="stack-kicker">{pillar.kicker}</span>
+							</div>
+							<h3 class="stack-title">{pillar.title}</h3>
+							<p class="stack-desc">{pillar.description}</p>
+							<ul class="stack-tools">
+								{pillar.tools.map((tool) => (
+									<li>
+										<span class="highlight-arrow" aria-hidden="true">→</span>
+										<span>{tool}</span>
+									</li>
+								))}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- ── § III — Recognition & Industry Contributions ── -->
+		<section class="recognition-section" aria-labelledby="section-recognition">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ III</span>
+				<h2 class="section-index-title" id="section-recognition">
+					Recognition &amp; Industry Contributions
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+			</div>
+
+			<div class="recognition-grid">
+				{
+					recognitions.map((rec) => (
+						<article class="recognition-card">
+							<span class="recognition-badge">{rec.badge}</span>
+							<h3 class="recognition-title">{rec.title}</h3>
+							<p class="recognition-desc">{rec.description}</p>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- ── § IV — Direct Contact & AI Fact Sheet ── -->
+		<section class="contact-entity-section" aria-labelledby="section-contact-entity">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ IV</span>
+				<h2 class="section-index-title" id="section-contact-entity">
+					Direct Contact &amp; AI Fact Sheet
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+			</div>
+
+			<div class="contact-entity-grid">
+				<!-- Direct Contact Card -->
+				<div class="direct-contact-card">
+					<span class="editorial-kicker">HUMAN CHANNELS</span>
+					<h3 class="card-block-title">Get in touch directly</h3>
+					<p class="card-block-desc">
+						Available for consulting retainers, technical &amp; GEO audits, and international search sprints. Reach out via email, phone/Zalo, or LinkedIn.
+					</p>
+
+					<dl class="channel-table">
+						<div class="channel-row">
+							<dt>Email</dt>
+							<dd>
+								<a href="mailto:tinledoihoa@gmail.com">tinledoihoa@gmail.com</a>
+							</dd>
+						</div>
+						<div class="channel-row">
+							<dt>Phone / Zalo</dt>
+							<dd>
+								<a href="tel:+84357669476">0357.669.476</a>
+							</dd>
+						</div>
+						<div class="channel-row">
+							<dt>LinkedIn</dt>
+							<dd>
+								<a
+									href="https://www.linkedin.com/in/tin-le-hoang"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									linkedin.com/in/tin-le-hoang ↗
+								</a>
+							</dd>
+						</div>
+					</dl>
+
+					<div class="card-block-actions">
+						<a href="/contact" class="btn-primary">
+							Open contact page →
+						</a>
+					</div>
+				</div>
+
+				<!-- AI Crawler & Entity Endpoints Card -->
+				<div class="ai-entity-card">
+					<span class="editorial-kicker">MACHINE-READABLE ENTITY ENDPOINTS</span>
+					<h3 class="card-block-title">AI Fact Sheet &amp; LLM Index</h3>
+					<p class="card-block-desc">
+						For AI assistants (ChatGPT, Claude, Perplexity, Gemini, Grok) and researchers verifying Le Hoang Tin’s credentials, case studies, and canonical entity attributes:
+					</p>
+
+					<div class="endpoint-links">
+						<a href="/ai-information" class="endpoint-box">
+							<div class="endpoint-box-top">
+								<span class="endpoint-path">/ai-information</span>
+								<span class="endpoint-arrow" aria-hidden="true">→</span>
+							</div>
+							<span class="endpoint-label">
+								Official Entity Fact Sheet, verified career metrics &amp; structured reference data
+							</span>
+						</a>
+
+						<a href="/llms.txt" class="endpoint-box">
+							<div class="endpoint-box-top">
+								<span class="endpoint-path">/llms.txt</span>
+								<span class="endpoint-arrow" aria-hidden="true">→</span>
+							</div>
+							<span class="endpoint-label">
+								Concise Markdown index of site identity, consulting services, case studies &amp; essays
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
 </Base>
 
@@ -149,68 +364,100 @@ import Base from "../layouts/Base.astro";
 	.about-page {
 		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-20);
 	}
 
-	/* ── Header ── */
+	/* ── Page Header & Entity Bio ── */
 	.about-header {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 310px;
+		align-items: start;
 		gap: var(--spacing-12);
-		padding-bottom: var(--spacing-16);
-		border-bottom: 1px solid var(--color-border-subtle);
-		margin-bottom: var(--spacing-16);
+		padding-bottom: var(--spacing-12);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.about-header-text {
-		flex: 1;
-		max-width: 560px;
-	}
-
-	.page-kicker {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-amber);
-		margin-bottom: var(--spacing-4);
+		min-width: 0;
 	}
 
 	.page-title {
-		font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
-		font-weight: 900;
-		font-style: italic;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
-		margin-bottom: var(--spacing-3);
+		font-family: var(--font-heading);
+		font-size: clamp(2.5rem, 5.2vw, 4rem);
+		font-weight: 600;
+		font-style: normal;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-2);
 	}
 
 	.page-subtitle {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-base);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
 		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		color: var(--color-amber);
+		color: var(--color-muted);
+		margin-bottom: var(--spacing-6);
 	}
 
-	/* ── Portrait ── */
-	.about-portrait {
-		flex-shrink: 0;
+	.bio-copy {
 		display: flex;
 		flex-direction: column;
+		gap: var(--spacing-4);
+		margin-bottom: var(--spacing-8);
+		max-width: 66ch;
+	}
+
+	.bio-lead {
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text);
+	}
+
+	.bio-paragraph {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	.bio-copy strong {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.header-actions {
+		display: flex;
 		align-items: center;
-		gap: var(--spacing-3);
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+	}
+
+	/* ── Editorial Portrait Card ── */
+	.about-portrait-col {
+		width: 100%;
+	}
+
+	.portrait-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
 	}
 
 	.portrait-frame {
-		width: 280px;
-		height: 280px;
-		border-radius: 50%;
+		width: 100%;
+		aspect-ratio: 1 / 1.05;
+		border-radius: calc(var(--radius-lg) - 4px);
 		overflow: hidden;
-		border: 3px solid var(--color-border);
-		background: var(--color-surface);
+		border: 1px solid var(--color-border-subtle);
+		background: var(--color-bg-subtle);
 	}
 
 	.portrait-img {
@@ -221,133 +468,471 @@ import Base from "../layouts/Base.astro";
 		display: block;
 	}
 
+	.portrait-meta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
 	.portrait-caption {
 		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.entity-facts {
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.entity-fact-row {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding: var(--spacing-2) 0;
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.entity-fact-row:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.entity-fact-row dt {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
 		color: var(--color-muted);
-		text-align: center;
 	}
 
-	/* ── Body ── */
-	.about-body {
-		max-width: 860px;
-	}
-
-	.bio-section {
-		margin-bottom: var(--spacing-16);
-	}
-
-	.bio-lead {
-		font-size: var(--font-size-xl);
-		line-height: var(--leading-relaxed);
+	.entity-fact-row dd {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
 		color: var(--color-text);
-		margin-bottom: var(--spacing-5);
+		line-height: 1.35;
 	}
 
-	.bio-text {
-		font-size: var(--font-size-lg);
+	/* ── § I — Career & Impact Timeline ── */
+	.timeline-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-6);
+	}
+
+	.timeline-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		display: grid;
+		grid-template-columns: 210px minmax(0, 1fr);
+		gap: var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
+	}
+
+	.timeline-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.timeline-aside {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-2);
+		padding-right: var(--spacing-6);
+		border-right: 1px solid var(--color-border-subtle);
+	}
+
+	.timeline-period {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.timeline-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.timeline-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
+	.timeline-role {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.timeline-org {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		color: var(--color-accent);
+	}
+
+	.timeline-summary {
+		font-size: var(--font-size-base);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
 	}
 
-	/* ── Sections grid ── */
-	.about-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--spacing-12);
-	}
-
-	.about-section {
-		border-top: 1px solid var(--color-border-subtle);
-		padding-top: var(--spacing-6);
-	}
-
-	.section-heading {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		color: var(--color-muted);
-		margin-bottom: var(--spacing-5);
-	}
-
-	.detail-list {
+	.timeline-highlights {
 		list-style: none;
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-4);
+		gap: var(--spacing-2);
+		padding-top: var(--spacing-3);
+		border-top: 1px solid var(--color-border-subtle);
 	}
 
-	.detail-list li {
+	.timeline-highlights li {
 		display: flex;
+		align-items: baseline;
 		gap: var(--spacing-3);
 		font-size: var(--font-size-sm);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
 	}
 
-	.detail-arrow {
+	.highlight-arrow {
+		font-family: var(--font-mono);
+		font-weight: 600;
 		color: var(--color-accent);
 		flex-shrink: 0;
-		margin-top: 2px;
 	}
 
-	.detail-sub {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--color-muted);
+	/* ── § II — Methodology & Technical Stack ── */
+	.stack-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-6);
 	}
 
-	/* Contact sub-list */
-	.contact-list li {
+	.stack-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
 		display: flex;
 		flex-direction: column;
-		gap: 2px;
-		padding-left: var(--spacing-5);
+		gap: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
 	}
 
-	.detail-label {
+	.stack-card-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+	}
+
+	.stack-num {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.stack-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: var(--tracking-wider);
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
 		color: var(--color-muted);
 	}
 
-	.detail-link {
+	.stack-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.22;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+	}
+
+	.stack-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	.stack-tools {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+		padding-top: var(--spacing-4);
+		border-top: 1px solid var(--color-border-subtle);
+		flex: 1;
+	}
+
+	.stack-tools li {
+		display: flex;
+		align-items: baseline;
+		gap: var(--spacing-2);
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	/* ── § III — Recognition & Industry Contributions ── */
+	.recognition-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-6);
+	}
+
+	.recognition-card {
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
+	.recognition-badge {
+		align-self: flex-start;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.recognition-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		line-height: 1.25;
+		color: var(--color-text);
+	}
+
+	.recognition-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	/* ── § IV — Direct Contact & AI Fact Sheet ── */
+	.contact-entity-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-8);
+		align-items: stretch;
+	}
+
+	.direct-contact-card,
+	.ai-entity-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+	}
+
+	.ai-entity-card {
+		background: var(--color-bg-subtle);
+	}
+
+	.card-block-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-3);
+	}
+
+	.card-block-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.channel-table {
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid var(--color-border-subtle);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.channel-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		padding: var(--spacing-3) 0;
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.channel-row dt {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.channel-row dd {
+		font-family: var(--font-sans);
 		font-size: var(--font-size-sm);
 		font-weight: 500;
+	}
+
+	.channel-row a {
 		color: var(--color-text);
 		text-decoration: none;
 		transition: color var(--transition-fast);
 	}
 
-	.detail-link:hover {
+	.channel-row a:hover {
 		color: var(--color-accent);
 	}
 
-	/* ── Responsive ── */
-	@media (max-width: 800px) {
-		.about-header {
-			flex-direction: column-reverse;
-			align-items: center;
-			text-align: center;
+	.card-block-actions {
+		margin-top: auto;
+	}
+
+	.endpoint-links {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+		margin-top: auto;
+	}
+
+	.endpoint-box {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: calc(var(--radius-lg) - 2px);
+		padding: var(--spacing-4) var(--spacing-5);
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+	}
+
+	.endpoint-box:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.endpoint-box-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+	}
+
+	.endpoint-path {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	.endpoint-arrow {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--color-accent);
+	}
+
+	.endpoint-label {
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	/* ── Responsive Breakpoints ── */
+	@media (max-width: 980px) {
+		.stack-grid,
+		.recognition-grid {
+			grid-template-columns: 1fr;
 		}
 
-		.portrait-frame {
-			width: 200px;
-			height: 200px;
+		.contact-entity-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 860px) {
+		.about-header {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-8);
+		}
+
+		.about-portrait-col {
+			max-width: 380px;
+		}
+
+		.timeline-card {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-4);
+		}
+
+		.timeline-aside {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding-right: 0;
+			padding-bottom: var(--spacing-3);
+			border-right: none;
+			border-bottom: 1px solid var(--color-border-subtle);
 		}
 	}
 
 	@media (max-width: 640px) {
-		.about-grid {
-			grid-template-columns: 1fr;
-		}
-
 		.about-page {
 			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+			gap: var(--spacing-16);
+		}
+
+		.timeline-card,
+		.direct-contact-card,
+		.ai-entity-card {
+			padding: var(--spacing-6);
 		}
 	}
 </style>

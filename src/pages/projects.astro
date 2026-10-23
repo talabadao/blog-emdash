@@ -1,208 +1,572 @@
 ---
 import Base from "../layouts/Base.astro";
 
-const projects = [
+interface ProjectMetric {
+	value: string;
+	label: string;
+}
+
+interface ProjectItem {
+	id: string;
+	number: string;
+	name: string;
+	domain: string;
+	domainUrl?: string;
+	timeline: string;
+	industry: string;
+	market: "VN" | "AU" | "Global";
+	categories: string[];
+	role: string;
+	metrics: ProjectMetric[];
+	challenge: string;
+	strategy: string;
+	outcome: string;
+	caseStudySlug: string | null;
+}
+
+const summaryMetrics = [
 	{
-		id: "furniture-global",
-		name: "Global E-commerce",
-		domain: null,
-		timeline: "Nov 2024 – Apr 2025",
-		industry: "Furniture Dropshipping",
-		role: "Lead Implementer",
-		metrics: [
-			{ value: "3", label: "orders/month from organic" },
-			{ value: "100%", label: "KPI in 5 months" },
-		],
-		description:
-			"Phân tích Entity, Technical, Content và xây dựng chiến lược SEO toàn diện cho website dropshipping nội thất toàn cầu. Đạt KPI đề ra trong 5 tháng triển khai.",
-		caseStudySlug: null,
+		value: "6",
+		title: "Flagship Campaigns",
+		detail: "B2B, Enterprise FMCG, Travel & E-Commerce",
 	},
 	{
-		id: "repair-au",
-		name: "Electronic Equipment Service",
-		domain: "repaircentrevic.com.au",
-		timeline: "Feb 2025",
-		industry: "Local Service — Australia",
-		role: "Lead Implementer",
-		metrics: [
-			{ value: "Top 3–5", label: "trong 2 tuần" },
-			{ value: "85%", label: "KPI delivered" },
-		],
-		description:
-			"Audit phát hiện Keyword Cannibalization và Duplicate Content. Tối ưu On-page sprint cuối, thêm Local schema và Google Business Profile để đạt KPI cho thị trường Australia.",
-		caseStudySlug: "top-3-rankings-in-two-weeks",
+		value: "300K+",
+		title: "Peak Monthly Clicks",
+		detail: "Scaled via semantic topical maps & E-E-A-T",
 	},
+	{
+		value: "#1",
+		title: "ChatGPT / Claude / Grok Citation",
+		detail: 'Verified entity authority for "SEO agency HCMC"',
+	},
+	{
+		value: "100%+",
+		title: "Avg. KPI Delivery",
+		detail: "Across Vietnam, Australia & global markets",
+	},
+];
+
+const filterTabs = [
+	{ id: "all", label: "All (6)" },
+	{ id: "geo", label: "AI Search / GEO" },
+	{ id: "ecommerce", label: "E-Commerce & FMCG" },
+	{ id: "international", label: "Local & International" },
+	{ id: "travel", label: "Travel" },
+];
+
+const projects: ProjectItem[] = [
 	{
 		id: "gtv-agency",
+		number: "01",
 		name: "GTV SEO Agency",
 		domain: "gtvseo.com",
+		domainUrl: "https://gtvseo.com",
 		timeline: "Apr 2023 – Dec 2024",
-		industry: "SEO Agency",
-		role: "Lead Implementer",
+		industry: "B2B SEO & GEO",
+		market: "VN",
+		categories: ["geo"],
+		role: "Lead SEO & GEO Strategist",
 		metrics: [
 			{ value: "#1", label: "ChatGPT / Claude / Grok" },
-			{ value: "Top 1–3", label: "từ khóa SEO chính" },
+			{ value: "Top 1–3", label: "Core B2B SEO Keywords" },
+			{ value: "100%", label: "White-Hat Entity Signal" },
 		],
-		description:
-			"Đạt Top 1 recommendation trên ChatGPT, Grok, Claude cho từ khóa 'seo agency hcm' bằng White Hat SEO. Duy trì Top 1–3 Google cho các từ khóa SEO lớn tại Việt Nam.",
+		challenge:
+			"Intense competition in Vietnam's B2B agency market paired with a buyer shift toward zero-click AI assistant recommendations.",
+		strategy:
+			"Architected deep semantic content clusters, standardized Organization and Person JSON-LD entity graphs, and engineered high-authority brand mentions across industry publications.",
+		outcome:
+			"Secured #1 citations on ChatGPT, Claude, and Grok for 'SEO agency HCMC' while defending Top 1–3 Google rankings across flagship commercial terms.",
 		caseStudySlug: "three-years-at-gtv-seo-what-i-learned",
 	},
 	{
-		id: "vinamilk",
-		name: "Vinamilk Nutrition",
-		domain: "vinamilk.com.vn",
-		timeline: "Nov 2023 – Mar 2024",
-		industry: "FMCG / E-commerce",
-		role: "Lead Implementer",
+		id: "repair-au",
+		number: "02",
+		name: "Repair Centre VIC",
+		domain: "repaircentrevic.com.au",
+		domainUrl: "https://repaircentrevic.com.au",
+		timeline: "Feb 2025",
+		industry: "Local & Technical SEO",
+		market: "AU",
+		categories: ["international"],
+		role: "Lead SEO & GEO Strategist",
 		metrics: [
-			{ value: "300K", label: "clicks / tháng" },
-			{ value: "100%", label: "KPI achieved" },
+			{ value: "Top 3–5", label: "Rankings in 14 Days" },
+			{ value: "85%", label: "Total KPI in Final Sprint" },
+			{ value: "0", label: "Cannibalization Conflicts" },
 		],
-		description:
-			"Xây dựng chiến lược Topical Map, Content Outlines và Onpage Checklist cho category dinh dưỡng mẹ và bé. Đưa vinamilk.com.vn lên Top 1–3 cho các từ khóa dinh dưỡng cạnh tranh nhất.",
-		caseStudySlug: null,
+		challenge:
+			"Severe keyword cannibalization and duplicate service-page indexation stalled rankings across Melbourne repair queries right before the final contract milestone.",
+		strategy:
+			"Executed a rapid Screaming Frog crawl audit, consolidated competing URLs via 301s and canonical tags, deployed LocalBusiness JSON-LD schema, and realigned Google Business Profile categories with core landing pages.",
+		outcome:
+			"Propelled priority commercial keywords into Google Australia Top 3–5 within two weeks, delivering 85% of total campaign KPIs in a single turnaround sprint.",
+		caseStudySlug: "top-3-rankings-in-two-weeks",
 	},
 	{
-		id: "flashlight",
-		name: "Flashlight E-commerce",
-		domain: null,
-		timeline: "Apr 2023 – Nov 2023",
-		industry: "E-commerce",
+		id: "vinamilk",
+		number: "03",
+		name: "Vinamilk Nutrition",
+		domain: "vinamilk.com.vn",
+		domainUrl: "https://www.vinamilk.com.vn",
+		timeline: "Nov 2023 – Mar 2024",
+		industry: "Enterprise FMCG & E-Commerce",
+		market: "VN",
+		categories: ["ecommerce"],
 		role: "Lead Implementer",
 		metrics: [
-			{ value: "100%", label: "SEO KPI achieved" },
-			{ value: "+25%", label: "Revenue YoY Q4/2023" },
+			{ value: "300K+", label: "Monthly Organic Clicks" },
+			{ value: "Top 1–3", label: "Maternal & Baby Terms" },
+			{ value: "100%", label: "Committed KPI Achieved" },
 		],
-		description:
-			"Tối ưu Product Page Views và Time Onsite, xây dựng content cluster cho các dòng sản phẩm đèn pin chiến thuật. Đạt 100% KPI và ký được hợp đồng cung cấp đèn pin cho quân đội.",
+		challenge:
+			"Fragmented informational content and strict YMYL nutritional quality standards limited organic capture in Vietnam's hyper-competitive maternal and infant nutrition vertical.",
+		strategy:
+			"Built a full-funnel semantic topical map, authored E-E-A-T aligned editorial outlines, and enforced rigorous on-page technical checklists and hub-and-spoke internal linking across the nutrition hub.",
+		outcome:
+			"Scaled organic search traffic to 300,000+ monthly clicks and captured Top 1–3 rankings on high-volume nutrition queries, achieving 100% of enterprise KPIs.",
 		caseStudySlug: null,
 	},
 	{
 		id: "eurotravel",
-		name: "European Travel",
+		number: "04",
+		name: "European Travel (EuroTravel)",
 		domain: "eurotravel.com.vn",
+		domainUrl: "https://eurotravel.com.vn",
 		timeline: "Nov 2022 – May 2023",
-		industry: "Travel",
+		industry: "High-Ticket Travel",
+		market: "VN",
+		categories: ["travel"],
 		role: "Lead Implementer",
 		metrics: [
-			{ value: "80K", label: "clicks / tháng" },
-			{ value: "120%", label: "KPI in 6 months" },
+			{ value: "80K–100K", label: "Monthly Organic Clicks" },
+			{ value: "120%", label: "KPI Delivered in 6 Months" },
+			{ value: "Top 1–3", label: "Country & Route Tours" },
 		],
-		description:
-			"Đạt Top 1 tour Châu Âu theo quốc gia, Top 3 theo tuyến đường. Đưa traffic lên 80,000–100,000 lượt/tháng. Vượt KPI 20% trong 6 tháng triển khai bằng chiến lược content cluster + internal linking.",
+		challenge:
+			"High-ticket European tour packages faced entrenched OTA giants and lacked structured semantic pathways connecting travel guides to commercial booking pages.",
+		strategy:
+			"Designed multi-country destination content clusters, restructured commercial itinerary pages around booking intent, and engineered contextual internal link flows from high-traffic informational hubs.",
+		outcome:
+			"Captured #1 rankings for country-specific European tours and Top 3 for multi-country routes, scaling monthly traffic to 80,000–100,000 clicks and exceeding KPIs by 20%.",
+		caseStudySlug: null,
+	},
+	{
+		id: "flashlight",
+		number: "05",
+		name: "Flashlight E-Commerce",
+		domain: "Tactical Retail · NDA Domain",
+		timeline: "Apr 2023 – Nov 2023",
+		industry: "Specialty E-Commerce",
+		market: "VN",
+		categories: ["ecommerce"],
+		role: "Lead Implementer",
+		metrics: [
+			{ value: "100%", label: "SEO KPI Delivered" },
+			{ value: "+25%", label: "YoY Revenue (Q4 2023)" },
+			{ value: "B2G", label: "Military Supply Contract" },
+		],
+		challenge:
+			"Low product page dwell time and thin technical specifications prevented high-margin tactical flashlights from ranking or converting institutional buyers.",
+		strategy:
+			"Built buyer-intent content clusters around lumen ratings, durability standards, and field applications while overhauling product page UX, comparison tables, and Product schema.",
+		outcome:
+			"Achieved 100% of organic traffic KPIs, lifted Q4 YoY revenue by 25%, and generated the organic inbound lead that closed a major military supply contract.",
+		caseStudySlug: null,
+	},
+	{
+		id: "furniture-global",
+		number: "06",
+		name: "Global Furniture E-Commerce",
+		domain: "Global Storefront · NDA Domain",
+		timeline: "Nov 2024 – Apr 2025",
+		industry: "Furniture Dropshipping",
+		market: "Global",
+		categories: ["ecommerce", "international", "geo"],
+		role: "Lead SEO & GEO Strategist",
+		metrics: [
+			{ value: "100%", label: "KPI in 5 Months" },
+			{ value: "3+/mo", label: "High-Ticket Organic Orders" },
+			{ value: "Global", label: "English SERP & Entity Footprint" },
+		],
+		challenge:
+			"Newly launched English-language furniture dropshipping store had zero domain authority, duplicate manufacturer copy, and no entity recognition in global search.",
+		strategy:
+			"Executed end-to-end entity establishment, technical crawl budget optimization, programmatic Product & Merchant listing schema, and long-tail collection architecture.",
+		outcome:
+			"Delivered 100% of 5-month organic growth targets and established recurring high-AOV organic orders without reliance on paid acquisition.",
 		caseStudySlug: null,
 	},
 ];
 ---
 
 <Base
-	title="Projects"
-	description="SEO case studies và projects của Le Hoang Tin — kết quả tăng trưởng organic trên e-commerce, travel, B2B và local services."
+	title="Projects & Verifiable SEO/GEO Results"
+	description="6 flagship organic growth and AI search (GEO) engagements by Le Hoang Tin across Vietnam, Australia, and global English markets — backed by Search Console, GA4, and AI citation metrics."
 >
 	<div class="projects-page">
+		<!-- ── Page Header ── -->
 		<header class="page-header">
-			<p class="page-kicker">Work</p>
-			<h1 class="page-title">Projects &amp; Case Studies</h1>
-			<p class="page-description">
-				6 dự án SEO tiêu biểu trên các thị trường Việt Nam, Australia và toàn cầu.
+			<span class="editorial-kicker">CASE STUDIES &amp; CAMPAIGN ARCHIVE</span>
+			<h1 class="page-title">Projects &amp; Verifiable SEO/GEO Results</h1>
+			<p class="page-lead">
+				6 flagship organic growth and AI search (GEO) engagements across Vietnam, Australia, and global English markets — backed by real Search Console, GA4, and AI citation metrics.
 			</p>
 		</header>
 
-		<div class="projects-grid">
-			{
-				projects.map((project) => (
-					<article class="project-card" id={project.id}>
-						<div class="card-top">
-							<div class="card-meta-row">
-								<span class="industry-tag">{project.industry}</span>
-								<span class="timeline">{project.timeline}</span>
-							</div>
-							<h2 class="project-name">{project.name}</h2>
-							<div class="card-sub-row">
-								{project.domain && (
-									<span class="project-domain">{project.domain}</span>
-								)}
-								<span class="project-role">{project.role}</span>
-							</div>
+		<!-- ── Summary Proof Bar ── -->
+		<section class="summary-proof-bar" aria-label="Campaign portfolio summary metrics">
+			<div class="summary-proof-grid">
+				{
+					summaryMetrics.map((item) => (
+						<div class="summary-proof-card">
+							<span class="summary-proof-value">{item.value}</span>
+							<span class="summary-proof-title">{item.title}</span>
+							<span class="summary-proof-detail">{item.detail}</span>
 						</div>
+					))
+				}
+			</div>
+		</section>
 
-						<div class="metrics-row">
-							{project.metrics.map((m) => (
-								<div class="metric">
-									<span class="metric-value">{m.value}</span>
-									<span class="metric-label">{m.label}</span>
+		<!-- ── § I — Filterable Case Study Archive ── -->
+		<section class="archive-section" aria-labelledby="archive-heading">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ I</span>
+				<h2 class="section-index-title" id="archive-heading">
+					Campaign Breakdowns · Problem → Strategy → Outcome
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+				<span class="filter-status-mono" id="projects-count-label">
+					Showing 6 of 6 campaigns
+				</span>
+			</div>
+
+			<!-- Interactive Industry Filter Tabs -->
+			<div
+				class="filter-bar"
+				role="toolbar"
+				aria-label="Filter projects by industry and market"
+			>
+				{
+					filterTabs.map((tab, index) => (
+						<button
+							type="button"
+							class:list={["filter-pill", { active: index === 0 }]}
+							data-filter={tab.id}
+							aria-pressed={index === 0 ? "true" : "false"}
+						>
+							{tab.label}
+						</button>
+					))
+				}
+			</div>
+
+			<!-- Deepened Project Cards Grid -->
+			<div class="projects-grid" id="projects-grid">
+				{
+					projects.map((project) => (
+						<article
+							class="project-card"
+							id={project.id}
+							data-category={project.categories.join(" ")}
+						>
+							<!-- Top Metadata Bar -->
+							<div class="card-meta-bar">
+								<div class="card-badges">
+									<span class="project-num">№ {project.number}</span>
+									<span class="industry-badge">{project.industry}</span>
+									<span class="market-badge" data-market={project.market}>
+										{project.market}
+									</span>
 								</div>
-							))}
-						</div>
+								<span class="timeline-mono">{project.timeline}</span>
+							</div>
 
-						<p class="project-description">{project.description}</p>
+							<!-- Title, Domain & Role -->
+							<div class="card-header-block">
+								<h3 class="project-name">{project.name}</h3>
+								<div class="card-submeta">
+									<span class="project-domain">{project.domain}</span>
+									<span class="submeta-sep" aria-hidden="true">·</span>
+									<span class="project-role">{project.role}</span>
+								</div>
+							</div>
 
-						{project.caseStudySlug && (
-							<a href={`/posts/${project.caseStudySlug}`} class="case-study-link">
-								Read case study →
-							</a>
-						)}
-					</article>
-				))
-			}
-		</div>
+							<!-- Highlighted KPI Metrics Box -->
+							<div class="kpi-box" aria-label="Verified campaign KPIs">
+								{project.metrics.map((m) => (
+									<div class="kpi-item">
+										<span class="kpi-value">{m.value}</span>
+										<span class="kpi-label">{m.label}</span>
+									</div>
+								))}
+							</div>
+
+							<!-- 3-Part Structured Breakdown -->
+							<dl class="breakdown-list">
+								<div class="breakdown-row">
+									<dt class="breakdown-term">Challenge</dt>
+									<dd class="breakdown-desc">{project.challenge}</dd>
+								</div>
+								<div class="breakdown-row">
+									<dt class="breakdown-term">Strategy &amp; Execution</dt>
+									<dd class="breakdown-desc">{project.strategy}</dd>
+								</div>
+								<div class="breakdown-row">
+									<dt class="breakdown-term">Outcome</dt>
+									<dd class="breakdown-desc">{project.outcome}</dd>
+								</div>
+							</dl>
+
+							<!-- Card Footer Action -->
+							<div class="card-footer">
+								{project.caseStudySlug ? (
+									<a
+										href={`/posts/${project.caseStudySlug}`}
+										class="card-action-link primary-action"
+									>
+										Read full case study →
+									</a>
+								) : (
+									<a
+										href={`/contact?project=${project.id}`}
+										class="card-action-link secondary-action"
+									>
+										Request similar strategy →
+									</a>
+								)}
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- ── Bottom CTA Banner ── -->
+		<section class="bottom-cta-banner" aria-labelledby="projects-cta-heading">
+			<div class="cta-banner-content">
+				<span class="editorial-kicker">NEXT CAMPAIGN · YOUR DOMAIN</span>
+				<h2 class="cta-banner-title" id="projects-cta-heading">
+					Want comparable organic growth or AI search citations for your brand?
+				</h2>
+				<p class="cta-banner-desc">
+					Share your domain and current growth bottleneck. I will review your technical architecture, topical coverage, and LLM citation footprint before proposing a clear scope.
+				</p>
+				<div class="cta-banner-actions">
+					<a href="/contact" class="btn-primary">
+						Book a consultation →
+					</a>
+					<a href="/services" class="btn-secondary">
+						Explore consulting services →
+					</a>
+				</div>
+			</div>
+		</section>
 	</div>
 </Base>
+
+<script>
+	const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-pill");
+	const projectCards = document.querySelectorAll<HTMLElement>(".project-card");
+	const countLabel = document.getElementById("projects-count-label");
+	const totalCount = projectCards.length;
+
+	function applyFilter(selectedCategory: string) {
+		let visibleCount = 0;
+
+		projectCards.forEach((card) => {
+			const categories = (card.dataset.category || "").split(/\s+/);
+			const isMatch =
+				selectedCategory === "all" || categories.includes(selectedCategory);
+
+			if (isMatch) {
+				card.hidden = false;
+				card.classList.remove("is-filtered-out");
+				visibleCount++;
+			} else {
+				card.hidden = true;
+				card.classList.add("is-filtered-out");
+			}
+		});
+
+		filterButtons.forEach((btn) => {
+			const active = btn.dataset.filter === selectedCategory;
+			btn.classList.toggle("active", active);
+			btn.setAttribute("aria-pressed", active ? "true" : "false");
+		});
+
+		if (countLabel) {
+			countLabel.textContent = `Showing ${visibleCount} of ${totalCount} campaigns`;
+		}
+	}
+
+	filterButtons.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const category = btn.dataset.filter || "all";
+			applyFilter(category);
+		});
+	});
+</script>
 
 <style>
 	.projects-page {
 		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-16);
 	}
 
+	/* ── Page Header ── */
 	.page-header {
-		max-width: 640px;
-		margin-bottom: var(--spacing-16);
-	}
-
-	.page-kicker {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-amber);
-		margin-bottom: var(--spacing-3);
+		max-width: 780px;
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.page-title {
-		font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
-		font-weight: 700;
-		font-style: italic;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		font-style: normal;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
 		margin-bottom: var(--spacing-4);
 	}
 
-	.page-description {
-		font-family: var(--font-sans);
+	.page-lead {
+		font-family: var(--font-body);
 		font-size: var(--font-size-lg);
-		color: var(--color-text-secondary);
 		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		max-width: 66ch;
 	}
 
+	/* ── Summary Proof Bar ── */
+	.summary-proof-bar {
+		background: color-mix(in srgb, var(--color-bg-subtle) 65%, transparent);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+	}
+
+	.summary-proof-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--spacing-4);
+	}
+
+	.summary-proof-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: calc(var(--radius-lg) - 2px);
+		padding: var(--spacing-5);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.summary-proof-value {
+		font-family: var(--font-mono);
+		font-size: clamp(1.5rem, 2.4vw, 2rem);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-accent);
+	}
+
+	.summary-proof-title {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-text);
+		margin-top: var(--spacing-1);
+	}
+
+	.summary-proof-detail {
+		font-family: var(--font-sans);
+		font-size: 0.75rem;
+		line-height: 1.4;
+		color: var(--color-text-secondary);
+	}
+
+	/* ── Filter Bar ── */
+	.filter-status-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		white-space: nowrap;
+	}
+
+	.filter-bar {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+		margin-bottom: var(--spacing-8);
+	}
+
+	.filter-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--spacing-2) var(--spacing-4);
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		color: var(--color-text-secondary);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		cursor: pointer;
+		transition:
+			background-color var(--transition-fast),
+			color var(--transition-fast),
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+	}
+
+	.filter-pill:hover {
+		border-color: var(--color-accent);
+		color: var(--color-text);
+	}
+
+	.filter-pill.active {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--color-on-accent);
+		box-shadow: var(--shadow-btn-active);
+	}
+
+	/* ── Projects Grid & Deepened Cards ── */
 	.projects-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--spacing-6);
 	}
 
 	.project-card {
-		background: var(--color-bg-subtle);
+		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		padding: var(--spacing-8);
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-5);
+		box-shadow: var(--shadow-tile-raised);
 		transition:
 			border-color var(--transition-base),
-			box-shadow var(--transition-base);
+			box-shadow var(--transition-base),
+			transform var(--transition-base);
+	}
+
+	.project-card[hidden] {
+		display: none !important;
 	}
 
 	.project-card:hover {
@@ -210,120 +574,271 @@ const projects = [
 		box-shadow: var(--shadow-feature);
 	}
 
-	.card-top {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-2);
-	}
-
-	.card-meta-row {
+	/* Top Metadata Bar */
+	.card-meta-bar {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: var(--spacing-3);
+		flex-wrap: wrap;
+		padding-bottom: var(--spacing-3);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.card-badges {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
 		flex-wrap: wrap;
 	}
 
-	.industry-tag {
+	.project-num {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-		color: var(--color-amber);
+		font-weight: 600;
+		color: var(--color-muted);
 	}
 
-	.timeline {
+	.industry-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.market-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		color: var(--color-text);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.timeline-mono {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
 		color: var(--color-muted);
 	}
 
-	.project-name {
-		font-size: var(--font-size-2xl);
-		font-weight: 700;
-		line-height: var(--leading-snug);
-		letter-spacing: var(--tracking-snug);
+	/* Header Block */
+	.card-header-block {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
 	}
 
-	.card-sub-row {
+	.project-name {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+	}
+
+	.card-submeta {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-3);
+		gap: var(--spacing-2);
 		flex-wrap: wrap;
 	}
 
 	.project-domain {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
+		font-weight: 500;
+		color: var(--color-accent);
+	}
+
+	.submeta-sep {
 		color: var(--color-muted);
 	}
 
 	.project-role {
 		font-family: var(--font-sans);
 		font-size: var(--font-size-xs);
+		font-weight: 500;
 		color: var(--color-text-secondary);
-		background: var(--color-surface);
+	}
+
+	/* KPI Box */
+	.kpi-box {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-3);
+		padding: var(--spacing-4);
+		background: var(--color-bg-subtle);
 		border: 1px solid var(--color-border-subtle);
-		border-radius: var(--radius);
-		padding: 1px var(--spacing-2);
+		border-radius: calc(var(--radius-lg) - 4px);
 	}
 
-	.metrics-row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--spacing-5);
-		padding: var(--spacing-5) 0;
-		border-top: 1px solid var(--color-border-subtle);
-		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	.metric {
+	.kpi-item {
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
 	}
 
-	.metric-value {
-		font-family: var(--font-display);
-		font-size: var(--font-size-2xl);
-		font-weight: 700;
-		line-height: 1;
+	.kpi-value {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		line-height: 1.15;
 		color: var(--color-accent);
 	}
 
-	.metric-label {
+	.kpi-label {
 		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-		line-height: var(--leading-snug);
-		max-width: 14ch;
+		font-size: 0.75rem;
+		line-height: 1.3;
+		color: var(--color-text-secondary);
 	}
 
-	.project-description {
-		font-size: var(--font-size-sm);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
+	/* 3-Part Breakdown */
+	.breakdown-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
 		flex: 1;
 	}
 
-	.case-study-link {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-		color: var(--color-accent);
-		text-decoration: none;
-		transition: color var(--transition-fast);
-		align-self: flex-start;
+	.breakdown-row {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
 	}
 
-	.case-study-link:hover {
+	.breakdown-term {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.breakdown-desc {
+		font-family: var(--font-body);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	/* Footer Action */
+	.card-footer {
+		padding-top: var(--spacing-4);
+		border-top: 1px solid var(--color-border-subtle);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.card-action-link {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.card-action-link.primary-action {
+		color: var(--color-accent);
+	}
+
+	.card-action-link.primary-action:hover {
 		color: var(--color-accent-hover);
 	}
 
-	@media (max-width: 900px) {
-		.projects-grid { grid-template-columns: 1fr; }
+	.card-action-link.secondary-action {
+		color: var(--color-text);
 	}
 
-	@media (max-width: 600px) {
-		.projects-page { padding: var(--spacing-8) var(--spacing-4) var(--spacing-16); }
+	.card-action-link.secondary-action:hover {
+		color: var(--color-accent);
+	}
+
+	/* ── Bottom CTA Banner ── */
+	.bottom-cta-banner {
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-12) var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.cta-banner-content {
+		max-width: 680px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.cta-banner-title {
+		font-family: var(--font-heading);
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+		font-weight: 600;
+		line-height: 1.18;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-3);
+	}
+
+	.cta-banner-desc {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.cta-banner-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+	}
+
+	/* ── Responsive Breakpoints ── */
+	@media (max-width: 980px) {
+		.summary-proof-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.projects-page {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+			gap: var(--spacing-12);
+		}
+
+		.summary-proof-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.project-card {
+			padding: var(--spacing-6);
+		}
+
+		.kpi-box {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-3);
+		}
+
+		.bottom-cta-banner {
+			padding: var(--spacing-8) var(--spacing-5);
+		}
 	}
 </style>
