@@ -187,11 +187,44 @@ const faqs = [
 		a: "GEO does not replace technical and topical SEO — it compounds it. Search-connected AI systems rely on clean crawlability, authoritative topical clusters, unambiguous JSON-LD entity graphs (Organization, Person, Product, FAQPage), and machine-readable index files like /llms.txt to verify facts. Optimizing for both secures traffic from traditional search while capturing high-intent zero-click AI recommendations.",
 	},
 ];
+
+const servicesJsonLd: Array<Record<string, unknown>> = [
+	{
+		"@context": "https://schema.org",
+		"@type": "ProfessionalService",
+		"@id": "https://tinlehoang.info.vn/#service",
+		name: "Le Hoang Tin — SEO & GEO Consulting",
+		url: "https://tinlehoang.info.vn/services",
+		founder: {
+			"@id": "https://tinlehoang.info.vn/#person",
+		},
+		areaServed: ["VN", "AU", "Global"],
+		serviceType: [
+			"Generative Engine Optimization (GEO)",
+			"Technical SEO Audit",
+			"Semantic Topical Authority",
+			"Conversion Rate Optimization (CRO)",
+		],
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((item) => ({
+			"@type": "Question",
+			name: item.q,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: item.a,
+			},
+		})),
+	},
+];
 ---
 
 <Base
 	title="SEO & GEO Consulting Services"
 	description="SEO and Generative Engine Optimization (GEO) consulting services by Le Hoang Tin — technical audits, AI search citation engineering, topical authority, and CRO."
+	jsonLd={servicesJsonLd}
 >
 	<div class="services-page">
 		<!-- ── Page Header ── -->

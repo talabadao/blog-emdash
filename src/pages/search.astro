@@ -8,123 +8,292 @@ const query = Astro.url.searchParams.get("q")?.trim() || "";
 
 // Use the FTS-backed search() API instead of loading every post and
 // filtering in JS. FTS scales as the post count grows, returns ranked
-// results, and handles tokenization/stemming. Templates that grep all
-// post bodies in JS quickly become unusable past a few hundred posts.
+// results, and handles tokenization/stemming.
 const { items: results } = query
 	? await search(query, { collections: ["posts"], limit: 30 })
 	: { items: [] };
+
+const suggestedTopics = [
+	{ label: "GEO", query: "GEO" },
+	{ label: "Technical SEO", query: "Technical SEO" },
+	{ label: "Case Study", query: "Case Study" },
+	{ label: "AI Search", query: "AI Search" },
+	{ label: "E-E-A-T", query: "E-E-A-T" },
+];
 ---
 
 <Base
-	title={query ? `Search: ${query}` : "Search"}
-	description="Search blog posts"
+	title={
+		query
+			? `Search: ${query} — Essays & Case Studies`
+			: "Search Essays & Case Studies"
+	}
+	description="Search the full-text archive of SEO, Generative Engine Optimization (GEO), and multi-market case studies by Le Hoang Tin."
 >
-	<section class="search-page">
-		<h1 class="search-title">Search</h1>
+	<div class="search-page">
+		<header class="page-header">
+			<span class="editorial-kicker">ARCHIVE SEARCH · FULL-TEXT INDEX</span>
+			<h1 class="page-title">Search Essays &amp; Case Studies</h1>
+			<p class="page-lead">
+				Query the complete publication index across technical SEO diagnostics, Generative Engine Optimization (GEO) frameworks, and verified campaign case studies.
+			</p>
 
-		<form method="get" action="/search" class="search-form">
-			<input
-				type="search"
-				name="q"
-				value={query}
-				placeholder="Search posts..."
-				class="search-input"
-				autofocus
-			/>
-			<button type="submit" class="search-button">Search</button>
-		</form>
+			<form method="get" action="/search" class="search-form" role="search">
+				<input
+					type="search"
+					name="q"
+					value={query}
+					placeholder="Search keywords, frameworks, or case studies..."
+					class="search-input"
+					aria-label="Search essays and case studies"
+					autofocus
+				/>
+				<button type="submit" class="btn-primary search-submit">
+					Search →
+				</button>
+			</form>
 
-		{
-			query && (
-				<p class="search-summary">
-					{results.length === 0
-						? `No results for "${query}"`
-						: `${results.length} result${results.length === 1 ? "" : "s"} for "${query}"`}
-				</p>
-			)
-		}
-
-		{
-			results.length > 0 && (
-				<ol class="search-results">
-					{results.map((result) => (
-						<li class="search-result">
+			<div class="suggested-topics" aria-label="Suggested search topics">
+				<span class="topics-label">Suggested topics:</span>
+				<div class="topics-pills">
+					{
+						suggestedTopics.map((topic) => (
 							<a
-								href={`/posts/${result.slug ?? result.id}`}
-								class="result-link"
+								href={`/search?q=${encodeURIComponent(topic.query)}`}
+								class:list={[
+									"topic-pill",
+									{
+										active:
+											query.toLowerCase() === topic.query.toLowerCase(),
+									},
+								]}
 							>
-								<h2 class="result-title">
-									{result.title ?? "Untitled"}
-								</h2>
-								{result.snippet && (
-									<p class="result-snippet" set:html={result.snippet} />
-								)}
+								{topic.label}
 							</a>
-						</li>
-					))}
-				</ol>
-			)
-		}
+						))
+					}
+				</div>
+			</div>
+		</header>
 
-		{!query && <p class="search-hint">Enter a search term to find posts.</p>}
-	</section>
+		<section class="results-section" aria-live="polite">
+			{
+				query ? (
+					<>
+						<div class="section-index-header">
+							<span class="section-index-badge">§ I</span>
+							<h2 class="section-index-title">
+								Search Results · Query Match
+							</h2>
+							<span class="section-index-rule" aria-hidden="true"></span>
+							<span class="results-count-mono">
+								{results.length === 0
+									? `0 matches for "${query}"`
+									: `${results.length} ${results.length === 1 ? "result" : "results"} for "${query}"`}
+							</span>
+						</div>
+
+						{results.length > 0 ? (
+							<ol class="search-results">
+								{results.map((result, index) => {
+									const num = String(index + 1).padStart(2, "0");
+									const href = `/posts/${result.slug ?? result.id}`;
+									return (
+										<li class="search-result-card">
+											<a href={href} class="result-link">
+												<div class="result-top">
+													<span class="result-num">№ {num}</span>
+													<span class="result-collection">ESSAY ARCHIVE</span>
+												</div>
+												<h3 class="result-title">
+													{result.title ?? "Untitled"}
+												</h3>
+												{result.snippet && (
+													<p
+														class="result-snippet"
+														set:html={result.snippet}
+													/>
+												)}
+												<span class="result-affordance">
+													Read essay →
+												</span>
+											</a>
+										</li>
+									);
+								})}
+							</ol>
+						) : (
+							<div class="empty-state-card">
+								<span class="editorial-kicker">ZERO MATCHES FOUND</span>
+								<h3 class="empty-title">
+									No published essays matched "{query}"
+								</h3>
+								<p class="empty-desc">
+									Try searching for a broader term above, or browse the complete chronological writing archive and campaign case studies.
+								</p>
+								<div class="empty-actions">
+									<a href="/posts" class="btn-secondary">
+										Browse all writing →
+									</a>
+									<a href="/projects" class="btn-secondary">
+										View 6 case studies →
+									</a>
+								</div>
+							</div>
+						)}
+					</>
+				) : (
+					<div class="empty-state-card">
+						<span class="editorial-kicker">READY TO QUERY</span>
+						<h2 class="empty-title">
+							Enter a keyword or select a topic pill above
+						</h2>
+						<p class="empty-desc">
+							Full-text search indexes every essay title, summary, and body paragraph in the EmDash database.
+						</p>
+						<div class="empty-actions">
+							<a href="/posts" class="btn-secondary">
+								Explore full archive →
+							</a>
+							<a href="/projects" class="btn-secondary">
+								Explore case studies →
+							</a>
+						</div>
+					</div>
+				)
+			}
+		</section>
+	</div>
 </Base>
 
 <style>
 	.search-page {
-		max-width: var(--max-width);
+		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-8) var(--spacing-6) var(--spacing-16);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-12);
 	}
 
-	.search-title {
-		font-size: var(--font-size-2xl);
+	.page-header {
+		max-width: 780px;
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.page-title {
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.page-lead {
+		font-family: var(--font-body);
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
 		margin-bottom: var(--spacing-6);
+		max-width: 64ch;
 	}
 
 	.search-form {
 		display: flex;
-		gap: var(--spacing-2);
-		margin-bottom: var(--spacing-8);
+		align-items: center;
+		gap: var(--spacing-3);
+		margin-bottom: var(--spacing-5);
 	}
 
 	.search-input {
 		flex: 1;
-		padding: var(--spacing-2) var(--spacing-4);
+		height: 44px;
+		padding: 0 var(--spacing-5);
+		font-family: var(--font-sans);
 		font-size: var(--font-size-base);
 		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		background: var(--color-bg);
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
 		color: var(--color-text);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
 	}
 
 	.search-input:focus {
 		outline: none;
 		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
 	}
 
-	.search-button {
-		padding: var(--spacing-2) var(--spacing-6);
-		font-size: var(--font-size-base);
-		background: var(--color-accent);
-		color: var(--color-on-accent);
-		border: none;
-		border-radius: var(--radius-full);
-		cursor: pointer;
+	.search-submit {
+		height: 44px;
+		padding: 0 var(--spacing-6);
+		white-space: nowrap;
+	}
+
+	.suggested-topics {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.topics-label {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		font-weight: 600;
-	}
-
-	.search-button:hover {
-		opacity: 0.9;
-	}
-
-	.search-summary {
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-muted);
-		margin-bottom: var(--spacing-6);
 	}
 
-	.search-hint {
+	.topics-pills {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+	}
+
+	.topic-pill {
+		display: inline-flex;
+		align-items: center;
+		padding: 5px var(--spacing-3);
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		color: var(--color-text-secondary);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		text-decoration: none;
+		transition:
+			border-color var(--transition-fast),
+			color var(--transition-fast),
+			background-color var(--transition-fast);
+	}
+
+	.topic-pill:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	.topic-pill.active {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--color-on-accent);
+	}
+
+	/* ── Results List ── */
+	.results-count-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
 	.search-results {
@@ -133,32 +302,64 @@ const { items: results } = query
 		margin: 0;
 		display: flex;
 		flex-direction: column;
+		gap: var(--spacing-4);
 	}
 
-	.search-result {
-		padding: var(--spacing-6) 0;
-		border-bottom: 1px solid var(--color-border-subtle);
+	.search-result-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
 	}
 
-	.search-result:first-child {
-		padding-top: 0;
-	}
-
-	.search-result:last-child {
-		border-bottom: none;
+	.search-result-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
 	}
 
 	.result-link {
-		display: block;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+		padding: var(--spacing-6);
 		text-decoration: none;
 		color: inherit;
 	}
 
+	.result-top {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+	}
+
+	.result-num {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 1px var(--spacing-2);
+	}
+
+	.result-collection {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-muted);
+	}
+
 	.result-title {
+		font-family: var(--font-heading);
 		font-size: var(--font-size-xl);
 		font-weight: 600;
 		line-height: var(--leading-snug);
-		margin-bottom: var(--spacing-2);
+		color: var(--color-text);
 		transition: color var(--transition-fast);
 	}
 
@@ -170,13 +371,68 @@ const { items: results } = query
 		font-size: var(--font-size-base);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
+		max-width: 72ch;
 	}
 
-	/* FTS returns <mark> wrapping the matched terms */
 	.result-snippet :global(mark) {
-		background: var(--color-accent-ring, rgba(99, 102, 241, 0.2));
-		color: inherit;
-		padding: 0 0.1em;
-		border-radius: 2px;
+		background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+		color: var(--color-text);
+		font-weight: 600;
+		padding: 0 0.2em;
+		border-radius: 3px;
+	}
+
+	.result-affordance {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+		margin-top: var(--spacing-1);
+	}
+
+	/* ── Empty State ── */
+	.empty-state-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-10) var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-3);
+	}
+
+	.empty-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.empty-desc {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		max-width: 60ch;
+		margin-bottom: var(--spacing-2);
+	}
+
+	.empty-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 600px) {
+		.search-page {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+		}
+
+		.search-form {
+			flex-direction: column;
+			align-items: stretch;
+		}
 	}
 </style>

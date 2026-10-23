@@ -114,6 +114,55 @@ const issueNumberFormatted =
 	post.data.number != null
 		? `№ ${String(post.data.number).padStart(2, "0")}`
 		: "ESSAY";
+
+const canonicalPostUrl = `https://tinlehoang.info.vn/posts/${slug}`;
+
+const articleJsonLd: Array<Record<string, unknown>> = [
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: post.data.title,
+		description: post.data.excerpt || seo.description || "",
+		image: featuredImageUrl || "https://tinlehoang.info.vn/tin_le_hoang.jpg",
+		datePublished:
+			post.data.publishedAt?.toISOString() ?? post.data.createdAt.toISOString(),
+		dateModified: post.data.updatedAt.toISOString(),
+		author: {
+			"@id": "https://tinlehoang.info.vn/#person",
+		},
+		publisher: {
+			"@id": "https://tinlehoang.info.vn/#person",
+		},
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": canonicalPostUrl,
+		},
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: "https://tinlehoang.info.vn",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Writing",
+				item: "https://tinlehoang.info.vn/posts",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: post.data.title,
+				item: canonicalPostUrl,
+			},
+		],
+	},
+];
 ---
 
 <Base
@@ -127,6 +176,7 @@ const issueNumberFormatted =
 	publishedTime={post.data.publishedAt?.toISOString() ?? null}
 	modifiedTime={post.data.updatedAt.toISOString()}
 	content={{ collection: "posts", id: post.data.id, slug }}
+	jsonLd={articleJsonLd}
 >
 	<!-- Fixed 3px Reading Progress Bar below .site-header -->
 	<div

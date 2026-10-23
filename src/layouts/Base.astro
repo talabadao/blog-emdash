@@ -24,6 +24,8 @@ interface Props {
 	author?: string | null;
 	/** Pass content reference for plugin page contributions on content pages */
 	content?: { collection: string; id: string; slug?: string | null };
+	/** Optional page-specific JSON-LD structured data */
+	jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
@@ -38,7 +40,62 @@ const {
 	modifiedTime,
 	author,
 	content,
+	jsonLd,
 } = Astro.props;
+
+const globalEntityGraph = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Person",
+			"@id": "https://tinlehoang.info.vn/#person",
+			name: "Le Hoang Tin",
+			alternateName: ["Tin Le Hoang", "Lê Hoàng Tín"],
+			jobTitle: "Senior SEO & GEO Specialist",
+			url: "https://tinlehoang.info.vn",
+			image: "https://tinlehoang.info.vn/tin_le_hoang.jpg",
+			email: "mailto:tinledoihoa@gmail.com",
+			telephone: "+84357669476",
+			address: {
+				"@type": "PostalAddress",
+				addressLocality: "Ho Chi Minh City",
+				addressCountry: "VN",
+			},
+			worksFor: {
+				"@type": "Organization",
+				name: "GTV SEO",
+				url: "https://gtvseo.com",
+			},
+			sameAs: ["https://www.linkedin.com/in/tin-le-hoang"],
+			knowsAbout: [
+				"Search Engine Optimization",
+				"Generative Engine Optimization",
+				"Technical SEO",
+				"Semantic SEO",
+				"Entity SEO",
+				"AI Search Optimization",
+				"Content Strategy",
+			],
+		},
+		{
+			"@type": "WebSite",
+			"@id": "https://tinlehoang.info.vn/#website",
+			url: "https://tinlehoang.info.vn",
+			name: "Le Hoang Tin — Senior SEO & GEO Specialist",
+			publisher: {
+				"@id": "https://tinlehoang.info.vn/#person",
+			},
+			potentialAction: {
+				"@type": "SearchAction",
+				target: {
+					"@type": "EntryPoint",
+					urlTemplate: "https://tinlehoang.info.vn/search?q={search_term_string}",
+				},
+				"query-input": "required name=search_term_string",
+			},
+		},
+	],
+};
 const { siteTitle, siteTagline, siteLogo } = resolveBlogSiteIdentity(await getSiteSettings());
 // If title already includes site title (from getSeoMeta), use as-is
 const fullTitle = title.includes(siteTitle) ? title : `${title} — ${siteTitle}`;
@@ -99,6 +156,20 @@ const isLoggedIn = !!Astro.locals.user;
 		<link rel="preload" href="/fonts/EuclidCircularA-Medium.ttf" as="font" type="font/ttf" crossorigin />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
+		<script
+			type="application/ld+json"
+			is:inline
+			set:html={JSON.stringify(globalEntityGraph)}
+		/>
+		{
+			jsonLd && (
+				<script
+					type="application/ld+json"
+					is:inline
+					set:html={JSON.stringify(jsonLd)}
+				/>
+			)
+		}
 		<script is:inline>
 			// Apply theme immediately to prevent flash
 			(function () {

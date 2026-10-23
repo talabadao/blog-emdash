@@ -23,8 +23,7 @@ const { entries: posts, cacheHint } = await getEmDashCollection("posts", {
 
 Astro.cache.set(cacheHint);
 
-// Single batched query for tags on every post tagged with this term,
-// rather than calling getEntryTerms() per post.
+// Single batched query for tags on every post tagged with this term
 const tagsByEntry = await getTermsForEntries(
 	"posts",
 	posts.map((p) => p.data.id),
@@ -38,79 +37,199 @@ const filteredPosts = posts.map((post) => ({
 
 <Base
 	title={`Posts tagged "${term.label}"`}
-	description={`All posts tagged with ${term.label}`}
+	description={`All essays and case studies tagged with ${term.label} by Le Hoang Tin — Senior SEO & GEO Specialist.`}
 >
-	<section class="archive-section">
+	<div class="taxonomy-page">
 		<header class="archive-header">
-			<span class="archive-label">Tag</span>
-			<h1 class="archive-title">{term.label}</h1>
-			<p class="archive-count">
-				{filteredPosts.length}
-				{filteredPosts.length === 1 ? "post" : "posts"}
+			<div class="archive-top-row">
+				<nav class="breadcrumb" aria-label="Breadcrumb">
+					<a href="/posts">Writing</a>
+					<span class="breadcrumb-sep" aria-hidden="true">/</span>
+					<span>Tag</span>
+				</nav>
+				<a href="/posts" class="back-link">← All writing</a>
+			</div>
+
+			<span class="editorial-kicker">TOPIC TAXONOMY · TAG ARCHIVE</span>
+			<div class="title-row">
+				<h1 class="archive-title">#{term.label}</h1>
+				<span class="essay-count-badge">
+					{filteredPosts.length}{" "}
+					{filteredPosts.length === 1 ? "essay" : "essays"}
+				</span>
+			</div>
+			<p class="archive-lead">
+				Articles, technical frameworks, and case studies indexed with the{" "}
+				<strong>{term.label}</strong> tag.
 			</p>
 		</header>
 
-		{
-			filteredPosts.length === 0 ? (
-				<p class="no-posts">No posts with this tag yet.</p>
-			) : (
-				<div class="posts-grid">
-					{filteredPosts.map(({ post, tags }) => (
-						<PostCard
-							title={post.data.title}
-							excerpt={post.data.excerpt}
-							featuredImage={post.data.featured_image}
-							href={`/posts/${post.id}`}
-							date={post.data.publishedAt ?? undefined}
-							readingTime={getReadingTime(post.data.content)}
-							tags={tags.map((t) => ({ slug: t.slug, label: t.label }))}
-						/>
-					))}
-				</div>
-			)
-		}
-	</section>
+		<section class="archive-body" aria-labelledby="tag-entries-heading">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ I</span>
+				<h2 class="section-index-title" id="tag-entries-heading">
+					Tagged Entries · {term.label}
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+				<a href="/search" class="section-index-link">
+					Search archive →
+				</a>
+			</div>
+
+			{
+				filteredPosts.length === 0 ? (
+					<div class="empty-card">
+						<p class="no-posts">No essays with this tag yet.</p>
+						<a href="/posts" class="btn-secondary">
+							← Browse all writing
+						</a>
+					</div>
+				) : (
+					<div class="posts-grid">
+						{filteredPosts.map(({ post, tags }) => (
+							<PostCard
+								title={post.data.title}
+								excerpt={post.data.excerpt}
+								featuredImage={post.data.featured_image}
+								href={`/posts/${post.id}`}
+								date={post.data.publishedAt ?? undefined}
+								readingTime={getReadingTime(post.data.content)}
+								tags={tags.map((t) => ({ slug: t.slug, label: t.label }))}
+								bylines={post.data.bylines}
+							/>
+						))}
+					</div>
+				)
+			}
+		</section>
+	</div>
 </Base>
 
 <style>
-	.archive-section {
+	.taxonomy-page {
 		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-12) var(--spacing-6);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-14, 3.5rem);
 	}
 
 	.archive-header {
-		margin-bottom: var(--spacing-12);
-		padding-bottom: var(--spacing-8);
-		border-bottom: 1px solid var(--color-border-subtle);
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border);
 	}
 
-	.archive-label {
-		display: block;
+	.archive-top-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+		margin-bottom: var(--spacing-4);
+	}
+
+	.breadcrumb {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
-		font-weight: 500;
+		color: var(--color-muted);
+	}
+
+	.breadcrumb a {
+		color: var(--color-text-secondary);
+		text-decoration: none;
+	}
+
+	.breadcrumb a:hover {
 		color: var(--color-accent);
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		margin-bottom: var(--spacing-2);
+	}
+
+	.breadcrumb-sep {
+		color: var(--color-border);
+	}
+
+	.back-link {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+		padding: 5px var(--spacing-3);
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		transition:
+			border-color var(--transition-fast),
+			color var(--transition-fast);
+	}
+
+	.back-link:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent-hover);
+	}
+
+	.title-row {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+		margin-bottom: var(--spacing-3);
 	}
 
 	.archive-title {
-		font-size: var(--font-size-4xl);
-		font-weight: 700;
-		letter-spacing: var(--tracking-tight);
-		margin-bottom: var(--spacing-2);
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
 	}
 
-	.archive-count {
-		font-size: var(--font-size-sm);
-		color: var(--color-muted);
+	.essay-count-badge {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius-full);
+		padding: 4px var(--spacing-3);
+	}
+
+	.archive-lead {
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		max-width: 62ch;
+	}
+
+	.archive-lead strong {
+		color: var(--color-text);
+		font-weight: 600;
 	}
 
 	.posts-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--spacing-12) var(--spacing-8);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-8);
+	}
+
+	.empty-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-12) var(--spacing-6);
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
 	}
 
 	.no-posts {
@@ -119,11 +238,15 @@ const filteredPosts = posts.map((post) => ({
 
 	@media (max-width: 900px) {
 		.posts-grid {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 
 	@media (max-width: 600px) {
+		.taxonomy-page {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+		}
+
 		.posts-grid {
 			grid-template-columns: 1fr;
 		}

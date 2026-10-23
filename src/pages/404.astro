@@ -2,32 +2,164 @@
 import Base from "../layouts/Base.astro";
 ---
 
-<Base title="Page not found">
-	<div class="not-found">
-		<h1>404</h1>
-		<p>The page you're looking for doesn't exist.</p>
-		<a href="/">Go back home</a>
-	</div>
+<Base
+	title="404 — Page Not Found"
+	description="The requested URL is outside the current index of tinlehoang.info.vn."
+	robots="noindex, follow"
+>
+	<section class="not-found-page">
+		<div class="not-found-card">
+			<div class="status-badge-row">
+				<span class="editorial-kicker">ERROR 404 · ROUTE NOT INDEXED</span>
+				<span class="status-code-mono">HTTP 404</span>
+			</div>
+
+			<h1 class="not-found-title">This URL is outside the current index</h1>
+			<p class="not-found-desc">
+				The page you requested may have been consolidated via a canonical redirect, moved to a new slug, or never existed. Use the search bar or recovery pathways below to navigate back into the archive.
+			</p>
+
+			<form method="get" action="/search" class="inline-search-form" role="search">
+				<input
+					type="search"
+					name="q"
+					placeholder="Search essays, GEO playbooks, or case studies..."
+					class="inline-search-input"
+					aria-label="Search essays and case studies"
+				/>
+				<button type="submit" class="btn-primary inline-search-btn">
+					Search →
+				</button>
+			</form>
+
+			<div class="recovery-actions">
+				<a href="/" class="btn-primary">
+					Return to homepage →
+				</a>
+				<a href="/posts" class="btn-secondary">
+					Browse writing archive →
+				</a>
+				<a href="/projects" class="btn-secondary">
+					View 6 case studies →
+				</a>
+			</div>
+		</div>
+	</section>
 </Base>
 
 <style>
-	.not-found {
-		text-align: center;
-		padding: var(--spacing-24) var(--spacing-6);
+	.not-found-page {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		justify-content: center;
 	}
 
-	.not-found h1 {
-		font-size: var(--font-size-5xl);
+	.not-found-card {
+		width: 100%;
+		max-width: 720px;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-10) var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.status-badge-row {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-4);
 		margin-bottom: var(--spacing-2);
-		color: var(--color-border);
 	}
 
-	.not-found p {
+	.status-code-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
 		color: var(--color-muted);
-		margin-bottom: var(--spacing-6);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
 	}
 
-	.not-found a {
+	.not-found-title {
+		font-family: var(--font-heading);
+		font-size: clamp(2rem, 4.2vw, 3rem);
+		font-weight: 600;
+		line-height: 1.12;
+		letter-spacing: -0.025em;
 		color: var(--color-text);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.not-found-desc {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-6);
+		max-width: 60ch;
+	}
+
+	.inline-search-form {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		margin-bottom: var(--spacing-8);
+		padding-bottom: var(--spacing-8);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.inline-search-input {
+		flex: 1;
+		height: 44px;
+		padding: 0 var(--spacing-5);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		background: var(--color-bg);
+		color: var(--color-text);
+	}
+
+	.inline-search-input:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+	}
+
+	.inline-search-btn {
+		height: 44px;
+		padding: 0 var(--spacing-6);
+		white-space: nowrap;
+	}
+
+	.recovery-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 600px) {
+		.not-found-page {
+			padding: var(--spacing-10) var(--spacing-4) var(--spacing-16);
+		}
+
+		.not-found-card {
+			padding: var(--spacing-8) var(--spacing-5);
+		}
+
+		.inline-search-form {
+			flex-direction: column;
+			align-items: stretch;
+		}
 	}
 </style>
