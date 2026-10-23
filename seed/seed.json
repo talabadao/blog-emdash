@@ -114,10 +114,14 @@
 			"label": "Primary Navigation",
 			"items": [
 				{ "type": "custom", "label": "Blog", "url": "/posts" },
+				{ "type": "custom", "label": "Case Studies", "url": "/projects" },
+				{ "type": "custom", "label": "AI Search", "url": "/category/ai" },
 				{ "type": "custom", "label": "Services", "url": "/services" },
-				{ "type": "custom", "label": "About", "url": "/about" },
-				{ "type": "custom", "label": "Projects", "url": "/projects" },
-				{ "type": "custom", "label": "Contact", "url": "/contact" }
+				{ "type": "custom", "label": "About", "url": "/about" }
+
+
+
+
 			]
 		},
 		{

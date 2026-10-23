@@ -43,17 +43,20 @@ const { siteTitle, siteTagline, siteLogo } = resolveBlogSiteIdentity(await getSi
 // If title already includes site title (from getSeoMeta), use as-is
 const fullTitle = title.includes(siteTitle) ? title : `${title} — ${siteTitle}`;
 
-// Fetch primary menu defined in seed (with sensible fallback)
+// Fetch primary menu defined in seed (with curated IA fallback if DB still holds legacy menu)
 const menu = await getMenu("primary");
-const navItems = menu?.items?.length
-	? menu.items
-	: [
-			{ label: "Blog", url: "/posts", target: undefined },
-			{ label: "Services", url: "/services", target: undefined },
-			{ label: "About", url: "/about", target: undefined },
-			{ label: "Projects", url: "/projects", target: undefined },
-			{ label: "Contact", url: "/contact", target: undefined },
-		];
+const defaultNavItems = [
+	{ label: "Blog", url: "/posts", target: undefined },
+	{ label: "Case Studies", url: "/projects", target: undefined },
+	{ label: "AI Search", url: "/category/ai", target: undefined },
+	{ label: "Services", url: "/services", target: undefined },
+	{ label: "About", url: "/about", target: undefined },
+];
+const hasUpdatedPrimaryMenu = menu?.items?.some(
+	(item) => item.url === "/category/ai" || item.label === "Case Studies"
+);
+const navItems =
+	menu?.items?.length && hasUpdatedPrimaryMenu ? menu.items : defaultNavItems;
 
 const currentPath = Astro.url.pathname;
 
@@ -235,20 +238,19 @@ const isLoggedIn = !!Astro.locals.user;
 					<div class="footer-nav">
 						<h4 class="footer-heading">Writing</h4>
 						<ul class="footer-links">
-							<li><a href="/posts">Blog</a></li>
-							<li><a href="/category/case-study">Case Studies</a></li>
-							<li><a href="/category/seo">SEO</a></li>
-							<li><a href="/category/ai">AI Search</a></li>
+							<li><a href="/posts">All Articles</a></li>
+							<li><a href="/category/ai">AI Search &amp; GEO</a></li>
+							<li><a href="/category/seo">Technical SEO</a></li>
+							<li><a href="/category/tools">Tools &amp; Stack</a></li>
 						</ul>
 					</div>
 					<div class="footer-nav">
 						<h4 class="footer-heading">Work</h4>
 						<ul class="footer-links">
-							<li><a href="/services">Services</a></li>
-							<li><a href="/projects">GTV SEO Projects</a></li>
-							<li><a href="/posts/top-3-rankings-in-two-weeks">Repair Centre VIC</a></li>
-							<li><a href="/projects#vinamilk">Vinamilk</a></li>
-							<li><a href="/projects#eurotravel">Eurotravel</a></li>
+							<li><a href="/projects">Case Studies</a></li>
+							<li><a href="/services">Consulting Services</a></li>
+							<li><a href="/about">About Tin</a></li>
+							<li><a href="/contact">Contact</a></li>
 						</ul>
 					</div>
 					<div class="footer-nav">
