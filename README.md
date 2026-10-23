@@ -42,7 +42,7 @@ This site blends two reference philosophies:
 
 - [x] **Phase 0:** Fix `Astro.cache.set(cacheHint)` across all content pages, unify LinkedIn URL (`https://www.linkedin.com/in/tin-le-hoang`), align dark mode orange accent, create `vibe-refresh` branch.
 - [x] **Sprint 1:** Design System consolidation (`theme.css` + `Base.astro`), active navigation state, mobile navigation drawer, and footer resources links.
-- [ ] **Sprint 2:** Homepage overhaul (`src/pages/index.astro`) with Roman-numeral editorial sections, Proof & Brand Bar, Selected Case Studies, Services snapshot, and Now/Connect strip.
+- [x] **Sprint 2:** Homepage overhaul (`src/pages/index.astro`) with Roman-numeral editorial sections, Proof & Brand Bar, Selected Case Studies, Services snapshot, and Now/Connect strip.
 - [ ] **Sprint 3:** Upgrade `/projects` (Case Studies Hub with filter & deep breakdowns), `/services` (social proof & comparison), and `/about` (timeline & entity clarity).
 - [ ] **Sprint 4:** Conversion & Reading UX — interactive Contact Form + Zalo/WhatsApp CTAs on `/contact`, reading progress bar + author box on `/posts/[slug]`, category filter pills on `/posts`.
 - [ ] **Sprint 5:** AI/GEO Infrastructure & Technical SEO — `/llms.txt`, `/llms-full.txt`, `/ai-information`, and JSON-LD structured data (`Person`, `WebSite`, `Article`, `ProfessionalService`, `FAQPage`).

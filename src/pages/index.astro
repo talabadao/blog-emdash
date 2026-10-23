@@ -17,7 +17,7 @@ const [{ entries: posts, cacheHint }, settings] = await Promise.all([
 
 Astro.cache.set(cacheHint);
 
-// Batch-fetch categories
+// Batch-fetch categories using database ULID (post.data.id)
 const postIds = posts.map((p) => p.data.id);
 const categoriesByEntry =
 	postIds.length > 0
@@ -26,7 +26,6 @@ const categoriesByEntry =
 
 const featuredPost = posts[0] ?? null;
 const listPosts = posts.slice(1);
-const hasMorePosts = posts.length >= 7;
 
 // Date → YYYY·MM·DD
 function formatDate(date: Date | null | undefined): string {
@@ -38,249 +37,485 @@ function getFirstCategory(entryDataId: string) {
 	const cats = categoriesByEntry.get(entryDataId);
 	return cats && cats.length > 0 ? cats[0] : null;
 }
+
+function formatIssueNumber(
+	num: number | null | undefined,
+	fallback: number
+): string {
+	return String(num ?? fallback).padStart(2, "0");
+}
+
+const proofStats = [
+	{
+		value: "3+ yrs",
+		label: "Leading SEO & GEO strategy at GTV SEO Agency",
+	},
+	{
+		value: "#1 AI Cited",
+		label: 'Recommended on ChatGPT, Claude & Grok for "SEO agency HCMC"',
+	},
+	{
+		value: "300K+",
+		label: "Monthly organic clicks scaled for enterprise FMCG",
+	},
+	{
+		value: "100%+",
+		label: "KPI delivery rate across 6+ multi-market campaigns",
+	},
+];
+
+const campaignMarkets = [
+	"GTV SEO (VN)",
+	"Vinamilk (FMCG)",
+	"EuroTravel (Travel)",
+	"Repair Centre VIC (AU)",
+	"Global E-Commerce (US/Global)",
+];
+
+const selectedCaseStudies = [
+	{
+		name: "GTV SEO Agency",
+		domain: "gtvseo.com",
+		tag: "GEO & B2B SEO · Vietnam",
+		metrics: [
+			{ value: "#1", label: "ChatGPT / Claude / Grok" },
+			{ value: "Top 1–3", label: "Core Keywords" },
+		],
+		summary:
+			"Engineered entity authority and white-hat topical depth to secure #1 AI assistant citations for 'SEO agency HCMC' while defending Top 1–3 Google rankings across competitive B2B search terms.",
+		href: "/posts/three-years-at-gtv-seo-what-i-learned",
+		cta: "Read breakdown →",
+	},
+	{
+		name: "Repair Centre VIC",
+		domain: "repaircentrevic.com.au",
+		tag: "Local & Technical SEO · Australia",
+		metrics: [
+			{ value: "Top 3–5", label: "in 14 Days" },
+			{ value: "85% KPI", label: "in Month 1" },
+		],
+		summary:
+			"Resolved severe keyword cannibalization and duplicate indexation in a final-sprint turnaround, pairing on-page consolidation with LocalBusiness JSON-LD and a Google Business Profile overhaul.",
+		href: "/posts/top-3-rankings-in-two-weeks",
+		cta: "Read case study →",
+	},
+	{
+		name: "Vinamilk Nutrition",
+		domain: "vinamilk.com.vn",
+		tag: "Enterprise E-Commerce · FMCG",
+		metrics: [
+			{ value: "300K", label: "Clicks / Month" },
+			{ value: "100% KPI", label: "Achieved" },
+		],
+		summary:
+			"Architected a full-funnel topical map, semantic content clusters, and on-page technical standards for the maternal and baby nutrition vertical to capture Top 1–3 rankings at enterprise scale.",
+		href: "/projects#vinamilk",
+		cta: "View project details →",
+	},
+];
+
+const capabilities = [
+	{
+		index: "01",
+		kicker: "AI Citation Engineering",
+		title: "GEO & AI Search Optimization",
+		description:
+			"Entity structuring, llms.txt architecture, and citation engineering so your brand is recommended by ChatGPT, Claude, Perplexity, and Google AI Overviews.",
+		deliverables: "Entity Graphs · llms.txt · Brand Citation Audits",
+	},
+	{
+		index: "02",
+		kicker: "Crawl & Indexation",
+		title: "Technical SEO & Site Architecture",
+		description:
+			"Deep crawl diagnostics (Screaming Frog, GSC), indexation cleanup, Core Web Vitals, schema graphs, and international/local SEO foundations.",
+		deliverables: "Crawl Diagnostics · JSON-LD · Core Web Vitals",
+	},
+	{
+		index: "03",
+		kicker: "Topical Maps & Revenue",
+		title: "Topic Authority & Conversion (CRO)",
+		description:
+			"Intent-mapped content clusters, competitive gap execution (Ahrefs/SEMrush), and GA4 funnel optimization that turns organic traffic into pipeline.",
+		deliverables: "Semantic Clusters · Cannibalization Fixes · GA4 Funnels",
+	},
+];
 ---
 
 <Base title={settings.title ?? "Le Hoang Tin"} description={settings.tagline}>
 	<div class="home">
 
-		<!-- ── Hero ── -->
+		<!-- ── 1. Hero Section ── -->
 		<section class="hero">
+			<div class="hero-masthead">
+				<span class="vol-badge">VOL. I — 2026</span>
+				<span class="masthead-rule" aria-hidden="true"></span>
+				<span class="city-label">HO CHI MINH CITY, VN</span>
+			</div>
+
 			<div class="hero-inner">
 				<div class="hero-text">
-					<div class="hero-masthead">
-						<span class="vol-badge">VOL. I</span>
-						<span class="masthead-rule" aria-hidden="true"></span>
-						<span class="city-label">HCMC, VN</span>
-					</div>
+					<span class="editorial-kicker">SENIOR SEO &amp; GEO SPECIALIST</span>
 
 					<h1 class="hero-name">Le Hoang Tin</h1>
-					<p class="hero-role">SEO Specialist &amp; Content Strategist</p>
+
+					<p class="hero-positioning">
+						Helping brands rank at the top of Google and get cited inside ChatGPT, Claude, Perplexity, and Google AI Overviews.
+					</p>
 
 					<p class="hero-bio">
-						Internet from Ho Chi Minh City.<br />
-						3 years building organic growth at GTV SEO Agency.<br />
-						I think about AI search, content strategy, and the future of SEO.
+						Senior SEO &amp; GEO Specialist with 3+ years leading organic growth at GTV SEO Agency across Vietnam, Australia, and global English markets. Focused on entity architecture, technical SEO, and measurable revenue impact.
 					</p>
 
 					<div class="hero-ctas">
-						{
-							featuredPost && (
-								<a href={`/posts/${featuredPost.id}`} class="cta-primary">
-									Read latest article →
-								</a>
-							)
-						}
-						<a href="/rss.xml" class="cta-secondary">RSS ↗</a>
+						<a href="/contact" class="btn-primary">
+							Work with me →
+						</a>
+						<a href="/projects" class="btn-secondary">
+							Explore case studies →
+						</a>
 					</div>
+
+					{
+						featuredPost && (
+							<div class="hero-latest-row">
+								<a href={`/posts/${featuredPost.id}`} class="hero-latest-link">
+									<span class="hero-latest-prefix">Latest essay:</span>
+									<span class="hero-latest-title">{featuredPost.data.title} →</span>
+								</a>
+							</div>
+						)
+					}
 				</div>
 
 				<div class="hero-portrait">
-					<div class="portrait-frame">
-						<img
-							src="/tin_le_hoang.jpg"
-							alt="Le Hoang Tin — SEO Specialist, Ho Chi Minh City"
-							class="portrait-img"
-							width="200"
-							height="200"
-							loading="eager"
-						/>
+					<div class="portrait-card">
+						<div class="portrait-frame">
+							<img
+								src="/tin_le_hoang.jpg"
+								alt="Le Hoang Tin — Senior SEO & GEO Specialist in Ho Chi Minh City"
+								class="portrait-img"
+								width="240"
+								height="260"
+								loading="eager"
+							/>
+						</div>
+						<div class="portrait-meta">
+							<p class="portrait-caption">FIG. 01 — LE HOANG TIN · HCMC</p>
+							<div class="status-pill">
+								<span class="status-dot" aria-hidden="true"></span>
+								<span>Available for consulting &amp; GEO audits</span>
+							</div>
+						</div>
 					</div>
-					<p class="portrait-caption">FIG. 1 — THE AUTHOR, HCMC, 2025</p>
 				</div>
 			</div>
 		</section>
 
-		<!-- ── Info strip ── -->
-		<section class="info-strip">
-			<div class="info-inner">
-				<div class="info-col">
-					<h2 class="info-heading">Currently working on</h2>
-					<ul class="info-list">
-						<li>
-							<span class="info-arrow">→</span>
-							<span>GTV SEO — leading SEO strategy &amp; projects</span>
-						</li>
-						<li>
-							<span class="info-arrow">→</span>
-							<span>AI-driven content optimisation for ChatGPT / Claude / SGE</span>
-						</li>
-						<li>
-							<span class="info-arrow">→</span>
-							<span>Building this blog &amp; portfolio</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="info-col">
-					<h2 class="info-heading">Elsewhere</h2>
-					<ul class="info-list">
-						<li>
-							<span class="info-label">LinkedIn</span>
-							<a
-								href="https://www.linkedin.com/in/tin-le-hoang"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="info-link"
-							>
-								Tin Le Hoang ↗
-							</a>
-						</li>
-						<li>
-							<span class="info-label">Email</span>
-							<a href="mailto:tinledoihoa@gmail.com" class="info-link">
-								tinledoihoa@gmail.com
-							</a>
-						</li>
-						<li>
-							<span class="info-label">Phone</span>
-							<a href="tel:+84357669476" class="info-link">0357.669.476</a>
-						</li>
-					</ul>
-				</div>
+		<!-- ── 2. Proof & Brand Strip ── -->
+		<section class="proof-strip" aria-label="Verified SEO and GEO impact metrics">
+			<div class="proof-grid">
+				{
+					proofStats.map((stat) => (
+						<div class="proof-item">
+							<span class="proof-value">{stat.value}</span>
+							<span class="proof-label">{stat.label}</span>
+						</div>
+					))
+				}
 			</div>
-		</section>
 
-		{
-			posts.length > 0 && (
-				<div class="content-area">
-
-					{/* Featured post */}
-					{featuredPost && (
-						<section class="featured-section">
-							<div class="featured-label-row">
-								<span class="featured-label">Featured</span>
-								<span class="featured-rule" aria-hidden="true" />
-							</div>
-							<a href={`/posts/${featuredPost.id}`} class="featured-card">
-								<div class="featured-card-inner">
-									<div class="featured-card-meta">
-										{getFirstCategory(featuredPost.data.id) && (
-											<span class="category-tag">
-												{getFirstCategory(featuredPost.data.id)!.label}
-											</span>
-										)}
-										{featuredPost.data.number != null && (
-											<span class="article-num-badge">
-												№ {featuredPost.data.number}
-											</span>
-										)}
-									</div>
-									<h2 class="featured-card-title">
-										{featuredPost.data.title}
-									</h2>
-									{featuredPost.data.excerpt && (
-										<p class="featured-card-excerpt">
-											{featuredPost.data.excerpt}
-										</p>
-									)}
-									<div class="featured-card-foot">
-										{featuredPost.data.publishedAt && (
-											<time class="article-date-mono">
-												{formatDate(featuredPost.data.publishedAt)}
-											</time>
-										)}
-										<span class="article-read-time">
-											{getReadingTime(featuredPost.data.content)} min read
-										</span>
-										<span class="read-link">Read article →</span>
-									</div>
-								</div>
-							</a>
-						</section>
-					)}
-
-					{/* Numbered article list */}
-					{listPosts.length > 0 && (
-						<section class="articles-section">
-							<header class="section-header">
-								<h2 class="section-title">Recent articles</h2>
-								{hasMorePosts && (
-									<a href="/posts" class="section-link">
-										See all →
-									</a>
+			<div class="brand-strip">
+				<span class="brand-strip-label">CAMPAIGN EXPERIENCE &amp; MARKETS</span>
+				<div class="brand-strip-list" role="list">
+					{
+						campaignMarkets.map((item, index) => (
+							<>
+								<span class="brand-strip-item" role="listitem">{item}</span>
+								{index < campaignMarkets.length - 1 && (
+									<span class="brand-strip-sep" aria-hidden="true">·</span>
 								)}
-							</header>
-
-							<div class="articles-list" role="list">
-								{listPosts.map((post, idx) => {
-									const cat = getFirstCategory(post.data.id);
-									// Use stored number; fall back to position-based counter
-									const num = post.data.number ?? (listPosts.length - idx);
-									return (
-										<a
-											href={`/posts/${post.id}`}
-											class="article-row"
-											role="listitem"
-										>
-											<span class="article-num">№ {num}</span>
-											<time class="article-date-mono">
-												{formatDate(post.data.publishedAt)}
-											</time>
-											{cat ? (
-												<span class="article-cat">{cat.label}</span>
-											) : (
-												<span class="article-cat" />
-											)}
-											<span class="article-title-col">
-												{post.data.title}
-											</span>
-											<span class="article-time">
-												{getReadingTime(post.data.content)} min
-											</span>
-										</a>
-									);
-								})}
-							</div>
-
-							{hasMorePosts && (
-								<div class="see-all-row">
-									<a href="/posts" class="see-all-link">
-										See all articles →
-									</a>
-								</div>
-							)}
-						</section>
-					)}
+							</>
+						))
+					}
 				</div>
-			)
-		}
+			</div>
+		</section>
 
-		{
-			posts.length === 0 && (
-				<div class="empty-state">
-					<p>No posts yet.</p>
-					<a href="/_emdash/admin/content/posts/new" class="cta-primary">
-						Create first post
+		<div class="main-sections">
+
+			<!-- ── 3. § I — Writing & Research ── -->
+			<section class="writing-section" aria-labelledby="section-writing-title">
+				<div class="section-index-header">
+					<span class="section-index-badge">§ I</span>
+					<h2 class="section-index-title" id="section-writing-title">Writing · SEO &amp; AI Search</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/posts" class="section-index-link">
+						Full archive ({posts.length}+) →
 					</a>
 				</div>
-			)
-		}
+
+				{
+					featuredPost ? (
+						<div class="writing-layout">
+							{/* Featured Essay Card */}
+							<a href={`/posts/${featuredPost.id}`} class="featured-card">
+								<div class="featured-card-grid">
+									<div class="featured-card-aside">
+										<div class="featured-meta-top">
+											<span class="article-num-badge">
+												№ {formatIssueNumber(featuredPost.data.number, posts.length)}
+											</span>
+											{getFirstCategory(featuredPost.data.id) && (
+												<span class="category-tag">
+													{getFirstCategory(featuredPost.data.id)!.label}
+												</span>
+											)}
+										</div>
+										<div class="featured-meta-bottom">
+											{featuredPost.data.publishedAt && (
+												<time class="article-date-mono">
+													{formatDate(featuredPost.data.publishedAt)}
+												</time>
+											)}
+											<span class="article-read-time">
+												{getReadingTime(featuredPost.data.content)} min read
+											</span>
+										</div>
+									</div>
+
+									<div class="featured-card-body">
+										<span class="featured-eyebrow">Featured Essay</span>
+										<h3 class="featured-card-title">
+											{featuredPost.data.title}
+										</h3>
+										{featuredPost.data.excerpt && (
+											<p class="featured-card-excerpt">
+												{featuredPost.data.excerpt}
+											</p>
+										)}
+										<span class="featured-cta">Read essay →</span>
+									</div>
+								</div>
+							</a>
+
+							{/* Numbered Article Index */}
+							{listPosts.length > 0 && (
+								<div class="articles-index">
+									<div class="articles-list" role="list">
+										{listPosts.map((post, idx) => {
+											const cat = getFirstCategory(post.data.id);
+											const num = formatIssueNumber(
+												post.data.number,
+												listPosts.length - idx
+											);
+											return (
+												<a
+													href={`/posts/${post.id}`}
+													class="article-row"
+													role="listitem"
+												>
+													<span class="article-num">№ {num}</span>
+													<time class="article-date-mono">
+														{formatDate(post.data.publishedAt)}
+													</time>
+													{cat ? (
+														<span class="article-cat">{cat.label}</span>
+													) : (
+														<span class="article-cat" />
+													)}
+													<span class="article-title-col">
+														{post.data.title}
+													</span>
+													<span class="article-time">
+														{getReadingTime(post.data.content)} min
+													</span>
+												</a>
+											);
+										})}
+									</div>
+
+									<div class="see-all-row">
+										<a href="/posts" class="see-all-link">
+											Browse all articles →
+										</a>
+									</div>
+								</div>
+							)}
+						</div>
+					) : (
+						<div class="empty-state">
+							<p>No essays published yet.</p>
+							<a href="/_emdash/admin/content/posts/new" class="btn-primary">
+								Create first post →
+							</a>
+						</div>
+					)
+				}
+			</section>
+
+			<!-- ── 4. § II — Selected Case Studies ── -->
+			<section class="work-section" aria-labelledby="section-work-title">
+				<div class="section-index-header">
+					<span class="section-index-badge">§ II</span>
+					<h2 class="section-index-title" id="section-work-title">Selected Case Studies · Verifiable Impact</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/projects" class="section-index-link">All 6 projects →</a>
+				</div>
+
+				<div class="work-grid">
+					{
+						selectedCaseStudies.map((study) => (
+							<article class="case-card">
+								<div class="case-card-top">
+									<span class="case-tag">{study.tag}</span>
+									<h3 class="case-title">{study.name}</h3>
+									<span class="case-domain">{study.domain}</span>
+								</div>
+
+								<div class="case-metrics">
+									{study.metrics.map((metric) => (
+										<div class="case-metric-box">
+											<span class="case-metric-value">{metric.value}</span>
+											<span class="case-metric-label">{metric.label}</span>
+										</div>
+									))}
+								</div>
+
+								<p class="case-summary">{study.summary}</p>
+
+								<a href={study.href} class="case-link">
+									{study.cta}
+								</a>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- ── 5. § III — Capabilities & Consulting ── -->
+			<section class="services-preview-section" aria-labelledby="section-capabilities-title">
+				<div class="section-index-header">
+					<span class="section-index-badge">§ III</span>
+					<h2 class="section-index-title" id="section-capabilities-title">Capabilities · How I Help Teams Grow</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/services" class="section-index-link">Services &amp; engagement models →</a>
+				</div>
+
+				<div class="capabilities-grid">
+					{
+						capabilities.map((cap) => (
+							<article class="capability-card">
+								<div class="capability-header">
+									<span class="capability-num">{cap.index}</span>
+									<span class="capability-kicker">{cap.kicker}</span>
+								</div>
+								<h3 class="capability-title">{cap.title}</h3>
+								<p class="capability-desc">{cap.description}</p>
+								<div class="capability-foot">
+									<span class="capability-deliverables">{cap.deliverables}</span>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- ── 6. § IV — Now & Direct Connect ── -->
+			<section class="now-connect-section" aria-labelledby="section-now-title">
+				<div class="section-index-header">
+					<span class="section-index-badge">§ IV</span>
+					<h2 class="section-index-title" id="section-now-title">Now · Current Focus &amp; Direct Channels</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/ai-information" class="section-index-link">AI Fact Sheet →</a>
+				</div>
+
+				<div class="now-connect-grid">
+					<div class="now-column">
+						<span class="editorial-kicker">STATUS · Q4 2026</span>
+						<h3 class="now-heading">Currently focused on</h3>
+						<ul class="now-list">
+							<li>
+								<span class="now-arrow" aria-hidden="true">→</span>
+								<div>
+									<strong>GEO Citation Research &amp; Entity Engineering</strong> — Testing how ChatGPT, Claude, Perplexity, and Google AI Overviews retrieve, verify, and cite B2B &amp; e-commerce brands.
+								</div>
+							</li>
+							<li>
+								<span class="now-arrow" aria-hidden="true">→</span>
+								<div>
+									<strong>Senior SEO &amp; GEO Strategy at GTV SEO</strong> — Leading technical audits, semantic topical maps, and organic growth sprints across Vietnam, Australia, and global markets.
+								</div>
+							</li>
+							<li>
+								<span class="now-arrow" aria-hidden="true">→</span>
+								<div>
+									<strong>Open Playbooks &amp; Case Breakdowns</strong> — Documenting reproducible frameworks, schema patterns, and real campaign teardowns on this publication.
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="connect-column">
+						<div class="connect-card">
+							<span class="editorial-kicker">DIRECT CHANNELS</span>
+							<h3 class="connect-heading">Start a conversation</h3>
+							<p class="connect-desc">
+								Available for select SEO &amp; GEO audits, technical architecture sprints, and advisory retainers. Typical response within 24 hours.
+							</p>
+
+							<dl class="connect-channels">
+								<div class="connect-channel-row">
+									<dt>Email</dt>
+									<dd>
+										<a href="mailto:tinledoihoa@gmail.com">tinledoihoa@gmail.com</a>
+									</dd>
+								</div>
+								<div class="connect-channel-row">
+									<dt>Phone / Zalo</dt>
+									<dd>
+										<a href="tel:+84357669476">0357.669.476</a>
+									</dd>
+								</div>
+								<div class="connect-channel-row">
+									<dt>LinkedIn</dt>
+									<dd>
+										<a
+											href="https://www.linkedin.com/in/tin-le-hoang"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Tin Le Hoang ↗
+										</a>
+									</dd>
+								</div>
+							</dl>
+
+							<div class="connect-actions">
+								<a href="/contact" class="btn-primary connect-cta">
+									Book a consultation →
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
 	</div>
 </Base>
 
 <style>
-	/* ── Layout ── */
+	/* ── Page Container ── */
 	.home {
 		max-width: var(--wide-width);
 		margin: 0 auto;
 	}
 
-	/* ── Hero ── */
+	/* ── 1. Hero Section ── */
 	.hero {
-		padding: var(--spacing-20) var(--spacing-6) var(--spacing-16);
-		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	.hero-inner {
-		display: flex;
-		align-items: flex-start;
-		gap: var(--spacing-16);
-		max-width: 860px;
-	}
-
-	.hero-text {
-		flex: 1;
-		min-width: 0;
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-16);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.hero-masthead {
@@ -294,6 +529,7 @@ function getFirstCategory(entryDataId: string) {
 	.city-label {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
+		font-weight: 500;
 		letter-spacing: var(--tracking-wider);
 		text-transform: uppercase;
 		color: var(--color-muted);
@@ -306,88 +542,114 @@ function getFirstCategory(entryDataId: string) {
 		background: var(--color-border);
 	}
 
-	.hero-name {
-		font-size: clamp(3rem, 8vw, 5.5rem);
-		font-weight: 900;
-		font-style: italic;
-		line-height: 1.0;
-		letter-spacing: -0.04em;
-		margin-bottom: var(--spacing-4);
-		color: var(--color-text);
+	.hero-inner {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 280px;
+		align-items: start;
+		gap: var(--spacing-12);
 	}
 
-	.hero-role {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
+	.hero-text {
+		min-width: 0;
+	}
+
+	.hero-name {
+		font-family: var(--font-heading);
+		font-size: clamp(2.75rem, 6vw, 4.5rem);
 		font-weight: 600;
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-amber);
-		margin-bottom: var(--spacing-6);
+		font-style: normal;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.hero-positioning {
+		font-family: var(--font-heading);
+		font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+		font-weight: 500;
+		line-height: 1.32;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-5);
+		max-width: 54ch;
 	}
 
 	.hero-bio {
-		font-size: var(--font-size-lg);
+		font-family: var(--font-body);
+		font-size: var(--font-size-base);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
 		margin-bottom: var(--spacing-8);
-		max-width: 52ch;
+		max-width: 60ch;
 	}
 
 	.hero-ctas {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-5);
+		gap: var(--spacing-4);
 		flex-wrap: wrap;
 	}
 
-	.cta-primary {
+	.hero-latest-row {
+		margin-top: var(--spacing-5);
+		padding-top: var(--spacing-4);
+		border-top: 1px dashed var(--color-border);
 		display: inline-block;
-		padding: var(--spacing-3) var(--spacing-6);
-		background: var(--color-accent);
-		color: var(--color-on-accent);
-		text-decoration: none;
-		border-radius: var(--radius-full);
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		transition: background var(--transition-fast);
 	}
 
-	.cta-primary:hover {
-		background: var(--color-accent-hover);
-		color: var(--color-on-accent);
-	}
-
-	.cta-secondary {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
+	.hero-latest-link {
+		display: inline-flex;
+		align-items: baseline;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		color: var(--color-text-secondary);
 		text-decoration: none;
 		transition: color var(--transition-fast);
 	}
 
-	.cta-secondary:hover {
-		color: var(--color-text);
+	.hero-latest-prefix {
+		color: var(--color-amber);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
 	}
 
-	/* ── Portrait ── */
+	.hero-latest-title {
+		color: var(--color-text);
+		font-weight: 500;
+		transition: color var(--transition-fast);
+	}
+
+	.hero-latest-link:hover .hero-latest-title {
+		color: var(--color-accent);
+	}
+
+	/* ── Portrait Column ── */
 	.hero-portrait {
-		flex-shrink: 0;
+		width: 100%;
+	}
+
+	.portrait-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		gap: var(--spacing-3);
-		padding-top: var(--spacing-12);
 	}
 
 	.portrait-frame {
-		width: 200px;
-		height: 200px;
-		border-radius: 50%;
+		width: 100%;
+		aspect-ratio: 1 / 1.05;
+		border-radius: calc(var(--radius-lg) - 4px);
 		overflow: hidden;
-		border: 3px solid var(--color-border);
-		background: var(--color-surface);
+		border: 1px solid var(--color-border-subtle);
+		background: var(--color-bg-subtle);
 	}
 
 	.portrait-img {
@@ -398,193 +660,207 @@ function getFirstCategory(entryDataId: string) {
 		display: block;
 	}
 
+	.portrait-meta {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+	}
+
 	.portrait-caption {
 		font-family: var(--font-mono);
-		font-size: 0.625rem;
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-muted);
-		text-align: center;
-		max-width: 200px;
-		line-height: var(--leading-relaxed);
-	}
-
-	/* ── Info strip ── */
-	.info-strip {
-		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	.info-inner {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-	}
-
-	.info-col {
-		padding: var(--spacing-10) var(--spacing-6);
-	}
-
-	.info-col:first-child {
-		border-right: 1px solid var(--color-border-subtle);
-	}
-
-	.info-heading {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
 		font-weight: 500;
-		text-transform: uppercase;
 		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
 		color: var(--color-muted);
-		margin-bottom: var(--spacing-5);
 	}
 
-	.info-list {
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-3);
-	}
-
-	.info-list li {
-		display: flex;
-		align-items: baseline;
-		gap: var(--spacing-3);
-		font-size: var(--font-size-sm);
-		color: var(--color-text-secondary);
-	}
-
-	.info-arrow {
-		color: var(--color-accent);
-		flex-shrink: 0;
-		font-size: var(--font-size-xs);
-	}
-
-	.info-label {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-		min-width: 4.5rem;
-		flex-shrink: 0;
-	}
-
-	.info-link {
+	.status-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		padding: 6px var(--spacing-3);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
 		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
+		font-size: 0.75rem;
+		font-weight: 500;
 		color: var(--color-text-secondary);
-		text-decoration: none;
-		transition: color var(--transition-fast);
+		line-height: 1.2;
 	}
 
-	.info-link:hover {
+	.status-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: #2e7d32;
+		box-shadow: 0 0 0 3px color-mix(in srgb, #2e7d32 22%, transparent);
+		flex-shrink: 0;
+	}
+
+	/* ── 2. Proof & Brand Strip ── */
+	.proof-strip {
+		padding: var(--spacing-10) var(--spacing-6);
+		border-bottom: 1px solid var(--color-border);
+		background: color-mix(in srgb, var(--color-bg-subtle) 55%, transparent);
+	}
+
+	.proof-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--spacing-4);
+	}
+
+	.proof-item {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-5) var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.proof-value {
+		font-family: var(--font-mono);
+		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
 		color: var(--color-accent);
 	}
 
-	/* ── Content area ── */
-	.content-area {
-		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-16);
+	.proof-label {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		line-height: var(--leading-normal);
+		color: var(--color-text-secondary);
 	}
 
-	/* ── Featured post ── */
-	.featured-label-row {
+	.brand-strip {
+		margin-top: var(--spacing-6);
+		padding-top: var(--spacing-5);
+		border-top: 1px solid var(--color-border-subtle);
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		gap: var(--spacing-4);
-		margin-bottom: var(--spacing-6);
+		flex-wrap: wrap;
 	}
 
-	.featured-label {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		text-transform: uppercase;
+	.brand-strip-label {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 600;
 		letter-spacing: var(--tracking-wider);
-		color: var(--color-muted);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.brand-strip-list {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-text-secondary);
+	}
+
+	.brand-strip-item {
+		font-weight: 500;
 		white-space: nowrap;
 	}
 
-	.featured-rule {
-		flex: 1;
-		height: 1px;
-		background: var(--color-border-subtle);
+	.brand-strip-sep {
+		color: var(--color-muted);
+	}
+
+	/* ── Main Sections Container ── */
+	.main-sections {
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-20);
+	}
+
+	/* ── 3. § I — Writing & Research ── */
+	.writing-layout {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-10);
 	}
 
 	.featured-card {
 		display: block;
-		background: var(--color-bg-subtle);
+		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
 		text-decoration: none;
 		color: inherit;
-		overflow: hidden;
+		padding: var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
 		transition:
 			border-color var(--transition-base),
-			box-shadow var(--transition-base);
+			box-shadow var(--transition-base),
+			transform var(--transition-base);
 	}
 
 	.featured-card:hover {
 		border-color: var(--color-accent);
-		box-shadow: 0 4px 24px color-mix(in srgb, var(--color-accent) 10%, transparent);
+		box-shadow: var(--shadow-feature);
 	}
 
-	.featured-card-inner {
-		padding: var(--spacing-10);
-		max-width: 780px;
+	.featured-card-grid {
+		display: grid;
+		grid-template-columns: 200px minmax(0, 1fr);
+		gap: var(--spacing-8);
+		align-items: stretch;
 	}
 
-	.featured-card-meta {
+	.featured-card-aside {
 		display: flex;
-		align-items: center;
-		gap: var(--spacing-3);
-		margin-bottom: var(--spacing-4);
+		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		padding-right: var(--spacing-6);
+		border-right: 1px solid var(--color-border-subtle);
+	}
+
+	.featured-meta-top {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-2);
+	}
+
+	.article-num-badge {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-text);
 	}
 
 	.category-tag {
 		display: inline-block;
 		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
-		color: var(--color-on-accent);
-		background: var(--color-accent);
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
 		border-radius: var(--radius);
 		padding: 2px var(--spacing-2);
 	}
 
-	.article-num-badge {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-	}
-
-	.featured-card-title {
-		font-size: clamp(var(--font-size-2xl), 3.5vw, var(--font-size-4xl));
-		font-weight: 700;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
-		margin-bottom: var(--spacing-4);
-		transition: color var(--transition-fast);
-	}
-
-	.featured-card:hover .featured-card-title {
-		color: var(--color-accent);
-	}
-
-	.featured-card-excerpt {
-		font-size: var(--font-size-lg);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
-		margin-bottom: var(--spacing-6);
-		max-width: 60ch;
-	}
-
-	.featured-card-foot {
+	.featured-meta-bottom {
 		display: flex;
-		align-items: center;
-		gap: var(--spacing-4);
-		flex-wrap: wrap;
+		flex-direction: column;
+		gap: 2px;
 	}
 
 	.article-date-mono,
@@ -594,42 +870,59 @@ function getFirstCategory(entryDataId: string) {
 		color: var(--color-muted);
 	}
 
-	.read-link {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		color: var(--color-accent);
-		margin-left: auto;
-	}
-
-	/* ── Numbered article list ── */
-	.section-header {
+	.featured-card-body {
 		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		margin-bottom: var(--spacing-6);
-		padding-bottom: var(--spacing-4);
-		border-bottom: 1px solid var(--color-border-subtle);
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
-	.section-title {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
+	.featured-eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-wider);
 		color: var(--color-muted);
+		margin-bottom: var(--spacing-2);
 	}
 
-	.section-link {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		color: var(--color-accent);
-		text-decoration: none;
+	.featured-card-title {
+		font-family: var(--font-heading);
+		font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-3);
 		transition: color var(--transition-fast);
 	}
 
-	.section-link:hover {
-		color: var(--color-accent-hover);
+	.featured-card:hover .featured-card-title {
+		color: var(--color-accent);
+	}
+
+	.featured-card-excerpt {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-5);
+		max-width: 64ch;
+	}
+
+	.featured-cta {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+		margin-top: auto;
+	}
+
+	/* Numbered Article Rows */
+	.articles-index {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-2) var(--spacing-6) var(--spacing-5);
 	}
 
 	.articles-list {
@@ -639,19 +932,15 @@ function getFirstCategory(entryDataId: string) {
 
 	.article-row {
 		display: grid;
-		grid-template-columns: 3.5rem 7.5rem 6rem 1fr 4rem;
+		grid-template-columns: 3.75rem 7.5rem 6.5rem minmax(0, 1fr) 4.25rem;
 		align-items: baseline;
 		gap: var(--spacing-4);
 		padding: var(--spacing-4) var(--spacing-2);
 		border-bottom: 1px solid var(--color-border-subtle);
 		text-decoration: none;
 		color: inherit;
-		transition: background var(--transition-fast);
 		border-radius: var(--radius);
-	}
-
-	.article-row:last-child {
-		border-bottom: none;
+		transition: background-color var(--transition-fast);
 	}
 
 	.article-row:hover {
@@ -665,23 +954,17 @@ function getFirstCategory(entryDataId: string) {
 	.article-num {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-		white-space: nowrap;
-	}
-
-	.article-date-mono {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
+		font-weight: 500;
 		color: var(--color-muted);
 		white-space: nowrap;
 	}
 
 	.article-cat {
 		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-amber);
 		white-space: nowrap;
 		overflow: hidden;
@@ -689,6 +972,7 @@ function getFirstCategory(entryDataId: string) {
 	}
 
 	.article-title-col {
+		font-family: var(--font-heading);
 		font-size: var(--font-size-base);
 		font-weight: 500;
 		line-height: var(--leading-snug);
@@ -708,12 +992,14 @@ function getFirstCategory(entryDataId: string) {
 	}
 
 	.see-all-row {
-		padding-top: var(--spacing-8);
+		padding-top: var(--spacing-4);
+		padding-left: var(--spacing-2);
 	}
 
 	.see-all-link {
 		font-family: var(--font-sans);
 		font-size: var(--font-size-sm);
+		font-weight: 600;
 		color: var(--color-accent);
 		text-decoration: none;
 		transition: color var(--transition-fast);
@@ -723,71 +1009,501 @@ function getFirstCategory(entryDataId: string) {
 		color: var(--color-accent-hover);
 	}
 
-	/* ── Empty state ── */
 	.empty-state {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-12) var(--spacing-6);
+		text-align: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: var(--spacing-4);
-		text-align: center;
-		padding: var(--spacing-24) var(--spacing-6);
-		font-family: var(--font-sans);
 		color: var(--color-muted);
 	}
 
-	/* ── Responsive ── */
+	/* ── 4. § II — Selected Case Studies ── */
+	.work-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-6);
+	}
+
+	.case-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-5);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
+	}
+
+	.case-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.case-card-top {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+	}
+
+	.case-tag {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-1);
+	}
+
+	.case-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+	}
+
+	.case-domain {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.case-metrics {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--spacing-3);
+		padding: var(--spacing-4);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: calc(var(--radius-lg) - 4px);
+	}
+
+	.case-metric-box {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.case-metric-value {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		line-height: 1.15;
+		color: var(--color-accent);
+	}
+
+	.case-metric-label {
+		font-family: var(--font-sans);
+		font-size: 0.75rem;
+		line-height: 1.3;
+		color: var(--color-text-secondary);
+	}
+
+	.case-summary {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		flex: 1;
+	}
+
+	.case-link {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+		align-self: flex-start;
+		transition: color var(--transition-fast);
+	}
+
+	.case-link:hover {
+		color: var(--color-accent-hover);
+	}
+
+	/* ── 5. § III — Capabilities & Consulting ── */
+	.capabilities-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-6);
+	}
+
+	.capability-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
+	}
+
+	.capability-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.capability-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+	}
+
+	.capability-num {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.capability-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 500;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.capability-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.22;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+	}
+
+	.capability-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		flex: 1;
+	}
+
+	.capability-foot {
+		padding-top: var(--spacing-4);
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.capability-deliverables {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	/* ── 6. § IV — Now & Direct Connect ── */
+	.now-connect-grid {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: var(--spacing-8);
+		align-items: stretch;
+	}
+
+	.now-column {
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		display: flex;
+		flex-direction: column;
+	}
+
+	.now-heading,
+	.connect-heading {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-5);
+	}
+
+	.now-list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-5);
+	}
+
+	.now-list li {
+		display: flex;
+		align-items: baseline;
+		gap: var(--spacing-3);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+	}
+
+	.now-list strong {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.now-arrow {
+		font-family: var(--font-mono);
+		font-weight: 600;
+		color: var(--color-accent);
+		flex-shrink: 0;
+	}
+
+	.connect-column {
+		display: flex;
+	}
+
+	.connect-card {
+		width: 100%;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+	}
+
+	.connect-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.connect-channels {
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid var(--color-border-subtle);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.connect-channel-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		padding: var(--spacing-3) 0;
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.connect-channel-row dt {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.connect-channel-row dd {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+	}
+
+	.connect-channel-row a {
+		color: var(--color-text);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.connect-channel-row a:hover {
+		color: var(--color-accent);
+	}
+
+	.connect-actions {
+		margin-top: auto;
+	}
+
+	.connect-cta {
+		width: 100%;
+	}
+
+	/* ── Responsive Breakpoints ── */
+	@media (max-width: 980px) {
+		.work-grid,
+		.capabilities-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.proof-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
 	@media (max-width: 860px) {
 		.hero-inner {
-			flex-direction: column-reverse;
+			grid-template-columns: 1fr;
 			gap: var(--spacing-8);
 		}
 
 		.hero-portrait {
-			padding-top: 0;
+			max-width: 360px;
+		}
+
+		.portrait-card {
 			flex-direction: row;
 			align-items: center;
-			gap: var(--spacing-5);
+			gap: var(--spacing-4);
 		}
 
 		.portrait-frame {
-			width: 100px;
-			height: 100px;
+			width: 104px;
+			height: 104px;
+			aspect-ratio: 1 / 1;
+			flex-shrink: 0;
 		}
-	}
 
-	@media (max-width: 900px) {
+		.featured-card-grid {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-4);
+		}
+
+		.featured-card-aside {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			padding-right: 0;
+			padding-bottom: var(--spacing-4);
+			border-right: none;
+			border-bottom: 1px solid var(--color-border-subtle);
+		}
+
+		.featured-meta-top {
+			flex-direction: row;
+			align-items: center;
+		}
+
+		.featured-meta-bottom {
+			flex-direction: row;
+			align-items: center;
+			gap: var(--spacing-3);
+		}
+
 		.article-row {
-			grid-template-columns: 3rem 1fr auto;
+			grid-template-columns: 3.25rem 1fr auto;
 			grid-template-rows: auto auto;
+			gap: var(--spacing-1) var(--spacing-3);
 		}
 
-		.article-num { grid-row: 1; grid-column: 1; }
-		.article-title-col { grid-row: 1; grid-column: 2 / 4; white-space: normal; }
-		.article-date-mono { grid-row: 2; grid-column: 2; }
-		.article-cat { grid-row: 2; grid-column: 3; }
-		.article-time { display: none; }
+		.article-num {
+			grid-row: 1;
+			grid-column: 1;
+		}
+
+		.article-title-col {
+			grid-row: 1;
+			grid-column: 2 / 4;
+			white-space: normal;
+		}
+
+		.article-date-mono {
+			grid-row: 2;
+			grid-column: 2;
+		}
+
+		.article-cat {
+			grid-row: 2;
+			grid-column: 3;
+		}
+
+		.article-time {
+			display: none;
+		}
+
+		.now-connect-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	@media (max-width: 700px) {
-		.info-inner { grid-template-columns: 1fr; }
-		.info-col:first-child { border-right: none; border-bottom: 1px solid var(--color-border-subtle); }
+		.work-grid,
+		.capabilities-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.section-index-header {
+			flex-wrap: wrap;
+			row-gap: var(--spacing-2);
+		}
+
+		.section-index-title {
+			white-space: normal;
+		}
 	}
 
 	@media (max-width: 600px) {
-		.hero { padding: var(--spacing-10) var(--spacing-4) var(--spacing-10); }
-		.info-col { padding: var(--spacing-8) var(--spacing-4); }
-		.content-area { padding: var(--spacing-10) var(--spacing-4) var(--spacing-16); }
-		.featured-card-inner { padding: var(--spacing-6); }
+		.hero {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-12);
+		}
+
+		.hero-masthead {
+			margin-bottom: var(--spacing-6);
+		}
+
+		.portrait-card {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.portrait-frame {
+			width: 96px;
+			height: 96px;
+		}
+
+		.proof-strip {
+			padding: var(--spacing-8) var(--spacing-4);
+		}
+
+		.proof-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.main-sections {
+			padding: var(--spacing-12) var(--spacing-4) var(--spacing-16);
+			gap: var(--spacing-16);
+		}
+
+		.featured-card,
+		.now-column,
+		.connect-card {
+			padding: var(--spacing-6);
+		}
+
+		.articles-index {
+			padding: var(--spacing-2) var(--spacing-4) var(--spacing-4);
+		}
 
 		.article-row {
-			grid-template-columns: 2.5rem 1fr;
-			gap: var(--spacing-2) var(--spacing-3);
+			grid-template-columns: 2.75rem 1fr;
+			gap: var(--spacing-1) var(--spacing-3);
 		}
 
 		.article-date-mono,
 		.article-cat,
-		.article-time { display: none; }
+		.article-time {
+			display: none;
+		}
 
-		.article-title-col { grid-column: 2; white-space: normal; }
+		.article-title-col {
+			grid-column: 2;
+			white-space: normal;
+		}
 	}
 </style>
