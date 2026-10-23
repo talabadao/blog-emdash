@@ -402,7 +402,12 @@ const processStages = [
 						<span class="campaign-industry-pill">Vietnam Enterprise Nutrition &amp; FMCG</span>
 						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Specialist)</span>
 					</div>
-					<h2 class="campaign-title">01. Vinamilk | Nutrition E-Commerce Project</h2>
+					<div class="campaign-title-bar">
+						<h2 class="campaign-title">01. Vinamilk | Nutrition E-Commerce Project</h2>
+						<span class="campaign-logo-badge">
+							<img src="/logos/vinamilk.png" alt="Vinamilk logo" class="campaign-logo-img" width="120" height="48" loading="lazy" />
+						</span>
+					</div>
 
 					<div class="campaign-kpi-tiles">
 						<div class="kpi-tile">
@@ -489,7 +494,12 @@ const processStages = [
 						<span class="campaign-industry-pill">Global Dropshipping (US, SG, IT, AU) · Furniture &amp; Lighting</span>
 						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Specialist)</span>
 					</div>
-					<h2 class="campaign-title">02. IndochinaLight | Global Dropshipping E-Commerce</h2>
+					<div class="campaign-title-bar">
+						<h2 class="campaign-title">02. IndochinaLight | Global Dropshipping E-Commerce</h2>
+						<span class="campaign-logo-badge">
+							<img src="/logos/indochinalight.png" alt="IndochinaLight logo" class="campaign-logo-img" width="120" height="48" loading="lazy" />
+						</span>
+					</div>
 
 					<div class="campaign-kpi-tiles">
 						<div class="kpi-tile">
@@ -595,7 +605,12 @@ const processStages = [
 						<span class="campaign-industry-pill">Tactical Flashlight E-Commerce · Vietnam</span>
 						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Executive)</span>
 					</div>
-					<h2 class="campaign-title">03. Shadow Vietnam | Flashlight E-Commerce Project</h2>
+					<div class="campaign-title-bar">
+						<h2 class="campaign-title">03. Shadow Vietnam | Flashlight E-Commerce Project</h2>
+						<span class="campaign-logo-badge">
+							<img src="/logos/shadow-vn.png" alt="Shadow Vietnam logo" class="campaign-logo-img" width="120" height="48" loading="lazy" />
+						</span>
+					</div>
 
 					<div class="campaign-kpi-tiles">
 						<div class="kpi-tile">
@@ -678,7 +693,12 @@ const processStages = [
 						<span class="campaign-industry-pill">Luxury European Travel &amp; Tourism</span>
 						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Trainee)</span>
 					</div>
-					<h2 class="campaign-title">04. EuroTravel | European Travel Project</h2>
+					<div class="campaign-title-bar">
+						<h2 class="campaign-title">04. EuroTravel | European Travel Project</h2>
+						<span class="campaign-logo-badge">
+							<img src="/logos/eurotravel.png" alt="EuroTravel logo" class="campaign-logo-img" width="120" height="48" loading="lazy" />
+						</span>
+					</div>
 
 					<div class="campaign-kpi-tiles">
 						<div class="kpi-tile">
@@ -822,7 +842,12 @@ const processStages = [
 						<span class="campaign-industry-pill">Vietnam B2B SEO Agency Flagship</span>
 						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Specialist)</span>
 					</div>
-					<h2 class="campaign-title">05. GTV SEO Project | B2B Agency &amp; AI Search</h2>
+					<div class="campaign-title-bar">
+						<h2 class="campaign-title">05. GTV SEO Project | B2B Agency &amp; AI Search</h2>
+						<span class="campaign-logo-badge">
+							<img src="/logos/gtv-seo.png" alt="GTV SEO logo" class="campaign-logo-img" width="120" height="48" loading="lazy" />
+						</span>
+					</div>
 
 					<div class="campaign-kpi-tiles">
 						<div class="kpi-tile">
@@ -956,7 +981,12 @@ const processStages = [
 						<span class="campaign-industry-pill">Electronic Equipment Service · Australia</span>
 						<span class="campaign-role-pill">Advisor &amp; Implementer Achieving Project-End KPIs</span>
 					</div>
-					<h2 class="campaign-title">06. Repair Centre VIC | Australia Rapid Turnaround</h2>
+					<div class="campaign-title-bar">
+						<h2 class="campaign-title">06. Repair Centre VIC | Australia Rapid Turnaround</h2>
+						<span class="campaign-logo-badge">
+							<img src="/logos/repair-centre-vic.png" alt="Repair Centre VIC FixUpp logo" class="campaign-logo-img" width="120" height="48" loading="lazy" />
+						</span>
+					</div>
 
 					<div class="campaign-kpi-tiles">
 						<div class="kpi-tile">
@@ -2100,6 +2130,34 @@ const processStages = [
 	.campaign-role-pill {
 		background: rgba(45, 74, 45, 0.12);
 		color: var(--color-primary);
+	}
+
+	.campaign-title-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.campaign-logo-badge {
+		width: 120px;
+		height: 48px;
+		border-radius: 8px;
+		border: 1px solid var(--color-border);
+		background: #ffffff;
+		overflow: hidden;
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+	}
+
+	.campaign-logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	.campaign-title {

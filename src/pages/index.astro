@@ -70,6 +70,7 @@ const marqueeBrands = [
 		name: "GTV SEO",
 		sub: "gtvseo.com · B2B SEO Agency",
 		metric: "#1 ChatGPT / Grok / Claude",
+		logo: "/logos/gtv-seo.png",
 		href: "#cases",
 	},
 	{
@@ -77,6 +78,7 @@ const marqueeBrands = [
 		name: "Vinamilk",
 		sub: "vinamilk.com.vn · Enterprise FMCG",
 		metric: "300K Clicks/Mo (GSC)",
+		logo: "/logos/vinamilk.png",
 		href: "#cases",
 	},
 	{
@@ -84,6 +86,7 @@ const marqueeBrands = [
 		name: "IndochinaLight",
 		sub: "Global E-Commerce · US, SG, IT, AU",
 		metric: "+409% Sales · 100% KPI",
+		logo: "/logos/indochinalight.png",
 		href: "#cases",
 	},
 	{
@@ -91,6 +94,7 @@ const marqueeBrands = [
 		name: "Repair Centre VIC",
 		sub: "repaircentrevic.com.au · Australia",
 		metric: "Top 3–5 in 2 Weeks",
+		logo: "/logos/repair-centre-vic.png",
 		href: "#cases",
 	},
 	{
@@ -98,6 +102,7 @@ const marqueeBrands = [
 		name: "Shadow Vietnam",
 		sub: "shadow.vn · Flashlight E-Commerce",
 		metric: "+25% MoM Revenue",
+		logo: "/logos/shadow-vn.png",
 		href: "#cases",
 	},
 	{
@@ -105,6 +110,7 @@ const marqueeBrands = [
 		name: "EuroTravel",
 		sub: "eurotravel.com.vn · European Travel",
 		metric: "100K Traffic · 120% KPI",
+		logo: "/logos/eurotravel.png",
 		href: "#cases",
 	},
 ];
@@ -167,6 +173,7 @@ const flagshipCases = [
 		timeline: "Nov 2024 – Apr 2025 · 6 mos",
 		market: "Global (US, SG, IT, AU)",
 		role: "Lead & Primary Implementer (SEO Specialist)",
+		logo: "/logos/indochinalight.png",
 		metrics: [
 			{ value: "100%", label: "KPIs in 3–5 Mos" },
 			{ value: "Top 10", label: '"rattan pendant light"' },
@@ -187,6 +194,7 @@ const flagshipCases = [
 		timeline: "Feb 2025 · 1 mo",
 		market: "Australia",
 		role: "Advisor & Implementer Achieving Project-End KPIs (SEO Specialist)",
+		logo: "/logos/repair-centre-vic.png",
 		metrics: [
 			{ value: "Top 3–5", label: "AU Rankings in 2 Wks" },
 			{ value: "85%", label: "Overall KPI in 2 Wks" },
@@ -206,6 +214,7 @@ const flagshipCases = [
 		timeline: "Apr 2023 – Dec 2024 · 1 yr 9 mos",
 		market: "Vietnam · B2B",
 		role: "Lead & Primary Implementer (SEO Specialist)",
+		logo: "/logos/gtv-seo.png",
 		metrics: [
 			{ value: "Top 1", label: "ChatGPT / Grok / Claude" },
 			{ value: "Top 1–3", label: '"báo giá seo", "khóa học seo"' },
@@ -225,6 +234,7 @@ const flagshipCases = [
 		timeline: "Nov 2023 – Mar 2024 · 5 mos",
 		market: "Vietnam · FMCG",
 		role: "Lead & Primary Implementer (SEO Specialist)",
+		logo: "/logos/vinamilk.png",
 		metrics: [
 			{ value: "300K/mo", label: "GSC Clicks (826K+ Total)" },
 			{ value: "320K/mo", label: "Monthly Traffic" },
@@ -245,6 +255,7 @@ const flagshipCases = [
 		timeline: "Apr 2023 – Nov 2023 · 8 mos",
 		market: "Vietnam · Retail & B2G",
 		role: "Lead & Primary Implementer (SEO Executive)",
+		logo: "/logos/shadow-vn.png",
 		metrics: [
 			{ value: "+25% MoM", label: "Revenue (+26.81%)" },
 			{ value: "100%", label: "SEO KPI Delivered" },
@@ -265,6 +276,7 @@ const flagshipCases = [
 		timeline: "Nov 2022 – May 2023 · 7 mos",
 		market: "Vietnam · Tourism",
 		role: "Lead & Primary Implementer (SEO Trainee)",
+		logo: "/logos/eurotravel.png",
 		metrics: [
 			{ value: "100K/mo", label: "Monthly Traffic (102.5K Peak)" },
 			{ value: "80K/mo", label: "GSC Clicks (20K Guides)" },
@@ -527,40 +539,15 @@ const homeFaqJsonLd = {
 									aria-hidden={idx >= marqueeBrands.length ? "true" : undefined}
 									tabindex={idx >= marqueeBrands.length ? -1 : undefined}
 								>
-									<span class="marquee-brand-icon" aria-hidden="true">
-										{brand.id === "gtv" && (
-											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-											</svg>
-										)}
-										{brand.id === "vinamilk" && (
-											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
-											</svg>
-										)}
-										{brand.id === "indochina" && (
-											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<circle cx="12" cy="12" r="10" />
-												<line x1="2" y1="12" x2="22" y2="12" />
-												<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-											</svg>
-										)}
-										{brand.id === "repair" && (
-											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-												<line x1="12" y1="18" x2="12.01" y2="18" />
-											</svg>
-										)}
-										{brand.id === "shadow" && (
-											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-											</svg>
-										)}
-										{brand.id === "eurotravel" && (
-											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
-											</svg>
-										)}
+									<span class="marquee-brand-logo-wrap">
+										<img
+											src={brand.logo}
+											alt={`${brand.name} official logo`}
+											class="marquee-brand-logo-img"
+											width="120"
+											height="48"
+											loading="eager"
+										/>
 									</span>
 									<span class="marquee-brand-info">
 										<span class="marquee-brand-top">
@@ -709,8 +696,22 @@ const homeFaqJsonLd = {
 										<span class="case-market-tag">{study.market}</span>
 										<span class="case-timeline-mono">{study.timeline}</span>
 									</div>
-									<h3 class="case-title">{study.name}</h3>
-									<span class="case-subtitle">{study.subtitle}</span>
+									<div class="case-title-row">
+										<div class="case-title-text">
+											<h3 class="case-title">{study.name}</h3>
+											<span class="case-subtitle">{study.subtitle}</span>
+										</div>
+										<span class="case-logo-badge">
+											<img
+												src={study.logo}
+												alt={`${study.name} logo`}
+												class="case-logo-img"
+												width="110"
+												height="44"
+												loading="lazy"
+											/>
+										</span>
+									</div>
 									<span class="case-role-badge">{study.role}</span>
 								</div>
 
@@ -1669,21 +1670,25 @@ const homeFaqJsonLd = {
 		transform: translateY(-2px);
 	}
 
-	.marquee-brand-icon {
-		width: 42px;
-		height: 42px;
-		border-radius: 10px;
-		background: color-mix(in srgb, var(--color-primary) 10%, var(--color-bg-subtle));
+	.marquee-brand-logo-wrap {
+		width: 112px;
+		height: 45px;
+		border-radius: 8px;
+		background: #ffffff;
 		border: 1px solid var(--color-border);
-		color: var(--color-primary);
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		overflow: hidden;
 		flex-shrink: 0;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 	}
 
-	:global(:root.dark) .marquee-brand-icon {
-		color: var(--color-accent);
+	.marquee-brand-logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	.marquee-brand-info {
@@ -2022,6 +2027,41 @@ const homeFaqJsonLd = {
 		font-size: 0.6875rem;
 		color: var(--color-muted);
 		margin-left: auto;
+	}
+
+	.case-title-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+		margin: 2px 0;
+	}
+
+	.case-title-text {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	.case-logo-badge {
+		width: 115px;
+		height: 46px;
+		border-radius: 8px;
+		border: 1px solid var(--color-border);
+		background: #ffffff;
+		overflow: hidden;
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.case-logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	.case-title {

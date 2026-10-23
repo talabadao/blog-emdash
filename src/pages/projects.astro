@@ -16,6 +16,7 @@ interface ProjectItem {
 	id: string;
 	number: string;
 	name: string;
+	logo: string;
 	domain: string;
 	domainUrl?: string;
 	timeline: string;
@@ -67,6 +68,7 @@ const projects: ProjectItem[] = [
 		id: "indochinalight",
 		number: "01",
 		name: "IndochinaLight | Global Dropshipping E-Commerce Project",
+		logo: "/logos/indochinalight.png",
 		domain: "Global Storefront (US, Singapore, Italy, Australia)",
 		timeline: "Nov 2024 – Apr 2025 · 6 mos",
 		industry: "Furniture & Lighting Dropshipping",
@@ -96,6 +98,7 @@ const projects: ProjectItem[] = [
 		id: "repair-au",
 		number: "02",
 		name: "Repair Centre VIC | Electronic Equipment Service Project",
+		logo: "/logos/repair-centre-vic.png",
 		domain: "repaircentrevic.com.au",
 		domainUrl: "https://repaircentrevic.com.au/",
 		timeline: "Feb 2025 · 1 mo",
@@ -119,6 +122,7 @@ const projects: ProjectItem[] = [
 		id: "gtv-agency",
 		number: "03",
 		name: "GTV SEO Project | B2B SEO Agency",
+		logo: "/logos/gtv-seo.png",
 		domain: "gtvseo.com",
 		domainUrl: "https://gtvseo.com/",
 		timeline: "Apr 2023 – Dec 2024 · 1 yr 9 mos",
@@ -142,6 +146,7 @@ const projects: ProjectItem[] = [
 		id: "vinamilk",
 		number: "04",
 		name: "Vinamilk | Nutrition E-Commerce Project",
+		logo: "/logos/vinamilk.png",
 		domain: "vinamilk.com.vn",
 		domainUrl: "https://www.vinamilk.com.vn/",
 		timeline: "Nov 2023 – Mar 2024 · 5 mos",
@@ -172,6 +177,7 @@ const projects: ProjectItem[] = [
 		id: "shadow-vn",
 		number: "05",
 		name: "Shadow Vietnam | Flashlight E-Commerce Project",
+		logo: "/logos/shadow-vn.png",
 		domain: "shadow.vn",
 		timeline: "Apr 2023 – Nov 2023 · 8 mos",
 		industry: "Tactical Flashlight E-Commerce",
@@ -206,6 +212,7 @@ const projects: ProjectItem[] = [
 		id: "eurotravel",
 		number: "06",
 		name: "EuroTravel | European Travel Project",
+		logo: "/logos/eurotravel.png",
 		domain: "eurotravel.com.vn",
 		domainUrl: "https://eurotravel.com.vn/",
 		timeline: "Nov 2022 – May 2023 · 7 mos",
@@ -328,24 +335,38 @@ const projects: ProjectItem[] = [
 								<span class="timeline-mono">{project.timeline}</span>
 							</div>
 
-							<!-- Title, Domain & Role -->
+							<!-- Title, Domain, Logo & Role -->
 							<div class="card-header-block">
-								<h3 class="project-name">{project.name}</h3>
-								<div class="card-submeta">
-									{project.domainUrl ? (
-										<a
-											href={project.domainUrl}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="project-domain"
-										>
-											{project.domain} ↗
-										</a>
-									) : (
-										<span class="project-domain">{project.domain}</span>
-									)}
-									<span class="submeta-sep" aria-hidden="true">·</span>
-									<span class="project-role">{project.role}</span>
+								<div class="card-header-row">
+									<div class="card-header-main">
+										<h3 class="project-name">{project.name}</h3>
+										<div class="card-submeta">
+											{project.domainUrl ? (
+												<a
+													href={project.domainUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="project-domain"
+												>
+													{project.domain} ↗
+												</a>
+											) : (
+												<span class="project-domain">{project.domain}</span>
+											)}
+											<span class="submeta-sep" aria-hidden="true">·</span>
+											<span class="project-role">{project.role}</span>
+										</div>
+									</div>
+									<span class="project-logo-badge">
+										<img
+											src={project.logo}
+											alt={`${project.name} logo`}
+											class="project-logo-img"
+											width="120"
+											height="48"
+											loading="lazy"
+										/>
+									</span>
 								</div>
 							</div>
 
@@ -804,6 +825,41 @@ const projects: ProjectItem[] = [
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-1);
+	}
+
+	.card-header-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+	}
+
+	.card-header-main {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+		min-width: 0;
+	}
+
+	.project-logo-badge {
+		width: 120px;
+		height: 48px;
+		border-radius: 8px;
+		border: 1px solid var(--color-border);
+		background: #ffffff;
+		overflow: hidden;
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+	}
+
+	.project-logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
 	}
 
 	.project-name {
