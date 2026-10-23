@@ -23,134 +23,444 @@ function formatDate(date: Date | null | undefined): string {
 	return date.toISOString().slice(0, 10).replace(/-/g, "·");
 }
 
+function formatIssueNumber(
+	num: number | null | undefined,
+	fallback: number,
+): string {
+	return String(num ?? fallback).padStart(2, "0");
+}
+
 // Group posts by year for the archive view
 type PostWithMeta = {
 	post: (typeof posts)[number];
 	category: { slug: string; label: string } | null;
+	categorySlugs: string[];
+	issueNum: string;
 };
 
 const grouped = new Map<number, PostWithMeta[]>();
+const categoryCounts = new Map<string, number>();
+const discoveredLabels = new Map<string, string>();
 
-for (const post of posts) {
-	const cats = categoriesByEntry.get(post.data.id);
-	const category = cats && cats.length > 0 ? { slug: cats[0].slug, label: cats[0].label } : null;
+posts.forEach((post, index) => {
+	const cats = categoriesByEntry.get(post.data.id) ?? [];
+	const category =
+		cats.length > 0 ? { slug: cats[0].slug, label: cats[0].label } : null;
+	const categorySlugs = cats.map((c: { slug: string; label: string }) => c.slug);
+
+	for (const c of cats) {
+		categoryCounts.set(c.slug, (categoryCounts.get(c.slug) ?? 0) + 1);
+		discoveredLabels.set(c.slug, c.label);
+	}
+
 	const year = post.data.publishedAt?.getFullYear() ?? 0;
+	const issueNum = formatIssueNumber(post.data.number, posts.length - index);
 
 	if (!grouped.has(year)) grouped.set(year, []);
-	grouped.get(year)!.push({ post, category });
-}
+	grouped.get(year)!.push({ post, category, categorySlugs, issueNum });
+});
 
 const years = [...grouped.keys()].sort((a, b) => b - a);
+
+// Core editorial categories + any extra active categories in the CMS
+const coreCategories = [
+	{ slug: "seo", label: "SEO" },
+	{ slug: "ai", label: "AI" },
+	{ slug: "case-study", label: "Case Study" },
+	{ slug: "agency", label: "Agency" },
+	{ slug: "tools", label: "Tools" },
+];
+
+const coreSlugs = new Set(coreCategories.map((c) => c.slug));
+const extraCategories: Array<{ slug: string; label: string }> = [];
+for (const [slug, label] of discoveredLabels.entries()) {
+	if (!coreSlugs.has(slug)) {
+		extraCategories.push({ slug, label });
+	}
+}
+
+const filterCategories = [...coreCategories, ...extraCategories];
 ---
 
-<Base title="Blog" description="All articles by Le Hoang Tin — SEO, AI search, case studies, and personal writing.">
+<Base
+	title="Writing on SEO, AI Search & Growth"
+	description="Full publication archive by Le Hoang Tin — technical SEO, Generative Engine Optimization (GEO), semantic content strategy, and campaign case studies."
+>
 	<div class="posts-page">
+		<!-- ── Page Header ── -->
 		<header class="page-header">
-			<p class="page-kicker">Writing</p>
-			<h1 class="page-title">All Articles</h1>
+			<span class="editorial-kicker">PUBLICATION ARCHIVE · VOL. I</span>
+			<h1 class="page-title">Writing on SEO, AI Search &amp; Growth</h1>
 			<p class="page-description">
-				{posts.length} {posts.length === 1 ? "article" : "articles"} on SEO, AI search, case studies, and more.
+				{posts.length} {posts.length === 1 ? "published essay" : "published essays"} and field notes on technical SEO, Generative Engine Optimization (GEO), semantic topical authority, and verifiable multi-market case studies.
 			</p>
 		</header>
 
-		{
-			posts.length === 0 ? (
-				<p class="empty">No posts yet.</p>
-			) : (
-				<div class="archive">
-					{years.map((year) => (
-						<div class="year-group">
-							<h2 class="year-label">{year === 0 ? "Undated" : year}</h2>
-							<div class="article-list" role="list">
-								{grouped.get(year)!.map(({ post, category }) => (
-									<a
-										href={`/posts/${post.id}`}
-										class="article-row"
-										role="listitem"
-									>
-										<span class="article-num">
-											{post.data.number != null ? `№ ${post.data.number}` : "—"}
-										</span>
-										<time class="article-date">
-											{formatDate(post.data.publishedAt)}
-										</time>
-										{category ? (
-											<span class="article-cat">{category.label}</span>
-										) : (
-											<span class="article-cat" />
-										)}
-										<span class="article-title-col">{post.data.title}</span>
-										<span class="article-time">
-											{getReadingTime(post.data.content)} min
-										</span>
-									</a>
-								))}
-							</div>
-						</div>
-					))}
+		<!-- ── § I — Interactive Filter Bar & Archive ── -->
+		<section class="archive-section" aria-labelledby="archive-section-title">
+			<div class="section-index-header">
+				<span class="section-index-badge">§ I</span>
+				<h2 class="section-index-title" id="archive-section-title">
+					Chronological Index · Issue Archive
+				</h2>
+				<span class="section-index-rule" aria-hidden="true"></span>
+				<span
+					id="archive-live-counter"
+					class="archive-counter"
+					aria-live="polite"
+				>
+					Showing {posts.length} of {posts.length} {posts.length === 1 ? "article" : "articles"}
+				</span>
+			</div>
+
+			<!-- Filter Pills + Quick Search Link -->
+			<div class="filter-bar-row">
+				<div
+					class="filter-pills"
+					role="toolbar"
+					aria-label="Filter articles by category"
+				>
+					<button
+						type="button"
+						class="filter-pill active"
+						data-filter="all"
+						aria-pressed="true"
+					>
+						<span>All</span>
+						<span class="pill-count">({posts.length})</span>
+					</button>
+					{
+						filterCategories.map((cat) => {
+							const count = categoryCounts.get(cat.slug) ?? 0;
+							return (
+								<button
+									type="button"
+									class="filter-pill"
+									data-filter={cat.slug}
+									aria-pressed="false"
+								>
+									<span>{cat.label}</span>
+									{count > 0 && <span class="pill-count">({count})</span>}
+								</button>
+							);
+						})
+					}
 				</div>
-			)
-		}
+
+				<a href="/search" class="search-archive-link">
+					Search archive ⌘K →
+				</a>
+			</div>
+
+			{
+				posts.length === 0 ? (
+					<div class="empty-card">
+						<p class="empty">No posts published yet.</p>
+					</div>
+				) : (
+					<div class="archive" id="posts-archive">
+						{years.map((year) => {
+							const yearPosts = grouped.get(year)!;
+							return (
+								<div class="year-group" data-year={year}>
+									<div class="year-header">
+										<h3 class="year-label">
+											{year === 0 ? "UNDATED" : year}
+										</h3>
+										<span class="year-rule" aria-hidden="true"></span>
+										<span class="year-count" data-year-count>
+											{yearPosts.length} {yearPosts.length === 1 ? "essay" : "essays"}
+										</span>
+									</div>
+
+									<div class="articles-index">
+										<div class="article-list" role="list">
+											{yearPosts.map(({ post, category, categorySlugs, issueNum }) => (
+												<a
+													href={`/posts/${post.id}`}
+													class="article-row"
+													role="listitem"
+													data-category={categorySlugs.join(" ")}
+												>
+													<span class="article-num">№ {issueNum}</span>
+													<time class="article-date">
+														{formatDate(post.data.publishedAt)}
+													</time>
+													{category ? (
+														<span class="article-cat">
+															<span class="article-cat-pill">{category.label}</span>
+														</span>
+													) : (
+														<span class="article-cat" />
+													)}
+													<span class="article-title-col">
+														{post.data.title}
+													</span>
+													<span class="article-time">
+														{getReadingTime(post.data.content)} min
+													</span>
+												</a>
+											))}
+										</div>
+									</div>
+								</div>
+							);
+						})}
+
+						<div id="filter-empty-state" class="empty-card" hidden>
+							<p class="empty">No articles found in this category yet.</p>
+							<button
+								type="button"
+								id="reset-filter-btn"
+								class="btn-secondary"
+							>
+								Show all articles ({posts.length}) →
+							</button>
+						</div>
+					</div>
+				)
+			}
+		</section>
 	</div>
 </Base>
+
+<script>
+	const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-pill");
+	const articleRows = document.querySelectorAll<HTMLElement>(".article-row");
+	const yearGroups = document.querySelectorAll<HTMLElement>(".year-group");
+	const liveCounter = document.getElementById("archive-live-counter");
+	const emptyState = document.getElementById("filter-empty-state");
+	const resetBtn = document.getElementById("reset-filter-btn");
+
+	const totalArticles = articleRows.length;
+
+	function filterArchive(selectedCategory: string) {
+		let totalVisible = 0;
+
+		yearGroups.forEach((group) => {
+			const rows = group.querySelectorAll<HTMLElement>(".article-row");
+			const yearCountEl = group.querySelector<HTMLElement>("[data-year-count]");
+			let visibleInYear = 0;
+
+			rows.forEach((row) => {
+				const rowCats = (row.dataset.category || "")
+					.split(/\s+/)
+					.filter(Boolean);
+				const matches =
+					selectedCategory === "all" || rowCats.includes(selectedCategory);
+
+				if (matches) {
+					row.hidden = false;
+					visibleInYear++;
+					totalVisible++;
+				} else {
+					row.hidden = true;
+				}
+			});
+
+			group.hidden = visibleInYear === 0;
+			if (yearCountEl) {
+				yearCountEl.textContent = `${visibleInYear} ${visibleInYear === 1 ? "essay" : "essays"}`;
+			}
+		});
+
+		filterButtons.forEach((btn) => {
+			const isActive = btn.dataset.filter === selectedCategory;
+			btn.classList.toggle("active", isActive);
+			btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+		});
+
+		if (liveCounter) {
+			liveCounter.textContent = `Showing ${totalVisible} of ${totalArticles} ${totalArticles === 1 ? "article" : "articles"}`;
+		}
+
+		if (emptyState) {
+			emptyState.hidden = totalVisible > 0;
+		}
+	}
+
+	filterButtons.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const category = btn.dataset.filter || "all";
+			filterArchive(category);
+		});
+	});
+
+	resetBtn?.addEventListener("click", () => {
+		filterArchive("all");
+	});
+</script>
 
 <style>
 	.posts-page {
 		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-14, 3.5rem);
 	}
 
+	/* ── Page Header ── */
 	.page-header {
-		max-width: 640px;
-		margin-bottom: var(--spacing-16);
+		max-width: 760px;
 		padding-bottom: var(--spacing-10);
-		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	.page-kicker {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-amber);
-		margin-bottom: var(--spacing-3);
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	.page-title {
-		font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
-		font-weight: 700;
-		font-style: italic;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
-		margin-bottom: var(--spacing-3);
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		font-style: normal;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-4);
 	}
 
 	.page-description {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-base);
-		color: var(--color-muted);
+		font-family: var(--font-body);
+		font-size: var(--font-size-lg);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		max-width: 64ch;
 	}
 
-	.empty {
-		font-family: var(--font-sans);
+	/* ── Section Index & Filter Bar ── */
+	.archive-counter {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
+	.filter-bar-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+		margin-bottom: var(--spacing-10);
+	}
+
+	.filter-pills {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+	}
+
+	.filter-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 7px var(--spacing-4);
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		color: var(--color-text-secondary);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		cursor: pointer;
+		transition:
+			background-color var(--transition-fast),
+			color var(--transition-fast),
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast);
+	}
+
+	.filter-pill:hover {
+		border-color: var(--color-accent);
+		color: var(--color-text);
+	}
+
+	.filter-pill.active {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--color-on-accent);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.pill-count {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 500;
+		opacity: 0.85;
+	}
+
+	.search-archive-link {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+		padding: 6px var(--spacing-3);
+		border-radius: var(--radius-full);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+		background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
+		white-space: nowrap;
+		transition:
+			background-color var(--transition-fast),
+			border-color var(--transition-fast),
+			color var(--transition-fast);
+	}
+
+	.search-archive-link:hover {
+		background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
+		border-color: var(--color-accent);
+		color: var(--color-accent-hover);
+	}
+
+	/* ── Archive Year Groups & Surface Card Rows ── */
 	.archive {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-12);
+		gap: var(--spacing-10);
+	}
+
+	.year-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.year-header {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
 	}
 
 	.year-label {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-sm);
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+		margin: 0;
+		white-space: nowrap;
+	}
+
+	.year-rule {
+		flex: 1;
+		height: 1px;
+		background: var(--color-border-subtle);
+	}
+
+	.year-count {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		color: var(--color-muted);
-		font-weight: 400;
-		margin-bottom: var(--spacing-4);
-		padding-bottom: var(--spacing-4);
-		border-bottom: 1px solid var(--color-border-subtle);
+		white-space: nowrap;
+	}
+
+	.articles-index {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-2) var(--spacing-6);
+		box-shadow: var(--shadow-tile-raised);
 	}
 
 	.article-list {
@@ -160,14 +470,15 @@ const years = [...grouped.keys()].sort((a, b) => b - a);
 
 	.article-row {
 		display: grid;
-		grid-template-columns: 3.5rem 7.5rem 6rem 1fr 4rem;
+		grid-template-columns: 3.75rem 7.5rem 7.25rem minmax(0, 1fr) 4.25rem;
 		align-items: baseline;
 		gap: var(--spacing-4);
-		padding: var(--spacing-4) 0;
+		padding: var(--spacing-4) var(--spacing-2);
 		border-bottom: 1px solid var(--color-border-subtle);
 		text-decoration: none;
 		color: inherit;
-		transition: background var(--transition-fast);
+		border-radius: var(--radius);
+		transition: background-color var(--transition-fast);
 	}
 
 	.article-row:last-child {
@@ -175,7 +486,7 @@ const years = [...grouped.keys()].sort((a, b) => b - a);
 	}
 
 	.article-row:hover {
-		background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+		background: color-mix(in srgb, var(--color-accent) 6%, transparent);
 	}
 
 	.article-row:hover .article-title-col {
@@ -185,6 +496,7 @@ const years = [...grouped.keys()].sort((a, b) => b - a);
 	.article-num {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
+		font-weight: 600;
 		color: var(--color-muted);
 		white-space: nowrap;
 	}
@@ -197,18 +509,30 @@ const years = [...grouped.keys()].sort((a, b) => b - a);
 	}
 
 	.article-cat {
+		display: inline-flex;
+		align-items: center;
+		min-width: 0;
+	}
+
+	.article-cat-pill {
+		display: inline-block;
 		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
+		font-size: 0.6875rem;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 1px var(--spacing-2);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
 	.article-title-col {
+		font-family: var(--font-heading);
 		font-size: var(--font-size-base);
 		line-height: var(--leading-snug);
 		color: var(--color-text);
@@ -227,11 +551,30 @@ const years = [...grouped.keys()].sort((a, b) => b - a);
 		white-space: nowrap;
 	}
 
-	/* Responsive */
+	.empty-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-12) var(--spacing-6);
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.empty {
+		font-family: var(--font-sans);
+		color: var(--color-muted);
+	}
+
+	/* ── Responsive ── */
 	@media (max-width: 900px) {
 		.article-row {
-			grid-template-columns: 3rem 1fr auto;
+			grid-template-columns: 3.25rem 1fr auto;
 			grid-template-rows: auto auto;
+			gap: var(--spacing-1) var(--spacing-3);
 		}
 
 		.article-num {
@@ -265,9 +608,13 @@ const years = [...grouped.keys()].sort((a, b) => b - a);
 			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
 		}
 
+		.articles-index {
+			padding: var(--spacing-2) var(--spacing-4);
+		}
+
 		.article-row {
-			grid-template-columns: 2.5rem 1fr;
-			gap: var(--spacing-2) var(--spacing-3);
+			grid-template-columns: 2.75rem 1fr;
+			gap: var(--spacing-1) var(--spacing-3);
 		}
 
 		.article-date,

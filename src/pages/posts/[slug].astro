@@ -72,11 +72,10 @@ const bylines = post.data.bylines ?? [];
 // Get reading time
 const readingTime = getReadingTime(post.data.content);
 
-// Fetch this post's tags and the related-posts list in parallel — they're
-// independent queries, so running them concurrently halves the round-trip
-// cost on remote databases.
+// Fetch this post's categories, tags, and the related-posts list in parallel
 // Note: post.id is the slug, post.data.id is the database ULID.
-const [tags, { entries: recentPosts }] = await Promise.all([
+const [categories, tags, { entries: recentPosts }] = await Promise.all([
+	getEntryTerms("posts", post.data.id, "category"),
 	getEntryTerms("posts", post.data.id, "tag"),
 	// Fetch a few extra in case the current post is among them
 	getEmDashCollection("posts", {
@@ -84,6 +83,7 @@ const [tags, { entries: recentPosts }] = await Promise.all([
 		limit: 4,
 	}),
 ]);
+const primaryCategory = categories[0] ?? null;
 const otherPosts = recentPosts.filter((p) => p.id !== post.id).slice(0, 3);
 
 // Single batched query for related-posts tags, rather than one
@@ -99,12 +99,21 @@ const otherPostsWithTags = otherPosts.map((p) => ({
 	bylines: p.data.bylines ?? [],
 }));
 
+const publishDateMono = post.data.publishedAt
+	? post.data.publishedAt.toISOString().slice(0, 10).replace(/-/g, "·")
+	: null;
+
 const publishDate =
 	post.data.publishedAt?.toLocaleDateString("en-US", {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
 	}) ?? null;
+
+const issueNumberFormatted =
+	post.data.number != null
+		? `№ ${String(post.data.number).padStart(2, "0")}`
+		: "ESSAY";
 ---
 
 <Base
@@ -119,6 +128,13 @@ const publishDate =
 	modifiedTime={post.data.updatedAt.toISOString()}
 	content={{ collection: "posts", id: post.data.id, slug }}
 >
+	<!-- Fixed 3px Reading Progress Bar below .site-header -->
+	<div
+		id="reading-progress-bar"
+		class="reading-progress-bar"
+		aria-hidden="true"
+	></div>
+
 	<article class="article">
 		{/* Hero: Full-width featured image */}
 		{
@@ -134,6 +150,10 @@ const publishDate =
 			{/* Left gutter: Meta information */}
 			<aside class="article-meta-col">
 				<div class="meta-sticky">
+					<div class="meta-block">
+						<span class="meta-label">Issue</span>
+						<span class="meta-value meta-value-mono">{issueNumberFormatted}</span>
+					</div>
 					{
 						bylines.length > 0 && (
 							<div class="meta-block byline-block">
@@ -143,9 +163,15 @@ const publishDate =
 								<div class="bylines">
 									{bylines.map((credit) => (
 										<div class="byline">
-											{credit.byline.avatarMediaId && (
+											{credit.byline.avatarMediaId ? (
 												<img
 													src={`/_emdash/api/media/file/${credit.byline.avatarMediaId}`}
+													alt={credit.byline.displayName}
+													class="byline-avatar"
+												/>
+											) : (
+												<img
+													src="/tin_le_hoang.jpg"
 													alt={credit.byline.displayName}
 													class="byline-avatar"
 												/>
@@ -154,8 +180,10 @@ const publishDate =
 												<span class="byline-name">
 													{credit.byline.displayName}
 												</span>
-												{credit.roleLabel && (
+												{credit.roleLabel ? (
 													<span class="byline-role">{credit.roleLabel}</span>
+												) : (
+													<span class="byline-role">Senior SEO &amp; GEO</span>
 												)}
 											</div>
 										</div>
@@ -165,17 +193,36 @@ const publishDate =
 						)
 					}
 					{
-						publishDate && (
+						publishDateMono && (
 							<div class="meta-block">
 								<span class="meta-label">Published</span>
-								<time class="meta-value">{publishDate}</time>
+								<time
+									class="meta-value meta-value-mono"
+									datetime={post.data.publishedAt?.toISOString()}
+									title={publishDate ?? undefined}
+								>
+									{publishDateMono}
+								</time>
 							</div>
 						)
 					}
 					<div class="meta-block">
 						<span class="meta-label">Reading time</span>
-						<span class="meta-value">{readingTime} min</span>
+						<span class="meta-value meta-value-mono">{readingTime} min read</span>
 					</div>
+					{
+						primaryCategory && (
+							<div class="meta-block">
+								<span class="meta-label">Category</span>
+								<a
+									href={`/category/${primaryCategory.slug}`}
+									class="meta-category-pill"
+								>
+									{primaryCategory.label}
+								</a>
+							</div>
+						)
+					}
 					{
 						tags.length > 0 && (
 							<div class="meta-block">
@@ -196,6 +243,20 @@ const publishDate =
 			{/* Main content */}
 			<div class="article-main">
 				<header class="article-header">
+					<div class="article-kicker-row">
+						<span class="article-issue-badge">{issueNumberFormatted}</span>
+						{
+							primaryCategory && (
+								<a
+									href={`/category/${primaryCategory.slug}`}
+									class="article-category-badge"
+								>
+									{primaryCategory.label}
+								</a>
+							)
+						}
+					</div>
+
 					<div class="article-meta">
 						{
 							bylines.length > 0 && (
@@ -213,19 +274,24 @@ const publishDate =
 							)
 						}
 						{
-							publishDate && (
+							publishDateMono && (
 								<>
-									<time>{publishDate}</time>
+									<time datetime={post.data.publishedAt?.toISOString()}>
+										{publishDateMono}
+									</time>
 									<span class="meta-dot" />
 								</>
 							)
 						}
 						<span>{readingTime} min read</span>
 					</div>
+
 					<h1 class="article-title" {...post.edit.title}>{post.data.title}</h1>
 					{
 						post.data.excerpt && (
-							<p class="article-excerpt" {...post.edit.excerpt}>{post.data.excerpt}</p>
+							<p class="article-excerpt" {...post.edit.excerpt}>
+								{post.data.excerpt}
+							</p>
 						)
 					}
 				</header>
@@ -233,6 +299,44 @@ const publishDate =
 				<div class="article-content">
 					<PortableText value={post.data.content} />
 				</div>
+
+				{/* Author Entity & Consulting CTA Box */}
+				<aside class="author-entity-box" aria-label="About the author">
+					<div class="author-entity-top">
+						<img
+							src="/tin_le_hoang.jpg"
+							alt="Le Hoang Tin — Senior SEO & GEO Specialist"
+							class="author-entity-avatar"
+							width="64"
+							height="64"
+							loading="lazy"
+						/>
+						<div class="author-entity-ident">
+							<div class="author-entity-name-row">
+								<span class="author-entity-name">Le Hoang Tin</span>
+								<span class="author-entity-badge">
+									Senior SEO &amp; GEO Specialist
+								</span>
+							</div>
+							<span class="author-entity-loc">
+								Ho Chi Minh City, Vietnam · GTV SEO Agency
+							</span>
+						</div>
+					</div>
+
+					<p class="author-entity-bio">
+						Le Hoang Tin is a Senior SEO &amp; GEO Specialist with 3+ years leading organic growth and entity architecture across Vietnam, Australia, and global English markets. He helps ambitious brands rank Top 1–3 on Google and secure verified citations inside ChatGPT, Claude, Perplexity, and Google AI Overviews.
+					</p>
+
+					<div class="author-entity-actions">
+						<a href="/contact" class="author-action-primary">
+							Work with Tin →
+						</a>
+						<a href="/projects" class="author-action-secondary">
+							View case studies →
+						</a>
+					</div>
+				</aside>
 
 				<div class="article-comments">
 					<Comments collection="posts" contentId={post.data.id} threaded />
@@ -259,9 +363,19 @@ const publishDate =
 
 	{
 		otherPostsWithTags.length > 0 && (
-			<section class="more-posts">
+			<section class="more-posts" aria-labelledby="continue-reading-heading">
 				<div class="more-inner">
-					<h2 class="more-title">Continue reading</h2>
+					<div class="section-index-header">
+						<span class="section-index-badge">§</span>
+						<h2 class="section-index-title" id="continue-reading-heading">
+							FROM THE ARCHIVE · CONTINUE READING
+						</h2>
+						<span class="section-index-rule" aria-hidden="true"></span>
+						<a href="/posts" class="section-index-link">
+							All articles →
+						</a>
+					</div>
+
 					<div class="more-grid">
 						{otherPostsWithTags.map(
 							({ post: p, tags: postTags, bylines: postBylines }) => (
@@ -284,7 +398,54 @@ const publishDate =
 	}
 
 	<script>
-		// Build table of contents from h2/h3 headings
+		// 1. Reading progress bar via requestAnimationFrame
+		function initReadingProgress() {
+			const progressBar = document.getElementById("reading-progress-bar");
+			const articleContent = document.querySelector(".article-content") as HTMLElement | null;
+			if (!progressBar || !articleContent) return;
+
+			let ticking = false;
+
+			function updateProgress() {
+				if (!articleContent || !progressBar) return;
+				const rect = articleContent.getBoundingClientRect();
+				const viewportHeight = window.innerHeight;
+				const totalScrollable = rect.height - viewportHeight * 0.4;
+
+				let ratio = 0;
+				if (totalScrollable <= 0) {
+					ratio = rect.top < viewportHeight * 0.5 ? 1 : 0;
+				} else {
+					const scrolled = Math.max(0, viewportHeight * 0.25 - rect.top);
+					ratio = Math.min(1, Math.max(0, scrolled / totalScrollable));
+				}
+
+				progressBar.style.transform = `scaleX(${ratio.toFixed(4)})`;
+				ticking = false;
+			}
+
+			window.addEventListener(
+				"scroll",
+				() => {
+					if (!ticking) {
+						window.requestAnimationFrame(updateProgress);
+						ticking = true;
+					}
+				},
+				{ passive: true }
+			);
+
+			window.addEventListener("resize", () => {
+				if (!ticking) {
+					window.requestAnimationFrame(updateProgress);
+					ticking = true;
+				}
+			});
+
+			updateProgress();
+		}
+
+		// 2. Build table of contents from h2/h3 headings
 		function buildToc() {
 			const content = document.querySelector(".article-content");
 			const tocContainer = document.getElementById("toc-content");
@@ -344,11 +505,27 @@ const publishDate =
 			headings.forEach((heading) => observer.observe(heading));
 		}
 
+		initReadingProgress();
 		buildToc();
 	</script>
 </Base>
 
 <style>
+	/* Fixed Reading Progress Bar right below .site-header */
+	.reading-progress-bar {
+		position: fixed;
+		top: var(--nav-height, 64px);
+		left: 0;
+		width: 100%;
+		height: 3px;
+		background: var(--color-accent);
+		transform: scaleX(0);
+		transform-origin: left center;
+		z-index: 99;
+		pointer-events: none;
+		will-change: transform;
+	}
+
 	/* Article container */
 	.article {
 		max-width: var(--wide-width);
@@ -357,10 +534,11 @@ const publishDate =
 
 	/* Hero image - full width within container */
 	.article-hero {
-		margin: var(--spacing-16) var(--spacing-6);
+		margin: var(--spacing-12) var(--spacing-6) 0;
 		border-radius: var(--radius-lg);
 		overflow: hidden;
 		background: var(--color-surface);
+		border: 1px solid var(--color-border);
 	}
 
 	.article-hero img {
@@ -379,7 +557,7 @@ const publishDate =
 		gap: var(--spacing-10);
 		justify-content: center;
 		padding: 0 var(--spacing-6);
-		margin: var(--spacing-16) 0;
+		margin: var(--spacing-12) 0 var(--spacing-16);
 	}
 
 	/* Left column: Meta */
@@ -398,10 +576,11 @@ const publishDate =
 
 	.meta-label {
 		display: block;
-		font-size: var(--font-size-xs);
-		font-weight: 500;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-muted);
 		margin-bottom: var(--spacing-1);
 	}
@@ -410,6 +589,37 @@ const publishDate =
 		display: block;
 		font-size: var(--font-size-sm);
 		color: var(--color-text-secondary);
+	}
+
+	.meta-value-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		color: var(--color-text);
+	}
+
+	.meta-category-pill {
+		display: inline-block;
+		font-family: var(--font-sans);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+		text-decoration: none;
+		transition:
+			background-color var(--transition-fast),
+			border-color var(--transition-fast);
+	}
+
+	.meta-category-pill:hover {
+		background: color-mix(in srgb, var(--color-amber) 20%, transparent);
+		border-color: var(--color-amber);
+		color: var(--color-amber-hover);
 	}
 
 	.meta-tags {
@@ -421,26 +631,30 @@ const publishDate =
 	.meta-tag {
 		display: inline-block;
 		padding: var(--tag-padding-y) var(--spacing-2);
-		font-size: var(--font-size-xs);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
 		color: var(--color-text-secondary);
 		background: var(--color-surface);
+		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		text-decoration: none;
 		transition:
 			color var(--transition-fast),
+			border-color var(--transition-fast),
 			background var(--transition-fast);
 	}
 
 	.meta-tag:hover {
-		color: var(--color-text);
-		background: var(--color-border);
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+		background: var(--color-bg-subtle);
 	}
 
 	/* Byline styles */
 	.bylines {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-1);
+		gap: var(--spacing-2);
 	}
 
 	.byline {
@@ -454,6 +668,7 @@ const publishDate =
 		height: var(--avatar-size-lg);
 		border-radius: 50%;
 		object-fit: cover;
+		border: 1px solid var(--color-border);
 	}
 
 	.byline-info {
@@ -463,12 +678,13 @@ const publishDate =
 
 	.byline-name {
 		font-size: var(--font-size-sm);
-		font-weight: 500;
+		font-weight: 600;
 		color: var(--color-text);
 	}
 
 	.byline-role {
-		font-size: var(--font-size-xs);
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
 		color: var(--color-muted);
 	}
 
@@ -479,6 +695,55 @@ const publishDate =
 
 	.article-header {
 		margin-bottom: var(--spacing-10);
+		padding-bottom: var(--spacing-8);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.article-kicker-row {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+		margin-bottom: var(--spacing-4);
+	}
+
+	.article-issue-badge {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-text);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.article-category-badge {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-sans);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+		text-decoration: none;
+		transition:
+			background-color var(--transition-fast),
+			border-color var(--transition-fast);
+	}
+
+	.article-category-badge:hover {
+		background: color-mix(in srgb, var(--color-amber) 22%, transparent);
+		border-color: var(--color-amber);
+		color: var(--color-amber-hover);
 	}
 
 	.article-header .article-meta {
@@ -487,25 +752,38 @@ const publishDate =
 		flex-wrap: wrap;
 		column-gap: var(--spacing-3);
 		row-gap: var(--spacing-1);
-		font-size: var(--font-size-sm);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		color: var(--color-muted);
 		margin-bottom: var(--spacing-4);
 	}
 
+	.meta-dot {
+		width: 3px;
+		height: 3px;
+		border-radius: 50%;
+		background: var(--color-muted);
+	}
+
 	.article-meta-byline {
-		font-weight: 500;
+		font-family: var(--font-sans);
+		font-weight: 600;
 		color: var(--color-text-secondary);
 	}
 
 	.article-title {
-		font-size: clamp(2rem, 5vw, var(--font-size-5xl));
-		font-weight: 700;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
+		font-family: var(--font-heading);
+		font-size: clamp(2rem, 4.5vw, 3.125rem);
+		font-weight: 600;
+		font-style: normal;
+		line-height: 1.12;
+		letter-spacing: -0.025em;
+		color: var(--color-text);
 		margin-bottom: var(--spacing-4);
 	}
 
 	.article-excerpt {
+		font-family: var(--font-body);
 		font-size: var(--font-size-xl);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
@@ -522,14 +800,20 @@ const publishDate =
 	}
 
 	.article-content :global(h2) {
+		font-family: var(--font-heading);
 		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		letter-spacing: -0.02em;
 		margin-top: 2.5em;
 		margin-bottom: 0.75em;
 		scroll-margin-top: calc(var(--nav-height) + var(--spacing-4));
 	}
 
 	.article-content :global(h3) {
+		font-family: var(--font-heading);
 		font-size: var(--font-size-xl);
+		font-weight: 600;
+		letter-spacing: -0.015em;
 		margin-top: 2em;
 		margin-bottom: 0.5em;
 		scroll-margin-top: calc(var(--nav-height) + var(--spacing-4));
@@ -538,7 +822,7 @@ const publishDate =
 	.article-content :global(blockquote) {
 		margin: 2em 0;
 		padding: var(--spacing-4) var(--spacing-6);
-		border-left: 3px solid var(--color-border);
+		border-left: 3px solid var(--color-amber);
 		background: var(--color-bg-subtle);
 		border-radius: 0 var(--radius) var(--radius) 0;
 		color: var(--color-text-secondary);
@@ -602,6 +886,117 @@ const publishDate =
 		text-decoration-thickness: 2px;
 	}
 
+	/* ── Author Entity & Consulting CTA Box ── */
+	.author-entity-box {
+		margin-top: var(--spacing-12);
+		padding: var(--spacing-6) var(--spacing-8);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-tile-raised);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.author-entity-top {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+	}
+
+	.author-entity-avatar {
+		width: 64px;
+		height: 64px;
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: center top;
+		border: 1px solid var(--color-border);
+		flex-shrink: 0;
+	}
+
+	.author-entity-ident {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+	}
+
+	.author-entity-name-row {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.author-entity-name {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.author-entity-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.author-entity-loc {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.author-entity-bio {
+		font-family: var(--font-body);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin: 0;
+	}
+
+	.author-entity-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-5);
+		flex-wrap: wrap;
+		padding-top: var(--spacing-2);
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.author-action-primary {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.author-action-primary:hover {
+		color: var(--color-accent-hover);
+	}
+
+	.author-action-secondary {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-text-secondary);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.author-action-secondary:hover {
+		color: var(--color-accent);
+	}
+
 	/* Right column: TOC + Sidebar */
 	.article-sidebar {
 		display: block;
@@ -619,10 +1014,11 @@ const publishDate =
 	}
 
 	.toc-title {
-		font-size: var(--font-size-xs);
-		font-weight: 500;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-muted);
 		margin-bottom: var(--spacing-3);
 	}
@@ -653,7 +1049,7 @@ const publishDate =
 
 	.toc-content :global(.toc-link:hover),
 	.toc-content :global(.toc-link.active) {
-		color: var(--color-text);
+		color: var(--color-accent);
 	}
 
 	/* Sidebar widgets */
@@ -668,10 +1064,11 @@ const publishDate =
 	}
 
 	.sidebar-widgets :global(.widget__title) {
-		font-size: var(--font-size-xs);
-		font-weight: 500;
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-muted);
 		margin-bottom: var(--spacing-3);
 	}
@@ -747,6 +1144,7 @@ const publishDate =
 	}
 
 	.sidebar-widgets :global(.widget-categories__count) {
+		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
 		color: var(--color-muted);
 		background: var(--color-surface);
@@ -847,6 +1245,7 @@ const publishDate =
 	}
 
 	.sidebar-widgets :global(.widget-archives__count) {
+		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
 		color: var(--color-muted);
 		background: var(--color-surface);
@@ -856,7 +1255,7 @@ const publishDate =
 
 	/* Comments section */
 	.article-comments {
-		margin-top: var(--spacing-16);
+		margin-top: var(--spacing-12);
 		padding-top: var(--spacing-10);
 		border-top: 1px solid var(--color-border);
 	}
@@ -904,7 +1303,8 @@ const publishDate =
 	/* More posts section */
 	.more-posts {
 		background: var(--color-bg-subtle);
-		padding: var(--spacing-16) 0;
+		border-top: 1px solid var(--color-border);
+		padding: var(--spacing-16) 0 var(--spacing-20);
 		margin-top: var(--spacing-16);
 	}
 
@@ -912,12 +1312,6 @@ const publishDate =
 		max-width: var(--wide-width);
 		margin: 0 auto;
 		padding: 0 var(--spacing-6);
-	}
-
-	.more-title {
-		font-size: var(--font-size-2xl);
-		font-weight: 600;
-		margin-bottom: var(--spacing-10);
 	}
 
 	.more-grid {
@@ -945,7 +1339,7 @@ const publishDate =
 
 	@media (max-width: 900px) {
 		.article-hero {
-			margin: var(--spacing-4) var(--spacing-4) var(--spacing-8);
+			margin: var(--spacing-6) var(--spacing-4) 0;
 			border-radius: var(--radius);
 		}
 
@@ -961,6 +1355,14 @@ const publishDate =
 	@media (max-width: 600px) {
 		.article-title {
 			font-size: var(--font-size-3xl);
+		}
+
+		.author-entity-box {
+			padding: var(--spacing-5);
+		}
+
+		.author-entity-top {
+			align-items: flex-start;
 		}
 
 		.more-grid {

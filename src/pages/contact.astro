@@ -1,192 +1,926 @@
 ---
 import Base from "../layouts/Base.astro";
+
+const directChannels = [
+	{
+		id: "zalo",
+		badge: "FASTEST IN VIETNAM",
+		label: "Zalo Direct",
+		value: "0357.669.476",
+		href: "https://zalo.me/0357669476",
+		cta: "Message on Zalo ↗",
+		external: true,
+	},
+	{
+		id: "whatsapp",
+		badge: "INTERNATIONAL",
+		label: "WhatsApp",
+		value: "+84 357 669 476",
+		href: "https://wa.me/84357669476",
+		cta: "Chat on WhatsApp ↗",
+		external: true,
+	},
+	{
+		id: "email",
+		badge: "DETAILED BRIEFS",
+		label: "Direct Email",
+		value: "tinledoihoa@gmail.com",
+		href: "mailto:tinledoihoa@gmail.com",
+		cta: "Send email →",
+		external: false,
+	},
+	{
+		id: "linkedin",
+		badge: "PROFESSIONAL NETWORK",
+		label: "LinkedIn",
+		value: "linkedin.com/in/tin-le-hoang",
+		href: "https://www.linkedin.com/in/tin-le-hoang",
+		cta: "Connect on LinkedIn ↗",
+		external: true,
+	},
+];
+
+const nextSteps = [
+	{
+		num: "01",
+		title: "Initial Domain Review",
+		description:
+			"Before we speak, I inspect your domain's indexation footprint, core keyword rankings, and current AI assistant citation status across ChatGPT, Claude, and Perplexity.",
+	},
+	{
+		num: "02",
+		title: "Diagnostic Call & Scope",
+		description:
+			"A focused 30-minute working session to align on commercial KPIs, technical bottlenecks, and whether an Audit, Sprint, or Growth Retainer fits your team best.",
+	},
+	{
+		num: "03",
+		title: "Roadmap & Kickoff",
+		description:
+			"You receive a transparent scope with prioritized deliverables, sprint milestones, and target KPI benchmarks ready for immediate execution.",
+	},
+];
 ---
 
 <Base
-	title="Contact"
-	description="Get in touch với Le Hoang Tin — SEO Specialist, open to freelance consulting và collaboration."
+	title="Contact & Consulting Inquiry"
+	description="Start an SEO or Generative Engine Optimization (GEO) engagement with Le Hoang Tin — technical SEO audits, AI citation sprints, and organic growth retainers."
 >
 	<div class="contact-page">
+		<!-- ── Page Header ── -->
 		<header class="page-header">
-			<p class="page-kicker">Get in Touch</p>
-			<h1 class="page-title">Contact</h1>
+			<span class="editorial-kicker">DIRECT INQUIRY &amp; CONSULTATION</span>
+			<h1 class="page-title">Start an SEO or GEO Engagement</h1>
 			<p class="page-lead">
-				Open to freelance SEO consulting and collaboration.
+				Available for technical SEO audits, Generative Engine Optimization (GEO) citation sprints, and ongoing organic growth retainers across Vietnam, Australia, and global markets.
 			</p>
+			<div class="status-pill">
+				<span class="status-dot" aria-hidden="true"></span>
+				<span>Typical response time: Under 24 hours · HCMC (GMT+7)</span>
+			</div>
 		</header>
 
+		<!-- ── Two-Column Layout (§ I & § II) ── -->
 		<div class="contact-grid">
-			<div class="contact-primary">
-				<h2 class="contact-section-title">Say hello</h2>
-				<ul class="contact-list">
-					<li class="contact-item">
-						<span class="contact-label">Email</span>
-						<a href="mailto:tinledoihoa@gmail.com" class="contact-value">
-							tinledoihoa@gmail.com
-						</a>
-					</li>
-					<li class="contact-item">
-						<span class="contact-label">LinkedIn</span>
-						<a
-							href="https://www.linkedin.com/in/tin-le-hoang"
-							class="contact-value"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							Tin Le Hoang ↗
-						</a>
-					</li>
-					<li class="contact-item">
-						<span class="contact-label">Phone</span>
-						<a href="tel:+84357669476" class="contact-value">0357.669.476</a>
-					</li>
-				</ul>
-			</div>
+			<!-- Left Column: § I — Inquiry Brief -->
+			<section class="inquiry-column" aria-labelledby="section-inquiry-brief">
+				<div class="section-index-header">
+					<span class="section-index-badge">§ I</span>
+					<h2 class="section-index-title" id="section-inquiry-brief">
+						Inquiry Brief
+					</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+				</div>
 
-			<div class="contact-note">
-				<h2 class="contact-section-title">What I can help with</h2>
-				<ul class="services-list">
-					<li>Technical SEO audits</li>
-					<li>AI search optimisation (ChatGPT / Claude / SGE visibility)</li>
-					<li>Content strategy &amp; keyword research</li>
-					<li>SEO cho thị trường Việt Nam và quốc tế</li>
-					<li>Conversion Rate Optimisation (CRO)</li>
-				</ul>
-				<p class="availability-note">
-					Based in Ho Chi Minh City, Vietnam. Available for remote engagements globally.
-				</p>
-			</div>
+				<div class="inquiry-card">
+					<div id="prefill-context-banner" class="prefill-banner" hidden>
+						<span class="prefill-kicker">CONTEXT PRE-LOADED</span>
+						<p id="prefill-context-text" class="prefill-text"></p>
+					</div>
+
+					<form id="consulting-inquiry-form" class="inquiry-form">
+						<div class="form-row-two">
+							<div class="form-field">
+								<label for="inquiry-name" class="field-label">
+									Full Name <span class="required-mark" aria-hidden="true">*</span>
+								</label>
+								<input
+									type="text"
+									id="inquiry-name"
+									name="name"
+									class="field-input"
+									placeholder="Your full name"
+									required
+									autocomplete="name"
+								/>
+							</div>
+
+							<div class="form-field">
+								<label for="inquiry-email" class="field-label">
+									Work Email <span class="required-mark" aria-hidden="true">*</span>
+								</label>
+								<input
+									type="email"
+									id="inquiry-email"
+									name="email"
+									class="field-input"
+									placeholder="you@company.com"
+									required
+									autocomplete="email"
+								/>
+							</div>
+						</div>
+
+						<div class="form-row-two">
+							<div class="form-field">
+								<label for="inquiry-domain" class="field-label">
+									Website / Domain URL
+								</label>
+								<input
+									type="url"
+									id="inquiry-domain"
+									name="domain"
+									class="field-input"
+									placeholder="https://yourdomain.com"
+									autocomplete="url"
+								/>
+							</div>
+
+							<div class="form-field">
+								<label for="inquiry-model" class="field-label">
+									Engagement Type
+								</label>
+								<select id="inquiry-model" name="engagement" class="field-select">
+									<option value="Growth Retainer (Ongoing SEO & GEO)">
+										Growth Retainer (Ongoing SEO &amp; GEO)
+									</option>
+									<option value="SEO & GEO Technical Audit">
+										SEO &amp; GEO Technical Audit
+									</option>
+									<option value="Project-Based Sprint">
+										Project-Based Sprint
+									</option>
+									<option value="AI Search / Citation Consulting">
+										AI Search / Citation Consulting
+									</option>
+									<option value="General Inquiry">
+										General Inquiry
+									</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-field">
+							<label for="inquiry-goals" class="field-label">
+								Project Goals &amp; Timeline
+							</label>
+							<textarea
+								id="inquiry-goals"
+								name="goals"
+								class="field-textarea"
+								rows="5"
+								placeholder="Share your target market (VN, AU, Global), current organic or AI search bottlenecks, and desired timeline..."
+							></textarea>
+						</div>
+
+						<div class="form-actions">
+							<button type="submit" class="btn-primary submit-btn">
+								Send Inquiry Brief →
+							</button>
+							<p class="form-footnote">
+								Opens your default email client addressed to <span class="mono-inline">tinledoihoa@gmail.com</span> and generates a one-click copy backup so your brief is never lost.
+							</p>
+						</div>
+					</form>
+
+					<!-- Inline Confirmation & Fallback Banner -->
+					<div
+						id="inquiry-confirmation"
+						class="confirmation-banner"
+						role="status"
+						aria-live="polite"
+						hidden
+					>
+						<div class="confirmation-header">
+							<span class="confirmation-kicker">BRIEF PREPARED · READY TO SEND</span>
+							<h3 class="confirmation-title">
+								Your inquiry details have been formatted
+							</h3>
+							<p class="confirmation-desc">
+								If your email client did not open automatically, copy your formatted brief below or send it directly via Zalo or WhatsApp for the fastest response.
+							</p>
+						</div>
+
+						<pre id="inquiry-preview-box" class="confirmation-preview"></pre>
+
+						<div class="confirmation-actions">
+							<button
+								type="button"
+								id="copy-inquiry-btn"
+								class="btn-primary copy-btn"
+							>
+								Copy inquiry details →
+							</button>
+							<a
+								id="direct-mailto-fallback"
+								href="mailto:tinledoihoa@gmail.com"
+								class="btn-secondary"
+							>
+								Open email app →
+							</a>
+							<a
+								href="https://zalo.me/0357669476"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="btn-secondary"
+							>
+								Message on Zalo ↗
+							</a>
+							<a
+								href="https://wa.me/84357669476"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="btn-secondary"
+							>
+								Chat on WhatsApp ↗
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Right Column: § II — Instant Channels -->
+			<section class="channels-column" aria-labelledby="section-instant-channels">
+				<div class="section-index-header">
+					<span class="section-index-badge">§ II</span>
+					<h2 class="section-index-title" id="section-instant-channels">
+						Instant Channels
+					</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+				</div>
+
+				<div class="channels-stack">
+					<div class="channel-cards-grid">
+						{
+							directChannels.map((channel) => (
+								<a
+									href={channel.href}
+									class="channel-card"
+									target={channel.external ? "_blank" : undefined}
+									rel={channel.external ? "noopener noreferrer" : undefined}
+								>
+									<div class="channel-card-top">
+										<span class="channel-badge">{channel.badge}</span>
+										<span class="channel-cta">{channel.cta}</span>
+									</div>
+									<span class="channel-label">{channel.label}</span>
+									<span class="channel-value">{channel.value}</span>
+								</a>
+							))
+						}
+					</div>
+
+					<!-- What Happens Next 3-Step Card -->
+					<div class="process-card">
+						<span class="editorial-kicker">ENGAGEMENT WORKFLOW</span>
+						<h3 class="process-title">What happens next</h3>
+						<ol class="process-steps">
+							{
+								nextSteps.map((step) => (
+									<li class="process-step">
+										<span class="step-num">{step.num}</span>
+										<div class="step-body">
+											<h4 class="step-heading">{step.title}</h4>
+											<p class="step-desc">{step.description}</p>
+										</div>
+									</li>
+								))
+							}
+						</ol>
+					</div>
+				</div>
+			</section>
 		</div>
 	</div>
 </Base>
 
+<script>
+	const form = document.getElementById("consulting-inquiry-form") as HTMLFormElement | null;
+	const nameInput = document.getElementById("inquiry-name") as HTMLInputElement | null;
+	const emailInput = document.getElementById("inquiry-email") as HTMLInputElement | null;
+	const domainInput = document.getElementById("inquiry-domain") as HTMLInputElement | null;
+	const modelSelect = document.getElementById("inquiry-model") as HTMLSelectElement | null;
+	const goalsTextarea = document.getElementById("inquiry-goals") as HTMLTextAreaElement | null;
+
+	const prefillBanner = document.getElementById("prefill-context-banner");
+	const prefillText = document.getElementById("prefill-context-text");
+
+	const confirmationBanner = document.getElementById("inquiry-confirmation");
+	const previewBox = document.getElementById("inquiry-preview-box");
+	const copyBtn = document.getElementById("copy-inquiry-btn") as HTMLButtonElement | null;
+	const mailtoFallback = document.getElementById("direct-mailto-fallback") as HTMLAnchorElement | null;
+
+	const modelMap: Record<
+		string,
+		{ optionValue: string; banner: string; template: string }
+	> = {
+		audit: {
+			optionValue: "SEO & GEO Technical Audit",
+			banner: "Selected Tier 01: SEO & GEO Technical Audit (2–3 Weeks Delivery).",
+			template:
+				"Scope interest: SEO & GEO Technical Audit (crawl diagnostics, cannibalization analysis, and AI citation benchmark).\n\nTarget market & timeline:\n- ",
+		},
+		retainer: {
+			optionValue: "Growth Retainer (Ongoing SEO & GEO)",
+			banner: "Selected Tier 02: Ongoing Growth Retainer (SEO & GEO Leadership).",
+			template:
+				"Scope interest: Monthly Growth Retainer (technical governance, semantic content clusters, and continuous GEO citation tracking).\n\nTarget market & monthly goals:\n- ",
+		},
+		sprint: {
+			optionValue: "Project-Based Sprint",
+			banner: "Selected Tier 03: Project-Based Sprint (4–8 Weeks Fixed Scope).",
+			template:
+				"Scope interest: Project-Based Sprint (ranking turnaround, site migration, or structured data & topical cluster launch).\n\nKey milestone & timeline:\n- ",
+		},
+	};
+
+	const projectMap: Record<
+		string,
+		{ optionValue: string; banner: string; template: string }
+	> = {
+		"vinamilk": {
+			optionValue: "Growth Retainer (Ongoing SEO & GEO)",
+			banner: "Reference Campaign: Vinamilk Nutrition (300K+ monthly clicks · Enterprise E-Commerce).",
+			template:
+				"Reference Case Study: Vinamilk Nutrition (Full-funnel semantic topical map & E-E-A-T content architecture).\n\nWe are looking for a comparable strategy for our domain. Our primary goals & timeline:\n- ",
+		},
+		"gtv-agency": {
+			optionValue: "AI Search / Citation Consulting",
+			banner: "Reference Campaign: GTV SEO Agency (#1 ChatGPT, Claude & Grok Citations).",
+			template:
+				"Reference Case Study: GTV SEO Agency (Entity engineering & #1 AI assistant citation visibility).\n\nWe want to improve our brand citations in ChatGPT/Claude/Perplexity alongside Google rankings. Our goals:\n- ",
+		},
+		"repair-au": {
+			optionValue: "Project-Based Sprint",
+			banner: "Reference Campaign: Repair Centre VIC (Top 3–5 Google AU in 14 Days).",
+			template:
+				"Reference Case Study: Repair Centre VIC (Keyword cannibalization cleanup & LocalBusiness schema sprint).\n\nWe need a technical turnaround sprint for our domain. Current bottleneck & timeline:\n- ",
+		},
+		"eurotravel": {
+			optionValue: "Growth Retainer (Ongoing SEO & GEO)",
+			banner: "Reference Campaign: EuroTravel (80K–100K monthly clicks · 120% KPI).",
+			template:
+				"Reference Case Study: EuroTravel (Destination content clusters & commercial booking funnel SEO).\n\nWe are looking to scale organic traffic and commercial conversions. Our goals & timeline:\n- ",
+		},
+		"flashlight": {
+			optionValue: "Growth Retainer (Ongoing SEO & GEO)",
+			banner: "Reference Campaign: Tactical Flashlight E-Commerce (+25% YoY Revenue & CRO).",
+			template:
+				"Reference Case Study: Flashlight E-Commerce (Buyer-intent clusters, product UX & Product schema).\n\nWe want to grow commercial e-commerce traffic and conversion rates. Our goals & timeline:\n- ",
+		},
+		"furniture-global": {
+			optionValue: "Growth Retainer (Ongoing SEO & GEO)",
+			banner: "Reference Campaign: Global Furniture E-Commerce (International SEO & GEO).",
+			template:
+				"Reference Case Study: Global Furniture E-Commerce (English SERP entity footprint & programmatic Product schema).\n\nWe are scaling an international storefront and need SEO/GEO leadership. Our goals:\n- ",
+		},
+	};
+
+	function initUrlPrefill() {
+		const params = new URLSearchParams(window.location.search);
+		const modelKey = (params.get("model") || "").toLowerCase().trim();
+		const projectKey = (params.get("project") || "").toLowerCase().trim();
+
+		const matched = projectMap[projectKey] || modelMap[modelKey];
+		if (!matched) return;
+
+		if (modelSelect) {
+			modelSelect.value = matched.optionValue;
+		}
+		if (goalsTextarea && !goalsTextarea.value.trim()) {
+			goalsTextarea.value = matched.template;
+		}
+		if (prefillBanner && prefillText) {
+			prefillText.textContent = matched.banner;
+			prefillBanner.hidden = false;
+		}
+	}
+
+	initUrlPrefill();
+
+	let latestFormattedBrief = "";
+
+	form?.addEventListener("submit", (event) => {
+		event.preventDefault();
+
+		const name = nameInput?.value.trim() || "Prospective Client";
+		const email = emailInput?.value.trim() || "";
+		const domain = domainInput?.value.trim() || "Not specified";
+		const engagement =
+			modelSelect?.value || "Growth Retainer (Ongoing SEO & GEO)";
+		const goals =
+			goalsTextarea?.value.trim() ||
+			"Let's discuss scope, goals, and timeline on an initial call.";
+
+		const subject = `[SEO/GEO Inquiry] ${engagement} — ${domain !== "Not specified" ? domain : name}`;
+		const bodyLines = [
+			"Hi Tin,",
+			"",
+			"I would like to discuss an SEO / GEO engagement.",
+			"",
+			"--- INQUIRY BRIEF ---",
+			`Name: ${name}`,
+			`Work Email: ${email}`,
+			`Website / Domain: ${domain}`,
+			`Engagement Type: ${engagement}`,
+			"",
+			"Project Goals & Timeline:",
+			goals,
+			"---------------------",
+		];
+
+		latestFormattedBrief = bodyLines.join("\n");
+		const mailtoHref = `mailto:tinledoihoa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(latestFormattedBrief)}`;
+
+		if (previewBox) {
+			previewBox.textContent = latestFormattedBrief;
+		}
+		if (mailtoFallback) {
+			mailtoFallback.href = mailtoHref;
+		}
+		if (confirmationBanner) {
+			confirmationBanner.hidden = false;
+			confirmationBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+		}
+
+		window.location.href = mailtoHref;
+	});
+
+	copyBtn?.addEventListener("click", async () => {
+		if (!latestFormattedBrief) return;
+		try {
+			await navigator.clipboard.writeText(latestFormattedBrief);
+			const originalText = copyBtn.textContent;
+			copyBtn.textContent = "Copied inquiry details ✓";
+			setTimeout(() => {
+				copyBtn.textContent = originalText || "Copy inquiry details →";
+			}, 2500);
+		} catch {
+			// Fallback selection if clipboard permission is denied
+			if (previewBox) {
+				const range = document.createRange();
+				range.selectNodeContents(previewBox);
+				const selection = window.getSelection();
+				selection?.removeAllRanges();
+				selection?.addRange(range);
+			}
+		}
+	});
+</script>
+
 <style>
 	.contact-page {
-		max-width: 860px;
+		max-width: var(--wide-width);
 		margin: 0 auto;
-		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+		padding: var(--spacing-12) var(--spacing-6) var(--spacing-24);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-14, 3.5rem);
 	}
 
+	/* ── Page Header ── */
 	.page-header {
-		margin-bottom: var(--spacing-16);
-		padding-bottom: var(--spacing-12);
-		border-bottom: 1px solid var(--color-border-subtle);
-	}
-
-	.page-kicker {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		letter-spacing: var(--tracking-wider);
-		text-transform: uppercase;
-		color: var(--color-amber);
-		margin-bottom: var(--spacing-3);
+		max-width: 780px;
+		padding-bottom: var(--spacing-10);
+		border-bottom: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	.page-title {
-		font-size: clamp(var(--font-size-3xl), 6vw, var(--font-size-5xl));
-		font-weight: 700;
-		font-style: italic;
-		line-height: var(--leading-tight);
-		letter-spacing: var(--tracking-tight);
-		margin-bottom: var(--spacing-6);
+		font-family: var(--font-heading);
+		font-size: clamp(2.25rem, 4.8vw, 3.5rem);
+		font-weight: 600;
+		font-style: normal;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-4);
 	}
 
 	.page-lead {
-		font-family: var(--font-sans);
+		font-family: var(--font-body);
 		font-size: var(--font-size-lg);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
-		max-width: 50ch;
-	}
-
-	.contact-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--spacing-16);
-	}
-
-	.contact-section-title {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		color: var(--color-muted);
+		max-width: 64ch;
 		margin-bottom: var(--spacing-6);
 	}
 
-	.contact-list {
-		list-style: none;
+	.status-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		padding: 6px var(--spacing-4);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		color: var(--color-text-secondary);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.status-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #2e7d32;
+		box-shadow: 0 0 0 3px color-mix(in srgb, #2e7d32 22%, transparent);
+		flex-shrink: 0;
+	}
+
+	/* ── Two-Column Grid ── */
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1.25fr 0.95fr;
+		gap: var(--spacing-10);
+		align-items: start;
+	}
+
+	/* ── Left Column: Inquiry Card & Form ── */
+	.inquiry-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		box-shadow: var(--shadow-tile-raised);
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-6);
 	}
 
-	.contact-item {
+	.prefill-banner {
+		background: color-mix(in srgb, var(--color-amber) 10%, var(--color-bg-subtle));
+		border: 1px solid color-mix(in srgb, var(--color-amber) 35%, var(--color-border));
+		border-radius: 8px;
+		padding: var(--spacing-3) var(--spacing-4);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.prefill-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.prefill-text {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		color: var(--color-text);
+	}
+
+	.inquiry-form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-5);
+	}
+
+	.form-row-two {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-4);
+	}
+
+	.form-field {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+	}
+
+	.field-label {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		color: var(--color-text);
+	}
+
+	.required-mark {
+		color: var(--color-accent);
+	}
+
+	.field-input,
+	.field-select {
+		height: 44px;
+		padding: 0 var(--spacing-4);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast),
+			background-color var(--transition-fast);
+	}
+
+	.field-textarea {
+		padding: var(--spacing-3) var(--spacing-4);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		resize: vertical;
+		min-height: 132px;
+		transition:
+			border-color var(--transition-fast),
+			box-shadow var(--transition-fast),
+			background-color var(--transition-fast);
+	}
+
+	.field-input::placeholder,
+	.field-textarea::placeholder {
+		color: var(--color-muted);
+	}
+
+	.field-input:focus,
+	.field-select:focus,
+	.field-textarea:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+		background: var(--color-surface);
+	}
+
+	.form-actions {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-3);
+		padding-top: var(--spacing-2);
+	}
+
+	.submit-btn {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.form-footnote {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		line-height: var(--leading-normal);
+		color: var(--color-muted);
+	}
+
+	.mono-inline {
+		font-family: var(--font-mono);
+		color: var(--color-text-secondary);
+	}
+
+	/* ── Inline Confirmation Banner ── */
+	.confirmation-banner {
+		margin-top: var(--spacing-2);
+		padding: var(--spacing-6);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-accent);
+		border-radius: var(--radius-lg);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.confirmation-header {
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-1);
 	}
 
-	.contact-label {
+	.confirmation-kicker {
 		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wide);
-		color: var(--color-muted);
-	}
-
-	.contact-value {
-		font-size: var(--font-size-lg);
-		color: var(--color-text);
-		text-decoration: none;
-		font-weight: 500;
-		transition: color var(--transition-fast);
-	}
-
-	.contact-value:hover {
 		color: var(--color-accent);
 	}
 
-	.services-list {
+	.confirmation-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.confirmation-desc {
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-normal);
+		color: var(--color-text-secondary);
+	}
+
+	.confirmation-preview {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		line-height: 1.55;
+		color: var(--color-text);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		padding: var(--spacing-4);
+		white-space: pre-wrap;
+		word-break: break-word;
+		max-height: 220px;
+		overflow-y: auto;
+	}
+
+	.confirmation-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--spacing-3);
+	}
+
+	/* ── Right Column: Direct Channels & Process ── */
+	.channels-stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-6);
+	}
+
+	.channel-cards-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-4);
+	}
+
+	.channel-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-5);
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base),
+			transform var(--transition-fast);
+	}
+
+	.channel-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.channel-card-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+		margin-bottom: var(--spacing-2);
+	}
+
+	.channel-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+	}
+
+	.channel-cta {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		white-space: nowrap;
+	}
+
+	.channel-label {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.channel-value {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-text-secondary);
+		word-break: break-all;
+	}
+
+	/* ── 3-Step Process Card ── */
+	.process-card {
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+	}
+
+	.process-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-xl);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -0.015em;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-5);
+	}
+
+	.process-steps {
 		list-style: none;
 		display: flex;
 		flex-direction: column;
+		gap: var(--spacing-5);
+	}
+
+	.process-step {
+		display: grid;
+		grid-template-columns: 2.25rem minmax(0, 1fr);
 		gap: var(--spacing-3);
-		margin-bottom: var(--spacing-8);
+		align-items: start;
+		padding-bottom: var(--spacing-5);
+		border-bottom: 1px solid var(--color-border-subtle);
 	}
 
-	.services-list li {
-		font-family: var(--font-sans);
+	.process-step:last-child {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.step-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-1);
+	}
+
+	.step-heading {
+		font-family: var(--font-heading);
 		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.step-desc {
+		font-family: var(--font-body);
+		font-size: var(--font-size-sm);
+		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
-		padding-left: var(--spacing-5);
-		position: relative;
-		line-height: var(--leading-relaxed);
 	}
 
-	.services-list li::before {
-		content: "→";
-		position: absolute;
-		left: 0;
-		color: var(--color-accent);
-		font-size: var(--font-size-sm);
+	/* ── Responsive ── */
+	@media (max-width: 960px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+			gap: var(--spacing-12);
+		}
 	}
 
-	.availability-note {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		color: var(--color-muted);
-		line-height: var(--leading-relaxed);
-		padding-top: var(--spacing-6);
-		border-top: 1px solid var(--color-border-subtle);
-	}
+	@media (max-width: 640px) {
+		.contact-page {
+			padding: var(--spacing-8) var(--spacing-4) var(--spacing-16);
+		}
 
-	@media (max-width: 700px) {
-		.contact-grid { grid-template-columns: 1fr; gap: var(--spacing-12); }
-	}
+		.inquiry-card {
+			padding: var(--spacing-6);
+		}
 
-	@media (max-width: 600px) {
-		.contact-page { padding: var(--spacing-8) var(--spacing-4) var(--spacing-16); }
+		.form-row-two,
+		.channel-cards-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
