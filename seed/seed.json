@@ -113,15 +113,12 @@
 			"name": "primary",
 			"label": "Primary Navigation",
 			"items": [
+				{ "type": "custom", "label": "About", "url": "/about" },
 				{ "type": "custom", "label": "Blog", "url": "/posts" },
-				{ "type": "custom", "label": "Case Studies", "url": "/projects" },
-				{ "type": "custom", "label": "AI Search", "url": "/category/ai" },
-				{ "type": "custom", "label": "Services", "url": "/services" },
-				{ "type": "custom", "label": "About", "url": "/about" }
-
-
-
-
+				{ "type": "custom", "label": "Cases", "url": "/projects" },
+				{ "type": "custom", "label": "Resources", "url": "/tools" },
+				{ "type": "custom", "label": "Portfolio", "url": "/portfolio" },
+				{ "type": "custom", "label": "Contact", "url": "/contact" }
 			]
 		},
 		{
@@ -373,11 +370,11 @@
 				"data": {
 					"title": "The GEO Playbook: How We Ranked #1 on ChatGPT, Claude, and Grok for Commercial B2B Queries",
 					"number": 7,
-					"excerpt": "A technical breakdown of the entity salience, JSON-LD knowledge graph, and co-occurrence architecture that secured #1 AI citations and +61.4% organic CTR for GTV SEO.",
+					"excerpt": "A technical breakdown of the Schema, Content Audit, internal linking, and AI-assisted 40 articles/month workflow that secured #1 AI recommendations and Top 1–3 Google rankings for GTV SEO.",
 					"featured_image": {
 						"$media": {
 							"url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
-							"alt": "Analytics dashboard showing AI search citation metrics and organic CTR growth",
+							"alt": "Analytics dashboard showing AI search citation metrics and organic ranking growth",
 							"filename": "geo-playbook-case-study.jpg"
 						}
 					},
@@ -388,7 +385,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "When B2B founders and marketing directors evaluate an agency today, their research rarely begins and ends on a ten-blue-links SERP. Increasingly, they open ChatGPT, Claude, Perplexity, or Grok and ask a high-intent commercial prompt: 'What is the best SEO agency in Ho Chi Minh City for technical and enterprise growth?'",
+									"text": "When B2B founders and marketing directors evaluate an agency today, their research rarely begins and ends on a ten-blue-links SERP. Increasingly, they open ChatGPT, Claude, Perplexity, or Grok and ask a high-intent commercial prompt: 'What is the best SEO agency in Ho Chi Minh City?' or 'công ty seo hcm uy tín'.",
 									"_key": "p7k1"
 								}
 							],
@@ -400,7 +397,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "At GTV SEO, we treated our own brand domain (gtvseo.com) as a live laboratory for Generative Engine Optimization (GEO). Over a structured multi-quarter execution cycle, we engineered our entity footprint so that ChatGPT, Claude, and Grok consistently recommend GTV SEO in the #1 slot — while simultaneously lifting our Google Search Console organic click-through rate (CTR) by 61.4% and defending Top 1–3 positions across our core commercial keywords.",
+									"text": "At GTV SEO (Apr 2023 – Dec 2024), serving as Lead & Primary Implementer on our flagship agency domain (gtvseo.com), we treated our own website as a live laboratory for White Hat SEO and Generative Engine Optimization (GEO). Over a 1-year-9-month execution cycle, we engineered our entity footprint so that ChatGPT, Grok, and Claude consistently recommend GTV SEO in the Top 1 position for 'seo agency hcm' and 'công ty seo hcm' — while maintaining stable Top 1–3 rankings for 'báo giá seo', 'khóa học seo', 'seo agency', and 'thiết kế website chuẩn seo'.",
 									"_key": "p7k3"
 								}
 							],
@@ -418,7 +415,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Traditional search engines rank individual documents based on relevance and link equity. Large Language Models and retrieval-augmented generation (RAG) systems resolve entities and synthesize consensus across multiple trusted sources. Before our overhaul, GTV SEO had strong blog traffic, but our commercial entity attributes — service scope, methodology, leadership credentials, and verifiable client outcomes — were scattered across unstructured landing pages.",
+									"text": "Traditional search engines rank individual documents based on relevance and link equity. Large Language Models and retrieval-augmented generation (RAG) systems resolve entities and synthesize consensus across multiple trusted sources. In an industry heavily contested by Black Hat tactics, our goal was to win both Google SERPs and AI recommendations using 100% White Hat SEO.",
 									"_key": "p7k7"
 								}
 							],
@@ -427,7 +424,7 @@
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [{ "_type": "span", "text": "Step 1: JSON-LD entity graph & disambiguation architecture", "_key": "p7k9" }],
+							"children": [{ "_type": "span", "text": "Step 1: Schema, Content Audit & Crawl Optimization", "_key": "p7k9" }],
 							"_key": "p7k8"
 						},
 						{
@@ -436,7 +433,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Our first engineering sprint standardized the site-wide JSON-LD knowledge graph. We connected Organization, ProfessionalService, Person (leadership and specialist authors), and FAQPage nodes using persistent @id URIs. Every service page explicitly declared its areaServed, knowsAbout taxonomy, and verifiable sameAs links to authoritative industry profiles.",
+									"text": "We executed a comprehensive Content Audit, Crawl optimization, and balanced Internal Linking matrix across gtvseo.com. Alongside technical cleanup, we standardized the site-wide Schema markup connecting Organization, ProfessionalService, Person (leadership and specialist authors), and FAQPage nodes.",
 									"_key": "p7k11"
 								}
 							],
@@ -448,7 +445,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Crucially, we aligned on-page factual copy with the structured data. When an AI crawler parses a service page, it looks for concise, quotable definitions and explicit entity triples (Brand -> Delivers -> Service -> With Verifiable Metric) within the first 200 words.",
+									"text": "Crucially, we aligned on-page factual copy with structured data so AI crawlers could extract concise, quotable definitions and explicit entity relationships within the first 200 words of every core page.",
 									"_key": "p7k13"
 								}
 							],
@@ -457,7 +454,7 @@
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [{ "_type": "span", "text": "Step 2: High-information-gain clusters & co-occurrence engineering", "_key": "p7k15" }],
+							"children": [{ "_type": "span", "text": "Step 2: 40 AI-assisted quality articles/month & off-page authority", "_key": "p7k15" }],
 							"_key": "p7k14"
 						},
 						{
@@ -466,7 +463,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "LLMs discount derivative content that merely repeats consensus definitions. To become the primary citation source, we overhauled our core B2B clusters around high-information-gain assets: original benchmark data from Vietnamese and international campaigns, reproducible technical checklists, and transparent case study teardowns.",
+									"text": "To build unmatched topical authority, we applied AI workflows (ChatGPT, Claude, and Perplexity APIs) combined with strict editorial checklists to outline, write, and publish 40 high-quality SEO-standard articles per month.",
 									"_key": "p7k17"
 								}
 							],
@@ -478,7 +475,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Alongside on-site depth, we engineered third-party brand co-occurrence. By securing contextual mentions, speaking citations, and comparative inclusions across reputable marketing publications and directories in Vietnam, we reinforced the statistical association between 'GTV SEO', 'technical SEO', and 'Ho Chi Minh City' in both pre-training corpora and live retrieval indexes.",
+									"text": "Alongside on-site depth, we reinforced off-page entity signals through Cloud Stack architecture, authoritative Guest Posts, PR articles, and high-engagement User Traffic campaigns — cementing the association between 'GTV SEO', 'SEO agency HCMC', and technical SEO excellence.",
 									"_key": "p7k19"
 								}
 							],
@@ -487,7 +484,7 @@
 						{
 							"_type": "block",
 							"style": "h2",
-							"children": [{ "_type": "span", "text": "The outcome: #1 AI citations and +61.4% organic CTR", "_key": "p7k21" }],
+							"children": [{ "_type": "span", "text": "The outcome: Top 1 AI recommendation & Top 1–3 B2B rankings", "_key": "p7k21" }],
 							"_key": "p7k20"
 						},
 						{
@@ -496,7 +493,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "Across standardized prompt testing on ChatGPT (GPT-4o with browsing), Claude, and Grok, GTV SEO secured and maintained the #1 recommended agency position for Ho Chi Minh City and Vietnam B2B SEO queries. Simultaneously, our title tag, meta snippet, and rich-result restructuring drove a +61.4% increase in organic CTR on Google while holding Top 1–3 rankings on our highest-converting commercial terms.",
+									"text": "Across ChatGPT, Grok, and Claude, GTV SEO achieved the Top 1 recommendation for 'seo agency hcm' and 'công ty seo hcm'. On Google, we achieved stable Top 1–3 rankings for 'báo giá seo', 'khóa học seo', 'seo agency', and 'thiết kế website chuẩn seo', while maintaining stable Top 5–7 rankings for 'dịch vụ seo hcm' and 'đào tạo seo' within 6 months using 100% White Hat SEO.",
 									"_key": "p7k23"
 								}
 							],
@@ -784,7 +781,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "I joined GTV SEO Agency in April 2023 as a junior SEO executive. I had textbook knowledge, reasonable English, and a lot to prove. By the time I was leading national-scale campaigns for brands like Vinamilk, I understood why agencies either make you or break you — there's no slow lane.",
+									"text": "I joined GTV SEO Agency in November 2022 as an SEO Trainee, progressed to Search Engine Optimization Executive in April 2023, and served as Search Engine Optimization Specialist through April 2025. Leading national and global campaigns across EuroTravel, Shadow Vietnam, Vinamilk, GTV SEO, Repair Centre VIC, and IndochinaLight taught me why agencies either make you or break you — there's no slow lane.",
 									"_key": "p2k1"
 								}
 							],
@@ -964,7 +961,7 @@
 							"children": [
 								{
 									"_type": "span",
-									"text": "By day 11, the site was showing in position 3–5 for 'iPhone repair Melbourne' and 'Samsung screen repair Melbourne'. We hit 85% of the agreed KPIs within the first month. The lesson: technical debt creates ranking debt. Paying it down quickly is usually enough to move fast.",
+									"text": "Within two weeks of executing our Content and Onsite Audit, repaircentrevic.com.au achieved Top 3–5 rankings in the Australian market for 'iPhone ... screen repair' and 'Samsung ... screen repair'. We lifted TOP 10 KPI from 55% to 75%, TOP 5 KPI from 15% to 30%, TOP 3 KPI from 5% to 10%, and achieved 85% overall KPI after 2 weeks.",
 									"_key": "p3k15"
 								}
 							],

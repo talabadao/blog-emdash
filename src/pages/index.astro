@@ -40,117 +40,396 @@ function getFirstCategory(entryDataId: string) {
 
 function formatIssueNumber(
 	num: number | null | undefined,
-	fallback: number
+	fallback: number,
 ): string {
 	return String(num ?? fallback).padStart(2, "0");
 }
 
 const proofStats = [
 	{
-		value: "3+ yrs",
-		label: "Leading SEO & GEO strategy at GTV SEO Agency",
+		value: "Nearly 3 Yrs",
+		label: "Leading SEO projects at GTV SEO (Nov 2022 – Apr 2025)",
 	},
 	{
 		value: "#1 AI Cited",
-		label: 'Recommended on ChatGPT, Claude & Grok for "SEO agency HCMC"',
+		label: 'Top 1 on ChatGPT, Grok & Claude for "seo agency hcm" & "công ty seo hcm"',
 	},
 	{
 		value: "300K+",
-		label: "Monthly organic clicks scaled for enterprise FMCG",
+		label: "Monthly GSC clicks (826K+ total clicks) scaled for Vinamilk",
 	},
 	{
-		value: "100%+",
-		label: "KPI delivery rate across 6+ multi-market campaigns",
+		value: "100%–120%",
+		label: "SEO KPI delivery across 6 flagship multi-market campaigns",
 	},
 ];
 
-const campaignMarkets = [
-	"GTV SEO (VN)",
-	"Vinamilk (FMCG)",
-	"EuroTravel (Travel)",
-	"Repair Centre VIC (AU)",
-	"Global E-Commerce (US/Global)",
-];
-
-const selectedCaseStudies = [
+const marqueeBrands = [
 	{
-		name: "GTV SEO Agency",
-		domain: "gtvseo.com",
-		tag: "GEO & B2B SEO · Vietnam",
-		metrics: [
-			{ value: "#1", label: "ChatGPT / Claude / Grok" },
-			{ value: "Top 1–3", label: "Core Keywords" },
-		],
-		summary:
-			"Engineered entity authority and white-hat topical depth to secure #1 AI assistant citations for 'SEO agency HCMC' while defending Top 1–3 Google rankings across competitive B2B search terms.",
-		href: "/posts/three-years-at-gtv-seo-what-i-learned",
-		cta: "Read breakdown →",
+		id: "gtv",
+		name: "GTV SEO",
+		sub: "gtvseo.com · B2B SEO Agency",
+		metric: "#1 ChatGPT / Grok / Claude",
+		href: "#cases",
 	},
 	{
+		id: "vinamilk",
+		name: "Vinamilk",
+		sub: "vinamilk.com.vn · Enterprise FMCG",
+		metric: "300K Clicks/Mo (GSC)",
+		href: "#cases",
+	},
+	{
+		id: "indochina",
+		name: "IndochinaLight",
+		sub: "Global E-Commerce · US, SG, IT, AU",
+		metric: "+409% Sales · 100% KPI",
+		href: "#cases",
+	},
+	{
+		id: "repair",
 		name: "Repair Centre VIC",
-		domain: "repaircentrevic.com.au",
-		tag: "Local & Technical SEO · Australia",
+		sub: "repaircentrevic.com.au · Australia",
+		metric: "Top 3–5 in 2 Weeks",
+		href: "#cases",
+	},
+	{
+		id: "shadow",
+		name: "Shadow Vietnam",
+		sub: "shadow.vn · Flashlight E-Commerce",
+		metric: "+25% MoM Revenue",
+		href: "#cases",
+	},
+	{
+		id: "eurotravel",
+		name: "EuroTravel",
+		sub: "eurotravel.com.vn · European Travel",
+		metric: "100K Traffic · 120% KPI",
+		href: "#cases",
+	},
+];
+
+const gtvProgression = [
+	{
+		role: "Search Engine Optimization Specialist",
+		period: "Apr 2023 – Apr 2025",
+		badge: "Lead & Primary Implementer / Advisor",
+		detail:
+			"Led end-to-end SEO & GEO execution for IndochinaLight, Repair Centre VIC, GTV SEO, and Vinamilk.",
+	},
+	{
+		role: "Search Engine Optimization Executive",
+		period: "Apr 2023 – Nov 2023 · 8 mos",
+		badge: "Lead & Primary Implementer",
+		detail:
+			"Executed quarterly technical audits and on-page CRO for Shadow Vietnam, boosting revenue +25% MoM.",
+	},
+	{
+		role: "SEO Trainee",
+		period: "Nov 2022 – May 2023 · 7 mos",
+		badge: "Lead & Primary Implementer",
+		detail:
+			"Planned and executed GTV's SEO process for EuroTravel, reaching 100,000 monthly traffic and 120% KPI.",
+	},
+];
+
+const cvSkills = [
+	"Proficient in ChatGPT, Claude & Perplexity APIs to analyze, outline, and write SEO-standard content optimized for AI Search",
+	"Proficient in Google Search Console & Screaming Frog to audit technical websites",
+	"Proficient in SEMrush & Ahrefs to research keywords and analyze SEO competitors",
+	"Familiar with Google Analytics 4 & Google Tag Manager to attach conversion tracking",
+	"SEO Project Management: Manage & operate SEO projects to achieve KPI and on schedule",
+];
+
+const cvAchievements = [
+	{
+		kicker: "COMPETITION AWARD",
+		title: "3rd Prize — AI Application for SEO",
+		desc: "Awarded in the internal AI Application for SEO competition organized by GTV SEO.",
+	},
+	{
+		kicker: "TRAINING & CURRICULUM",
+		title: "Author of Documents & E-Books",
+		desc: "Authored official documents and e-books for GTV SEO courses and internal training materials.",
+	},
+	{
+		kicker: "NEW BUSINESS STRATEGY",
+		title: "Planner for 10+ Winning Projects",
+		desc: "Planned 10+ SEO proposals helping GTV SEO bid and win new clients successfully (Local & Global).",
+	},
+];
+
+const flagshipCases = [
+	{
+		number: "01",
+		name: "IndochinaLight",
+		subtitle: "Global Dropshipping E-Commerce Project",
+		timeline: "Nov 2024 – Apr 2025 · 6 mos",
+		market: "Global (US, SG, IT, AU)",
+		role: "Lead & Primary Implementer (SEO Specialist)",
 		metrics: [
-			{ value: "Top 3–5", label: "in 14 Days" },
-			{ value: "85% KPI", label: "in Month 1" },
+			{ value: "100%", label: "KPIs in 3–5 Mos" },
+			{ value: "Top 10", label: '"rattan pendant light"' },
+			{ value: "+409%", label: "$7,504.98 Sales (19 Orders)" },
 		],
-		summary:
-			"Resolved severe keyword cannibalization and duplicate indexation in a final-sprint turnaround, pairing on-page consolidation with LocalBusiness JSON-LD and a Google Business Profile overhaul.",
+		task: "Analyzed the Website (Entity, Technical, Content) & market overview; developed an overall SEO strategy for a new-domain dropshipping e-commerce store.",
+		result:
+			'Achieved 100% SEO KPIs in the first 3–5 months, main keyword "rattan pendant light" ranked in Top 10, and achieved an average of 2–3+ organic orders/month ($7,504.98 total sales +409%, 19 orders +280%, 6,310 sessions +23%, +176% conversion rate).',
+		proofImg: "/proof/furniture-shopify-conversions.png",
+		proofAlt: "IndochinaLight Shopify organic sales and conversion chart",
+		href: "/portfolio#slide-indochinalight",
+		cta: "Inspect proof slide →",
+	},
+	{
+		number: "02",
+		name: "Repair Centre VIC",
+		subtitle: "Electronic Equipment Service Project (repaircentrevic.com.au)",
+		timeline: "Feb 2025 · 1 mo",
+		market: "Australia",
+		role: "Advisor & Implementer Achieving Project-End KPIs (SEO Specialist)",
+		metrics: [
+			{ value: "Top 3–5", label: "AU Rankings in 2 Wks" },
+			{ value: "85%", label: "Overall KPI in 2 Wks" },
+			{ value: "75%", label: "TOP 10 KPI (from 55%)" },
+		],
+		task: "Audited Website, identified Keyword Cannibalization and Duplicate Content. Strategized optimization for final project month to hit KPIs.",
+		result:
+			'Achieved Top 3–5 rankings for "iPhone ... screen repair", "Samsung ... screen repair" in the Australian market within 2 weeks. Achieved 75% TOP 10 KPI (from 55%), 30% TOP 5 KPI (from 15%), 10% TOP 3 KPI (from 5%), and 85% overall KPI after 2 weeks of Content & Onsite Audit.',
+		proofImg: null,
 		href: "/posts/top-3-rankings-in-two-weeks",
 		cta: "Read case study →",
 	},
 	{
-		name: "Vinamilk Nutrition",
-		domain: "vinamilk.com.vn",
-		tag: "Enterprise E-Commerce · FMCG",
+		number: "03",
+		name: "GTV SEO Project",
+		subtitle: "Vietnam B2B SEO Agency (gtvseo.com)",
+		timeline: "Apr 2023 – Dec 2024 · 1 yr 9 mos",
+		market: "Vietnam · B2B",
+		role: "Lead & Primary Implementer (SEO Specialist)",
 		metrics: [
-			{ value: "300K", label: "Clicks / Month" },
-			{ value: "100% KPI", label: "Achieved" },
+			{ value: "Top 1", label: "ChatGPT / Grok / Claude" },
+			{ value: "Top 1–3", label: '"báo giá seo", "khóa học seo"' },
+			{ value: "40/mo", label: "AI Quality Articles" },
 		],
-		summary:
-			"Architected a full-funnel topical map, semantic content clusters, and on-page technical standards for the maternal and baby nutrition vertical to capture Top 1–3 rankings at enterprise scale.",
+		task: "Executed tasks per plan (Schema, Content Audit, balanced Internal Linking, Crawl optimization, Cloud Stack, Guest Posts, PR articles, User Traffic, etc.). Applied AI to write and publish 40 quality articles/month for the website.",
+		result:
+			'Achieved Top 1 recommendation for "seo agency hcm" & "công ty seo hcm" on AI search engines (ChatGPT, Grok, Claude). Achieved stable Top 1–3 rankings for "báo giá seo", "khóa học seo", "seo agency", "thiết kế website chuẩn seo". Maintained stable Top 5–7 rankings for "dịch vụ seo hcm", "đào tạo seo" in 6 months using White Hat SEO methods in a Black Hat-dominated industry.',
+		proofImg: null,
+		href: "/posts/geo-playbook-ranking-number-1-on-chatgpt-claude-and-grok",
+		cta: "Read GEO playbook →",
+	},
+	{
+		number: "04",
+		name: "Vinamilk",
+		subtitle: "Nutrition E-Commerce Project (vinamilk.com.vn)",
+		timeline: "Nov 2023 – Mar 2024 · 5 mos",
+		market: "Vietnam · FMCG",
+		role: "Lead & Primary Implementer (SEO Specialist)",
+		metrics: [
+			{ value: "300K/mo", label: "GSC Clicks (826K+ Total)" },
+			{ value: "320K/mo", label: "Monthly Traffic" },
+			{ value: "100%", label: "SEO KPIs After 5 Mos" },
+		],
+		task: "Executed tasks (Technical Audit, UI-UX optimization, Keyword grouping, Topical Map, Content Outlines, Onpage Checklist).",
+		result:
+			"Reached 300,000 clicks/month (GSC) and 320,000 monthly traffic (826,000+ total clicks & 15.9M impressions in GSC), hitting 100% of SEO KPIs after 5 months. Achieved Top 1–3 rankings for mom & baby nutrition, baby cereal, baby milk, and recipes.",
+		proofImg: "/proof/vinamilk-gsc-826k-clicks.png",
+		proofAlt: "Vinamilk GSC 826,000+ clicks proof chart",
 		href: "/posts/scaling-vinamilk-to-300k-monthly-organic-clicks",
 		cta: "Read case study →",
 	},
+	{
+		number: "05",
+		name: "Shadow Vietnam",
+		subtitle: "Flashlight E-Commerce Project (shadow.vn)",
+		timeline: "Apr 2023 – Nov 2023 · 8 mos",
+		market: "Vietnam · Retail & B2G",
+		role: "Lead & Primary Implementer (SEO Executive)",
+		metrics: [
+			{ value: "+25% MoM", label: "Revenue (+26.81%)" },
+			{ value: "100%", label: "SEO KPI Delivered" },
+			{ value: "+25% YoY", label: "Q4 Revenue + Military Contract" },
+		],
+		task: "Audited website quarterly, optimized Product Page Views and Time Onsite, boosting website revenue by 25% month-over-month (+26.81% verified revenue growth to 225,246,800 VND & 57,311 users / 71,291 sessions).",
+		result:
+			'Achieved 100% SEO KPI, maintained traffic and TOP rankings ("địa điểm cắm trại", "đèn pin cắm trại", "đèn pin siêu sáng"). Q4/2023 revenue increased 25% YoY, secured a flashlight supply contract with the military, and renewed the SEO contract with GTV.',
+		proofImg: "/proof/flashlight-revenue-growth.png",
+		proofAlt: "Shadow Vietnam GA4 revenue growth chart",
+		href: "/portfolio#slide-shadow-vietnam",
+		cta: "Inspect proof slide →",
+	},
+	{
+		number: "06",
+		name: "EuroTravel",
+		subtitle: "European Travel Project (eurotravel.com.vn)",
+		timeline: "Nov 2022 – May 2023 · 7 mos",
+		market: "Vietnam · Tourism",
+		role: "Lead & Primary Implementer (SEO Trainee)",
+		metrics: [
+			{ value: "100K/mo", label: "Monthly Traffic (102.5K Peak)" },
+			{ value: "80K/mo", label: "GSC Clicks (20K Guides)" },
+			{ value: "120%", label: "TOP KPI in 6 Months" },
+		],
+		task: "Planned and executed tasks per GTV's SEO process, achieving 100,000 monthly traffic (102,544 peak organic traffic in Semrush) and 120% TOP KPI targets in 6 months.",
+		result:
+			"Reached 80,000 clicks/month (GSC), including 20,000 from travel guides across Europe, Australia, and New Zealand. Ranked Top 1 for European tours by country, luxury European travel, and Tet Europe tours; Top 3 by travel route.",
+		proofImg: "/proof/eurotravel-semrush-traffic.png",
+		proofAlt: "EuroTravel Semrush 102,544 organic traffic chart",
+		href: "/portfolio#slide-eurotravel",
+		cta: "Inspect proof slide →",
+	},
 ];
 
-const capabilities = [
+const servicesList = [
 	{
 		index: "01",
-		kicker: "AI Citation Engineering",
-		title: "GEO & AI Search Optimization",
+		kicker: "ChatGPT, Claude, Grok & Perplexity",
+		title: "Generative Engine Optimization (GEO) & AI Search Citation",
 		description:
-			"Entity structuring, llms.txt architecture, and citation engineering so your brand is recommended by ChatGPT, Claude, Perplexity, and Google AI Overviews.",
-		deliverables: "Entity Graphs · llms.txt · Brand Citation Audits",
+			"Entity salience engineering, Organization/Person/FAQPage JSON-LD schema graphs, /llms.txt architecture, and brand co-occurrence signals that get your business recommended #1 by AI assistants.",
+		deliverables: "Entity Schema · /llms.txt · AI Prompt Citation Audits",
 	},
 	{
 		index: "02",
-		kicker: "Crawl & Indexation",
-		title: "Technical SEO & Site Architecture",
+		kicker: "GSC & Screaming Frog Diagnostics",
+		title: "Technical SEO Audits & Site Architecture",
 		description:
-			"Deep crawl diagnostics (Screaming Frog, GSC), indexation cleanup, Core Web Vitals, schema graphs, and international/local SEO foundations.",
-		deliverables: "Crawl Diagnostics · JSON-LD · Core Web Vitals",
+			"Comprehensive technical audits to eliminate crawl waste, duplicate content, indexation bloat, and rendering bottlenecks while structuring clean internal linking and crawl hierarchies.",
+		deliverables: "Technical Audit · Crawl Optimization · Internal Linking Matrix",
 	},
 	{
 		index: "03",
-		kicker: "Topical Maps & Revenue",
-		title: "Topic Authority & Conversion (CRO)",
+		kicker: "SEMrush, Ahrefs & LLM Workflows",
+		title: "Topical Maps, Content Outlines & AI Content Workflows",
 		description:
-			"Intent-mapped content clusters, competitive gap execution (Ahrefs/SEMrush), and GA4 funnel optimization that turns organic traffic into pipeline.",
-		deliverables: "Semantic Clusters · Cannibalization Fixes · GA4 Funnels",
+			"Full-funnel keyword grouping, semantic Topical Maps, E-E-A-T Content Outlines, Onpage Checklists, and ChatGPT/Claude/Perplexity API workflows capable of scaling 40+ quality articles/month.",
+		deliverables: "Topical Maps · Content Outlines · AI Editorial SOPs",
+	},
+	{
+		index: "04",
+		kicker: "US, Singapore, Italy, Australia & VN",
+		title: "E-Commerce & Global Dropshipping SEO",
+		description:
+			"Zero-to-one entity, technical, and collection/product SEO strategies for Shopify and enterprise e-commerce stores — driving high-intent organic orders and sustainable revenue growth.",
+		deliverables: "Collection & Product SEO · Merchant Schema · Global SERP Strategy",
+	},
+	{
+		index: "05",
+		kicker: "Rapid 2-Week Ranking Recovery",
+		title: "Local SEO & Cannibalization Turnarounds",
+		description:
+			"Pinpointing keyword cannibalization and duplicate service URLs, consolidating authority, and aligning local landing pages to unlock Top 3–5 rankings in competitive local markets.",
+		deliverables: "Cannibalization Cleanup · Onpage Audit · LocalBusiness Schema",
+	},
+	{
+		index: "06",
+		kicker: "GA4, GTM & KPI Governance",
+		title: "GA4 Conversion Rate Optimization (CRO) & Project Management",
+		description:
+			"Attaching GA4 & Google Tag Manager conversion tracking, optimizing Product Page Views and Time Onsite, and managing end-to-end SEO roadmaps to hit 100%–120% KPIs on schedule.",
+		deliverables: "GA4 & GTM Tracking · Money-Page CRO · End-to-End KPI Management",
 	},
 ];
+
+const engagementTiers = [
+	{
+		tier: "Tier 01 · Technical & GEO Audit",
+		timeline: "2–3 Weeks Delivery",
+		blurb:
+			"Complete technical crawl (Screaming Frog & GSC), keyword cannibalization & duplicate content audit, AI search citation benchmark, and prioritized 90-day roadmap.",
+		features: [
+			"Entity, Technical & Content audit across your domain",
+			"Keyword Cannibalization & Duplicate Content resolution plan",
+			"ChatGPT, Claude, Perplexity & Grok citation benchmark",
+			"Prioritized Onpage Checklist & Schema implementation blueprint",
+		],
+		serviceValue: "Tier 01 · Technical & GEO Audit",
+		featured: false,
+	},
+	{
+		tier: "Tier 02 · Monthly SEO & GEO Growth Retainer (Recommended)",
+		timeline: "3–6+ Months Partnership",
+		badge: "Recommended",
+		blurb:
+			"End-to-end SEO & GEO project leadership: Topical Maps, AI-assisted content production, internal linking, off-page authority, and GA4 CRO to achieve 100%+ KPIs.",
+		features: [
+			"Full Topical Map, Keyword Grouping & E-E-A-T Content Outlines",
+			"AI-assisted SEO-standard content workflows & Onpage QA",
+			"Schema, balanced Internal Linking, Cloud Stack & PR execution",
+			"GA4/GTM conversion tracking, CRO & monthly KPI reporting",
+		],
+		serviceValue: "Tier 02 · Monthly SEO & GEO Growth Retainer",
+		featured: true,
+	},
+	{
+		tier: "Tier 03 · High-Velocity Turnaround Sprint",
+		timeline: "2–6 Weeks Fixed Sprint",
+		blurb:
+			"Focused diagnostic and execution sprint modeled after our 2-week Australian turnaround — built to resolve ranking bottlenecks and hit project-end KPIs fast.",
+		features: [
+			"Rapid Content & Onsite Audit for stalled commercial pages",
+			"URL consolidation, 301 redirects & canonical cleanup",
+			"New-domain launch architecture or international market entry",
+			"Direct execution handoff with your dev & content team",
+		],
+		serviceValue: "Tier 03 · High-Velocity Turnaround Sprint",
+		featured: false,
+	},
+];
+
+const faqs = [
+	{
+		q: "What industries and markets have you delivered verified SEO & GEO results in?",
+		a: "During nearly 3 years at GTV SEO (Nov 2022 – Apr 2025), I served as Lead & Primary Implementer and Advisor across 6 flagship campaigns spanning Global Dropshipping E-Commerce in the US, Singapore, Italy, and Australia (IndochinaLight), Australian Electronic Equipment Repair (Repair Centre VIC), Vietnam B2B SEO Agency (GTV SEO), Enterprise FMCG Nutrition (Vinamilk), Tactical Flashlight E-Commerce (Shadow Vietnam), and European Travel (EuroTravel).",
+	},
+	{
+		q: "How did you rank GTV SEO #1 on ChatGPT, Grok, and Claude while holding Top 1–3 on Google?",
+		a: "On gtvseo.com (Apr 2023 – Dec 2024), we combined comprehensive Schema markup, Content Audits, balanced Internal Linking, Crawl optimization, Cloud Stack, Guest Posts, PR articles, and User Traffic with an AI-assisted editorial workflow publishing 40 high-quality SEO-standard articles per month. This 100% White Hat approach secured Top 1 AI recommendations for 'seo agency hcm' and 'công ty seo hcm' and stable Top 1–3 Google rankings for 'báo giá seo', 'khóa học seo', 'seo agency', and 'thiết kế website chuẩn seo'.",
+	},
+	{
+		q: "How fast can a technical & content turnaround impact rankings?",
+		a: "It depends on existing domain authority and technical debt. For Repair Centre VIC (repaircentrevic.com.au) in February 2025, auditing and fixing Keyword Cannibalization and Duplicate Content propelled 'iPhone ... screen repair' and 'Samsung ... screen repair' into Google Australia's Top 3–5 within 2 weeks — lifting TOP 10 KPI from 55% to 75% and hitting 85% overall project KPI. For new domains like IndochinaLight, we achieved 100% of SEO KPIs and recurring organic orders within the first 3–5 months.",
+	},
+	{
+		q: "How do you use ChatGPT, Claude, and Perplexity APIs in your SEO workflow?",
+		a: "I use ChatGPT, Claude, and Perplexity APIs to analyze user search intent, extract competitor entity coverage, structure semantic Content Outlines, and accelerate SEO-standard content production without sacrificing factual depth or E-E-A-T. This workflow earned 3rd Prize in GTV SEO's internal AI Application for SEO competition and enabled publishing 40 quality articles/month.",
+	},
+	{
+		q: "How do you connect SEO traffic to actual business revenue and conversions?",
+		a: "Trained in International Business at the University of Economics Ho Chi Minh City (UEH, GPA 3.27/4.0), I align every Topical Map with commercial buyer intent and track results via Google Analytics 4 (GA4) and Google Tag Manager (GTM). For Shadow Vietnam, optimizing Product Page Views and Time Onsite boosted website revenue by 25%+ month-over-month (+26.81% verified growth) and helped secure a military flashlight supply contract.",
+	},
+	{
+		q: "Are you available for SEO/GEO consulting retainers as well as Senior SEO & GEO Specialist roles?",
+		a: "Yes. You can review my 10-slide Visual Strategy Portfolio at /portfolio and reach out via the Get in Touch form below, email (tinledoihoa@gmail.com), or Phone/Zalo (0357.669.476) for consulting audits, monthly retainers, or senior in-house/agency leadership roles.",
+	},
+];
+
+const homeFaqJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqs.map((item) => ({
+		"@type": "Question",
+		name: item.q,
+		acceptedAnswer: {
+			"@type": "Answer",
+			text: item.a,
+		},
+	})),
+};
 ---
 
-<Base title={settings.title ?? "Le Hoang Tin"} description={settings.tagline}>
+<Base
+	title={settings.title ?? "Le Hoang Tin — Senior SEO & GEO Specialist"}
+	description="Le Hoang Tin — Senior SEO & GEO Specialist in Ho Chi Minh City, Vietnam. Nearly 3 years leading SEO projects at GTV SEO (Vinamilk, IndochinaLight, Repair Centre VIC, GTV SEO, Shadow Vietnam, EuroTravel). UEH International Business (GPA 3.27/4.0)."
+	jsonLd={homeFaqJsonLd}
+>
 	<div class="home">
-
 		<!-- ── 1. Hero Section ── -->
 		<section class="hero">
 			<div class="hero-masthead">
-				<span class="vol-badge">VOL. I — 2026</span>
+				<span class="vol-badge">VOL. I — 2026 · HO CHI MINH CITY, VN</span>
 				<span class="masthead-rule" aria-hidden="true"></span>
-				<span class="city-label">HO CHI MINH CITY, VN</span>
+				<span class="city-label">UEH INTERNATIONAL BUSINESS · GPA 3.27/4.0</span>
 			</div>
 
 			<div class="hero-inner">
@@ -160,19 +439,19 @@ const capabilities = [
 					<h1 class="hero-name">Le Hoang Tin</h1>
 
 					<p class="hero-positioning">
-						Helping brands rank at the top of Google and get cited inside ChatGPT, Claude, Perplexity, and Google AI Overviews.
+						Data-driven SEO &amp; Generative Engine Optimization (GEO) strategies that rank brands Top 1–3 on Google, win #1 citations on ChatGPT, Claude &amp; Grok, and convert organic traffic into measurable revenue.
 					</p>
 
 					<p class="hero-bio">
-						Senior SEO &amp; GEO Specialist with 3+ years leading organic growth at GTV SEO Agency across Vietnam, Australia, and global English markets. Focused on entity architecture, technical SEO, and measurable revenue impact.
+						Nearly 3 years of hands-on experience leading SEO projects at <strong>GTV SEO</strong> across healthcare/nutrition, e-commerce, tourism, B2B agency, and local services — from Vietnamese businesses (<strong>Vinamilk</strong>, <strong>EuroTravel</strong>, <strong>Shadow Vietnam</strong>, <strong>GTV SEO</strong>) to international markets in the US, Singapore, Italy, and Australia (<strong>IndochinaLight</strong>, <strong>Repair Centre VIC</strong>).
 					</p>
 
 					<div class="hero-ctas">
-						<a href="/contact" class="btn-primary">
-							Work with me →
+						<a href="#get-in-touch" class="btn-primary">
+							Get in Touch →
 						</a>
-						<a href="/projects" class="btn-secondary">
-							Explore case studies →
+						<a href="/portfolio" class="btn-secondary">
+							Visual Portfolio Deck →
 						</a>
 					</div>
 
@@ -201,10 +480,10 @@ const capabilities = [
 							/>
 						</div>
 						<div class="portrait-meta">
-							<p class="portrait-caption">FIG. 01 — LE HOANG TIN · HCMC</p>
+							<p class="portrait-caption">FIG. 01 — LE HOANG TIN · HCMC, VN</p>
 							<div class="status-pill">
 								<span class="status-dot" aria-hidden="true"></span>
-								<span>Available for consulting &amp; GEO audits</span>
+								<span>Available for SEO/GEO projects &amp; leadership</span>
 							</div>
 						</div>
 					</div>
@@ -212,7 +491,7 @@ const capabilities = [
 			</div>
 		</section>
 
-		<!-- ── 2. Proof & Brand Strip ── -->
+		<!-- ── 2. Proof Metrics & Auto-Scrolling Brand Logo Marquee Moving Right ── -->
 		<section class="proof-strip" aria-label="Verified SEO and GEO impact metrics">
 			<div class="proof-grid">
 				{
@@ -225,30 +504,359 @@ const capabilities = [
 				}
 			</div>
 
-			<div class="brand-strip">
-				<span class="brand-strip-label">CAMPAIGN EXPERIENCE &amp; MARKETS</span>
-				<div class="brand-strip-list" role="list">
-					{
-						campaignMarkets.map((item, index) => (
-							<>
-								<span class="brand-strip-item" role="listitem">{item}</span>
-								{index < campaignMarkets.length - 1 && (
-									<span class="brand-strip-sep" aria-hidden="true">·</span>
-								)}
-							</>
-						))
-					}
+			<div class="marquee-section">
+				<div class="marquee-header">
+					<span class="brand-strip-label">
+						6 FLAGSHIP CAMPAIGNS LED AT GTV SEO (NOV 2022 – APR 2025)
+					</span>
+					<a href="/portfolio" class="marquee-deck-link">
+						Open 10-Slide Visual Portfolio Deck →
+					</a>
+				</div>
+
+				<div
+					class="brand-marquee-viewport"
+					aria-label="Flagship brands and projects marquee"
+				>
+					<div class="brand-marquee-track">
+						{
+							[...marqueeBrands, ...marqueeBrands].map((brand, idx) => (
+								<a
+									href={brand.href}
+									class="marquee-brand-card"
+									aria-hidden={idx >= marqueeBrands.length ? "true" : undefined}
+									tabindex={idx >= marqueeBrands.length ? -1 : undefined}
+								>
+									<span class="marquee-brand-icon" aria-hidden="true">
+										{brand.id === "gtv" && (
+											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+											</svg>
+										)}
+										{brand.id === "vinamilk" && (
+											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+											</svg>
+										)}
+										{brand.id === "indochina" && (
+											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<circle cx="12" cy="12" r="10" />
+												<line x1="2" y1="12" x2="22" y2="12" />
+												<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+											</svg>
+										)}
+										{brand.id === "repair" && (
+											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+												<line x1="12" y1="18" x2="12.01" y2="18" />
+											</svg>
+										)}
+										{brand.id === "shadow" && (
+											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+											</svg>
+										)}
+										{brand.id === "eurotravel" && (
+											<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+											</svg>
+										)}
+									</span>
+									<span class="marquee-brand-info">
+										<span class="marquee-brand-top">
+											<span class="marquee-brand-name">{brand.name}</span>
+											<span class="marquee-brand-metric">{brand.metric}</span>
+										</span>
+										<span class="marquee-brand-sub">{brand.sub}</span>
+									</span>
+								</a>
+							))
+						}
+					</div>
 				</div>
 			</div>
 		</section>
 
 		<div class="main-sections">
-
-			<!-- ── 3. § I — Writing & Research ── -->
-			<section class="writing-section" aria-labelledby="section-writing-title">
+			<!-- ── 3. § I — Who I Am & Experience (id="about-me") ── -->
+			<section
+				id="about-me"
+				class="about-home-section"
+				aria-labelledby="section-about-title"
+			>
 				<div class="section-index-header">
 					<span class="section-index-badge">§ I</span>
-					<h2 class="section-index-title" id="section-writing-title">Writing · SEO &amp; AI Search</h2>
+					<h2 class="section-index-title" id="section-about-title">
+						Who I Am &amp; Experience · Verified CV Ground Truth
+					</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/about" class="section-index-link">Full entity bio →</a>
+				</div>
+
+				<div class="about-home-grid">
+					<!-- Left Column: Profile, GTV SEO Progression & UEH Education -->
+					<div class="about-col-left">
+						<div class="about-summary-card">
+							<span class="editorial-kicker">CAREER PROGRESSION · NOV 2022 – APR 2025 (2 YRS 6 MOS)</span>
+							<h3 class="about-card-heading">
+								Leading Multi-Market SEO &amp; GEO at GTV SEO
+							</h3>
+							<p class="about-card-copy">
+								With nearly 3 years of hands-on experience leading SEO projects at <strong>GTV SEO</strong> (Ho Chi Minh City), I have planned and executed organic growth systems across healthcare/nutrition, e-commerce, tourism, B2B agency, and local services — from Vietnamese category leaders to global enterprises.
+							</p>
+							<p class="about-card-copy">
+								My work centers on data-driven SEO strategies aligned with commercial marketing objectives, Conversion Rate Optimization (CRO), and R&amp;D on user search intent across both Google and AI-driven channels (<strong>ChatGPT, Claude, Perplexity, Grok</strong>).
+							</p>
+
+							<div class="progression-timeline">
+								{
+									gtvProgression.map((step) => (
+										<div class="progression-item">
+											<div class="progression-top">
+												<span class="progression-role">{step.role}</span>
+												<span class="progression-period">{step.period}</span>
+											</div>
+											<span class="progression-badge">GTV SEO · {step.badge}</span>
+											<p class="progression-detail">{step.detail}</p>
+										</div>
+									))
+								}
+							</div>
+
+							<!-- UEH Education Block -->
+							<div class="education-callout">
+								<div class="edu-header">
+									<span class="edu-kicker">ACADEMIC EDUCATION</span>
+									<span class="edu-gpa">GPA: 3.27 / 4.0</span>
+								</div>
+								<h4 class="edu-degree">
+									Major in International Business
+								</h4>
+								<p class="edu-school">
+									University of Economics Ho Chi Minh City (UEH — Đại học Kinh tế TP.HCM)
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Column: 5 Core Skills & 3 Achievements -->
+					<div class="about-col-right">
+						<div class="skills-card">
+							<span class="editorial-kicker">CORE TECHNICAL STACK &amp; CAPABILITIES</span>
+							<h3 class="about-card-heading">5 Core SEO &amp; GEO Skills</h3>
+							<ul class="cv-skills-list">
+								{
+									cvSkills.map((skill) => (
+										<li>
+											<span class="skill-arrow" aria-hidden="true">→</span>
+											<span>{skill}</span>
+										</li>
+									))
+								}
+							</ul>
+						</div>
+
+						<div class="achievements-card">
+							<span class="editorial-kicker">RECOGNITION &amp; TRACK RECORD AT GTV SEO</span>
+							<h3 class="about-card-heading">3 Key Achievements</h3>
+							<div class="achievements-stack">
+								{
+									cvAchievements.map((ach) => (
+										<div class="achievement-row">
+											<span class="ach-kicker">{ach.kicker}</span>
+											<h4 class="ach-title">{ach.title}</h4>
+											<p class="ach-desc">{ach.desc}</p>
+										</div>
+									))
+								}
+							</div>
+
+							<div class="about-card-actions">
+								<a href="/about" class="btn-secondary">
+									More about my background →
+								</a>
+								<a href="/portfolio" class="btn-primary">
+									Visual Portfolio Deck →
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ── 4. § II — Case Studies & Projects Implemented (id="cases") ── -->
+			<section
+				id="cases"
+				class="work-section"
+				aria-labelledby="section-work-title"
+			>
+				<div class="section-index-header">
+					<span class="section-index-badge">§ II</span>
+					<h2 class="section-index-title" id="section-work-title">
+						6 Flagship Case Studies · Verified Metrics &amp; Proof
+					</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/projects" class="section-index-link">Full case archive →</a>
+				</div>
+
+				<div class="cases-grid-six">
+					{
+						flagshipCases.map((study) => (
+							<article class="case-card">
+								<div class="case-card-top">
+									<div class="case-badge-row">
+										<span class="case-num">№ {study.number}</span>
+										<span class="case-market-tag">{study.market}</span>
+										<span class="case-timeline-mono">{study.timeline}</span>
+									</div>
+									<h3 class="case-title">{study.name}</h3>
+									<span class="case-subtitle">{study.subtitle}</span>
+									<span class="case-role-badge">{study.role}</span>
+								</div>
+
+								<div class="case-metrics-three">
+									{study.metrics.map((metric) => (
+										<div class="case-metric-box">
+											<span class="case-metric-value">{metric.value}</span>
+											<span class="case-metric-label">{metric.label}</span>
+										</div>
+									))}
+								</div>
+
+								<div class="case-task-result">
+									<p class="case-line">
+										<strong>Task:</strong> {study.task}
+									</p>
+									<p class="case-line">
+										<strong>Result:</strong> {study.result}
+									</p>
+								</div>
+
+								{study.proofImg && (
+									<a href={study.href} class="case-proof-preview">
+										<img
+											src={study.proofImg}
+											alt={study.proofAlt || study.name}
+											class="case-proof-img"
+											loading="lazy"
+										/>
+										<span class="case-proof-badge">Verified Analytics Screenshot →</span>
+									</a>
+								)}
+
+								<div class="case-card-footer">
+									<a href={study.href} class="case-link">
+										{study.cta}
+									</a>
+									<a href="/portfolio" class="case-deck-link">
+										Deck slide →
+									</a>
+								</div>
+							</article>
+						))
+					}
+				</div>
+
+				<div class="section-bottom-bar">
+					<a href="/projects" class="btn-secondary">
+						Explore Filterable Case Study Archive (/projects) →
+					</a>
+					<a href="/portfolio" class="btn-primary">
+						Open Widescreen Visual Portfolio Deck (/portfolio) →
+					</a>
+				</div>
+			</section>
+
+			<!-- ── 5. § III — SEO & GEO Services & Engagement Models (id="services") ── -->
+			<section
+				id="services"
+				class="services-home-section"
+				aria-labelledby="section-capabilities-title"
+			>
+				<div class="section-index-header">
+					<span class="section-index-badge">§ III</span>
+					<h2 class="section-index-title" id="section-capabilities-title">
+						SEO &amp; GEO Services &amp; Engagement Models
+					</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="#get-in-touch" class="section-index-link">Get in Touch →</a>
+				</div>
+
+				<div class="capabilities-grid">
+					{
+						servicesList.map((cap) => (
+							<article class="capability-card">
+								<div class="capability-header">
+									<span class="capability-num">{cap.index}</span>
+									<span class="capability-kicker">{cap.kicker}</span>
+								</div>
+								<h3 class="capability-title">{cap.title}</h3>
+								<p class="capability-desc">{cap.description}</p>
+								<div class="capability-foot">
+									<span class="capability-deliverables">{cap.deliverables}</span>
+								</div>
+							</article>
+						))
+					}
+				</div>
+
+				<!-- 3 Engagement Tiers -->
+				<div class="tiers-subblock">
+					<div class="tiers-subheader">
+						<span class="editorial-kicker">ENGAGEMENT MODELS · HOW WE WORK TOGETHER</span>
+						<h3 class="tiers-heading">Select an Engagement Scope</h3>
+					</div>
+
+					<div class="tiers-grid">
+						{
+							engagementTiers.map((tier) => (
+								<article
+									class:list={["tier-card", { featured: tier.featured }]}
+								>
+									{tier.badge && <span class="tier-rec-badge">{tier.badge}</span>}
+									<div class="tier-head">
+										<span class="tier-timeline">{tier.timeline}</span>
+										<h4 class="tier-title">{tier.tier}</h4>
+									</div>
+									<p class="tier-blurb">{tier.blurb}</p>
+									<ul class="tier-features">
+										{tier.features.map((feat) => (
+											<li>
+												<span class="skill-arrow" aria-hidden="true">→</span>
+												<span>{feat}</span>
+											</li>
+										))}
+									</ul>
+									<div class="tier-foot">
+										<a
+											href="#get-in-touch"
+											data-select-service={tier.serviceValue}
+											class:list={[
+												tier.featured ? "btn-primary" : "btn-secondary",
+												"tier-cta-btn",
+											]}
+										>
+											Get in Touch →
+										</a>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- ── 6. § IV — Writing & Research (id="writing") ── -->
+			<section
+				id="writing"
+				class="writing-section"
+				aria-labelledby="section-writing-title"
+			>
+				<div class="section-index-header">
+					<span class="section-index-badge">§ IV</span>
+					<h2 class="section-index-title" id="section-writing-title">
+						Writing &amp; Research · SEO, AI Search &amp; Toolkit
+					</h2>
 					<span class="section-index-rule" aria-hidden="true"></span>
 					<a href="/posts" class="section-index-link">
 						Full archive ({posts.length}+) →
@@ -307,7 +915,7 @@ const capabilities = [
 											const cat = getFirstCategory(post.data.id);
 											const num = formatIssueNumber(
 												post.data.number,
-												listPosts.length - idx
+												listPosts.length - idx,
 											);
 											return (
 												<a
@@ -337,7 +945,10 @@ const capabilities = [
 
 									<div class="see-all-row">
 										<a href="/posts" class="see-all-link">
-											Browse all articles →
+											Browse all articles (/posts) →
+										</a>
+										<a href="/tools" class="see-all-link">
+											Resources &amp; Interactive SEO/GEO Toolkit (/tools) →
 										</a>
 									</div>
 								</div>
@@ -354,156 +965,379 @@ const capabilities = [
 				}
 			</section>
 
-			<!-- ── 4. § II — Selected Case Studies ── -->
-			<section class="work-section" aria-labelledby="section-work-title">
+			<!-- ── 7. § V — Frequently Asked Questions (id="faq") ── -->
+			<section
+				id="faq"
+				class="faq-home-section"
+				aria-labelledby="section-faq-title"
+			>
 				<div class="section-index-header">
-					<span class="section-index-badge">§ II</span>
-					<h2 class="section-index-title" id="section-work-title">Selected Case Studies · Verifiable Impact</h2>
-					<span class="section-index-rule" aria-hidden="true"></span>
-					<a href="/projects" class="section-index-link">All 6 projects →</a>
-				</div>
-
-				<div class="work-grid">
-					{
-						selectedCaseStudies.map((study) => (
-							<article class="case-card">
-								<div class="case-card-top">
-									<span class="case-tag">{study.tag}</span>
-									<h3 class="case-title">{study.name}</h3>
-									<span class="case-domain">{study.domain}</span>
-								</div>
-
-								<div class="case-metrics">
-									{study.metrics.map((metric) => (
-										<div class="case-metric-box">
-											<span class="case-metric-value">{metric.value}</span>
-											<span class="case-metric-label">{metric.label}</span>
-										</div>
-									))}
-								</div>
-
-								<p class="case-summary">{study.summary}</p>
-
-								<a href={study.href} class="case-link">
-									{study.cta}
-								</a>
-							</article>
-						))
-					}
-				</div>
-			</section>
-
-			<!-- ── 5. § III — Capabilities & Consulting ── -->
-			<section class="services-preview-section" aria-labelledby="section-capabilities-title">
-				<div class="section-index-header">
-					<span class="section-index-badge">§ III</span>
-					<h2 class="section-index-title" id="section-capabilities-title">Capabilities · How I Help Teams Grow</h2>
-					<span class="section-index-rule" aria-hidden="true"></span>
-					<a href="/services" class="section-index-link">Services &amp; engagement models →</a>
-				</div>
-
-				<div class="capabilities-grid">
-					{
-						capabilities.map((cap) => (
-							<article class="capability-card">
-								<div class="capability-header">
-									<span class="capability-num">{cap.index}</span>
-									<span class="capability-kicker">{cap.kicker}</span>
-								</div>
-								<h3 class="capability-title">{cap.title}</h3>
-								<p class="capability-desc">{cap.description}</p>
-								<div class="capability-foot">
-									<span class="capability-deliverables">{cap.deliverables}</span>
-								</div>
-							</article>
-						))
-					}
-				</div>
-			</section>
-
-			<!-- ── 6. § IV — Now & Direct Connect ── -->
-			<section class="now-connect-section" aria-labelledby="section-now-title">
-				<div class="section-index-header">
-					<span class="section-index-badge">§ IV</span>
-					<h2 class="section-index-title" id="section-now-title">Now · Current Focus &amp; Direct Channels</h2>
+					<span class="section-index-badge">§ V</span>
+					<h2 class="section-index-title" id="section-faq-title">
+						Frequently Asked Questions · SEO, GEO &amp; Collaboration
+					</h2>
 					<span class="section-index-rule" aria-hidden="true"></span>
 					<a href="/ai-information" class="section-index-link">AI Fact Sheet →</a>
 				</div>
 
-				<div class="now-connect-grid">
-					<div class="now-column">
-						<span class="editorial-kicker">STATUS · Q4 2026</span>
-						<h3 class="now-heading">Currently focused on</h3>
-						<ul class="now-list">
-							<li>
-								<span class="now-arrow" aria-hidden="true">→</span>
-								<div>
-									<strong>GEO Citation Research &amp; Entity Engineering</strong> — Testing how ChatGPT, Claude, Perplexity, and Google AI Overviews retrieve, verify, and cite B2B &amp; e-commerce brands.
+				<div class="faq-list">
+					{
+						faqs.map((item, idx) => (
+							<details class="faq-item" open={idx === 0}>
+								<summary class="faq-question">
+									<span class="faq-num">0{idx + 1}</span>
+									<span class="faq-question-text">{item.q}</span>
+									<span class="faq-icon" aria-hidden="true"></span>
+								</summary>
+								<div class="faq-answer-wrap">
+									<p class="faq-answer">{item.a}</p>
 								</div>
-							</li>
-							<li>
-								<span class="now-arrow" aria-hidden="true">→</span>
-								<div>
-									<strong>Senior SEO &amp; GEO Strategy at GTV SEO</strong> — Leading technical audits, semantic topical maps, and organic growth sprints across Vietnam, Australia, and global markets.
-								</div>
-							</li>
-							<li>
-								<span class="now-arrow" aria-hidden="true">→</span>
-								<div>
-									<strong>Open Playbooks &amp; Case Breakdowns</strong> — Documenting reproducible frameworks, schema patterns, and real campaign teardowns on this publication.
-								</div>
-							</li>
-						</ul>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- ── 8. § VI — Get in Touch (Interactive Contact Form — id="get-in-touch") ── -->
+			<section
+				id="get-in-touch"
+				class="get-in-touch-section"
+				aria-labelledby="section-contact-title"
+			>
+				<div class="section-index-header">
+					<span class="section-index-badge">§ VI</span>
+					<h2 class="section-index-title" id="section-contact-title">
+						Get in Touch · Start an SEO / GEO Project or Conversation
+					</h2>
+					<span class="section-index-rule" aria-hidden="true"></span>
+					<a href="/contact" class="section-index-link">Standalone contact page →</a>
+				</div>
+
+				<div class="get-in-touch-grid">
+					<!-- Left Column: Direct Channels & Availability -->
+					<div class="touch-left-card">
+						<span class="editorial-kicker">DIRECT CHANNELS · HO CHI MINH CITY (GMT+7)</span>
+						<h3 class="touch-heading">Let’s discuss your organic &amp; AI search growth</h3>
+						<p class="touch-desc">
+							Whether you need a Technical &amp; GEO Audit, an ongoing monthly SEO &amp; GEO retainer, a rapid ranking turnaround sprint, or a Senior SEO &amp; GEO Specialist to lead your brand — reach out directly or submit the brief on the right.
+						</p>
+
+						<dl class="touch-channel-list">
+							<div class="touch-channel-item">
+								<dt>Email</dt>
+								<dd>
+									<a href="mailto:tinledoihoa@gmail.com">tinledoihoa@gmail.com →</a>
+								</dd>
+							</div>
+							<div class="touch-channel-item">
+								<dt>Phone / Zalo / WhatsApp</dt>
+								<dd>
+									<a href="tel:+84357669476">0357.669.476</a>
+									<span class="channel-sep">·</span>
+									<a href="https://zalo.me/0357669476" target="_blank" rel="noopener noreferrer">
+										Zalo ↗
+									</a>
+									<span class="channel-sep">·</span>
+									<a href="https://wa.me/84357669476" target="_blank" rel="noopener noreferrer">
+										WhatsApp ↗
+									</a>
+								</dd>
+							</div>
+							<div class="touch-channel-item">
+								<dt>LinkedIn</dt>
+								<dd>
+									<a
+										href="https://www.linkedin.com/in/tin-le-hoang"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										linkedin.com/in/tin-le-hoang ↗
+									</a>
+								</dd>
+							</div>
+							<div class="touch-channel-item">
+								<dt>Education &amp; Credentials</dt>
+								<dd>
+									<span>UEH — International Business (GPA: 3.27/4.0) · GTV SEO (Nov 2022 – Apr 2025)</span>
+								</dd>
+							</div>
+						</dl>
+
+						<div class="touch-left-actions">
+							<a href="/portfolio" class="btn-secondary">
+								View Visual Portfolio Deck (/portfolio) →
+							</a>
+							<a href="/tools" class="btn-secondary">
+								Run 15-Point SEO/GEO Scorecard →
+							</a>
+						</div>
 					</div>
 
-					<div class="connect-column">
-						<div class="connect-card">
-							<span class="editorial-kicker">DIRECT CHANNELS</span>
-							<h3 class="connect-heading">Start a conversation</h3>
-							<p class="connect-desc">
-								Available for select SEO &amp; GEO audits, technical architecture sprints, and advisory retainers. Typical response within 24 hours.
+					<!-- Right Column: Interactive Get in Touch Form -->
+					<div class="touch-form-card">
+						<span class="editorial-kicker">SEND A MESSAGE DIRECTLY TO TINLEDOIHOA@GMAIL.COM</span>
+						<h3 class="touch-form-title">Get in Touch</h3>
+
+						<form id="home-get-in-touch-form" class="touch-form">
+							<div class="touch-row-two">
+								<div class="touch-field">
+									<label for="home-name" class="touch-label">
+										Full Name <span class="req-star">*</span>
+									</label>
+									<input
+										type="text"
+										id="home-name"
+										name="name"
+										class="touch-input"
+										placeholder="Your name"
+										required
+										autocomplete="name"
+									/>
+								</div>
+								<div class="touch-field">
+									<label for="home-email" class="touch-label">
+										Email Address <span class="req-star">*</span>
+									</label>
+									<input
+										type="email"
+										id="home-email"
+										name="email"
+										class="touch-input"
+										placeholder="you@company.com"
+										required
+										autocomplete="email"
+									/>
+								</div>
+							</div>
+
+							<div class="touch-row-two">
+								<div class="touch-field">
+									<label for="home-phone" class="touch-label">
+										Phone / Zalo
+									</label>
+									<input
+										type="tel"
+										id="home-phone"
+										name="phone"
+										class="touch-input"
+										placeholder="e.g. 0357.669.476"
+										autocomplete="tel"
+									/>
+								</div>
+								<div class="touch-field">
+									<label for="home-website" class="touch-label">
+										Website URL
+									</label>
+									<input
+										type="text"
+										id="home-website"
+										name="website"
+										class="touch-input"
+										placeholder="https://yourdomain.com"
+										autocomplete="url"
+									/>
+								</div>
+							</div>
+
+							<div class="touch-field">
+								<label for="home-service" class="touch-label">
+									Service / Topic
+								</label>
+								<select id="home-service" name="service" class="touch-select">
+									<option value="Tier 02 · Monthly SEO & GEO Growth Retainer">
+										Tier 02 · Monthly SEO &amp; GEO Growth Retainer (Recommended)
+									</option>
+									<option value="Tier 01 · Technical & GEO Audit">
+										Tier 01 · Technical &amp; GEO Audit (2–3 Weeks)
+									</option>
+									<option value="Tier 03 · High-Velocity Turnaround Sprint">
+										Tier 03 · High-Velocity Turnaround Sprint
+									</option>
+									<option value="Generative Engine Optimization (GEO) & AI Search">
+										Generative Engine Optimization (GEO) &amp; AI Search Citation
+									</option>
+									<option value="E-Commerce & Global Dropshipping SEO">
+										E-Commerce &amp; Global Dropshipping SEO
+									</option>
+									<option value="Senior SEO & GEO Role / Hiring Opportunity">
+										Senior SEO &amp; GEO Role / Hiring Opportunity
+									</option>
+								</select>
+							</div>
+
+							<div class="touch-field">
+								<label for="home-message" class="touch-label">
+									Message / Project Goals <span class="req-star">*</span>
+								</label>
+								<textarea
+									id="home-message"
+									name="message"
+									class="touch-textarea"
+									rows="4"
+									required
+									placeholder="Share your website, target market (Vietnam, Australia, US, Global), and what you want to achieve..."
+								></textarea>
+							</div>
+
+							<button type="submit" id="home-submit-btn" class="btn-primary touch-submit-btn">
+								Get in Touch →
+							</button>
+						</form>
+
+						<div
+							id="home-form-confirmation"
+							class="touch-confirmation"
+							role="status"
+							aria-live="polite"
+							hidden
+						>
+							<span class="editorial-kicker">MESSAGE DISPATCHED · READY</span>
+							<h4 class="touch-conf-title">
+								Thank you! Your message has been sent to tinledoihoa@gmail.com.
+							</h4>
+							<p class="touch-conf-desc">
+								You can also open this pre-filled message in your email app or copy it for Zalo / WhatsApp:
 							</p>
-
-							<dl class="connect-channels">
-								<div class="connect-channel-row">
-									<dt>Email</dt>
-									<dd>
-										<a href="mailto:tinledoihoa@gmail.com">tinledoihoa@gmail.com</a>
-									</dd>
-								</div>
-								<div class="connect-channel-row">
-									<dt>Phone / Zalo</dt>
-									<dd>
-										<a href="tel:+84357669476">0357.669.476</a>
-									</dd>
-								</div>
-								<div class="connect-channel-row">
-									<dt>LinkedIn</dt>
-									<dd>
-										<a
-											href="https://www.linkedin.com/in/tin-le-hoang"
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											Tin Le Hoang ↗
-										</a>
-									</dd>
-								</div>
-							</dl>
-
-							<div class="connect-actions">
-								<a href="/contact" class="btn-primary connect-cta">
-									Book a consultation →
+							<pre id="home-form-preview" class="touch-conf-preview"></pre>
+							<div class="touch-conf-actions">
+								<a
+									id="home-mailto-link"
+									href="mailto:tinledoihoa@gmail.com"
+									class="btn-primary"
+								>
+									Open in Email App (mailto:tinledoihoa@gmail.com) →
 								</a>
+								<button
+									type="button"
+									id="home-copy-msg-btn"
+									class="btn-secondary"
+								>
+									Copy Message →
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-
 		</div>
 	</div>
 </Base>
+
+<script>
+	// Pre-select service when clicking Engagement Tier "Get in Touch" buttons
+	const serviceSelect = document.getElementById("home-service") as HTMLSelectElement | null;
+	const messageInput = document.getElementById("home-message") as HTMLTextAreaElement | null;
+	const tierButtons = document.querySelectorAll<HTMLAnchorElement>("[data-select-service]");
+
+	tierButtons.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const val = btn.dataset.selectService;
+			if (val && serviceSelect) {
+				serviceSelect.value = val;
+			}
+			setTimeout(() => {
+				messageInput?.focus();
+			}, 350);
+		});
+	});
+
+	// Interactive Get in Touch Form submission (AJAX to formsubmit.co + mailto/copy fallback)
+	const homeForm = document.getElementById("home-get-in-touch-form") as HTMLFormElement | null;
+	const nameEl = document.getElementById("home-name") as HTMLInputElement | null;
+	const emailEl = document.getElementById("home-email") as HTMLInputElement | null;
+	const phoneEl = document.getElementById("home-phone") as HTMLInputElement | null;
+	const websiteEl = document.getElementById("home-website") as HTMLInputElement | null;
+	const submitBtn = document.getElementById("home-submit-btn") as HTMLButtonElement | null;
+	const confBox = document.getElementById("home-form-confirmation");
+	const previewPre = document.getElementById("home-form-preview");
+	const mailtoLink = document.getElementById("home-mailto-link") as HTMLAnchorElement | null;
+	const copyMsgBtn = document.getElementById("home-copy-msg-btn") as HTMLButtonElement | null;
+
+	let formattedMessageText = "";
+
+	homeForm?.addEventListener("submit", async (e) => {
+		e.preventDefault();
+
+		const name = nameEl?.value.trim() || "Prospective Client";
+		const email = emailEl?.value.trim() || "";
+		const phone = phoneEl?.value.trim() || "Not specified";
+		const website = websiteEl?.value.trim() || "Not specified";
+		const service = serviceSelect?.value || "SEO & GEO Inquiry";
+		const message = messageInput?.value.trim() || "";
+
+		const subject = `[Get in Touch — tinlehoang.info.vn] ${service} — ${name}`;
+		formattedMessageText = [
+			"Hi Tin,",
+			"",
+			`Name: ${name}`,
+			`Email: ${email}`,
+			`Phone / Zalo: ${phone}`,
+			`Website URL: ${website}`,
+			`Service / Topic: ${service}`,
+			"",
+			"Message:",
+			message,
+		].join("\n");
+
+		const mailtoUrl = `mailto:tinledoihoa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedMessageText)}`;
+
+		if (submitBtn) {
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Sending to tinledoihoa@gmail.com...";
+		}
+
+		try {
+			await fetch("https://formsubmit.co/ajax/tinledoihoa@gmail.com", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+				},
+				body: JSON.stringify({
+					_subject: subject,
+					name,
+					email,
+					phone,
+					website,
+					service,
+					message,
+				}),
+			});
+		} catch {
+			// Offline or blocked; inline confirmation & mailto fallback still available
+		}
+
+		if (submitBtn) {
+			submitBtn.disabled = false;
+			submitBtn.textContent = "Message Sent — Send Another →";
+		}
+
+		if (previewPre) {
+			previewPre.textContent = formattedMessageText;
+		}
+		if (mailtoLink) {
+			mailtoLink.href = mailtoUrl;
+		}
+		if (confBox) {
+			confBox.hidden = false;
+			confBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+		}
+	});
+
+	copyMsgBtn?.addEventListener("click", async () => {
+		if (!formattedMessageText) return;
+		try {
+			await navigator.clipboard.writeText(formattedMessageText);
+			const orig = copyMsgBtn.textContent;
+			copyMsgBtn.textContent = "Copied to clipboard ✓";
+			setTimeout(() => {
+				copyMsgBtn.textContent = orig || "Copy Message →";
+			}, 2200);
+		} catch {
+			// Ignore clipboard error
+		}
+	});
+</script>
 
 <style>
 	/* ── Page Container ── */
@@ -566,13 +1400,13 @@ const capabilities = [
 
 	.hero-positioning {
 		font-family: var(--font-heading);
-		font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+		font-size: clamp(1.2rem, 2.1vw, 1.55rem);
 		font-weight: 500;
-		line-height: 1.32;
+		line-height: 1.34;
 		letter-spacing: -0.015em;
 		color: var(--color-text);
 		margin-bottom: var(--spacing-5);
-		max-width: 54ch;
+		max-width: 58ch;
 	}
 
 	.hero-bio {
@@ -581,7 +1415,12 @@ const capabilities = [
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
 		margin-bottom: var(--spacing-8);
-		max-width: 60ch;
+		max-width: 64ch;
+	}
+
+	.hero-bio strong {
+		color: var(--color-text);
+		font-weight: 600;
 	}
 
 	.hero-ctas {
@@ -699,7 +1538,7 @@ const capabilities = [
 		flex-shrink: 0;
 	}
 
-	/* ── 2. Proof & Brand Strip ── */
+	/* ── 2. Proof Metrics & Auto-Scrolling Brand Marquee Moving Right ── */
 	.proof-strip {
 		padding: var(--spacing-10) var(--spacing-6);
 		border-bottom: 1px solid var(--color-border);
@@ -725,7 +1564,7 @@ const capabilities = [
 
 	.proof-value {
 		font-family: var(--font-mono);
-		font-size: clamp(1.5rem, 2.5vw, 2rem);
+		font-size: clamp(1.45rem, 2.3vw, 1.95rem);
 		font-weight: 600;
 		line-height: 1.1;
 		letter-spacing: -0.03em;
@@ -739,10 +1578,16 @@ const capabilities = [
 		color: var(--color-text-secondary);
 	}
 
-	.brand-strip {
+	.marquee-section {
 		margin-top: var(--spacing-6);
 		padding-top: var(--spacing-5);
 		border-top: 1px solid var(--color-border-subtle);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.marquee-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -759,23 +1604,127 @@ const capabilities = [
 		color: var(--color-amber);
 	}
 
-	.brand-strip-list {
+	.marquee-deck-link {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+
+	.brand-marquee-viewport {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		padding: var(--spacing-1) 0;
+		mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 6%,
+			black 94%,
+			transparent 100%
+		);
+	}
+
+	.brand-marquee-track {
+		display: flex;
+		align-items: stretch;
+		gap: var(--spacing-4);
+		width: max-content;
+		animation: marquee-scroll-right 34s linear infinite;
+	}
+
+	.brand-marquee-viewport:hover .brand-marquee-track {
+		animation-play-state: paused;
+	}
+
+	@keyframes marquee-scroll-right {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(0%);
+		}
+	}
+
+	.marquee-brand-card {
 		display: flex;
 		align-items: center;
 		gap: var(--spacing-3);
-		flex-wrap: wrap;
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--color-text-secondary);
+		padding: var(--spacing-3) var(--spacing-5);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-tile-raised);
+		text-decoration: none;
+		color: inherit;
+		min-width: 280px;
+		transition:
+			border-color var(--transition-fast),
+			transform var(--transition-fast);
 	}
 
-	.brand-strip-item {
-		font-weight: 500;
+	.marquee-brand-card:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-2px);
+	}
+
+	.marquee-brand-icon {
+		width: 42px;
+		height: 42px;
+		border-radius: 10px;
+		background: color-mix(in srgb, var(--color-primary) 10%, var(--color-bg-subtle));
+		border: 1px solid var(--color-border);
+		color: var(--color-primary);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	:global(:root.dark) .marquee-brand-icon {
+		color: var(--color-accent);
+	}
+
+	.marquee-brand-info {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.marquee-brand-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-3);
+	}
+
+	.marquee-brand-name {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-text);
 		white-space: nowrap;
 	}
 
-	.brand-strip-sep {
+	.marquee-brand-metric {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		color: var(--color-accent);
+		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		padding: 1px 6px;
+		border-radius: 4px;
+		white-space: nowrap;
+	}
+
+	.marquee-brand-sub {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
 		color: var(--color-muted);
+		white-space: nowrap;
 	}
 
 	/* ── Main Sections Container ── */
@@ -786,246 +1735,232 @@ const capabilities = [
 		gap: var(--spacing-20);
 	}
 
-	/* ── 3. § I — Writing & Research ── */
-	.writing-layout {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-10);
+	/* ── 3. § I — Who I Am & Experience ── */
+	.about-home-grid {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: var(--spacing-8);
+		align-items: start;
 	}
 
-	.featured-card {
-		display: block;
+	.about-summary-card,
+	.skills-card,
+	.achievements-card {
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
-		text-decoration: none;
-		color: inherit;
 		padding: var(--spacing-8);
 		box-shadow: var(--shadow-tile-raised);
-		transition:
-			border-color var(--transition-base),
-			box-shadow var(--transition-base),
-			transform var(--transition-base);
 	}
 
-	.featured-card:hover {
-		border-color: var(--color-accent);
-		box-shadow: var(--shadow-feature);
-	}
-
-	.featured-card-grid {
-		display: grid;
-		grid-template-columns: 200px minmax(0, 1fr);
-		gap: var(--spacing-8);
-		align-items: stretch;
-	}
-
-	.featured-card-aside {
+	.about-col-right {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		gap: var(--spacing-4);
-		padding-right: var(--spacing-6);
-		border-right: 1px solid var(--color-border-subtle);
+		gap: var(--spacing-6);
 	}
 
-	.featured-meta-top {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: var(--spacing-2);
-	}
-
-	.article-num-badge {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		color: var(--color-text);
-	}
-
-	.category-tag {
-		display: inline-block;
-		font-family: var(--font-sans);
-		font-size: 0.6875rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		color: var(--color-amber);
-		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
-		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
-		border-radius: var(--radius);
-		padding: 2px var(--spacing-2);
-	}
-
-	.featured-meta-bottom {
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-	}
-
-	.article-date-mono,
-	.article-read-time {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-	}
-
-	.featured-card-body {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
-
-	.featured-eyebrow {
-		font-family: var(--font-mono);
-		font-size: 0.6875rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
-		color: var(--color-muted);
-		margin-bottom: var(--spacing-2);
-	}
-
-	.featured-card-title {
+	.about-card-heading {
 		font-family: var(--font-heading);
-		font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+		font-size: var(--font-size-2xl);
 		font-weight: 600;
 		line-height: 1.2;
 		letter-spacing: -0.02em;
 		color: var(--color-text);
-		margin-bottom: var(--spacing-3);
-		transition: color var(--transition-fast);
+		margin-bottom: var(--spacing-4);
 	}
 
-	.featured-card:hover .featured-card-title {
-		color: var(--color-accent);
-	}
-
-	.featured-card-excerpt {
+	.about-card-copy {
 		font-size: var(--font-size-base);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
-		margin-bottom: var(--spacing-5);
-		max-width: 64ch;
+		margin-bottom: var(--spacing-4);
 	}
 
-	.featured-cta {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
+	.about-card-copy strong {
+		color: var(--color-text);
 		font-weight: 600;
-		color: var(--color-accent);
-		margin-top: auto;
 	}
 
-	/* Numbered Article Rows */
-	.articles-index {
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-lg);
-		padding: var(--spacing-2) var(--spacing-6) var(--spacing-5);
-	}
-
-	.articles-list {
+	.progression-timeline {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.article-row {
-		display: grid;
-		grid-template-columns: 3.75rem 7.5rem 6.5rem minmax(0, 1fr) 4.25rem;
-		align-items: baseline;
 		gap: var(--spacing-4);
-		padding: var(--spacing-4) var(--spacing-2);
-		border-bottom: 1px solid var(--color-border-subtle);
-		text-decoration: none;
-		color: inherit;
-		border-radius: var(--radius);
-		transition: background-color var(--transition-fast);
+		margin-top: var(--spacing-6);
+		padding-top: var(--spacing-6);
+		border-top: 1px solid var(--color-border-subtle);
 	}
 
-	.article-row:hover {
-		background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+	.progression-item {
+		padding: var(--spacing-4);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
 	}
 
-	.article-row:hover .article-title-col {
+	.progression-top {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+	}
+
+	.progression-role {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.progression-period {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
 		color: var(--color-accent);
 	}
 
-	.article-num {
+	.progression-badge {
 		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		color: var(--color-muted);
-		white-space: nowrap;
-	}
-
-	.article-cat {
-		font-family: var(--font-sans);
 		font-size: 0.6875rem;
 		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: var(--tracking-wider);
+		letter-spacing: var(--tracking-wide);
 		color: var(--color-amber);
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 
-	.article-title-col {
-		font-family: var(--font-heading);
-		font-size: var(--font-size-base);
-		font-weight: 500;
-		line-height: var(--leading-snug);
-		color: var(--color-text);
-		transition: color var(--transition-fast);
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
-	.article-time {
-		font-family: var(--font-mono);
+	.progression-detail {
 		font-size: var(--font-size-xs);
-		color: var(--color-muted);
-		text-align: right;
-		white-space: nowrap;
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+		margin-top: 2px;
 	}
 
-	.see-all-row {
-		padding-top: var(--spacing-4);
-		padding-left: var(--spacing-2);
-	}
-
-	.see-all-link {
-		font-family: var(--font-sans);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		color: var(--color-accent);
-		text-decoration: none;
-		transition: color var(--transition-fast);
-	}
-
-	.see-all-link:hover {
-		color: var(--color-accent-hover);
-	}
-
-	.empty-state {
-		background: var(--color-surface);
+	.education-callout {
+		margin-top: var(--spacing-6);
+		padding: var(--spacing-5);
+		background: color-mix(in srgb, var(--color-primary) 8%, var(--color-bg-subtle));
 		border: 1px solid var(--color-border);
-		border-radius: var(--radius-lg);
-		padding: var(--spacing-12) var(--spacing-6);
-		text-align: center;
+		border-radius: 10px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: var(--spacing-4);
-		color: var(--color-muted);
+		gap: 4px;
 	}
 
-	/* ── 4. § II — Selected Case Studies ── */
-	.work-grid {
+	.edu-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-2);
+	}
+
+	.edu-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+	}
+
+	.edu-gpa {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-accent);
+		background: var(--color-surface);
+		padding: 2px 8px;
+		border-radius: var(--radius-full);
+		border: 1px solid var(--color-border);
+	}
+
+	.edu-degree {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.edu-school {
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		color: var(--color-text-secondary);
+	}
+
+	.cv-skills-list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
+	.cv-skills-list li {
+		display: flex;
+		align-items: baseline;
+		gap: var(--spacing-3);
+		font-size: var(--font-size-sm);
+		line-height: 1.5;
+		color: var(--color-text-secondary);
+	}
+
+	.skill-arrow {
+		font-family: var(--font-mono);
+		font-weight: 600;
+		color: var(--color-accent);
+		flex-shrink: 0;
+	}
+
+	.achievements-stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.achievement-row {
+		padding-bottom: var(--spacing-3);
+		border-bottom: 1px solid var(--color-border-subtle);
+	}
+
+	.achievement-row:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.ach-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+	}
+
+	.ach-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+		margin: 2px 0;
+	}
+
+	.ach-desc {
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	.about-card-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	/* ── 4. § II — 6 Flagship Case Studies ── */
+	.cases-grid-six {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--spacing-6);
 	}
 
@@ -1036,7 +1971,7 @@ const capabilities = [
 		padding: var(--spacing-6);
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-5);
+		gap: var(--spacing-4);
 		box-shadow: var(--shadow-tile-raised);
 		transition:
 			border-color var(--transition-base),
@@ -1051,39 +1986,70 @@ const capabilities = [
 	.case-card-top {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-1);
+		gap: 4px;
 	}
 
-	.case-tag {
+	.case-badge-row {
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
+		margin-bottom: 4px;
+	}
+
+	.case-num {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-muted);
+	}
+
+	.case-market-tag {
 		font-family: var(--font-mono);
 		font-size: 0.6875rem;
 		font-weight: 600;
-		letter-spacing: var(--tracking-wider);
 		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-amber);
-		margin-bottom: var(--spacing-1);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 1px 6px;
+	}
+
+	.case-timeline-mono {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		color: var(--color-muted);
+		margin-left: auto;
 	}
 
 	.case-title {
 		font-family: var(--font-heading);
 		font-size: var(--font-size-xl);
 		font-weight: 600;
-		line-height: 1.2;
-		letter-spacing: -0.015em;
+		line-height: var(--leading-snug);
 		color: var(--color-text);
 	}
 
-	.case-domain {
+	.case-subtitle {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
-		color: var(--color-muted);
+		color: var(--color-accent);
 	}
 
-	.case-metrics {
+	.case-role-badge {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-text-secondary);
+	}
+
+	.case-metrics-three {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--spacing-3);
-		padding: var(--spacing-4);
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--spacing-2);
+		padding: var(--spacing-3);
 		background: var(--color-bg-subtle);
 		border: 1px solid var(--color-border-subtle);
 		border-radius: calc(var(--radius-lg) - 4px);
@@ -1097,24 +2063,72 @@ const capabilities = [
 
 	.case-metric-value {
 		font-family: var(--font-mono);
-		font-size: var(--font-size-lg);
+		font-size: var(--font-size-base);
 		font-weight: 600;
-		line-height: 1.15;
 		color: var(--color-accent);
+		line-height: 1.15;
 	}
 
 	.case-metric-label {
 		font-family: var(--font-sans);
-		font-size: 0.75rem;
-		line-height: 1.3;
+		font-size: 0.7rem;
+		color: var(--color-text-secondary);
+		line-height: 1.25;
+	}
+
+	.case-task-result {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+		flex: 1;
+	}
+
+	.case-line {
+		font-size: var(--font-size-xs);
+		line-height: 1.55;
 		color: var(--color-text-secondary);
 	}
 
-	.case-summary {
-		font-size: var(--font-size-sm);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
-		flex: 1;
+	.case-line strong {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.case-proof-preview {
+		position: relative;
+		display: block;
+		border-radius: 8px;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		background: var(--color-bg-subtle);
+		text-decoration: none;
+	}
+
+	.case-proof-img {
+		width: 100%;
+		height: 130px;
+		object-fit: cover;
+		object-position: left top;
+		display: block;
+	}
+
+	.case-proof-badge {
+		display: block;
+		padding: 4px var(--spacing-3);
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		color: var(--color-text);
+		background: var(--color-bg-subtle);
+		border-top: 1px solid var(--color-border-subtle);
+	}
+
+	.case-card-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: var(--spacing-3);
+		border-top: 1px solid var(--color-border-subtle);
 	}
 
 	.case-link {
@@ -1123,18 +2137,29 @@ const capabilities = [
 		font-weight: 600;
 		color: var(--color-accent);
 		text-decoration: none;
-		align-self: flex-start;
-		transition: color var(--transition-fast);
 	}
 
-	.case-link:hover {
-		color: var(--color-accent-hover);
+	.case-deck-link {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-text-secondary);
+		text-decoration: none;
 	}
 
-	/* ── 5. § III — Capabilities & Consulting ── */
+	.section-bottom-bar {
+		margin-top: var(--spacing-8);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+	}
+
+	/* ── 5. § III — Services & Engagement Tiers ── */
 	.capabilities-grid {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(3, 1fr);
 		gap: var(--spacing-6);
 	}
 
@@ -1147,14 +2172,6 @@ const capabilities = [
 		flex-direction: column;
 		gap: var(--spacing-4);
 		box-shadow: var(--shadow-tile-raised);
-		transition:
-			border-color var(--transition-base),
-			box-shadow var(--transition-base);
-	}
-
-	.capability-card:hover {
-		border-color: var(--color-accent);
-		box-shadow: var(--shadow-feature);
 	}
 
 	.capability-header {
@@ -1186,10 +2203,9 @@ const capabilities = [
 
 	.capability-title {
 		font-family: var(--font-heading);
-		font-size: var(--font-size-xl);
+		font-size: var(--font-size-lg);
 		font-weight: 600;
-		line-height: 1.22;
-		letter-spacing: -0.015em;
+		line-height: var(--leading-snug);
 		color: var(--color-text);
 	}
 
@@ -1209,70 +2225,427 @@ const capabilities = [
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--color-muted);
+		line-height: var(--leading-normal);
 	}
 
-	/* ── 6. § IV — Now & Direct Connect ── */
-	.now-connect-grid {
+	.tiers-subblock {
+		margin-top: var(--spacing-12);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-6);
+	}
+
+	.tiers-subheader {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.tiers-heading {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.tiers-grid {
 		display: grid;
-		grid-template-columns: 1.15fr 0.85fr;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spacing-6);
+		align-items: stretch;
+	}
+
+	.tier-card {
+		position: relative;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-6);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.tier-card.featured {
+		border: 2px solid var(--color-accent);
+		box-shadow: var(--shadow-feature);
+		background: color-mix(in srgb, var(--color-accent) 4%, var(--color-surface));
+	}
+
+	.tier-rec-badge {
+		position: absolute;
+		top: var(--spacing-4);
+		right: var(--spacing-4);
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		background: var(--color-accent);
+		color: var(--color-on-accent);
+		padding: 2px 10px;
+		border-radius: var(--radius-full);
+	}
+
+	.tier-head {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.tier-timeline {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+	}
+
+	.tier-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		line-height: 1.25;
+		color: var(--color-text);
+	}
+
+	.tier-blurb {
+		font-size: var(--font-size-xs);
+		line-height: 1.55;
+		color: var(--color-text-secondary);
+	}
+
+	.tier-features {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-2);
+		padding-top: var(--spacing-3);
+		border-top: 1px solid var(--color-border-subtle);
+		flex: 1;
+	}
+
+	.tier-features li {
+		display: flex;
+		align-items: baseline;
+		gap: var(--spacing-2);
+		font-size: var(--font-size-xs);
+		line-height: 1.45;
+		color: var(--color-text-secondary);
+	}
+
+	.tier-foot {
+		padding-top: var(--spacing-3);
+	}
+
+	.tier-cta-btn {
+		width: 100%;
+	}
+
+	/* ── 6. § IV — Writing & Research ── */
+	.writing-layout {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-10);
+	}
+
+	.featured-card {
+		display: block;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-8);
+		text-decoration: none;
+		color: inherit;
+		box-shadow: var(--shadow-tile-raised);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base),
+			transform var(--transition-base);
+	}
+
+	.featured-card:hover {
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-feature);
+	}
+
+	.featured-card-grid {
+		display: grid;
+		grid-template-columns: 200px minmax(0, 1fr);
 		gap: var(--spacing-8);
 		align-items: stretch;
 	}
 
-	.now-column {
-		background: var(--color-bg-subtle);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-lg);
-		padding: var(--spacing-8);
+	.featured-card-aside {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		padding-right: var(--spacing-6);
+		border-right: 1px solid var(--color-border-subtle);
 	}
 
-	.now-heading,
-	.connect-heading {
-		font-family: var(--font-heading);
-		font-size: var(--font-size-2xl);
+	.featured-meta-top,
+	.featured-meta-bottom {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-2);
+	}
+
+	.article-num-badge {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
 		font-weight: 600;
-		line-height: 1.2;
+		color: var(--color-text);
+	}
+
+	.category-tag {
+		display: inline-block;
+		font-family: var(--font-sans);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+		background: color-mix(in srgb, var(--color-amber) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
+		border-radius: var(--radius);
+		padding: 2px var(--spacing-2);
+	}
+
+	.article-date-mono {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.article-read-time {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+	}
+
+	.featured-card-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.featured-eyebrow {
+		font-family: var(--font-mono);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		letter-spacing: var(--tracking-wider);
+		text-transform: uppercase;
+		color: var(--color-amber);
+		margin-bottom: var(--spacing-2);
+	}
+
+	.featured-card-title {
+		font-family: var(--font-heading);
+		font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+		font-weight: 600;
+		line-height: 1.18;
 		letter-spacing: -0.02em;
 		color: var(--color-text);
-		margin-bottom: var(--spacing-5);
+		margin-bottom: var(--spacing-3);
+		transition: color var(--transition-fast);
 	}
 
-	.now-list {
-		list-style: none;
+	.featured-card:hover .featured-card-title {
+		color: var(--color-accent);
+	}
+
+	.featured-card-excerpt {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-5);
+		max-width: 65ch;
+	}
+
+	.featured-cta {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	/* ── Numbered Article Index ── */
+	.articles-index {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: var(--spacing-2) var(--spacing-6);
+		box-shadow: var(--shadow-tile-raised);
+	}
+
+	.articles-list {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-5);
 	}
 
-	.now-list li {
-		display: flex;
+	.article-row {
+		display: grid;
+		grid-template-columns: 3.75rem 7.25rem 6.5rem 1fr 4rem;
 		align-items: baseline;
+		gap: var(--spacing-4);
+		padding: var(--spacing-4) 0;
+		border-bottom: 1px solid var(--color-border-subtle);
+		text-decoration: none;
+		color: inherit;
+		transition: background var(--transition-fast);
+	}
+
+	.article-row:last-child {
+		border-bottom: none;
+	}
+
+	.article-row:hover .article-title-col {
+		color: var(--color-accent);
+	}
+
+	.article-num {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 500;
+		color: var(--color-muted);
+	}
+
+	.article-cat {
+		font-family: var(--font-sans);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-amber);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.article-title-col {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 500;
+		line-height: var(--leading-snug);
+		color: var(--color-text);
+		transition: color var(--transition-fast);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.article-time {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--color-muted);
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	.see-all-row {
+		padding: var(--spacing-4) 0 var(--spacing-2);
+		border-top: 1px solid var(--color-border-subtle);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--spacing-4);
+		flex-wrap: wrap;
+	}
+
+	.see-all-link {
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+
+	/* ── 7. § V — FAQ Accordion ── */
+	.faq-list {
+		display: flex;
+		flex-direction: column;
 		gap: var(--spacing-3);
+	}
+
+	.faq-item {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-tile-raised);
+		overflow: hidden;
+	}
+
+	.faq-item[open] {
+		border-color: var(--color-accent);
+	}
+
+	.faq-question {
+		list-style: none;
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-4);
+		padding: var(--spacing-5) var(--spacing-6);
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-num {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		color: var(--color-amber);
+		flex-shrink: 0;
+	}
+
+	.faq-question-text {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+		flex: 1;
+	}
+
+	.faq-icon::before {
+		content: "+";
+		font-family: var(--font-mono);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	.faq-item[open] .faq-icon::before {
+		content: "−";
+	}
+
+	.faq-answer-wrap {
+		padding: 0 var(--spacing-6) var(--spacing-5) calc(var(--spacing-6) + 2rem);
+	}
+
+	.faq-answer {
 		font-size: var(--font-size-sm);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
 	}
 
-	.now-list strong {
-		color: var(--color-text);
-		font-weight: 600;
+	/* ── 8. § VI — Get in Touch ── */
+	.get-in-touch-grid {
+		display: grid;
+		grid-template-columns: 0.95fr 1.05fr;
+		gap: var(--spacing-8);
+		align-items: stretch;
 	}
 
-	.now-arrow {
-		font-family: var(--font-mono);
-		font-weight: 600;
-		color: var(--color-accent);
-		flex-shrink: 0;
-	}
-
-	.connect-column {
-		display: flex;
-	}
-
-	.connect-card {
-		width: 100%;
+	.touch-left-card,
+	.touch-form-card {
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
@@ -1282,92 +2655,217 @@ const capabilities = [
 		flex-direction: column;
 	}
 
-	.connect-desc {
+	.touch-left-card {
+		background: var(--color-bg-subtle);
+	}
+
+	.touch-heading,
+	.touch-form-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--color-text);
+		margin-bottom: var(--spacing-3);
+	}
+
+	.touch-desc {
 		font-size: var(--font-size-sm);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
 		margin-bottom: var(--spacing-6);
 	}
 
-	.connect-channels {
+	.touch-channel-list {
 		display: flex;
 		flex-direction: column;
-		border-top: 1px solid var(--color-border-subtle);
+		border-top: 1px solid var(--color-border);
 		margin-bottom: var(--spacing-6);
 	}
 
-	.connect-channel-row {
+	.touch-channel-item {
 		display: flex;
-		align-items: baseline;
-		justify-content: space-between;
-		gap: var(--spacing-4);
+		flex-direction: column;
+		gap: 2px;
 		padding: var(--spacing-3) 0;
 		border-bottom: 1px solid var(--color-border-subtle);
 	}
 
-	.connect-channel-row dt {
+	.touch-channel-item dt {
 		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
 		color: var(--color-muted);
 	}
 
-	.connect-channel-row dd {
+	.touch-channel-item dd {
 		font-family: var(--font-sans);
 		font-size: var(--font-size-sm);
-		font-weight: 500;
-	}
-
-	.connect-channel-row a {
+		font-weight: 600;
 		color: var(--color-text);
-		text-decoration: none;
-		transition: color var(--transition-fast);
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		flex-wrap: wrap;
 	}
 
-	.connect-channel-row a:hover {
+	.touch-channel-item a {
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+
+	.channel-sep {
+		color: var(--color-muted);
+	}
+
+	.touch-left-actions {
+		margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
+	.touch-form {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-4);
+	}
+
+	.touch-row-two {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-4);
+	}
+
+	.touch-field {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.touch-label {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--color-text);
+	}
+
+	.req-star {
 		color: var(--color-accent);
 	}
 
-	.connect-actions {
-		margin-top: auto;
+	.touch-input,
+	.touch-select {
+		height: 42px;
+		padding: 0 var(--spacing-3);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
 	}
 
-	.connect-cta {
+	.touch-textarea {
+		padding: var(--spacing-3);
+		font-family: var(--font-sans);
+		font-size: var(--font-size-sm);
+		line-height: 1.5;
+		color: var(--color-text);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		resize: vertical;
+	}
+
+	.touch-input:focus,
+	.touch-select:focus,
+	.touch-textarea:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+		background: var(--color-surface);
+	}
+
+	.touch-submit-btn {
 		width: 100%;
+		margin-top: var(--spacing-2);
+	}
+
+	.touch-confirmation {
+		margin-top: var(--spacing-5);
+		padding: var(--spacing-5);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-accent);
+		border-radius: var(--radius-lg);
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+	}
+
+	.touch-conf-title {
+		font-family: var(--font-heading);
+		font-size: var(--font-size-base);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.touch-conf-desc {
+		font-size: var(--font-size-xs);
+		color: var(--color-text-secondary);
+	}
+
+	.touch-conf-preview {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 6px;
+		padding: var(--spacing-3);
+		white-space: pre-wrap;
+		max-height: 160px;
+		overflow-y: auto;
+	}
+
+	.touch-conf-actions {
+		display: flex;
+		gap: var(--spacing-3);
+		flex-wrap: wrap;
+	}
+
+	.empty-state {
+		padding: var(--spacing-12);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		text-align: center;
 	}
 
 	/* ── Responsive Breakpoints ── */
-	@media (max-width: 980px) {
-		.work-grid,
-		.capabilities-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-
-		.proof-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (max-width: 860px) {
+	@media (max-width: 960px) {
 		.hero-inner {
 			grid-template-columns: 1fr;
 			gap: var(--spacing-8);
 		}
 
 		.hero-portrait {
-			max-width: 360px;
+			max-width: 300px;
 		}
 
-		.portrait-card {
-			flex-direction: row;
-			align-items: center;
-			gap: var(--spacing-4);
+		.proof-grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
 
-		.portrait-frame {
-			width: 104px;
-			height: 104px;
-			aspect-ratio: 1 / 1;
-			flex-shrink: 0;
+		.about-home-grid,
+		.cases-grid-six,
+		.capabilities-grid,
+		.tiers-grid,
+		.get-in-touch-grid {
+			grid-template-columns: 1fr;
 		}
 
 		.featured-card-grid {
@@ -1378,93 +2876,16 @@ const capabilities = [
 		.featured-card-aside {
 			flex-direction: row;
 			align-items: center;
-			justify-content: space-between;
 			padding-right: 0;
 			padding-bottom: var(--spacing-4);
 			border-right: none;
 			border-bottom: 1px solid var(--color-border-subtle);
 		}
-
-		.featured-meta-top {
-			flex-direction: row;
-			align-items: center;
-		}
-
-		.featured-meta-bottom {
-			flex-direction: row;
-			align-items: center;
-			gap: var(--spacing-3);
-		}
-
-		.article-row {
-			grid-template-columns: 3.25rem 1fr auto;
-			grid-template-rows: auto auto;
-			gap: var(--spacing-1) var(--spacing-3);
-		}
-
-		.article-num {
-			grid-row: 1;
-			grid-column: 1;
-		}
-
-		.article-title-col {
-			grid-row: 1;
-			grid-column: 2 / 4;
-			white-space: normal;
-		}
-
-		.article-date-mono {
-			grid-row: 2;
-			grid-column: 2;
-		}
-
-		.article-cat {
-			grid-row: 2;
-			grid-column: 3;
-		}
-
-		.article-time {
-			display: none;
-		}
-
-		.now-connect-grid {
-			grid-template-columns: 1fr;
-		}
 	}
 
-	@media (max-width: 700px) {
-		.work-grid,
-		.capabilities-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.section-index-header {
-			flex-wrap: wrap;
-			row-gap: var(--spacing-2);
-		}
-
-		.section-index-title {
-			white-space: normal;
-		}
-	}
-
-	@media (max-width: 600px) {
+	@media (max-width: 640px) {
 		.hero {
 			padding: var(--spacing-8) var(--spacing-4) var(--spacing-12);
-		}
-
-		.hero-masthead {
-			margin-bottom: var(--spacing-6);
-		}
-
-		.portrait-card {
-			flex-direction: column;
-			align-items: flex-start;
-		}
-
-		.portrait-frame {
-			width: 96px;
-			height: 96px;
 		}
 
 		.proof-strip {
@@ -1480,30 +2901,23 @@ const capabilities = [
 			gap: var(--spacing-16);
 		}
 
-		.featured-card,
-		.now-column,
-		.connect-card {
-			padding: var(--spacing-6);
+		.touch-row-two {
+			grid-template-columns: 1fr;
 		}
 
-		.articles-index {
-			padding: var(--spacing-2) var(--spacing-4) var(--spacing-4);
+		.case-metrics-three {
+			grid-template-columns: 1fr;
 		}
 
 		.article-row {
-			grid-template-columns: 2.75rem 1fr;
-			gap: var(--spacing-1) var(--spacing-3);
+			grid-template-columns: 3.25rem 1fr;
+			gap: var(--spacing-2);
 		}
 
 		.article-date-mono,
 		.article-cat,
 		.article-time {
 			display: none;
-		}
-
-		.article-title-col {
-			grid-column: 2;
-			white-space: normal;
 		}
 	}
 </style>

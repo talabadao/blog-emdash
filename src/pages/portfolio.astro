@@ -1,0 +1,2445 @@
+---
+import Base from "../layouts/Base.astro";
+
+const portfolioJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "ProfilePage",
+	"@id": "https://tinlehoang.info.vn/portfolio#webpage",
+	url: "https://tinlehoang.info.vn/portfolio",
+	name: "SEO & GEO Growth Strategy Portfolio — Le Hoang Tin",
+	description:
+		"Visual strategy deck & campaign portfolio of Le Hoang Tin (Senior SEO & GEO Specialist, UEH International Business GPA 3.27/4.0, nearly 3 years at GTV SEO): Vinamilk (826K+ GSC clicks), IndochinaLight (+409% sales), Shadow Vietnam (+26.81% MoM revenue), EuroTravel (102.5K peak traffic), GTV SEO (#1 on ChatGPT/Grok/Claude), and Repair Centre VIC (Top 3-5 in 2 weeks).",
+	mainEntity: {
+		"@id": "https://tinlehoang.info.vn/#person",
+	},
+};
+
+const agendaItems = [
+	{
+		num: "01",
+		title: "Diagnostic & Entity Alignment",
+		desc: "Technical crawlability, keyword cannibalization removal, duplicate content cleanup, and brand entity disambiguation.",
+	},
+	{
+		num: "02",
+		title: "Semantic & Technical Architecture",
+		desc: "Topical Maps, keyword intent clustering, E-E-A-T content outlines, JSON-LD knowledge graphs, and /llms.txt endpoints.",
+	},
+	{
+		num: "03",
+		title: "Multi-Market Execution",
+		desc: "High-velocity AI-assisted editorial workflows (40 articles/month), Cloud Stack, PR citations, and internal link equity.",
+	},
+	{
+		num: "04",
+		title: "Verified Proof Charts",
+		desc: "Audited Google Search Console, Shopify Analytics, GA4, and Semrush screenshots across 6 flagship campaigns.",
+	},
+	{
+		num: "05",
+		title: "Scope of Work & Collaboration",
+		desc: "Consulting engagement models, technical & GEO audits, monthly growth retainers, and full-time senior role readiness.",
+	},
+];
+
+const processStages = [
+	{
+		step: "01",
+		title: "Technical & Entity Audit",
+		tools: "Screaming Frog · GSC · Log & Crawl Analysis",
+		points: [
+			"Audit index bloat, crawl budget waste, and Core Web Vitals",
+			"Identify and consolidate Keyword Cannibalization & Duplicate Content",
+			"Map commercial entity gaps against local & global competitors",
+		],
+		icon: "audit",
+	},
+	{
+		step: "02",
+		title: "Topical Map & AI Search Prep",
+		tools: "Semrush · Ahrefs · JSON-LD · /llms.txt",
+		points: [
+			"Group high-intent keywords into pillar-cluster Topical Maps",
+			"Engineer structured E-E-A-T content outlines & Onpage checklists",
+			"Deploy Person/Organization/Service Schema & AI crawler manifests",
+		],
+		icon: "map",
+	},
+	{
+		step: "03",
+		title: "High-Velocity Content & Authority",
+		tools: "ChatGPT / Claude / Perplexity APIs · White Hat PR",
+		points: [
+			"Scale up to 40 SEO-standard, fact-dense articles/month with AI APIs",
+			"Build balanced internal linking hubs to commercial money pages",
+			"Execute 100% White Hat Cloud Stack, Guest Posts, and PR citations",
+		],
+		icon: "velocity",
+	},
+	{
+		step: "04",
+		title: "GA4 CRO & Revenue Scaling",
+		tools: "GA4 · Google Tag Manager · Shopify Analytics",
+		points: [
+			"Optimize Product Page Views, Time Onsite, and UI/UX conversion paths",
+			"Track organic orders, B2B lead forms, and phone/Zalo conversions",
+			"Iterate quarterly audits to sustain 100%–120% SEO KPI delivery",
+		],
+		icon: "cro",
+	},
+];
+---
+
+<Base
+	title="Visual Portfolio Deck — Le Hoang Tin | Senior SEO & GEO Specialist"
+	description="Executive SEO & GEO Growth Strategy Portfolio of Le Hoang Tin (Senior SEO & GEO Specialist, UEH International Business GPA 3.27/4.0). Explore 10 visual strategy slides and verified GSC, GA4, Shopify & Semrush proof charts across 6 flagship campaigns."
+	jsonLd={portfolioJsonLd}
+>
+	<div class="portfolio-deck-page">
+		<!-- Sticky Top Deck Controls Bar -->
+		<div class="deck-controls-bar no-print" aria-label="Presentation deck controls">
+			<div class="deck-controls-left">
+				<p class="editorial-kicker">VISUAL PORTFOLIO &amp; STRATEGY DECK · 2022–2026</p>
+				<nav class="deck-quick-nav" aria-label="Slide jump navigation">
+					<a href="#slide-cover" class="deck-pill">01 Cover</a>
+					<a href="#slide-overview" class="deck-pill">02 Overview</a>
+					<a href="#slide-process" class="deck-pill">03 Process</a>
+					<a href="#slide-vinamilk" class="deck-pill">04 Case Visuals</a>
+					<a href="#slide-collab" class="deck-pill">05 Scope &amp; Collab</a>
+				</nav>
+			</div>
+			<div class="deck-controls-right">
+				<button type="button" id="print-deck-btn" class="deck-action-btn">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<path d="M6 9V2h12v7"></path>
+						<path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+						<rect x="6" y="14" width="12" height="8"></rect>
+					</svg>
+					<span>Print / Save as PDF Deck</span>
+				</button>
+				<button type="button" id="copy-deck-link-btn" class="deck-action-btn">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+						<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+						<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+					</svg>
+					<span id="copy-deck-link-label">Copy Portfolio Link</span>
+				</button>
+				<a href="/#get-in-touch" class="deck-cta-btn">Get in Touch →</a>
+			</div>
+		</div>
+
+		<!-- ============================================================
+		     SLIDE 01 — EXECUTIVE COVER SLIDE
+		     ============================================================ -->
+		<section id="slide-cover" class="deck-slide cover-slide">
+			<div class="slide-topbar cover-topbar">
+				<span class="slide-num">SLIDE 01 / 10 · EXECUTIVE STRATEGY DECK</span>
+				<span class="slide-domain">TINLEHOANG.INFO.VN/PORTFOLIO</span>
+			</div>
+
+			<div class="cover-grid">
+				<div class="cover-main">
+					<div class="cover-eyebrow-pill">
+						<span class="cover-dot" aria-hidden="true"></span>
+						<span>VERIFIED CAMPAIGN PORTFOLIO · GOOGLE &amp; AI SEARCH (GEO)</span>
+					</div>
+					<h1 class="cover-title">SEO &amp; GEO GROWTH STRATEGY PORTFOLIO</h1>
+					<p class="cover-subtitle">
+						Optimizing Organic Revenue, High-Intent Traffic &amp; AI Search Citations Through Data-Driven Insights.
+					</p>
+
+					<div class="cover-highlights-strip">
+						<div class="cover-highlight-item">
+							<span class="cover-hi-val">6 Flagship Campaigns</span>
+							<span class="cover-hi-lbl">Lead &amp; Primary Implementer / Advisor</span>
+						</div>
+						<div class="cover-highlight-item">
+							<span class="cover-hi-val">100%–120% KPIs</span>
+							<span class="cover-hi-lbl">Delivered Across VN, US, AU, SG, IT &amp; EU</span>
+						</div>
+						<div class="cover-highlight-item">
+							<span class="cover-hi-val">#1 AI Citations</span>
+							<span class="cover-hi-lbl">ChatGPT, Claude &amp; Grok Recommendations</span>
+						</div>
+					</div>
+				</div>
+
+				<aside class="cover-presenter-card">
+					<div class="presenter-header">
+						<img
+							src="/tin_le_hoang.jpg"
+							alt="Le Hoang Tin — Senior SEO & GEO Specialist"
+							class="presenter-avatar"
+							width="88"
+							height="88"
+						/>
+						<div>
+							<p class="presenter-kicker">PRESENTED BY</p>
+							<h2 class="presenter-name">Le Hoang Tin</h2>
+							<p class="presenter-role">Senior SEO &amp; GEO Specialist</p>
+						</div>
+					</div>
+
+					<dl class="presenter-facts">
+						<div class="presenter-fact-row">
+							<dt>Experience</dt>
+							<dd>Nearly 3 Years Leading Campaigns at <strong>GTV SEO</strong> (Nov 2022 – Apr 2025)</dd>
+						</div>
+						<div class="presenter-fact-row">
+							<dt>Education</dt>
+							<dd><strong>UEH</strong> — International Business · <strong>GPA 3.27/4.0</strong></dd>
+						</div>
+						<div class="presenter-fact-row">
+							<dt>Phone / Zalo</dt>
+							<dd><a href="tel:+84357669476">0357.669.476</a></dd>
+						</div>
+						<div class="presenter-fact-row">
+							<dt>Direct Email</dt>
+							<dd><a href="mailto:tinledoihoa@gmail.com">tinledoihoa@gmail.com</a></dd>
+						</div>
+						<div class="presenter-fact-row">
+							<dt>LinkedIn</dt>
+							<dd><a href="https://www.linkedin.com/in/tin-le-hoang" target="_blank" rel="noopener noreferrer">linkedin.com/in/tin-le-hoang ↗</a></dd>
+						</div>
+					</dl>
+				</aside>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 02 — EXECUTIVE AGENDA & PROFILE MATRIX
+		     ============================================================ -->
+		<section id="slide-overview" class="deck-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 02 / 10 · EXECUTIVE OVERVIEW &amp; AGENDA</span>
+				<span class="slide-domain">WHO I AM &amp; TRACK RECORD</span>
+			</div>
+
+			<div class="overview-grid">
+				<!-- Left: AGENDA 01-05 -->
+				<div class="agenda-panel">
+					<p class="panel-kicker">PRESENTATION AGENDA</p>
+					<h2 class="panel-title">01–05 Strategic Roadmap</h2>
+					<ol class="agenda-list">
+						{
+							agendaItems.map((item) => (
+								<li class="agenda-row">
+									<span class="agenda-num">{item.num}</span>
+									<div class="agenda-body">
+										<h3>{item.title}</h3>
+										<p>{item.desc}</p>
+									</div>
+								</li>
+							))
+						}
+					</ol>
+				</div>
+
+				<!-- Right: WHO I AM & TRACK RECORD -->
+				<div class="profile-matrix-panel">
+					<p class="panel-kicker">WHO I AM &amp; TRACK RECORD</p>
+					<h2 class="panel-title">Data-Driven SEO &amp; GEO Specialist</h2>
+					<p class="profile-summary-copy">
+						With nearly <strong>3 years of experience</strong> leading SEO projects at <strong>GTV SEO</strong> across healthcare/nutrition, e-commerce, tourism, B2B agency, and local services — from Vietnamese businesses to global enterprises — I specialize in data-driven SEO strategies aligned with marketing objectives, Conversion Rate Optimization (CRO), and R&amp;D on user search intent across Google and AI-driven channels (ChatGPT, Claude, Perplexity, Grok). Graduated in <strong>International Business</strong> from the <strong>University of Economics Ho Chi Minh City (UEH — GPA 3.27/4.0)</strong>.
+					</p>
+
+					<!-- 4 Quadrant KPI Highlights -->
+					<div class="quadrant-kpis">
+						<div class="quad-card">
+							<span class="quad-val">826K+</span>
+							<span class="quad-lbl">Vinamilk GSC Clicks</span>
+							<span class="quad-sub">300K clicks/mo · 15.9M impressions · 100% KPI in 5 mos</span>
+						</div>
+						<div class="quad-card">
+							<span class="quad-val">#1</span>
+							<span class="quad-lbl">ChatGPT / Grok / Claude</span>
+							<span class="quad-sub">Top 1 AI recommendation for &ldquo;seo agency hcm&rdquo; at GTV SEO</span>
+						</div>
+						<div class="quad-card">
+							<span class="quad-val">102.5K</span>
+							<span class="quad-lbl">EuroTravel Peak Traffic</span>
+							<span class="quad-sub">80K GSC clicks/mo · 120% TOP KPI target in 6 months</span>
+						</div>
+						<div class="quad-card">
+							<span class="quad-val">+409%</span>
+							<span class="quad-lbl">IndochinaLight Sales</span>
+							<span class="quad-sub">$7,504.98 organic sales · +280% orders · Top 10 US/AU/SG/IT</span>
+						</div>
+					</div>
+
+					<!-- 3 GTV SEO Achievements -->
+					<div class="achievements-strip">
+						<h3 class="achievements-heading">Key Honors &amp; Internal Impact at GTV SEO</h3>
+						<ul class="achievements-list">
+							<li>
+								<span class="ach-tag">AWARD</span>
+								<span><strong>3rd Prize</strong> in the <strong>AI Application for SEO</strong> competition organized internally by GTV SEO</span>
+							</li>
+							<li>
+								<span class="ach-tag">AUTHOR</span>
+								<span><strong>Author of documents &amp; e-books</strong> for GTV SEO courses and internal training materials</span>
+							</li>
+							<li>
+								<span class="ach-tag">STRATEGIST</span>
+								<span><strong>Planner for 10+ projects</strong> helping GTV SEO bid and win new clients successfully (Local &amp; Global)</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 03 — HOW IT WORKS: 4-STAGE SEO & GEO EXECUTION SYSTEM
+		     ============================================================ -->
+		<section id="slide-process" class="deck-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 03 / 10 · METHODOLOGY &amp; WORKFLOW</span>
+				<span class="slide-domain">4-STAGE SEO &amp; GEO EXECUTION SYSTEM</span>
+			</div>
+
+			<div class="slide-header-block">
+				<div>
+					<p class="panel-kicker">HOW IT WORKS</p>
+					<h2 class="slide-main-heading">4-Stage Full-Funnel SEO &amp; GEO Execution System</h2>
+				</div>
+				<p class="slide-header-sub">
+					Every campaign follows a disciplined diagnostic-to-revenue engineering loop combining technical precision, semantic entity architecture, AI-assisted content scale, and GA4 conversion attribution.
+				</p>
+			</div>
+
+			<div class="process-columns">
+				{
+					processStages.map((stage) => (
+						<article class="process-col-card">
+							<div class="process-col-top">
+								<span class="process-step-badge">STAGE {stage.step}</span>
+								<div class="process-icon-box" aria-hidden="true">
+									{stage.icon === "audit" && (
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+											<circle cx="11" cy="11" r="8"></circle>
+											<path d="m21 21-4.3-4.3"></path>
+											<path d="M8 11h6"></path>
+											<path d="M11 8v6"></path>
+										</svg>
+									)}
+									{stage.icon === "map" && (
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+											<polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+											<line x1="9" y1="3" x2="9" y2="18"></line>
+											<line x1="15" y1="6" x2="15" y2="21"></line>
+										</svg>
+									)}
+									{stage.icon === "velocity" && (
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+											<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path>
+										</svg>
+									)}
+									{stage.icon === "cro" && (
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+											<path d="M3 3v18h18"></path>
+											<path d="m19 9-5 5-4-4-3 3"></path>
+										</svg>
+									)}
+								</div>
+							</div>
+							<h3 class="process-col-title">{stage.step}. {stage.title}</h3>
+							<p class="process-col-tools">{stage.tools}</p>
+							<ul class="process-col-points">
+								{stage.points.map((pt) => (
+									<li>{pt}</li>
+								))}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 04 — CAMPAIGN 01: VINAMILK (826K+ GSC CLICKS)
+		     ============================================================ -->
+		<section id="slide-vinamilk" class="deck-slide campaign-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 04 / 10 · CAMPAIGN CASE STUDY 01</span>
+				<span class="slide-domain">VINAMILK.COM.VN · NOV 2023 – MAR 2024 (5 MOS)</span>
+			</div>
+
+			<div class="campaign-grid">
+				<!-- Left: Visual Proof Showcase -->
+				<div class="proof-showcase-col">
+					<div class="browser-frame">
+						<div class="browser-bar">
+							<div class="browser-dots" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</div>
+							<span class="browser-url">search.google.com/search-console · vinamilk.com.vn (Verified GSC)</span>
+							<span class="browser-badge">LIVE PROOF</span>
+						</div>
+						<button
+							type="button"
+							class="proof-zoom-trigger"
+							data-lightbox-src="/proof/vinamilk-gsc-826k-clicks.png"
+							data-lightbox-caption="Vinamilk (vinamilk.com.vn) — Google Search Console Performance: 826,000+ Total Clicks, 15.9M Impressions, 300,000 Clicks/Month & 100% SEO KPIs in 5 Months"
+							aria-label="Zoom Vinamilk Google Search Console proof chart"
+						>
+							<img
+								src="/proof/vinamilk-gsc-826k-clicks.png"
+								alt="Vinamilk Google Search Console chart showing 826K+ total clicks and 15.9M impressions"
+								loading="lazy"
+							/>
+							<span class="zoom-overlay-pill no-print">Click to Zoom Full Chart ↗</span>
+						</button>
+					</div>
+					<p class="proof-caption">
+						<strong>Figure 01:</strong> Google Search Console performance verification for <code>vinamilk.com.vn</code> — scaling organic clicks to <strong>300,000 clicks/month</strong> (<code>826K+ total clicks</code>, <code>15.9M impressions</code>).
+					</p>
+				</div>
+
+				<!-- Right: Executive Breakdown -->
+				<div class="exec-breakdown-col">
+					<div class="campaign-meta-row">
+						<span class="campaign-industry-pill">Vietnam Enterprise Nutrition &amp; FMCG</span>
+						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Specialist)</span>
+					</div>
+					<h2 class="campaign-title">01. Vinamilk | Nutrition E-Commerce Project</h2>
+
+					<div class="campaign-kpi-tiles">
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">300,000</span>
+							<span class="kpi-tile-lbl">GSC Clicks / Month</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">826K+</span>
+							<span class="kpi-tile-lbl">Total GSC Clicks (15.9M Impr.)</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">100% KPI</span>
+							<span class="kpi-tile-lbl">Achieved After 5 Months</span>
+						</div>
+					</div>
+
+					<div class="breakdown-boxes">
+						<div class="breakdown-box">
+							<h3>Project Scope &amp; Task Executed</h3>
+							<p>
+								Served as <strong>Lead &amp; Primary Implementer (SEO Specialist)</strong> from <code>Nov 2023 – Mar 2024 (5 mos)</code> on <code>vinamilk.com.vn</code>. Executed comprehensive Technical Audit, UI-UX optimization, Keyword grouping, Topical Map architecture, Content Outlines, and Onpage Checklist across nutrition and product hubs.
+							</p>
+						</div>
+						<div class="breakdown-box highlight-box">
+							<h3>Verified Traffic, Ranking &amp; Conversion Results</h3>
+							<ul>
+								<li>Reached <strong>300,000 clicks/month (GSC)</strong> and <strong>320,000 monthly traffic</strong> (<code>826,000+ total clicks</code> &amp; <code>15.9M impressions</code> in GSC).</li>
+								<li>Hit <strong>100% of SEO KPIs after 5 months</strong> of disciplined technical &amp; semantic execution.</li>
+								<li>Achieved <strong>Top 1–3 rankings</strong> for high-volume keywords related to nutritional products, mom &amp; baby nutrition, baby cereal, baby milk, and recipes.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="campaign-footer-links no-print">
+						<a href="/posts/scaling-vinamilk-to-300k-monthly-organic-clicks" class="campaign-link-btn">Read Full Vinamilk Case Study →</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 05 — CAMPAIGN 02: INDOCHINALIGHT (+409% SALES GROWTH)
+		     ============================================================ -->
+		<section id="slide-indochinalight" class="deck-slide campaign-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 05 / 10 · CAMPAIGN CASE STUDY 02</span>
+				<span class="slide-domain">INDOCHINALIGHT · NOV 2024 – APR 2025 (6 MOS)</span>
+			</div>
+
+			<div class="campaign-grid">
+				<!-- Left: Visual Proof Showcase -->
+				<div class="proof-showcase-col">
+					<div class="browser-frame">
+						<div class="browser-bar">
+							<div class="browser-dots" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</div>
+							<span class="browser-url">admin.shopify.com/analytics · IndochinaLight Global Store</span>
+							<span class="browser-badge">SHOPIFY VERIFIED</span>
+						</div>
+						<button
+							type="button"
+							class="proof-zoom-trigger"
+							data-lightbox-src="/proof/furniture-shopify-conversions.png"
+							data-lightbox-caption="IndochinaLight Global Dropshipping E-Commerce — Shopify Verified Analytics: $7,504.98 Total Sales (+409%), 19 Orders (+280%), 6,310 Sessions (+23%), Conversion Rate +176%"
+							aria-label="Zoom IndochinaLight Shopify revenue and conversion chart"
+						>
+							<img
+								src="/proof/furniture-shopify-conversions.png"
+								alt="IndochinaLight Shopify Analytics showing $7,504.98 total sales (+409%) and 19 organic orders (+280%)"
+								loading="lazy"
+							/>
+							<span class="zoom-overlay-pill no-print">Click to Zoom Full Chart ↗</span>
+						</button>
+					</div>
+					<p class="proof-caption">
+						<strong>Figure 02:</strong> Shopify Analytics dashboard for IndochinaLight showing <strong>$7,504.98 total sales (+409%)</strong>, <strong>19 orders (+280%)</strong>, and <strong>+176% conversion rate</strong> on a brand-new domain.
+					</p>
+				</div>
+
+				<!-- Right: Executive Breakdown -->
+				<div class="exec-breakdown-col">
+					<div class="campaign-meta-row">
+						<span class="campaign-industry-pill">Global Dropshipping (US, SG, IT, AU) · Furniture &amp; Lighting</span>
+						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Specialist)</span>
+					</div>
+					<h2 class="campaign-title">02. IndochinaLight | Global Dropshipping E-Commerce</h2>
+
+					<div class="campaign-kpi-tiles">
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">$7,504.98</span>
+							<span class="kpi-tile-lbl">Total Sales (+409% Growth)</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">Top 10</span>
+							<span class="kpi-tile-lbl">&ldquo;rattan pendant light&rdquo;</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">100% KPI</span>
+							<span class="kpi-tile-lbl">In First 3–5 Months</span>
+						</div>
+					</div>
+
+					<div class="breakdown-boxes">
+						<div class="breakdown-box">
+							<h3>Project Scope &amp; Task Executed</h3>
+							<p>
+								Served as <strong>Lead &amp; Primary Implementer (SEO Specialist)</strong> from <code>Nov 2024 – Apr 2025 (6 mos)</code> targeting international buyers across the <strong>US, Singapore, Italy, and Australia</strong>. Analyzed the Website (Entity, Technical, Content) &amp; market overview, and developed an end-to-end SEO strategy for a new-domain dropshipping store.
+							</p>
+						</div>
+						<div class="breakdown-box highlight-box">
+							<h3>Verified Traffic, Ranking &amp; Conversion Results</h3>
+							<ul>
+								<li>Achieved <strong>100% SEO KPIs in the first 3–5 months</strong> on a fresh international domain.</li>
+								<li>Main commercial keyword <code>&ldquo;rattan pendant light&rdquo;</code> ranked in <strong>Top 10</strong> across target global markets.</li>
+								<li>Generated a consistent average of <strong>2–3+ organic orders/month</strong>, reaching <strong>$7,504.98 in verified sales (+409%)</strong>, <strong>19 orders (+280%)</strong>, <strong>6,310 sessions (+23%)</strong>, and <strong>+176% conversion rate</strong>.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 06 — CAMPAIGN 03: SHADOW VIETNAM (+25% MOM REVENUE & MILITARY CONTRACT)
+		     ============================================================ -->
+		<section id="slide-shadow-vietnam" class="deck-slide campaign-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 06 / 10 · CAMPAIGN CASE STUDY 03</span>
+				<span class="slide-domain">SHADOW.VN · APR 2023 – NOV 2023 (8 MOS)</span>
+			</div>
+
+			<div class="campaign-grid">
+				<!-- Left: Dual Visual Proof Showcase -->
+				<div class="proof-showcase-col">
+					<div class="dual-proof-stack">
+						<div class="browser-frame">
+							<div class="browser-bar">
+								<div class="browser-dots" aria-hidden="true">
+									<span></span><span></span><span></span>
+								</div>
+								<span class="browser-url">analytics.google.com · Shadow Vietnam E-Commerce Revenue (+26.81%)</span>
+								<span class="browser-badge">GA4 REVENUE</span>
+							</div>
+							<button
+								type="button"
+								class="proof-zoom-trigger"
+								data-lightbox-src="/proof/flashlight-revenue-growth.png"
+								data-lightbox-caption="Shadow Vietnam (shadow.vn) — GA4 E-Commerce Revenue Proof: 225,246,800 VND (+26.81% verified growth) & +25% YoY Q4/2023 Revenue"
+								aria-label="Zoom Shadow Vietnam revenue growth proof chart"
+							>
+								<img
+									src="/proof/flashlight-revenue-growth.png"
+									alt="Shadow Vietnam GA4 revenue report showing 225,246,800 VND (+26.81% growth)"
+									loading="lazy"
+								/>
+								<span class="zoom-overlay-pill no-print">Click to Zoom Revenue Chart ↗</span>
+							</button>
+						</div>
+
+						<div class="browser-frame">
+							<div class="browser-bar">
+								<div class="browser-dots" aria-hidden="true">
+									<span></span><span></span><span></span>
+								</div>
+								<span class="browser-url">analytics.google.com · Shadow Vietnam Traffic (57,311 Users / 71,291 Sessions)</span>
+								<span class="browser-badge">GA4 TRAFFIC</span>
+							</div>
+							<button
+								type="button"
+								class="proof-zoom-trigger"
+								data-lightbox-src="/proof/flashlight-traffic-growth.png"
+								data-lightbox-caption="Shadow Vietnam (shadow.vn) — GA4 User & Session Growth: 57,311 Users (+19.72%) and 71,291 Sessions (+16.71%)"
+								aria-label="Zoom Shadow Vietnam traffic growth proof chart"
+							>
+								<img
+									src="/proof/flashlight-traffic-growth.png"
+									alt="Shadow Vietnam GA4 traffic chart showing 57,311 users and 71,291 sessions"
+									loading="lazy"
+								/>
+								<span class="zoom-overlay-pill no-print">Click to Zoom Traffic Chart ↗</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right: Executive Breakdown -->
+				<div class="exec-breakdown-col">
+					<div class="campaign-meta-row">
+						<span class="campaign-industry-pill">Tactical Flashlight E-Commerce · Vietnam</span>
+						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Executive)</span>
+					</div>
+					<h2 class="campaign-title">03. Shadow Vietnam | Flashlight E-Commerce Project</h2>
+
+					<div class="campaign-kpi-tiles">
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">+25% MoM</span>
+							<span class="kpi-tile-lbl">Revenue Growth (+26.81% GA4)</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">71,291</span>
+							<span class="kpi-tile-lbl">Sessions (57,311 Users)</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">100% KPI</span>
+							<span class="kpi-tile-lbl">Military Contract + Renewal</span>
+						</div>
+					</div>
+
+					<div class="breakdown-boxes">
+						<div class="breakdown-box">
+							<h3>Project Scope &amp; Task Executed</h3>
+							<p>
+								Served as <strong>Lead &amp; Primary Implementer (SEO Executive)</strong> from <code>Apr 2023 – Nov 2023 (8 mos)</code> for <code>shadow.vn</code>. Audited the website quarterly and systematically optimized <strong>Product Page Views</strong> and <strong>Time Onsite</strong> to bridge informational outdoor traffic into tactical product purchases.
+							</p>
+						</div>
+						<div class="breakdown-box highlight-box">
+							<h3>Verified Traffic, Ranking &amp; Conversion Results</h3>
+							<ul>
+								<li>Boosted website revenue by <strong>25% month-over-month</strong> (<code>+26.81%</code> verified GA4 revenue growth to <code>225,246,800 VND</code> across <code>57,311 users</code> and <code>71,291 sessions</code>).</li>
+								<li>Achieved <strong>100% SEO KPI</strong> and sustained Top rankings for core commercial &amp; outdoor keywords: <code>&ldquo;địa điểm cắm trại&rdquo;</code>, <code>&ldquo;đèn pin cắm trại&rdquo;</code>, and <code>&ldquo;đèn pin siêu sáng&rdquo;</code>.</li>
+								<li><strong>Q4/2023 revenue increased 25% year-over-year</strong>, helped the client secure a <strong>flashlight supply contract with the military</strong>, and directly renewed the SEO contract with GTV.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 07 — CAMPAIGN 04: EUROTRAVEL (100K+ MONTHLY TRAFFIC & 120% KPI)
+		     ============================================================ -->
+		<section id="slide-eurotravel" class="deck-slide campaign-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 07 / 10 · CAMPAIGN CASE STUDY 04</span>
+				<span class="slide-domain">EUROTRAVEL.COM.VN · NOV 2022 – MAY 2023 (7 MOS)</span>
+			</div>
+
+			<div class="campaign-grid">
+				<!-- Left: Visual Proof Showcase -->
+				<div class="proof-showcase-col">
+					<div class="browser-frame">
+						<div class="browser-bar">
+							<div class="browser-dots" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</div>
+							<span class="browser-url">semrush.com/analytics/overview · eurotravel.com.vn (102,544 Peak)</span>
+							<span class="browser-badge">SEMRUSH VERIFIED</span>
+						</div>
+						<button
+							type="button"
+							class="proof-zoom-trigger"
+							data-lightbox-src="/proof/eurotravel-semrush-traffic.png"
+							data-lightbox-caption="EuroTravel (eurotravel.com.vn) — Semrush Organic Traffic Verification: 102,544 Peak Monthly Traffic, 80,000 GSC Clicks/Month & 120% TOP KPI Targets in 6 Months"
+							aria-label="Zoom EuroTravel Semrush organic traffic proof chart"
+						>
+							<img
+								src="/proof/eurotravel-semrush-traffic.png"
+								alt="EuroTravel Semrush organic traffic growth chart peaking at 102,544 monthly visits"
+								loading="lazy"
+							/>
+							<span class="zoom-overlay-pill no-print">Click to Zoom Full Chart ↗</span>
+						</button>
+					</div>
+					<p class="proof-caption">
+						<strong>Figure 04:</strong> Semrush organic traffic growth curve for <code>eurotravel.com.vn</code> reaching <strong>100,000+ monthly traffic</strong> (<code>102,544</code> verified peak) and <strong>80,000 GSC clicks/month</strong>.
+					</p>
+				</div>
+
+				<!-- Right: Executive Breakdown -->
+				<div class="exec-breakdown-col">
+					<div class="campaign-meta-row">
+						<span class="campaign-industry-pill">Luxury European Travel &amp; Tourism</span>
+						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Trainee)</span>
+					</div>
+					<h2 class="campaign-title">04. EuroTravel | European Travel Project</h2>
+
+					<div class="campaign-kpi-tiles">
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">102,544</span>
+							<span class="kpi-tile-lbl">Peak Monthly Traffic (100K+)</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">80,000</span>
+							<span class="kpi-tile-lbl">Monthly GSC Clicks</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">120% KPI</span>
+							<span class="kpi-tile-lbl">TOP Targets in 6 Months</span>
+						</div>
+					</div>
+
+					<div class="breakdown-boxes">
+						<div class="breakdown-box">
+							<h3>Project Scope &amp; Task Executed</h3>
+							<p>
+								Served as <strong>Lead &amp; Primary Implementer (SEO Trainee)</strong> from <code>Nov 2022 – May 2023 (7 mos)</code> for <code>eurotravel.com.vn</code>. Planned and executed end-to-end tasks per GTV&rsquo;s SEO process across European, Australian, and New Zealand tour packages and travel guides.
+							</p>
+						</div>
+						<div class="breakdown-box highlight-box">
+							<h3>Verified Traffic, Ranking &amp; Conversion Results</h3>
+							<ul>
+								<li>Achieved <strong>100,000+ monthly traffic</strong> (<code>102,544</code> peak in Semrush) and <strong>120% TOP KPI targets in 6 months</strong>.</li>
+								<li>Reached <strong>80,000 clicks/month (GSC)</strong>, including <strong>20,000 clicks/month</strong> from editorial guides on tips, locations, and experiences when traveling in Europe, Australia, and New Zealand.</li>
+								<li>Ranked <strong>Top 1</strong> for European tours by country, luxury European travel, and Europe tours during Tet; <strong>Top 3</strong> for European tour keywords by travel route.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 08 — CAMPAIGN 05: GTV SEO (#1 AI SEARCH & WHITE HAT B2B AUTHORITY)
+		     ============================================================ -->
+		<section id="slide-gtv-seo" class="deck-slide campaign-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 08 / 10 · CAMPAIGN CASE STUDY 05</span>
+				<span class="slide-domain">GTVSEO.COM · APR 2023 – DEC 2024 (1 YR 9 MOS)</span>
+			</div>
+
+			<div class="campaign-grid">
+				<!-- Left: Rich Visual SERP & AI Citation Dashboard Board -->
+				<div class="proof-showcase-col">
+					<div class="browser-frame dashboard-board">
+						<div class="browser-bar">
+							<div class="browser-dots" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</div>
+							<span class="browser-url">gtvseo.com · AI Search Citation &amp; Google SERP Tracker</span>
+							<span class="browser-badge">100% WHITE HAT</span>
+						</div>
+
+						<div class="serp-board-body">
+							<div class="ai-citation-banner">
+								<div class="ai-citation-header">
+									<span class="ai-live-dot" aria-hidden="true"></span>
+									<span class="ai-citation-kicker">GENERATIVE ENGINE OPTIMIZATION (GEO) · VERIFIED CITATIONS</span>
+								</div>
+								<div class="ai-engines-grid">
+									<div class="ai-engine-card">
+										<span class="ai-engine-name">ChatGPT Search</span>
+										<span class="ai-engine-rank">#1 Recommended</span>
+										<span class="ai-engine-query">&ldquo;seo agency hcm&rdquo; · &ldquo;công ty seo hcm&rdquo;</span>
+									</div>
+									<div class="ai-engine-card">
+										<span class="ai-engine-name">Claude (Anthropic)</span>
+										<span class="ai-engine-rank">#1 Recommended</span>
+										<span class="ai-engine-query">&ldquo;seo agency hcm&rdquo; · &ldquo;công ty seo hcm&rdquo;</span>
+									</div>
+									<div class="ai-engine-card">
+										<span class="ai-engine-name">Grok AI</span>
+										<span class="ai-engine-rank">#1 Recommended</span>
+										<span class="ai-engine-query">&ldquo;seo agency hcm&rdquo; · &ldquo;công ty seo hcm&rdquo;</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="serp-table-wrapper">
+								<div class="serp-table-title">
+									<span>Google Vietnam Commercial SERP Standings (gtvseo.com)</span>
+									<span>40 AI-Assisted Articles / Mo</span>
+								</div>
+								<table class="serp-ranking-table">
+									<thead>
+										<tr>
+											<th>Target Commercial Keyword</th>
+											<th>Intent</th>
+											<th>Google Rank</th>
+											<th>Method</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><code>&ldquo;báo giá seo&rdquo;</code></td>
+											<td>Transactional B2B</td>
+											<td><span class="rank-pill rank-top1">Top 1–3</span></td>
+											<td>White Hat + Schema</td>
+										</tr>
+										<tr>
+											<td><code>&ldquo;khóa học seo&rdquo;</code></td>
+											<td>Commercial Course</td>
+											<td><span class="rank-pill rank-top1">Top 1–3</span></td>
+											<td>Topical Cluster + Internal Link</td>
+										</tr>
+										<tr>
+											<td><code>&ldquo;seo agency&rdquo;</code></td>
+											<td>Brand / Agency</td>
+											<td><span class="rank-pill rank-top1">Top 1–3</span></td>
+											<td>Entity + Cloud Stack + PR</td>
+										</tr>
+										<tr>
+											<td><code>&ldquo;thiết kế website chuẩn seo&rdquo;</code></td>
+											<td>Service Money Page</td>
+											<td><span class="rank-pill rank-top1">Top 1–3</span></td>
+											<td>Content Audit + Onpage</td>
+										</tr>
+										<tr>
+											<td><code>&ldquo;dịch vụ seo hcm&rdquo;</code> &amp; <code>&ldquo;đào tạo seo&rdquo;</code></td>
+											<td>High-Competition B2B</td>
+											<td><span class="rank-pill rank-top5">Top 5–7 (Stable 6+ Mos)</span></td>
+											<td>100% White Hat SEO</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<p class="proof-caption">
+						<strong>Figure 05:</strong> AI Search citation dominance (#1 on ChatGPT, Claude &amp; Grok) and stable Google Top 1–3 / Top 5–7 commercial rankings for <code>gtvseo.com</code> in a Black Hat-dominated market.
+					</p>
+				</div>
+
+				<!-- Right: Executive Breakdown -->
+				<div class="exec-breakdown-col">
+					<div class="campaign-meta-row">
+						<span class="campaign-industry-pill">Vietnam B2B SEO Agency Flagship</span>
+						<span class="campaign-role-pill">Lead &amp; Primary Implementer (SEO Specialist)</span>
+					</div>
+					<h2 class="campaign-title">05. GTV SEO Project | B2B Agency &amp; AI Search</h2>
+
+					<div class="campaign-kpi-tiles">
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">Top 1 AI</span>
+							<span class="kpi-tile-lbl">ChatGPT, Grok &amp; Claude</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">Top 1–3</span>
+							<span class="kpi-tile-lbl">Core Money Keywords</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">40 / Mo</span>
+							<span class="kpi-tile-lbl">AI-Assisted Quality Articles</span>
+						</div>
+					</div>
+
+					<div class="breakdown-boxes">
+						<div class="breakdown-box">
+							<h3>Project Scope &amp; Task Executed</h3>
+							<p>
+								Served as <strong>Lead &amp; Primary Implementer (SEO Specialist)</strong> for <code>gtvseo.com</code> from <code>Apr 2023 – Dec 2024 (1 yr 9 mos)</code>. Executed Schema markup, Content Audit, balanced Internal Linking, Crawl optimization, Cloud Stack, Guest Posts, PR articles, and User Traffic optimization. Applied AI workflows to write and publish <strong>40 quality articles/month</strong>.
+							</p>
+						</div>
+						<div class="breakdown-box highlight-box">
+							<h3>Verified Traffic, Ranking &amp; Conversion Results</h3>
+							<ul>
+								<li>Achieved <strong>Top 1 recommendation</strong> for <code>&ldquo;seo agency hcm&rdquo;</code> &amp; <code>&ldquo;công ty seo hcm&rdquo;</code> on AI search engines (<strong>ChatGPT, Grok, Claude</strong>).</li>
+								<li>Achieved stable <strong>Top 1–3 rankings</strong> for <code>&ldquo;báo giá seo&rdquo;</code>, <code>&ldquo;khóa học seo&rdquo;</code>, <code>&ldquo;seo agency&rdquo;</code>, and <code>&ldquo;thiết kế website chuẩn seo&rdquo;</code>.</li>
+								<li>Maintained stable <strong>Top 5–7 rankings</strong> for <code>&ldquo;dịch vụ seo hcm&rdquo;</code> and <code>&ldquo;đào tạo seo&rdquo;</code> in 6 months using <strong>100% White Hat SEO</strong> methods in a Black Hat-dominated industry.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="campaign-footer-links no-print">
+						<a href="/posts/geo-playbook-ranking-number-1-on-chatgpt-claude-and-grok" class="campaign-link-btn">Read Full GEO &amp; GTV SEO Playbook →</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 09 — CAMPAIGN 06: REPAIR CENTRE VIC (TOP 3–5 IN 2 WEEKS)
+		     ============================================================ -->
+		<section id="slide-repair-vic" class="deck-slide campaign-slide">
+			<div class="slide-topbar">
+				<span class="slide-num">SLIDE 09 / 10 · CAMPAIGN CASE STUDY 06</span>
+				<span class="slide-domain">REPAIRCENTREVIC.COM.AU · FEB 2025 (AUSTRALIA)</span>
+			</div>
+
+			<div class="campaign-grid">
+				<!-- Left: Rich Visual KPI Progression & SERP Turnaround Board -->
+				<div class="proof-showcase-col">
+					<div class="browser-frame dashboard-board">
+						<div class="browser-bar">
+							<div class="browser-dots" aria-hidden="true">
+								<span></span><span></span><span></span>
+							</div>
+							<span class="browser-url">repaircentrevic.com.au · 14-Day Cannibalization Turnaround Audit</span>
+							<span class="browser-badge">AUSTRALIA SERP</span>
+						</div>
+
+						<div class="serp-board-body">
+							<div class="turnaround-header-card">
+								<div>
+									<p class="turnaround-kicker">PROJECT-END KPI SPRINT · MELBOURNE / VICTORIA, AUSTRALIA</p>
+									<h3 class="turnaround-heading">85% Overall Project KPI Achieved Within 14 Days</h3>
+								</div>
+								<span class="turnaround-badge">2-Week Sprint</span>
+							</div>
+
+							<div class="kpi-bars-container">
+								<div class="kpi-bar-row">
+									<div class="kpi-bar-labels">
+										<strong>TOP 10 Ranking KPI</strong>
+										<span>Baseline: 55% → <strong>Achieved: 75% (+20%)</strong></span>
+									</div>
+									<div class="kpi-bar-track">
+										<div class="kpi-bar-fill" style="width: 75%;"></div>
+									</div>
+								</div>
+
+								<div class="kpi-bar-row">
+									<div class="kpi-bar-labels">
+										<strong>TOP 5 Ranking KPI (2x Doubled)</strong>
+										<span>Baseline: 15% → <strong>Achieved: 30% (+15%)</strong></span>
+									</div>
+									<div class="kpi-bar-track">
+										<div class="kpi-bar-fill" style="width: 60%;"></div>
+									</div>
+								</div>
+
+								<div class="kpi-bar-row">
+									<div class="kpi-bar-labels">
+										<strong>TOP 3 Ranking KPI (2x Doubled)</strong>
+										<span>Baseline: 5% → <strong>Achieved: 10% (+5%)</strong></span>
+									</div>
+									<div class="kpi-bar-track">
+										<div class="kpi-bar-fill" style="width: 45%;"></div>
+									</div>
+								</div>
+
+								<div class="kpi-bar-row">
+									<div class="kpi-bar-labels">
+										<strong>Overall Contract KPI Completion</strong>
+										<span>After 2 Weeks of Content &amp; Onsite Audit → <strong>85% Overall KPI</strong></span>
+									</div>
+									<div class="kpi-bar-track">
+										<div class="kpi-bar-fill kpi-bar-accent" style="width: 85%;"></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="aus-keywords-box">
+								<span class="aus-kw-label">Target Australian Money Keywords Ranked Top 3–5 in 2 Weeks:</span>
+								<div class="aus-kw-chips">
+									<code>&ldquo;iPhone ... screen repair&rdquo; → Top 3–5 AU</code>
+									<code>&ldquo;Samsung ... screen repair&rdquo; → Top 3–5 AU</code>
+									<code>Cannibalization &amp; Duplicate Content Resolved</code>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p class="proof-caption">
+						<strong>Figure 06:</strong> 14-day KPI turnaround dashboard for <code>repaircentrevic.com.au</code> after resolving keyword cannibalization and duplicate service pages in Australia.
+					</p>
+				</div>
+
+				<!-- Right: Executive Breakdown -->
+				<div class="exec-breakdown-col">
+					<div class="campaign-meta-row">
+						<span class="campaign-industry-pill">Electronic Equipment Service · Australia</span>
+						<span class="campaign-role-pill">Advisor &amp; Implementer Achieving Project-End KPIs</span>
+					</div>
+					<h2 class="campaign-title">06. Repair Centre VIC | Australia Rapid Turnaround</h2>
+
+					<div class="campaign-kpi-tiles">
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">Top 3–5</span>
+							<span class="kpi-tile-lbl">In 2 Weeks (Australia)</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">75% Top 10</span>
+							<span class="kpi-tile-lbl">Up From 55% Baseline</span>
+						</div>
+						<div class="kpi-tile">
+							<span class="kpi-tile-val">85% KPI</span>
+							<span class="kpi-tile-lbl">Overall After 14 Days</span>
+						</div>
+					</div>
+
+					<div class="breakdown-boxes">
+						<div class="breakdown-box">
+							<h3>Project Scope &amp; Task Executed</h3>
+							<p>
+								Brought in as <strong>Advisor &amp; Implementer Achieving Project-End KPIs (SEO Specialist)</strong> in <code>Feb 2025</code> for <code>repaircentrevic.com.au</code>. Audited the entire website, diagnosed severe <strong>Keyword Cannibalization</strong> and <strong>Duplicate Content</strong> across device repair pages, and strategized rapid onsite optimization for the final project month.
+							</p>
+						</div>
+						<div class="breakdown-box highlight-box">
+							<h3>Verified Traffic, Ranking &amp; Conversion Results</h3>
+							<ul>
+								<li>Achieved <strong>Top 3–5 rankings</strong> for high-intent commercial queries (<code>&ldquo;iPhone ... screen repair&rdquo;</code>, <code>&ldquo;Samsung ... screen repair&rdquo;</code>) in the Australian market within <strong>2 weeks</strong>.</li>
+								<li>Jumped from <strong>55% to 75% TOP 10 KPI</strong>, doubled <strong>TOP 5 KPI from 15% to 30%</strong>, and doubled <strong>TOP 3 KPI from 5% to 10%</strong>.</li>
+								<li>Hit <strong>85% overall project KPI after just 2 weeks</strong> of Content &amp; Onsite Audit.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="campaign-footer-links no-print">
+						<a href="/posts/top-3-rankings-in-two-weeks" class="campaign-link-btn">Read Full 2-Week Turnaround Case Study →</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================================================
+		     SLIDE 10 — COLLAB WITH US / NEXT STEPS SLIDE
+		     ============================================================ -->
+		<section id="slide-collab" class="deck-slide collab-slide">
+			<div class="slide-topbar cover-topbar">
+				<span class="slide-num">SLIDE 10 / 10 · SCOPE OF WORK &amp; NEXT STEPS</span>
+				<span class="slide-domain">COLLABORATE WITH LE HOANG TIN</span>
+			</div>
+
+			<div class="collab-header">
+				<p class="collab-kicker">READY TO SCALE ORGANIC REVENUE &amp; AI CITATIONS?</p>
+				<h2 class="collab-title">Let&rsquo;s Build Your Search &amp; GEO Moat</h2>
+				<p class="collab-sub">
+					Available for Senior SEO / GEO Specialist leadership roles, technical &amp; entity audits, and full-funnel monthly growth retainers for Vietnamese and global brands.
+				</p>
+			</div>
+
+			<div class="collab-tiers-grid">
+				<article class="collab-tier-card">
+					<span class="collab-tier-num">OPTION 01 · DIAGNOSTIC SPRINT</span>
+					<h3>Technical SEO &amp; GEO Entity Audit</h3>
+					<p>
+						Deep-dive Screaming Frog crawl, GSC indexation &amp; cannibalization audit, competitor entity gap matrix, and prioritized 90-day roadmap.
+					</p>
+				</article>
+
+				<article class="collab-tier-card collab-tier-featured">
+					<span class="collab-tier-num">OPTION 02 · FULL-FUNNEL GROWTH (RECOMMENDED)</span>
+					<h3>Monthly SEO &amp; GEO Retainer</h3>
+					<p>
+						End-to-end execution: Topical Map, AI-assisted E-E-A-T content production, White Hat authority building, JSON-LD / <code>/llms.txt</code>, and GA4 CRO tracking.
+					</p>
+				</article>
+
+				<article class="collab-tier-card">
+					<span class="collab-tier-num">OPTION 03 · SENIOR IN-HOUSE / ADVISORY</span>
+					<h3>Senior SEO &amp; GEO Specialist Role</h3>
+					<p>
+						Full-time leadership or fractional advisory bringing nearly 3 years of GTV SEO campaign systems, AI workflow automation, and team training e-books.
+					</p>
+				</article>
+			</div>
+
+			<div class="collab-contact-strip">
+				<div class="collab-direct-info">
+					<div>
+						<span class="collab-info-lbl">DIRECT EMAIL</span>
+						<a href="mailto:tinledoihoa@gmail.com" class="collab-info-val">tinledoihoa@gmail.com</a>
+					</div>
+					<div>
+						<span class="collab-info-lbl">PHONE / ZALO / WHATSAPP</span>
+						<a href="tel:+84357669476" class="collab-info-val">0357.669.476</a>
+					</div>
+					<div>
+						<span class="collab-info-lbl">EDUCATION &amp; LOCATION</span>
+						<span class="collab-info-val">UEH (GPA 3.27/4.0) · Ho Chi Minh City, VN</span>
+					</div>
+				</div>
+
+				<div class="collab-cta-buttons no-print">
+					<a href="/#get-in-touch" class="collab-primary-btn">Get in Touch →</a>
+					<a href="/projects" class="collab-secondary-btn">View Full Case Archive →</a>
+					<a href="/tools" class="collab-secondary-btn">Explore SEO/GEO Toolkit →</a>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Click-to-Zoom Lightbox Modal -->
+	<dialog id="portfolio-lightbox" class="proof-lightbox no-print" aria-label="Full-size proof screenshot viewer">
+		<div class="lightbox-inner">
+			<div class="lightbox-topbar">
+				<span id="lightbox-caption" class="lightbox-caption">Verified Campaign Screenshot</span>
+				<button type="button" id="lightbox-close-btn" class="lightbox-close-btn" aria-label="Close full-size preview">
+					Close (ESC)
+				</button>
+			</div>
+			<div class="lightbox-img-wrap">
+				<img id="lightbox-img" src="" alt="Expanded analytics proof chart" />
+			</div>
+		</div>
+	</dialog>
+</Base>
+
+<script is:inline>
+	(function () {
+		// Print / Save as PDF Deck button
+		var printBtn = document.getElementById("print-deck-btn");
+		if (printBtn) {
+			printBtn.addEventListener("click", function () {
+				window.print();
+			});
+		}
+
+		// Copy Portfolio Link button
+		var copyBtn = document.getElementById("copy-deck-link-btn");
+		var copyLabel = document.getElementById("copy-deck-link-label");
+		if (copyBtn && copyLabel) {
+			copyBtn.addEventListener("click", function () {
+				var url = window.location.origin + "/portfolio";
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					navigator.clipboard.writeText(url).then(function () {
+						copyLabel.textContent = "Copied URL!";
+						setTimeout(function () {
+							copyLabel.textContent = "Copy Portfolio Link";
+						}, 2200);
+					});
+				}
+			});
+		}
+
+		// Click-to-Zoom Lightbox Modal
+		var dialog = document.getElementById("portfolio-lightbox");
+		var lightboxImg = document.getElementById("lightbox-img");
+		var lightboxCaption = document.getElementById("lightbox-caption");
+		var closeBtn = document.getElementById("lightbox-close-btn");
+		var triggers = document.querySelectorAll(".proof-zoom-trigger");
+
+		triggers.forEach(function (btn) {
+			btn.addEventListener("click", function () {
+				var src = btn.getAttribute("data-lightbox-src");
+				var cap = btn.getAttribute("data-lightbox-caption");
+				if (dialog && lightboxImg && src) {
+					lightboxImg.setAttribute("src", src);
+					if (lightboxCaption && cap) {
+						lightboxCaption.textContent = cap;
+					}
+					if (typeof dialog.showModal === "function") {
+						dialog.showModal();
+					} else {
+						dialog.setAttribute("open", "true");
+					}
+				}
+			});
+		});
+
+		if (closeBtn && dialog) {
+			closeBtn.addEventListener("click", function () {
+				if (typeof dialog.close === "function") {
+					dialog.close();
+				} else {
+					dialog.removeAttribute("open");
+				}
+			});
+		}
+
+		if (dialog) {
+			dialog.addEventListener("click", function (e) {
+				if (e.target === dialog) {
+					if (typeof dialog.close === "function") {
+						dialog.close();
+					} else {
+						dialog.removeAttribute("open");
+					}
+				}
+			});
+		}
+	})();
+</script>
+
+<style>
+	.portfolio-deck-page {
+		max-width: 1220px;
+		margin: 0 auto;
+		padding: 1.5rem 1.25rem 4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 2.25rem;
+	}
+
+	/* Top Deck Controls Bar */
+	.deck-controls-bar {
+		position: sticky;
+		top: 0.75rem;
+		z-index: 30;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.85rem 1.25rem;
+		background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+		backdrop-filter: blur(10px);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		box-shadow: 0 8px 24px rgba(26, 46, 26, 0.06);
+	}
+
+	.deck-controls-left {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.85rem;
+	}
+
+	.deck-controls-left .editorial-kicker {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		color: var(--color-primary);
+	}
+
+	.deck-quick-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.deck-pill {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 500;
+		padding: 0.3rem 0.65rem;
+		border-radius: 9999px;
+		border: 1px solid var(--color-border);
+		background: var(--color-bg);
+		color: var(--color-text-muted);
+		text-decoration: none;
+		transition: all 0.15s ease;
+	}
+
+	.deck-pill:hover {
+		border-color: var(--color-primary);
+		color: var(--color-text);
+	}
+
+	.deck-controls-right {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.55rem;
+	}
+
+	.deck-action-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.45rem 0.85rem;
+		border-radius: 9999px;
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		color: var(--color-text);
+		font-family: var(--font-heading);
+		font-size: 0.78rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.15s ease;
+	}
+
+	.deck-action-btn:hover {
+		border-color: var(--color-primary);
+		background: var(--color-bg-subtle);
+	}
+
+	.deck-cta-btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.48rem 1rem;
+		border-radius: 9999px;
+		background: var(--color-accent);
+		color: #ffffff;
+		font-family: var(--font-heading);
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition: transform 0.15s ease, opacity 0.15s ease;
+	}
+
+	.deck-cta-btn:hover {
+		transform: translateY(-1px);
+		opacity: 0.95;
+	}
+
+	/* Base Widescreen Slide Card */
+	.deck-slide {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 16px;
+		padding: 2rem 2.25rem 2.35rem;
+		box-shadow: 0 10px 30px rgba(26, 46, 26, 0.04);
+		scroll-margin-top: 5.5rem;
+	}
+
+	.slide-topbar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding-bottom: 1rem;
+		margin-bottom: 1.75rem;
+		border-bottom: 1px solid var(--color-border);
+		font-family: var(--font-mono);
+		font-size: 0.73rem;
+		letter-spacing: 0.08em;
+		color: var(--color-text-muted);
+	}
+
+	/* Slide 01: Executive Cover Slide */
+	.cover-slide,
+	.collab-slide {
+		background: linear-gradient(135deg, #1a2e1a 0%, #243e24 60%, #2d4a2d 100%);
+		color: #f5f0e6;
+		border-color: rgba(245, 240, 230, 0.18);
+	}
+
+	.cover-topbar {
+		border-bottom-color: rgba(245, 240, 230, 0.16);
+		color: rgba(245, 240, 230, 0.72);
+	}
+
+	.cover-grid {
+		display: grid;
+		grid-template-columns: 1.35fr 1fr;
+		gap: 2.25rem;
+		align-items: stretch;
+	}
+
+	.cover-eyebrow-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.35rem 0.85rem;
+		border-radius: 9999px;
+		background: rgba(245, 240, 230, 0.1);
+		border: 1px solid rgba(245, 240, 230, 0.2);
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.06em;
+		color: #f5f0e6;
+		margin-bottom: 1.25rem;
+	}
+
+	.cover-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #e8772a;
+	}
+
+	.cover-title {
+		font-family: var(--font-heading);
+		font-size: clamp(2rem, 3.6vw, 3.1rem);
+		font-weight: 500;
+		line-height: 1.08;
+		letter-spacing: -0.025em;
+		color: #ffffff;
+		margin: 0 0 1rem;
+	}
+
+	.cover-subtitle {
+		font-size: 1.12rem;
+		line-height: 1.55;
+		color: rgba(245, 240, 230, 0.86);
+		margin: 0 0 2rem;
+		max-width: 58ch;
+	}
+
+	.cover-highlights-strip {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.9rem;
+	}
+
+	.cover-highlight-item {
+		padding: 0.95rem 1rem;
+		border-radius: 12px;
+		background: rgba(245, 240, 230, 0.07);
+		border: 1px solid rgba(245, 240, 230, 0.15);
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.cover-hi-val {
+		font-family: var(--font-heading);
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #f08a3e;
+	}
+
+	.cover-hi-lbl {
+		font-size: 0.78rem;
+		color: rgba(245, 240, 230, 0.8);
+		line-height: 1.35;
+	}
+
+	.cover-presenter-card {
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(245, 240, 230, 0.2);
+		border-radius: 14px;
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 1.25rem;
+	}
+
+	.presenter-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.presenter-avatar {
+		width: 78px;
+		height: 78px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 2px solid #e8772a;
+	}
+
+	.presenter-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.1em;
+		color: #f08a3e;
+		margin: 0 0 0.2rem;
+	}
+
+	.presenter-name {
+		font-family: var(--font-heading);
+		font-size: 1.35rem;
+		font-weight: 500;
+		color: #ffffff;
+		margin: 0;
+	}
+
+	.presenter-role {
+		font-size: 0.88rem;
+		color: rgba(245, 240, 230, 0.82);
+		margin: 0.15rem 0 0;
+	}
+
+	.presenter-facts {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+		font-size: 0.83rem;
+	}
+
+	.presenter-fact-row {
+		display: grid;
+		grid-template-columns: 105px 1fr;
+		gap: 0.5rem;
+		padding-top: 0.5rem;
+		border-top: 1px solid rgba(245, 240, 230, 0.12);
+	}
+
+	.presenter-fact-row dt {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		color: rgba(245, 240, 230, 0.65);
+		text-transform: uppercase;
+	}
+
+	.presenter-fact-row dd {
+		margin: 0;
+		color: #f5f0e6;
+	}
+
+	.presenter-fact-row a {
+		color: #f08a3e;
+		text-decoration: none;
+	}
+
+	.presenter-fact-row a:hover {
+		text-decoration: underline;
+	}
+
+	/* Slide 02: Overview & Agenda */
+	.overview-grid {
+		display: grid;
+		grid-template-columns: 1fr 1.35fr;
+		gap: 2rem;
+	}
+
+	.panel-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+		margin: 0 0 0.35rem;
+	}
+
+	.panel-title {
+		font-family: var(--font-heading);
+		font-size: 1.5rem;
+		font-weight: 500;
+		color: var(--color-text);
+		margin: 0 0 1.15rem;
+	}
+
+	.agenda-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.agenda-row {
+		display: flex;
+		gap: 0.9rem;
+		padding: 0.85rem 1rem;
+		border-radius: 12px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+	}
+
+	.agenda-num {
+		font-family: var(--font-mono);
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--color-accent);
+		padding-top: 0.1rem;
+	}
+
+	.agenda-body h3 {
+		font-family: var(--font-heading);
+		font-size: 0.98rem;
+		font-weight: 600;
+		margin: 0 0 0.25rem;
+		color: var(--color-text);
+	}
+
+	.agenda-body p {
+		font-size: 0.83rem;
+		line-height: 1.45;
+		color: var(--color-text-muted);
+		margin: 0;
+	}
+
+	.profile-summary-copy {
+		font-size: 0.92rem;
+		line-height: 1.6;
+		color: var(--color-text-muted);
+		margin: 0 0 1.25rem;
+	}
+
+	.quadrant-kpis {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.85rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.quad-card {
+		padding: 0.95rem 1.1rem;
+		border-radius: 12px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+	}
+
+	.quad-val {
+		font-family: var(--font-heading);
+		font-size: 1.55rem;
+		font-weight: 600;
+		color: var(--color-primary);
+		line-height: 1.1;
+	}
+
+	.quad-lbl {
+		font-family: var(--font-heading);
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.quad-sub {
+		font-size: 0.76rem;
+		color: var(--color-text-muted);
+	}
+
+	.achievements-strip {
+		padding: 1rem 1.15rem;
+		border-radius: 12px;
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+	}
+
+	.achievements-heading {
+		font-family: var(--font-mono);
+		font-size: 0.74rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--color-primary);
+		margin: 0 0 0.65rem;
+	}
+
+	.achievements-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-size: 0.84rem;
+	}
+
+	.achievements-list li {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+	}
+
+	.ach-tag {
+		font-family: var(--font-mono);
+		font-size: 0.66rem;
+		font-weight: 600;
+		padding: 0.15rem 0.45rem;
+		border-radius: 9999px;
+		background: var(--color-primary);
+		color: #ffffff;
+		flex-shrink: 0;
+	}
+
+	/* Slide 03: 4-Stage Execution System */
+	.slide-header-block {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.slide-main-heading {
+		font-family: var(--font-heading);
+		font-size: 1.65rem;
+		font-weight: 500;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.slide-header-sub {
+		max-width: 52ch;
+		font-size: 0.88rem;
+		line-height: 1.55;
+		color: var(--color-text-muted);
+		margin: 0;
+	}
+
+	.process-columns {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+	}
+
+	.process-col-card {
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		padding: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+	}
+
+	.process-col-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.process-step-badge {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--color-accent);
+		letter-spacing: 0.06em;
+	}
+
+	.process-icon-box {
+		width: 38px;
+		height: 38px;
+		border-radius: 10px;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-primary);
+	}
+
+	.process-col-title {
+		font-family: var(--font-heading);
+		font-size: 1.02rem;
+		font-weight: 600;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.process-col-tools {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		color: var(--color-primary);
+		margin: 0;
+	}
+
+	.process-col-points {
+		margin: 0;
+		padding-left: 1.1rem;
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: var(--color-text-muted);
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	/* Slides 04-09: Campaign Showcase Slides */
+	.campaign-grid {
+		display: grid;
+		grid-template-columns: 1.12fr 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	.proof-showcase-col {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+	}
+
+	.dual-proof-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.browser-frame {
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		overflow: hidden;
+		background: var(--color-bg);
+	}
+
+	.browser-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.6rem;
+		padding: 0.55rem 0.85rem;
+		background: var(--color-bg-subtle);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.browser-dots {
+		display: flex;
+		gap: 5px;
+	}
+
+	.browser-dots span {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--color-border);
+	}
+
+	.browser-url {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		color: var(--color-text-muted);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.browser-badge {
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		font-weight: 600;
+		padding: 0.15rem 0.5rem;
+		border-radius: 9999px;
+		background: var(--color-primary);
+		color: #ffffff;
+		flex-shrink: 0;
+	}
+
+	.proof-zoom-trigger {
+		position: relative;
+		display: block;
+		width: 100%;
+		padding: 0;
+		border: 0;
+		background: #ffffff;
+		cursor: zoom-in;
+		text-align: left;
+	}
+
+	.proof-zoom-trigger img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 360px;
+		object-fit: contain;
+		background: #ffffff;
+	}
+
+	.dual-proof-stack .proof-zoom-trigger img {
+		max-height: 205px;
+	}
+
+	.zoom-overlay-pill {
+		position: absolute;
+		right: 0.75rem;
+		bottom: 0.75rem;
+		padding: 0.35rem 0.75rem;
+		border-radius: 9999px;
+		background: rgba(26, 46, 26, 0.88);
+		color: #ffffff;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 600;
+		transition: transform 0.15s ease;
+	}
+
+	.proof-zoom-trigger:hover .zoom-overlay-pill {
+		transform: scale(1.04);
+		background: var(--color-accent);
+	}
+
+	.proof-caption {
+		font-size: 0.78rem;
+		line-height: 1.45;
+		color: var(--color-text-muted);
+		margin: 0;
+	}
+
+	/* Graphic SERP & AI Citation Boards (Slides 08 & 09) */
+	.serp-board-body {
+		padding: 1.15rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		background: var(--color-surface);
+	}
+
+	.ai-citation-banner {
+		padding: 0.95rem 1rem;
+		border-radius: 10px;
+		background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 100%);
+		color: #f5f0e6;
+	}
+
+	.ai-citation-header {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin-bottom: 0.65rem;
+	}
+
+	.ai-live-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: #e8772a;
+	}
+
+	.ai-citation-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.08em;
+		color: rgba(245, 240, 230, 0.85);
+	}
+
+	.ai-engines-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.6rem;
+	}
+
+	.ai-engine-card {
+		padding: 0.6rem 0.7rem;
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.ai-engine-name {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		color: rgba(245, 240, 230, 0.75);
+	}
+
+	.ai-engine-rank {
+		font-family: var(--font-heading);
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: #f08a3e;
+	}
+
+	.ai-engine-query {
+		font-size: 0.7rem;
+		color: #ffffff;
+	}
+
+	.serp-table-wrapper {
+		border: 1px solid var(--color-border);
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+	.serp-table-title {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.55rem 0.85rem;
+		background: var(--color-bg-subtle);
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.serp-ranking-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.78rem;
+	}
+
+	.serp-ranking-table th,
+	.serp-ranking-table td {
+		padding: 0.5rem 0.75rem;
+		border-top: 1px solid var(--color-border);
+		text-align: left;
+	}
+
+	.serp-ranking-table th {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		text-transform: uppercase;
+		color: var(--color-text-muted);
+		background: var(--color-bg);
+	}
+
+	.rank-pill {
+		display: inline-block;
+		padding: 0.15rem 0.5rem;
+		border-radius: 9999px;
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 600;
+	}
+
+	.rank-top1 {
+		background: rgba(45, 74, 45, 0.14);
+		color: var(--color-primary);
+	}
+
+	.rank-top5 {
+		background: rgba(232, 119, 42, 0.15);
+		color: var(--color-accent);
+	}
+
+	/* Slide 09 Turnaround KPI Bars */
+	.turnaround-header-card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding: 0.85rem 1rem;
+		border-radius: 10px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+	}
+
+	.turnaround-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.66rem;
+		color: var(--color-accent);
+		margin: 0 0 0.2rem;
+	}
+
+	.turnaround-heading {
+		font-family: var(--font-heading);
+		font-size: 1rem;
+		font-weight: 600;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.turnaround-badge {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		font-weight: 600;
+		padding: 0.3rem 0.65rem;
+		border-radius: 9999px;
+		background: var(--color-accent);
+		color: #ffffff;
+		flex-shrink: 0;
+	}
+
+	.kpi-bars-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.kpi-bar-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+	}
+
+	.kpi-bar-labels {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.78rem;
+	}
+
+	.kpi-bar-track {
+		height: 10px;
+		border-radius: 9999px;
+		background: var(--color-bg-subtle);
+		overflow: hidden;
+	}
+
+	.kpi-bar-fill {
+		height: 100%;
+		border-radius: 9999px;
+		background: var(--color-primary);
+	}
+
+	.kpi-bar-accent {
+		background: var(--color-accent);
+	}
+
+	.aus-keywords-box {
+		padding: 0.75rem 0.9rem;
+		border-radius: 10px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	.aus-kw-label {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--color-text-muted);
+	}
+
+	.aus-kw-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.aus-kw-chips code {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		padding: 0.2rem 0.55rem;
+		border-radius: 6px;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	/* Executive Breakdown Right Column */
+	.exec-breakdown-col {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.campaign-meta-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.campaign-industry-pill,
+	.campaign-role-pill {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 600;
+		padding: 0.22rem 0.65rem;
+		border-radius: 9999px;
+	}
+
+	.campaign-industry-pill {
+		background: var(--color-bg-subtle);
+		color: var(--color-text-muted);
+		border: 1px solid var(--color-border);
+	}
+
+	.campaign-role-pill {
+		background: rgba(45, 74, 45, 0.12);
+		color: var(--color-primary);
+	}
+
+	.campaign-title {
+		font-family: var(--font-heading);
+		font-size: 1.45rem;
+		font-weight: 500;
+		line-height: 1.2;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.campaign-kpi-tiles {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0.65rem;
+	}
+
+	.kpi-tile {
+		padding: 0.75rem 0.85rem;
+		border-radius: 10px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.kpi-tile-val {
+		font-family: var(--font-heading);
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	.kpi-tile-lbl {
+		font-size: 0.73rem;
+		color: var(--color-text-muted);
+		line-height: 1.3;
+	}
+
+	.breakdown-boxes {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.breakdown-box {
+		padding: 0.95rem 1.1rem;
+		border-radius: 10px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+	}
+
+	.breakdown-box.highlight-box {
+		background: var(--color-bg-subtle);
+		border-left: 3px solid var(--color-primary);
+	}
+
+	.breakdown-box h3 {
+		font-family: var(--font-mono);
+		font-size: 0.73rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-primary);
+		margin: 0 0 0.45rem;
+	}
+
+	.breakdown-box p {
+		font-size: 0.85rem;
+		line-height: 1.55;
+		color: var(--color-text);
+		margin: 0;
+	}
+
+	.breakdown-box ul {
+		margin: 0;
+		padding-left: 1.1rem;
+		font-size: 0.84rem;
+		line-height: 1.55;
+		color: var(--color-text);
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.campaign-link-btn {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-heading);
+		font-size: 0.84rem;
+		font-weight: 600;
+		color: var(--color-accent);
+		text-decoration: none;
+	}
+
+	.campaign-link-btn:hover {
+		text-decoration: underline;
+	}
+
+	/* Slide 10: Collab Slide */
+	.collab-header {
+		max-width: 68ch;
+		margin-bottom: 1.75rem;
+	}
+
+	.collab-kicker {
+		font-family: var(--font-mono);
+		font-size: 0.74rem;
+		letter-spacing: 0.08em;
+		color: #f08a3e;
+		margin: 0 0 0.4rem;
+	}
+
+	.collab-title {
+		font-family: var(--font-heading);
+		font-size: clamp(1.75rem, 3vw, 2.4rem);
+		font-weight: 500;
+		color: #ffffff;
+		margin: 0 0 0.65rem;
+	}
+
+	.collab-sub {
+		font-size: 0.98rem;
+		line-height: 1.55;
+		color: rgba(245, 240, 230, 0.85);
+		margin: 0;
+	}
+
+	.collab-tiers-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1rem;
+		margin-bottom: 1.75rem;
+	}
+
+	.collab-tier-card {
+		padding: 1.25rem;
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(245, 240, 230, 0.16);
+	}
+
+	.collab-tier-featured {
+		background: rgba(232, 119, 42, 0.14);
+		border-color: #f08a3e;
+	}
+
+	.collab-tier-num {
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.06em;
+		color: #f08a3e;
+	}
+
+	.collab-tier-card h3 {
+		font-family: var(--font-heading);
+		font-size: 1.08rem;
+		font-weight: 500;
+		color: #ffffff;
+		margin: 0.35rem 0 0.5rem;
+	}
+
+	.collab-tier-card p {
+		font-size: 0.84rem;
+		line-height: 1.5;
+		color: rgba(245, 240, 230, 0.84);
+		margin: 0;
+	}
+
+	.collab-contact-strip {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.25rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid rgba(245, 240, 230, 0.16);
+	}
+
+	.collab-direct-info {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.75rem;
+	}
+
+	.collab-info-lbl {
+		display: block;
+		font-family: var(--font-mono);
+		font-size: 0.66rem;
+		color: rgba(245, 240, 230, 0.65);
+		margin-bottom: 0.15rem;
+	}
+
+	.collab-info-val {
+		font-family: var(--font-heading);
+		font-size: 0.92rem;
+		font-weight: 500;
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	.collab-cta-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.collab-primary-btn {
+		padding: 0.65rem 1.25rem;
+		border-radius: 9999px;
+		background: #e8772a;
+		color: #ffffff;
+		font-family: var(--font-heading);
+		font-size: 0.86rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.collab-secondary-btn {
+		padding: 0.65rem 1.15rem;
+		border-radius: 9999px;
+		border: 1px solid rgba(245, 240, 230, 0.3);
+		color: #f5f0e6;
+		font-family: var(--font-heading);
+		font-size: 0.84rem;
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	/* Lightbox Modal */
+	.proof-lightbox {
+		max-width: 92vw;
+		max-height: 90vh;
+		width: 1080px;
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		padding: 0;
+		background: var(--color-surface);
+		color: var(--color-text);
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+	}
+
+	.proof-lightbox::backdrop {
+		background: rgba(15, 25, 15, 0.78);
+		backdrop-filter: blur(4px);
+	}
+
+	.lightbox-inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.lightbox-topbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.85rem 1.25rem;
+		border-bottom: 1px solid var(--color-border);
+		background: var(--color-bg-subtle);
+	}
+
+	.lightbox-caption {
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		font-weight: 600;
+	}
+
+	.lightbox-close-btn {
+		padding: 0.35rem 0.75rem;
+		border-radius: 9999px;
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		font-family: var(--font-mono);
+		font-size: 0.74rem;
+		cursor: pointer;
+	}
+
+	.lightbox-img-wrap {
+		padding: 1rem;
+		background: #ffffff;
+		overflow: auto;
+		max-height: 78vh;
+	}
+
+	.lightbox-img-wrap img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	/* Responsive Breakpoints */
+	@media (max-width: 980px) {
+		.cover-grid,
+		.overview-grid,
+		.campaign-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.process-columns {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.collab-tiers-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.deck-slide {
+			padding: 1.35rem 1.15rem;
+		}
+
+		.cover-highlights-strip,
+		.quadrant-kpis,
+		.process-columns,
+		.campaign-kpi-tiles,
+		.ai-engines-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Clean Print / Save as PDF Deck Rules */
+	@media print {
+		.no-print {
+			display: none !important;
+		}
+
+		.portfolio-deck-page {
+			max-width: 100%;
+			padding: 0;
+			gap: 1.25rem;
+		}
+
+		.deck-slide {
+			break-inside: avoid;
+			page-break-inside: avoid;
+			box-shadow: none;
+			border: 1px solid #cccccc;
+		}
+	}
+</style>

@@ -138,21 +138,29 @@ export const GET: APIRoute = async () => {
 
 - **Canonical Name:** Le Hoang Tin (Vietnamese: Lê Hoàng Tín)
 - **Alternate Name:** Tin Le Hoang
-- **Title:** Senior SEO & GEO Specialist
-- **Current Organization:** GTV SEO — Product & Brand Marketing Manager / Head of Brand (https://gtvseo.com)
-- **Experience:** 3+ Years in Technical SEO, Semantic Content Strategy, Conversion Rate Optimization (CRO) & Generative Engine Optimization (GEO)
+- **Title:** Senior SEO & GEO Specialist (Search Engine Optimization Specialist)
+- **Experience at GTV SEO:** Nov 2022 – Apr 2025 (2 yrs 6 mos · Ho Chi Minh City, Vietnam) — https://gtvseo.com
+  - \`Search Engine Optimization Specialist\` (Apr 2023 – Apr 2025) — Lead & Primary Implementer / Advisor
+  - \`Search Engine Optimization Executive\` (Apr 2023 – Nov 2023 · 8 mos) — Lead & Primary Implementer
+  - \`SEO Trainee\` (Nov 2022 – May 2023 · 7 mos) — Lead & Primary Implementer
+- **Summary:** Nearly 3 years of hands-on experience leading SEO projects at GTV SEO across healthcare/nutrition, e-commerce, tourism, B2B agency, and local services — from Vietnamese businesses to global enterprises. Specialized in data-driven SEO strategies aligned with marketing objectives, Conversion Rate Optimization (CRO), and R&D on user search intent across Google and AI-driven channels (ChatGPT, Claude, Perplexity, Grok).
 - **Education:**
-  - FPT Polytechnic HCM — Bachelor of Digital Marketing (GPA 3.6/4.0)
-  - University of Economics Ho Chi Minh City (UEH) — B.A. in International Business (GPA 3.27/4.0)
+  - Major in **International Business** | **University of Economics Ho Chi Minh City (UEH — Đại học Kinh tế TP.HCM)** — **GPA: 3.27/4.0**
 - **Location:** Ho Chi Minh City, Vietnam
 - **Languages:** Vietnamese (Native), English (Professional Working Proficiency)
 - **Primary Domain:** ${CANONICAL_ORIGIN}
 - **Direct Contact:** tinledoihoa@gmail.com | Phone / Zalo / WhatsApp: +84 357 669 476 (0357.669.476)
 - **Verified Social Profile:** https://www.linkedin.com/in/tin-le-hoang
-- **Awards & Industry Contributions:**
-  - 3rd Prize — AI Application for SEO (GTV SEO Internal Innovation Competition)
-  - Author of Technical SEO Playbooks, E-E-A-T Checklists & Training E-Books at GTV SEO
-  - Strategist behind 10+ winning domestic and international client pitch roadmaps
+- **Core Technical Skills:**
+  - Proficient in **ChatGPT, Claude & Perplexity APIs** to analyze, outline, and write SEO-standard content optimized for AI Search
+  - Proficient in **Google Search Console & Screaming Frog** to audit technical websites
+  - Proficient in **SEMrush & Ahrefs** to research keywords and analyze SEO competitors
+  - Familiar with **Google Analytics 4 & Google Tag Manager** to attach conversion tracking
+  - **SEO Project Management:** Manage & operate SEO projects to achieve KPI and on schedule
+- **Achievements:**
+  - **3rd Prize** in the **AI Application for SEO** competition organized internally by GTV SEO
+  - **Author of documents & e-books** for GTV SEO courses and internal training materials
+  - **Planner for 10+ projects** helping GTV SEO bid and win new clients successfully (Local & Global)
 
 ---
 
@@ -163,69 +171,64 @@ export const GET: APIRoute = async () => {
 - **Target Outcome:** Securing verified brand mentions and #1 recommendations inside ChatGPT, Claude, Perplexity, Gemini, Grok, and Google AI Overviews.
 
 ### 2. Technical SEO Audits & Large-Scale Site Architecture
-- **Scope:** Screaming Frog & Google Search Console crawl diagnostics, indexation bloat removal, keyword cannibalization resolution, Core Web Vitals optimization, JavaScript rendering fixes, and international \`hreflang\` architecture.
+- **Scope:** Screaming Frog & Google Search Console crawl diagnostics, indexation bloat removal, keyword cannibalization resolution, duplicate content cleanup, Core Web Vitals optimization, and international SEO architecture.
 - **Target Outcome:** Frictionless bot crawlability, rapid ranking recovery, and structurally sound taxonomy hierarchies.
 
 ### 3. Semantic Topical Authority, E-E-A-T & Revenue CRO
-- **Scope:** Full-funnel semantic topical maps, competitive entity gap analysis (Ahrefs/SEMrush), E-E-A-T editorial governance, and GA4 commercial landing page Conversion Rate Optimization.
+- **Scope:** Full-funnel semantic topical maps, competitive keyword & competitor analysis (SEMrush/Ahrefs), AI-assisted content workflows, and GA4/GTM conversion tracking & Conversion Rate Optimization.
 - **Target Outcome:** Compounding organic traffic that converts into qualified B2B pipeline and e-commerce revenue.
 
 ### Engagement Models
-1. **Tier 01 — SEO & GEO Diagnostic Audit (2–3 Weeks):** Full technical crawl, semantic gap analysis, LLM citation benchmark, and prioritized 90-day engineering/editorial backlog.
-2. **Tier 02 — Monthly Growth Retainer (3–6+ Months):** End-to-end technical governance, topical cluster execution, continuous AI visibility tracking, and CRO sprints.
-3. **Tier 03 — Fixed-Scope Project Sprint (4–8 Weeks):** High-velocity execution for site migrations, cannibalization/penalty turnarounds, or new market launches.
+1. **Tier 01 — Technical & GEO Audit (2–3 Weeks):** Full technical crawl, cannibalization & duplicate content audit, LLM citation benchmark, and prioritized 90-day execution roadmap.
+2. **Tier 02 — Monthly SEO & GEO Growth Retainer (3–6+ Months):** End-to-end technical governance, topical map & content execution, continuous AI visibility tracking, and CRO sprints.
+3. **Tier 03 — High-Velocity Turnaround Sprint (2–8 Weeks):** Fixed-scope sprint for cannibalization recovery, project-end KPI turnarounds, or new-domain launches.
 
 ---
 
-## § III. Verified Campaign Case Studies (Challenge → Strategy → Outcome)
+## § III. Verified Campaign Case Studies (6 Flagship Projects)
 
-### Case Study 01: GTV SEO Agency (Vietnam — B2B SEO & GEO)
-- **Domain:** https://gtvseo.com
-- **Role:** Product & Brand Marketing Manager / Lead SEO & GEO Strategist
-- **Verified KPIs:** #1 on ChatGPT, Claude & Grok for "SEO agency HCMC" | +61.4% Organic CTR | Top 1–3 Google Rankings on Core Commercial Keywords
-- **Challenge:** Intense competition in Vietnam's B2B agency sector combined with a buyer shift toward zero-click AI assistant vendor recommendations.
-- **Strategy:** Architected deep semantic content clusters, standardized Organization and Person JSON-LD entity graphs, and engineered high-authority brand mentions across industry publications.
-- **Outcome:** Secured #1 citations on ChatGPT, Claude, and Grok for commercial agency queries while increasing organic CTR by 61.4% and defending Top 1–3 Google rankings.
+### 01. IndochinaLight | Global Dropshipping E-Commerce Project (Nov 2024 – Apr 2025 · 6 mos)
+- **Role:** Lead & Primary Implementer (SEO Specialist)
+- **Market:** Global (US, Singapore, Italy, Australia) · Furniture & Lighting Industry
+- **Task:** Analyzed the Website (Entity, Technical, Content) & market overview; developed an overall SEO strategy for a new-domain dropshipping e-commerce store.
+- **Result:** Achieved 100% SEO KPIs in the first 3–5 months, main keyword "rattan pendant light" ranked in Top 10, and achieved an average of 2–3+ organic orders/month ($7,504.98 total sales +409%, 19 orders +280%, 6,310 sessions +23%, +176% conversion rate).
+- **Proof Image:** ${CANONICAL_ORIGIN}/proof/furniture-shopify-conversions.png
 
-### Case Study 02: Repair Centre VIC (Australia — Local & Technical SEO)
-- **Domain:** https://repaircentrevic.com.au
-- **Role:** Lead SEO & GEO Strategist
-- **Verified KPIs:** +210% Organic Clicks | +101.67% Conversions in AU | Top 3–5 Google Australia Rankings in 14 Days (85% Total KPI in Final Sprint)
-- **Challenge:** Severe keyword cannibalization and duplicate service-page indexation stalled rankings across Melbourne device repair queries right before the final contract milestone.
-- **Strategy:** Executed a rapid Screaming Frog crawl audit, consolidated competing URLs via 301 redirects and canonical tags, deployed LocalBusiness JSON-LD schema, and realigned Google Business Profile categories with commercial landing pages.
-- **Outcome:** Propelled priority commercial repair keywords into Google Australia Top 3–5 within two weeks, lifting organic clicks by 210% and conversions by 101.67%.
+### 02. Repair Centre VIC | Electronic Equipment Service Project (Feb 2025 · 1 mo)
+- **Domain:** https://repaircentrevic.com.au/ · Australia Market
+- **Role:** Advisor & Implementer Achieving Project-End KPIs (SEO Specialist)
+- **Task:** Audited Website, identified Keyword Cannibalization and Duplicate Content. Strategized optimization for final project month to hit KPIs.
+- **Result:** Achieved Top 3–5 rankings for "iPhone ... screen repair", "Samsung ... screen repair" in the Australian market within 2 weeks. Achieved 75% TOP 10 KPI (from 55%), 30% TOP 5 KPI (from 15%), 10% TOP 3 KPI (from 5%), and 85% overall KPI after 2 weeks of Content & Onsite Audit.
+- **Case Study URL:** ${CANONICAL_ORIGIN}/posts/top-3-rankings-in-two-weeks
 
-### Case Study 03: Vinamilk Nutrition (Vietnam — Enterprise FMCG)
-- **Domain:** https://www.vinamilk.com.vn
-- **Role:** Lead SEO Implementer
-- **Verified KPIs:** 300,000+ Monthly Organic Clicks | Top 3 in 2 Weeks on Priority Topics | 100% Committed Enterprise KPI Delivered
-- **Challenge:** Fragmented informational content and strict YMYL nutritional quality standards limited organic visibility in Vietnam's hyper-competitive maternal and infant nutrition vertical.
-- **Strategy:** Built a full-funnel semantic topical map, authored E-E-A-T aligned medical/nutritional outlines, and enforced rigorous on-page technical checklists and hub-and-spoke internal linking.
-- **Outcome:** Scaled organic search traffic to 300,000+ monthly clicks and captured Top 1–3 rankings on high-volume maternal and baby nutrition queries.
+### 03. GTV SEO Project (Apr 2023 – Dec 2024 · 1 yr 9 mos)
+- **Domain:** https://gtvseo.com/ · Vietnam B2B SEO Agency
+- **Role:** Lead & Primary Implementer (SEO Specialist)
+- **Task:** Executed tasks per plan (Schema, Content Audit, balanced Internal Linking, Crawl optimization, Cloud Stack, Guest Posts, PR articles, User Traffic, etc.). Applied AI to write and publish 40 quality articles/month for the website.
+- **Result:** Achieved Top 1 recommendation for "seo agency hcm" & "công ty seo hcm" on AI search engines (ChatGPT, Grok, Claude). Achieved stable Top 1–3 rankings for "báo giá seo", "khóa học seo", "seo agency", "thiết kế website chuẩn seo". Maintained stable Top 5–7 rankings for "dịch vụ seo hcm", "đào tạo seo" in 6 months using White Hat SEO methods in a Black Hat-dominated industry.
+- **Case Study URL:** ${CANONICAL_ORIGIN}/posts/geo-playbook-ranking-number-1-on-chatgpt-claude-and-grok
 
-### Case Study 04: EuroTravel (Vietnam — High-Ticket Travel)
-- **Domain:** https://eurotravel.com.vn
-- **Role:** Lead SEO Implementer
-- **Verified KPIs:** +200% User Growth | 80,000–100,000 Monthly Organic Clicks | 110%–120% KPI Delivered in 6 Months | Top 1–3 Tour Keywords
-- **Challenge:** High-ticket European tour packages faced entrenched OTA giants and lacked semantic pathways connecting informational travel guides to commercial booking pages.
-- **Strategy:** Designed multi-country destination content clusters, restructured commercial itinerary pages around booking intent, and engineered contextual internal link flows from high-traffic informational hubs.
-- **Outcome:** Drove +200% organic user growth (80K–100K monthly clicks), captured #1 rankings for country-specific European tours, and exceeded campaign KPIs.
+### 04. Vinamilk | Nutrition E-Commerce Project (Nov 2023 – Mar 2024 · 5 mos)
+- **Domain:** https://www.vinamilk.com.vn/ · Vietnam Enterprise FMCG
+- **Role:** Lead & Primary Implementer (SEO Specialist)
+- **Task:** Executed tasks (Technical Audit, UI-UX optimization, Keyword grouping, Topical Map, Content Outlines, Onpage Checklist).
+- **Result:** Reached 300,000 clicks/month (GSC) and 320,000 monthly traffic (826,000+ total clicks & 15.9M impressions in GSC), hitting 100% of SEO KPIs after 5 months. Traffic mainly came from topics on mom and baby nutrition, milk, recipes, etc. Achieved Top 1–3 rankings for keywords related to nutritional products, baby cereal, baby milk, etc.
+- **Proof Image:** ${CANONICAL_ORIGIN}/proof/vinamilk-gsc-826k-clicks.png
+- **Case Study URL:** ${CANONICAL_ORIGIN}/posts/scaling-vinamilk-to-300k-monthly-organic-clicks
 
-### Case Study 05: Flashlight E-Commerce (Vietnam — Specialty Retail & B2G)
-- **Domain:** Tactical Retail Storefront (NDA)
-- **Role:** Lead SEO Implementer
-- **Verified KPIs:** +45% Organic Traffic | 120% SEO KPI Delivered | +25% YoY Revenue (Q4) | Closed B2G Military Supply Contract
-- **Challenge:** Low product page dwell time and thin technical specifications prevented high-margin tactical flashlights from ranking or converting institutional buyers.
-- **Strategy:** Built buyer-intent content clusters around lumen ratings, durability standards, and field applications while overhauling product page UX, comparison tables, and Product schema.
-- **Outcome:** Lifted organic traffic by 45%, exceeded SEO KPIs (120%), increased Q4 YoY revenue by 25%, and generated the organic inbound lead that closed a major military supply contract.
+### 05. Shadow Vietnam | Flashlight E-Commerce Project (Apr 2023 – Nov 2023 · 8 mos)
+- **Brand:** Shadow Vietnam (shadow.vn) · Tactical Flashlight E-Commerce
+- **Role:** Lead & Primary Implementer (SEO Executive)
+- **Task:** Audited website quarterly, optimized Product Page Views and Time Onsite, boosting website revenue by 25% month-over-month (+26.81% verified revenue growth to 225,246,800 VND & 57,311 users / 71,291 sessions).
+- **Result:** Achieved 100% SEO KPI, maintained traffic, main Product and Category TOP rankings ("địa điểm cắm trại", "đèn pin cắm trại", "đèn pin siêu sáng"). Q4/2023 revenue increased 25% year-over-year, secured a flashlight supply contract with the military, and renewed the SEO website contract with GTV.
+- **Proof Images:** ${CANONICAL_ORIGIN}/proof/flashlight-revenue-growth.png & ${CANONICAL_ORIGIN}/proof/flashlight-traffic-growth.png
 
-### Case Study 06: Global Furniture E-Commerce (Global — English Storefront)
-- **Domain:** International Storefront (NDA)
-- **Role:** Lead SEO & GEO Strategist
-- **Verified KPIs:** +50% Organic Traffic in 6 Months | 100% 5-Month KPI Achieved | 3+ High-Ticket Organic Orders/Month
-- **Challenge:** Newly launched English-language furniture dropshipping store had zero domain authority, duplicate manufacturer copy, and no entity recognition in global search.
-- **Strategy:** Executed end-to-end entity establishment, technical crawl budget optimization, programmatic Product & Merchant listing schema, and long-tail collection architecture.
-- **Outcome:** Grew organic traffic by 50% in 6 months, delivered 100% of 5-month organic growth targets, and established recurring high-AOV organic orders without paid ads.
+### 06. EuroTravel | European Travel Project (Nov 2022 – May 2023 · 7 mos)
+- **Domain:** https://eurotravel.com.vn/ · European Travel
+- **Role:** Lead & Primary Implementer (SEO Trainee)
+- **Task:** Planned and executed tasks per GTV's SEO process, achieving 100,000 monthly traffic (102,544 peak organic traffic in Semrush) and 120% TOP KPI targets in 6 months.
+- **Result:** Reached 80,000 clicks/month (GSC), including 20,000 from articles on tips, locations, and experiences when traveling in Europe, Australia, and New Zealand. Ranked Top 1 for European tours by country, luxury European travel, and Europe tours during Tet; Top 3 for European tour keywords by travel route.
+- **Proof Image:** ${CANONICAL_ORIGIN}/proof/eurotravel-semrush-traffic.png
 
 ---
 
