@@ -655,6 +655,8 @@ const isLoggedIn = !!Astro.locals.user;
 
 				html {
 					scroll-behavior: smooth;
+					max-width: 100%;
+					overflow-x: clip;
 				}
 
 				body {
@@ -666,6 +668,9 @@ const isLoggedIn = !!Astro.locals.user;
 					-webkit-font-smoothing: antialiased;
 					-moz-osx-font-smoothing: grayscale;
 					min-height: 100vh;
+					max-width: 100%;
+					overflow-x: clip;
+					width: 100%;
 				}
 
 				a:where(:not([class*="emdash"]):not([class*="ec-"])) {
@@ -965,6 +970,9 @@ const isLoggedIn = !!Astro.locals.user;
 
 			main {
 				min-height: calc(100vh - var(--nav-height) - 300px);
+				width: 100%;
+				max-width: 100%;
+				overflow-x: clip;
 			}
 
 			/* Footer */
