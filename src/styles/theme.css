@@ -113,14 +113,23 @@
 /*
  * Typography & Layout Safeguards — unlayered rules beat @layer base in Base.astro.
  */
-html,
-body {
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
 	max-width: 100%;
-	overflow-x: clip;
+	overflow-x: hidden;
 }
 
 body {
+	max-width: 100%;
+	width: 100%;
+	overflow-x: hidden;
 	font-family: var(--font-body);
+	position: relative;
 }
 
 /* Prevent iOS Safari auto-zoom on form inputs by guaranteeing 16px font-size */
