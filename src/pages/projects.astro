@@ -1186,6 +1186,22 @@ const projects: ProjectItem[] = [
 			gap: var(--spacing-12);
 		}
 
+		/* The "Open Visual Portfolio Deck" button has a long label whose
+		   min-content width overflowed the mobile viewport. Let the action
+		   buttons span full width and wrap their text. */
+		.page-header-actions {
+			width: 100%;
+			flex-shrink: 1;
+		}
+
+		.page-header-actions .btn-primary,
+		.page-header-actions .btn-secondary {
+			width: 100%;
+			white-space: normal;
+			text-align: center;
+			overflow-wrap: break-word;
+		}
+
 		.card-header-row {
 			flex-direction: column-reverse;
 			align-items: flex-start;

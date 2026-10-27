@@ -2683,7 +2683,7 @@ const homeFaqJsonLd = {
 	/* ── 8. § VI — Get in Touch ── */
 	.get-in-touch-grid {
 		display: grid;
-		grid-template-columns: 0.95fr 1.05fr;
+		grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
 		gap: var(--spacing-8);
 		align-items: stretch;
 	}
@@ -2779,7 +2779,7 @@ const homeFaqJsonLd = {
 
 	.touch-row-two {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		gap: var(--spacing-4);
 	}
 
@@ -2787,6 +2787,7 @@ const homeFaqJsonLd = {
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
+		min-width: 0;
 	}
 
 	.touch-label {
@@ -2812,6 +2813,12 @@ const homeFaqJsonLd = {
 		background: var(--color-bg);
 		border: 1px solid var(--color-border);
 		border-radius: 8px;
+		/* Inputs carry an intrinsic min-content width (~20ch) that refuses to
+		   shrink, which expanded the 1fr grid track past the mobile viewport.
+		   Force them to fill and shrink within their field. */
+		width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
 	}
 
 	.touch-textarea {
@@ -2824,6 +2831,9 @@ const homeFaqJsonLd = {
 		border: 1px solid var(--color-border);
 		border-radius: 8px;
 		resize: vertical;
+		width: 100%;
+		min-width: 0;
+		box-sizing: border-box;
 	}
 
 	.touch-input:focus,
@@ -2909,7 +2919,7 @@ const homeFaqJsonLd = {
 		.capabilities-grid,
 		.tiers-grid,
 		.get-in-touch-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 		}
 
 		.featured-card-grid {
@@ -2930,6 +2940,23 @@ const homeFaqJsonLd = {
 	@media (max-width: 640px) {
 		.hero {
 			padding: var(--spacing-8) var(--spacing-4) var(--spacing-12);
+		}
+
+		/* Stack the two long mono masthead labels so they wrap instead of
+		   forcing the hero (and the page) wider than the mobile viewport. */
+		.hero-masthead {
+			flex-wrap: wrap;
+			gap: var(--spacing-1) var(--spacing-3);
+		}
+
+		.vol-badge,
+		.city-label {
+			white-space: normal;
+			overflow-wrap: break-word;
+		}
+
+		.masthead-rule {
+			display: none;
 		}
 
 		.proof-strip {

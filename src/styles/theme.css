@@ -243,6 +243,39 @@ textarea {
 	color: var(--color-accent-hover);
 }
 
+/*
+ * Mobile: the editorial section header is a single nowrap flex row on desktop
+ * (badge · TITLE · ——rule—— · action link →). On narrow screens those nowrap,
+ * non-shrinking segments force the row — and therefore the whole page — wider
+ * than the viewport. Let the row wrap: title can shrink/wrap, the decorative
+ * rule collapses, and the action link flows to its own line.
+ */
+@media (max-width: 640px) {
+	.section-index-header {
+		flex-wrap: wrap;
+		gap: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+	}
+
+	.section-index-label,
+	.section-index-title,
+	.section-index-header > h2 {
+		white-space: normal;
+		flex-shrink: 1;
+		min-width: 0;
+		overflow-wrap: break-word;
+	}
+
+	.section-index-rule {
+		display: none;
+	}
+
+	.section-index-link,
+	.section-index-header > a {
+		flex-basis: 100%;
+		white-space: normal;
+	}
+}
+
 /* Pill-shaped buttons with smooth transitions */
 .btn-primary,
 .btn-secondary {
