@@ -29,17 +29,22 @@ const { tags, class: className } = Astro.props;
 
   .tag {
     display: inline-block;
-    padding: var(--tag-padding-y) var(--spacing-3);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    background: var(--color-surface);
-    border-radius: var(--radius);
+    padding: 3px 0.7rem;
+    font-family: var(--font-hand);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ll-ink);
+    background: var(--ll-slip);
+    border: 1.5px solid var(--ll-ink);
+    border-radius: var(--ll-radius-chip);
+    box-shadow: var(--ll-shadow-hair);
     text-decoration: none;
-    transition: color var(--transition-fast), background var(--transition-fast);
+    transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
   }
 
   .tag:hover {
-    color: var(--color-text);
-    background: var(--color-border);
+    color: var(--ll-ink);
+    background: color-mix(in srgb, var(--ll-hi) 50%, var(--ll-slip));
+    transform: translateY(-1px) rotate(-0.6deg);
   }
 </style>

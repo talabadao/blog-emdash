@@ -1134,24 +1134,28 @@ const projects: ProjectItem[] = [
 		justify-content: space-between;
 		gap: var(--spacing-4);
 		padding: var(--spacing-4) var(--spacing-6);
-		background: var(--color-primary);
-		color: #ffffff;
+		background: var(--ll-pad);
+		border-bottom: 1.8px solid var(--ll-ink);
+		color: var(--ll-ink);
 	}
 
 	.lightbox-caption {
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
-		color: rgba(255, 255, 255, 0.9);
+		font-weight: 600;
+		color: var(--ll-ink);
 	}
 
 	.lightbox-close-btn {
 		padding: 6px 14px;
-		border-radius: var(--radius-full);
-		border: 1px solid rgba(255, 255, 255, 0.25);
-		background: rgba(255, 255, 255, 0.1);
-		color: #ffffff;
+		border-radius: var(--ll-radius-btn);
+		border: 1.6px solid var(--ll-ink);
+		background: var(--ll-slip);
+		box-shadow: 1.5px 2px 0 var(--ll-ink);
+		color: var(--ll-ink);
 		font-family: var(--font-mono);
 		font-size: var(--font-size-xs);
+		font-weight: 700;
 		cursor: pointer;
 	}
 

@@ -1298,21 +1298,24 @@ const processStages = [
 	.deck-cta-btn {
 		display: inline-flex;
 		align-items: center;
-		padding: 0.48rem 1rem;
-		border-radius: 9999px;
-		background: var(--color-accent);
-		color: #ffffff;
-		font-family: var(--font-heading);
-		font-size: 0.8rem;
-		font-weight: 600;
+		padding: 0.46rem 1rem;
+		border-radius: var(--ll-radius-btn);
+		background: var(--ll-marker);
+		color: #231d19;
+		border: 1.8px solid var(--ll-ink);
+		box-shadow: 2px 2.5px 0 var(--ll-ink);
+		font-family: var(--font-sans);
+		font-size: 0.84rem;
+		font-weight: 700;
 		text-decoration: none;
-		transition: transform 0.15s ease, opacity 0.15s ease;
+		transition: transform 0.15s ease, background-color 0.15s ease;
 		white-space: nowrap;
 	}
 
 	.deck-cta-btn:hover {
-		transform: translateY(-1px);
-		opacity: 0.95;
+		transform: translate(-1px, -1px) rotate(-0.6deg);
+		background: var(--ll-marker-hover);
+		color: #1c1714;
 	}
 
 	/* Base Widescreen Slide Card */
@@ -1355,17 +1358,24 @@ const processStages = [
 		max-width: 100%;
 	}
 
-	/* Slide 01: Executive Cover Slide */
+	/* Slide 01 & Slide 10: Looseleaf Yellow Legal Pad Showcase Boards */
 	.cover-slide,
 	.collab-slide {
-		background: linear-gradient(135deg, #1a2e1a 0%, #243e24 60%, #2d4a2d 100%);
-		color: #f5f0e6;
-		border-color: rgba(245, 240, 230, 0.18);
+		background-color: var(--ll-pad);
+		background-image: repeating-linear-gradient(
+			to bottom,
+			transparent 0,
+			transparent 29px,
+			color-mix(in srgb, var(--ll-pad-rule) 38%, transparent) 29px,
+			color-mix(in srgb, var(--ll-pad-rule) 38%, transparent) 30px
+		);
+		color: var(--ll-ink);
+		border-color: var(--ll-ink);
 	}
 
 	.cover-topbar {
-		border-bottom-color: rgba(245, 240, 230, 0.16);
-		color: rgba(245, 240, 230, 0.72);
+		border-bottom-color: color-mix(in srgb, var(--ll-ink) 28%, transparent);
+		color: var(--ll-pencil-text);
 	}
 
 	.cover-grid {
@@ -1387,14 +1397,16 @@ const processStages = [
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.35rem 0.85rem;
-		border-radius: 9999px;
-		background: rgba(245, 240, 230, 0.1);
-		border: 1px solid rgba(245, 240, 230, 0.2);
+		padding: 0.3rem 0.8rem;
+		border-radius: var(--ll-radius-chip);
+		background: var(--ll-slip);
+		border: 1.5px solid var(--ll-ink);
+		box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.16);
 		font-family: var(--font-mono);
 		font-size: 0.72rem;
+		font-weight: 600;
 		letter-spacing: 0.06em;
-		color: #f5f0e6;
+		color: var(--ll-ink);
 		margin-bottom: 1.25rem;
 		max-width: 100%;
 		word-break: break-word;
@@ -1404,17 +1416,18 @@ const processStages = [
 		width: 8px;
 		height: 8px;
 		border-radius: 50%;
-		background: #e8772a;
+		background: var(--ll-marker);
+		border: 1px solid var(--ll-ink);
 		flex-shrink: 0;
 	}
 
 	.cover-title {
 		font-family: var(--font-heading);
-		font-size: clamp(1.75rem, 3.6vw, 3.1rem);
-		font-weight: 500;
-		line-height: 1.12;
-		letter-spacing: -0.025em;
-		color: #ffffff;
+		font-size: clamp(1.85rem, 3.8vw, 3.2rem);
+		font-weight: 700;
+		line-height: 1.08;
+		letter-spacing: -0.02em;
+		color: var(--ll-ink);
 		margin: 0 0 1rem;
 		word-break: break-word;
 		overflow-wrap: break-word;
@@ -1423,7 +1436,7 @@ const processStages = [
 	.cover-subtitle {
 		font-size: 1.05rem;
 		line-height: 1.55;
-		color: rgba(245, 240, 230, 0.86);
+		color: var(--ll-ink-soft);
 		margin: 0 0 2rem;
 		max-width: 58ch;
 		word-break: break-word;
@@ -1441,9 +1454,14 @@ const processStages = [
 
 	.cover-highlight-item {
 		padding: 0.95rem 1rem;
-		border-radius: 12px;
-		background: rgba(245, 240, 230, 0.07);
-		border: 1px solid rgba(245, 240, 230, 0.15);
+		border-radius: var(--ll-radius-card);
+		background: var(--ll-graph);
+		background-image:
+			linear-gradient(to right, color-mix(in srgb, var(--ll-check-rule) 20%, transparent) 1px, transparent 1px),
+			linear-gradient(to bottom, color-mix(in srgb, var(--ll-check-rule) 20%, transparent) 1px, transparent 1px);
+		background-size: 18px 18px;
+		border: 1.6px solid var(--ll-ink);
+		box-shadow: var(--ll-shadow-hair);
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
@@ -1452,22 +1470,23 @@ const processStages = [
 
 	.cover-hi-val {
 		font-family: var(--font-heading);
-		font-size: 1.05rem;
-		font-weight: 600;
-		color: #f08a3e;
+		font-size: 1.2rem;
+		font-weight: 700;
+		color: var(--ll-ink-you);
 	}
 
 	.cover-hi-lbl {
-		font-size: 0.78rem;
-		color: rgba(245, 240, 230, 0.8);
+		font-size: 0.8rem;
+		color: var(--ll-ink-soft);
 		line-height: 1.35;
 		word-break: break-word;
 	}
 
 	.cover-presenter-card {
-		background: rgba(255, 255, 255, 0.06);
-		border: 1px solid rgba(245, 240, 230, 0.2);
-		border-radius: 14px;
+		background: var(--ll-photo);
+		border: 1.8px solid var(--ll-ink);
+		border-radius: var(--ll-radius-card);
+		box-shadow: var(--ll-shadow-card);
 		padding: 1.5rem;
 		display: flex;
 		flex-direction: column;
@@ -1487,32 +1506,36 @@ const processStages = [
 	.presenter-avatar {
 		width: 78px;
 		height: 78px;
-		border-radius: 50%;
+		padding: 3px;
+		background: var(--ll-slip);
+		border-radius: 6px;
 		object-fit: cover;
-		border: 2px solid #e8772a;
+		border: 1.8px solid var(--ll-ink);
+		transform: rotate(-2deg);
 		flex-shrink: 0;
 	}
 
 	.presenter-kicker {
 		font-family: var(--font-mono);
 		font-size: 0.68rem;
+		font-weight: 700;
 		letter-spacing: 0.1em;
-		color: #f08a3e;
+		color: var(--color-amber);
 		margin: 0 0 0.2rem;
 	}
 
 	.presenter-name {
 		font-family: var(--font-heading);
-		font-size: 1.35rem;
-		font-weight: 500;
-		color: #ffffff;
+		font-size: 1.45rem;
+		font-weight: 700;
+		color: var(--ll-ink);
 		margin: 0;
 		word-break: break-word;
 	}
 
 	.presenter-role {
 		font-size: 0.88rem;
-		color: rgba(245, 240, 230, 0.82);
+		color: var(--ll-ink-soft);
 		margin: 0.15rem 0 0;
 		word-break: break-word;
 	}
@@ -1522,7 +1545,7 @@ const processStages = [
 		display: flex;
 		flex-direction: column;
 		gap: 0.55rem;
-		font-size: 0.83rem;
+		font-size: 0.84rem;
 		min-width: 0;
 	}
 
@@ -1531,29 +1554,31 @@ const processStages = [
 		grid-template-columns: 105px minmax(0, 1fr);
 		gap: 0.5rem;
 		padding-top: 0.5rem;
-		border-top: 1px solid rgba(245, 240, 230, 0.12);
+		border-top: 1px dashed color-mix(in srgb, var(--ll-ink) 26%, transparent);
 		min-width: 0;
 	}
 
 	.presenter-fact-row dt {
 		font-family: var(--font-mono);
 		font-size: 0.72rem;
-		color: rgba(245, 240, 230, 0.65);
+		font-weight: 600;
+		color: var(--ll-pencil-text);
 		text-transform: uppercase;
 		flex-shrink: 0;
 	}
 
 	.presenter-fact-row dd {
 		margin: 0;
-		color: #f5f0e6;
+		color: var(--ll-ink);
 		word-break: break-word;
 		overflow-wrap: break-word;
 		min-width: 0;
 	}
 
 	.presenter-fact-row a {
-		color: #f08a3e;
-		text-decoration: none;
+		color: var(--ll-ink-you);
+		font-weight: 700;
+		text-decoration: underline;
 	}
 
 	.presenter-fact-row a:hover {
@@ -1742,11 +1767,12 @@ const processStages = [
 	.ach-tag {
 		font-family: var(--font-mono);
 		font-size: 0.66rem;
-		font-weight: 600;
-		padding: 0.15rem 0.45rem;
-		border-radius: 9999px;
-		background: var(--color-primary);
-		color: #ffffff;
+		font-weight: 700;
+		padding: 0.15rem 0.5rem;
+		border-radius: var(--ll-radius-chip);
+		background: var(--ll-hi);
+		color: #231d19;
+		border: 1.4px solid var(--ll-ink);
 		flex-shrink: 0;
 	}
 
@@ -1950,11 +1976,12 @@ const processStages = [
 	.browser-badge {
 		font-family: var(--font-mono);
 		font-size: 0.65rem;
-		font-weight: 600;
+		font-weight: 700;
 		padding: 0.15rem 0.5rem;
-		border-radius: 9999px;
-		background: var(--color-primary);
-		color: #ffffff;
+		border-radius: var(--ll-radius-chip);
+		background: var(--ll-hi);
+		color: #231d19;
+		border: 1.4px solid var(--ll-ink);
 		flex-shrink: 0;
 		white-space: nowrap;
 	}
@@ -1994,12 +2021,14 @@ const processStages = [
 		bottom: 0.75rem;
 		max-width: calc(100% - 1.5rem);
 		padding: 0.35rem 0.75rem;
-		border-radius: 9999px;
-		background: rgba(26, 46, 26, 0.88);
-		color: #ffffff;
+		border-radius: var(--ll-radius-chip);
+		background: var(--ll-hi);
+		color: #231d19;
+		border: 1.5px solid var(--ll-ink);
+		box-shadow: 1.5px 2px 0 var(--ll-ink);
 		font-family: var(--font-mono);
 		font-size: 0.7rem;
-		font-weight: 600;
+		font-weight: 700;
 		transition: transform 0.15s ease;
 		white-space: nowrap;
 		overflow: hidden;
@@ -2007,8 +2036,8 @@ const processStages = [
 	}
 
 	.proof-zoom-trigger:hover .zoom-overlay-pill {
-		transform: scale(1.04);
-		background: var(--color-accent);
+		transform: scale(1.04) rotate(-0.8deg);
+		background: var(--ll-marker);
 	}
 
 	.proof-caption {
@@ -2037,9 +2066,14 @@ const processStages = [
 
 	.ai-citation-banner {
 		padding: 0.95rem 1rem;
-		border-radius: 10px;
-		background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 100%);
-		color: #f5f0e6;
+		border-radius: var(--ll-radius-card);
+		background-color: var(--ll-graph);
+		background-image:
+			linear-gradient(to right, color-mix(in srgb, var(--ll-check-rule) 22%, transparent) 1px, transparent 1px),
+			linear-gradient(to bottom, color-mix(in srgb, var(--ll-check-rule) 22%, transparent) 1px, transparent 1px);
+		background-size: 18px 18px;
+		border: 1.6px solid var(--ll-ink);
+		color: var(--ll-ink);
 		width: 100%;
 		max-width: 100%;
 		min-width: 0;
@@ -2057,15 +2091,17 @@ const processStages = [
 		width: 8px;
 		height: 8px;
 		border-radius: 50%;
-		background: #e8772a;
+		background: var(--ll-marker);
+		border: 1px solid var(--ll-ink);
 		flex-shrink: 0;
 	}
 
 	.ai-citation-kicker {
 		font-family: var(--font-mono);
 		font-size: 0.68rem;
+		font-weight: 700;
 		letter-spacing: 0.08em;
-		color: rgba(245, 240, 230, 0.85);
+		color: var(--ll-ink);
 		word-break: break-word;
 	}
 
@@ -2081,9 +2117,10 @@ const processStages = [
 
 	.ai-engine-card {
 		padding: 0.6rem 0.7rem;
-		border-radius: 8px;
-		background: rgba(255, 255, 255, 0.08);
-		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: var(--ll-radius-chip);
+		background: var(--ll-slip);
+		border: 1.5px solid var(--ll-ink);
+		box-shadow: var(--ll-shadow-hair);
 		display: flex;
 		flex-direction: column;
 		gap: 0.15rem;
@@ -2094,21 +2131,22 @@ const processStages = [
 	.ai-engine-name {
 		font-family: var(--font-mono);
 		font-size: 0.68rem;
-		color: rgba(245, 240, 230, 0.75);
+		font-weight: 600;
+		color: var(--ll-pencil-text);
 		word-break: break-word;
 	}
 
 	.ai-engine-rank {
 		font-family: var(--font-heading);
-		font-size: 0.88rem;
-		font-weight: 600;
-		color: #f08a3e;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: var(--ll-ink-you);
 		word-break: break-word;
 	}
 
 	.ai-engine-query {
-		font-size: 0.7rem;
-		color: #ffffff;
+		font-size: 0.72rem;
+		color: var(--ll-ink);
 		word-break: break-word;
 		overflow-wrap: anywhere;
 	}
@@ -2218,11 +2256,12 @@ const processStages = [
 	.turnaround-badge {
 		font-family: var(--font-mono);
 		font-size: 0.72rem;
-		font-weight: 600;
+		font-weight: 700;
 		padding: 0.3rem 0.65rem;
-		border-radius: 9999px;
-		background: var(--color-accent);
-		color: #ffffff;
+		border-radius: var(--ll-radius-chip);
+		background: var(--ll-hi);
+		color: #231d19;
+		border: 1.5px solid var(--ll-ink);
 		flex-shrink: 0;
 		white-space: nowrap;
 	}
@@ -2527,7 +2566,7 @@ const processStages = [
 		text-decoration: underline;
 	}
 
-	/* Slide 10: Collab Slide */
+	/* Slide 10: Collab Slide (Looseleaf Legal Pad Board) */
 	.collab-header {
 		max-width: 68ch;
 		margin-bottom: 1.75rem;
@@ -2537,16 +2576,17 @@ const processStages = [
 	.collab-kicker {
 		font-family: var(--font-mono);
 		font-size: 0.74rem;
+		font-weight: 700;
 		letter-spacing: 0.08em;
-		color: #f08a3e;
+		color: var(--color-amber);
 		margin: 0 0 0.4rem;
 	}
 
 	.collab-title {
 		font-family: var(--font-heading);
-		font-size: clamp(1.75rem, 3vw, 2.4rem);
-		font-weight: 500;
-		color: #ffffff;
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		font-weight: 700;
+		color: var(--ll-ink);
 		margin: 0 0 0.65rem;
 		word-break: break-word;
 	}
@@ -2554,7 +2594,7 @@ const processStages = [
 	.collab-sub {
 		font-size: 0.98rem;
 		line-height: 1.55;
-		color: rgba(245, 240, 230, 0.85);
+		color: var(--ll-ink-soft);
 		margin: 0;
 		word-break: break-word;
 	}
@@ -2572,38 +2612,41 @@ const processStages = [
 
 	.collab-tier-card {
 		padding: 1.25rem;
-		border-radius: 12px;
-		background: rgba(255, 255, 255, 0.06);
-		border: 1px solid rgba(245, 240, 230, 0.16);
+		border-radius: var(--ll-radius-card);
+		background: var(--ll-slip);
+		border: 1.6px solid var(--ll-ink);
+		box-shadow: var(--ll-shadow-hair);
 		min-width: 0;
 		box-sizing: border-box;
 	}
 
 	.collab-tier-featured {
-		background: rgba(232, 119, 42, 0.14);
-		border-color: #f08a3e;
+		background: var(--ll-card);
+		border: 2px solid var(--ll-ink);
+		box-shadow: var(--ll-shadow-card);
 	}
 
 	.collab-tier-num {
 		font-family: var(--font-mono);
 		font-size: 0.68rem;
+		font-weight: 700;
 		letter-spacing: 0.06em;
-		color: #f08a3e;
+		color: var(--ll-ink-you);
 	}
 
 	.collab-tier-card h3 {
 		font-family: var(--font-heading);
-		font-size: 1.08rem;
-		font-weight: 500;
-		color: #ffffff;
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: var(--ll-ink);
 		margin: 0.35rem 0 0.5rem;
 		word-break: break-word;
 	}
 
 	.collab-tier-card p {
-		font-size: 0.84rem;
+		font-size: 0.86rem;
 		line-height: 1.5;
-		color: rgba(245, 240, 230, 0.84);
+		color: var(--ll-ink-soft);
 		margin: 0;
 		word-break: break-word;
 	}
@@ -2615,7 +2658,7 @@ const processStages = [
 		justify-content: space-between;
 		gap: 1.25rem;
 		padding-top: 1.25rem;
-		border-top: 1px solid rgba(245, 240, 230, 0.16);
+		border-top: 2px dashed color-mix(in srgb, var(--ll-ink) 28%, transparent);
 		width: 100%;
 		max-width: 100%;
 		min-width: 0;
@@ -2633,15 +2676,16 @@ const processStages = [
 		display: block;
 		font-family: var(--font-mono);
 		font-size: 0.66rem;
-		color: rgba(245, 240, 230, 0.65);
+		font-weight: 600;
+		color: var(--ll-pencil-text);
 		margin-bottom: 0.15rem;
 	}
 
 	.collab-info-val {
-		font-family: var(--font-heading);
-		font-size: 0.92rem;
-		font-weight: 500;
-		color: #ffffff;
+		font-family: var(--font-sans);
+		font-size: 0.94rem;
+		font-weight: 700;
+		color: var(--ll-ink-you);
 		text-decoration: none;
 		word-break: break-word;
 	}
@@ -2655,24 +2699,28 @@ const processStages = [
 
 	.collab-primary-btn {
 		padding: 0.65rem 1.25rem;
-		border-radius: 9999px;
-		background: #e8772a;
-		color: #ffffff;
-		font-family: var(--font-heading);
-		font-size: 0.86rem;
-		font-weight: 600;
+		border-radius: var(--ll-radius-btn);
+		background: var(--ll-marker);
+		color: #231d19;
+		border: 1.8px solid var(--ll-ink);
+		box-shadow: 2px 2.5px 0 var(--ll-ink);
+		font-family: var(--font-sans);
+		font-size: 0.88rem;
+		font-weight: 700;
 		text-decoration: none;
 		white-space: nowrap;
 	}
 
 	.collab-secondary-btn {
 		padding: 0.65rem 1.15rem;
-		border-radius: 9999px;
-		border: 1px solid rgba(245, 240, 230, 0.3);
-		color: #f5f0e6;
-		font-family: var(--font-heading);
-		font-size: 0.84rem;
-		font-weight: 500;
+		border-radius: var(--ll-radius-btn);
+		background: var(--ll-slip);
+		border: 1.8px solid var(--ll-ink);
+		box-shadow: 2px 2.5px 0 rgb(42 36 32 / 0.22);
+		color: var(--ll-ink);
+		font-family: var(--font-sans);
+		font-size: 0.86rem;
+		font-weight: 700;
 		text-decoration: none;
 		white-space: nowrap;
 	}

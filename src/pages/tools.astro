@@ -1504,9 +1504,9 @@ const toolkitSchema = {
 	}
 
 	.tier-badge[data-tier="1"] {
-		color: #2e7d32;
-		background: color-mix(in srgb, #2e7d32 12%, var(--color-surface));
-		border-color: color-mix(in srgb, #2e7d32 35%, var(--color-border));
+		color: var(--ll-green);
+		background: color-mix(in srgb, var(--ll-green) 14%, var(--color-surface));
+		border-color: color-mix(in srgb, var(--ll-green) 42%, var(--color-border));
 	}
 
 	.tier-badge[data-tier="2"] {
@@ -1578,7 +1578,7 @@ const toolkitSchema = {
 
 	.score-progress-fill {
 		height: 100%;
-		background: linear-gradient(90deg, var(--color-amber), var(--color-accent));
+		background: var(--ll-marker);
 		border-radius: var(--radius-full);
 		transition: width 220ms ease;
 	}
@@ -1839,9 +1839,10 @@ const toolkitSchema = {
 	}
 
 	.output-tab.active {
-		background: var(--color-primary);
-		border-color: var(--color-primary);
-		color: #ffffff;
+		background: var(--ll-hi);
+		border-color: var(--ll-ink);
+		color: #231d19;
+		box-shadow: 1.5px 2px 0 var(--ll-ink);
 	}
 
 	.copy-snippet-btn {

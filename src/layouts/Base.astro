@@ -156,8 +156,9 @@ const isLoggedIn = !!Astro.locals.user;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="preload" href="/fonts/EuclidCircularA-Regular.ttf" as="font" type="font/ttf" crossorigin />
-		<link rel="preload" href="/fonts/EuclidCircularA-Medium.ttf" as="font" type="font/ttf" crossorigin />
+		<meta name="theme-color" content="#a8c8bb" />
+		<link rel="preload" href="/fonts/KevinSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/KevinSans-Bold.woff2" as="font" type="font/woff2" crossorigin />
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
 		<script
@@ -193,10 +194,41 @@ const isLoggedIn = !!Astro.locals.user;
 		<header class="site-header">
 			<nav class="nav" aria-label="Primary navigation">
 				<a href="/" class="site-title">
-					{siteLogo
-						? <img src={siteLogo.url} alt={siteLogo.alt || siteTitle} class="site-logo-img" />
-						: siteTitle
-					}
+					{siteLogo ? (
+						<img src={siteLogo.url} alt={siteLogo.alt || siteTitle} class="site-logo-img" />
+					) : (
+						<>
+							<svg
+								class="ll-logo-mark"
+								viewBox="0 0 48 48"
+								width="32"
+								height="32"
+								aria-hidden="true"
+								focusable="false"
+							>
+								<g transform="rotate(-6 26 24)">
+									<path
+										d="M14.6 5.1Q26.4 4.5 38.6 4.8Q41 4.9 41.1 7.3Q41.6 24.4 41.4 40.9Q41.3 43.3 38.9 43.4Q25.8 44 14.2 43.8Q11.8 43.7 11.8 41.4Q11.6 24 12 7.6Q12.1 5.2 14.6 5.1Z"
+										fill="var(--ll-paper)"
+										stroke="var(--ll-ink)"
+										stroke-width="2.2"
+										stroke-linejoin="round"
+									/>
+									<path d="M22.8 14.5H38.4" stroke="var(--ll-ink-you)" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" />
+									<path d="M22.8 20.5H38.4" stroke="var(--ll-ink-you)" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" />
+									<path d="M22.8 26.5H38.4" stroke="var(--ll-ink-you)" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" />
+									<path d="M22.8 32.5H38.4" stroke="var(--ll-ink-you)" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" />
+									<path d="M22.8 38.5H38.4" stroke="var(--ll-ink-you)" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" />
+									<path d="M24.2 20.1Q30.2 19.4 35.6 20" stroke="var(--ll-marker)" stroke-opacity="0.92" stroke-width="3.4" stroke-linecap="round" fill="none" />
+									<path d="M20.6 5.8L20.8 43" stroke="var(--ll-red)" stroke-opacity="0.85" stroke-width="1.3" stroke-linecap="round" />
+									<circle cx="16.2" cy="12.8" r="2.1" fill="var(--ll-desk)" stroke="var(--ll-ink)" stroke-width="1.5" />
+									<circle cx="16.2" cy="24.4" r="2.1" fill="var(--ll-desk)" stroke="var(--ll-ink)" stroke-width="1.5" />
+									<circle cx="16.2" cy="36" r="2.1" fill="var(--ll-desk)" stroke="var(--ll-ink)" stroke-width="1.5" />
+								</g>
+							</svg>
+							<span class="site-title-text">{siteTitle}</span>
+						</>
+					)}
 				</a>
 				<div class="nav-right">
 					<div class="nav-links">
@@ -284,7 +316,7 @@ const isLoggedIn = !!Astro.locals.user;
 		</main>
 
 		<footer class="site-footer">
-			<div class="footer-inner">
+			<div class="footer-inner ll-tape-top">
 				<div class="footer-grid">
 					<div class="footer-brand">
 						<a href="/" class="footer-brand-inner">
@@ -292,8 +324,8 @@ const isLoggedIn = !!Astro.locals.user;
 								src="/tin_le_hoang.jpg"
 								alt="Le Hoang Tin"
 								class="footer-avatar"
-								width="40"
-								height="40"
+								width="44"
+								height="44"
 								loading="lazy"
 							/>
 							<div>
@@ -301,6 +333,10 @@ const isLoggedIn = !!Astro.locals.user;
 								<p class="footer-tagline">{siteTagline}</p>
 							</div>
 						</a>
+						<div class="ll-stamp footer-stamp" aria-label="White Hat SEO and GEO Verified">
+							<span class="ll-stamp-main">WHITE HAT SEO</span>
+							<span class="ll-stamp-sub">entity &amp; geo field notes</span>
+						</div>
 					</div>
 					<div class="footer-nav">
 						<h4 class="footer-heading">Work</h4>
@@ -718,8 +754,9 @@ const isLoggedIn = !!Astro.locals.user;
 				position: sticky;
 				top: 0;
 				z-index: 100;
-				background: var(--color-primary);
-				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+				padding: 0.65rem var(--spacing-4) 0;
+				background: transparent;
+				border: none;
 			}
 
 			.nav {
@@ -728,105 +765,142 @@ const isLoggedIn = !!Astro.locals.user;
 				align-items: center;
 				max-width: var(--wide-width);
 				margin: 0 auto;
-				padding: var(--spacing-4) var(--spacing-6);
-				height: var(--nav-height);
+				padding: 0.5rem var(--spacing-5);
+				min-height: 58px;
+				background: var(--ll-slip);
+				border: 2px solid var(--ll-ink);
+				border-radius: var(--ll-radius-sheet);
+				box-shadow: var(--ll-shadow-loose);
 			}
 
 			.site-title {
-				font-size: var(--font-size-lg);
-				font-weight: 600;
-				color: #ffffff;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				font-family: var(--font-script);
+				font-size: 1.7rem;
+				line-height: 1;
+				font-weight: 700;
+				color: var(--ll-ink);
 				text-decoration: none;
-				letter-spacing: var(--tracking-snug);
+				letter-spacing: -0.01em;
 				flex-shrink: 0;
 			}
 
 			.site-title:hover {
-				color: var(--color-accent);
+				color: var(--ll-ink-you);
+			}
+
+			.ll-logo-mark {
+				flex-shrink: 0;
+				overflow: visible;
+				transition: transform 180ms cubic-bezier(0.2, 0.9, 0.3, 1.15);
+			}
+
+			.site-title:hover .ll-logo-mark {
+				transform: rotate(-7deg) scale(1.04);
+			}
+
+			.site-title-text {
+				font-family: var(--font-script);
+				font-weight: 700;
 			}
 
 			.site-logo-img {
-				height: 48px;
+				height: 42px;
 				width: auto;
 				display: block;
-				margin: -8px 0;
 			}
 
 			.nav-right {
 				display: flex;
 				align-items: center;
-				gap: var(--spacing-6);
+				gap: var(--spacing-4);
 			}
 
 			.nav-links {
 				display: flex;
 				align-items: center;
-				gap: var(--spacing-5);
-				font-size: var(--font-size-sm);
+				gap: 0.25rem;
+				font-size: 0.95rem;
 			}
 
 			.nav-links a {
 				position: relative;
-				padding: var(--spacing-1) 0;
+				padding: 0.32rem 0.68rem;
 				text-decoration: none;
-				color: rgba(255, 255, 255, 0.8);
-				font-weight: 500;
-				transition: color var(--transition-fast);
+				color: var(--ll-ink-soft);
+				font-family: var(--font-hand);
+				font-weight: 700;
+				border-radius: var(--ll-radius-chip);
+				transition:
+					background-color 120ms ease,
+					color 120ms ease,
+					transform 120ms ease;
 			}
 
 			.nav-links a:hover {
-				color: #ffffff;
+				color: var(--ll-ink);
+				background: color-mix(in srgb, var(--ll-hi) 42%, transparent);
 			}
 
 			.nav-links a.active,
 			.nav-links a[aria-current="page"] {
-				color: #ffffff;
-				font-weight: 600;
-			}
-
-			.nav-links a.active::after,
-			.nav-links a[aria-current="page"]::after {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				bottom: -2px;
-				height: 2px;
-				border-radius: var(--radius-full);
-				background: var(--color-accent);
+				color: var(--ll-ink);
+				background: var(--ll-hi-select);
+				font-weight: 700;
 			}
 
 			.nav-admin {
-				font-size: var(--font-size-sm);
-				color: rgba(255, 255, 255, 0.65);
+				font-family: var(--font-mono);
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: var(--ll-ink-you);
+				background: var(--ll-paper);
+				border: 1.5px solid var(--ll-ink);
+				border-radius: var(--ll-radius-chip);
+				padding: 0.2rem 0.55rem;
 				text-decoration: none;
-				transition: color var(--transition-fast);
+				transition: background-color var(--transition-fast);
 			}
 
 			.nav-admin:hover {
-				color: #ffffff;
+				background: var(--ll-hi-select);
+				color: var(--ll-ink);
 			}
 
-			/* Pill CTA — from the design system's button-on-dark spec */
+			/* Hand-drawn coral marker CTA */
 			.nav-cta {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
 				flex-shrink: 0;
-				padding: var(--spacing-2) var(--spacing-5);
-				font-family: var(--font-sans);
-				font-size: var(--font-size-sm);
-				font-weight: 600;
-				color: var(--color-on-accent);
-				background: var(--color-accent);
-				border-radius: var(--radius-full);
+				padding: 0.45rem 1.05rem;
+				font-family: var(--font-hand);
+				font-size: 0.9rem;
+				font-weight: 700;
+				color: #231d19;
+				background: var(--ll-marker);
+				border: 1.8px solid var(--ll-ink);
+				border-radius: var(--ll-radius-btn);
+				box-shadow: 2px 2.5px 0 var(--ll-ink);
 				text-decoration: none;
-				transition: background var(--transition-fast);
+				transition:
+					background-color 120ms ease,
+					transform 120ms cubic-bezier(0.2, 0.9, 0.25, 1.12),
+					box-shadow 120ms ease;
 			}
 
 			.nav-cta:hover {
-				background: var(--color-accent-hover);
-				color: var(--color-on-accent);
+				background: var(--ll-marker-hover);
+				color: #1c1714;
+				transform: translate(-1px, -1px) rotate(-0.8deg);
+				box-shadow: 3px 3.5px 0 var(--ll-ink);
+			}
+
+			.nav-cta:active {
+				transform: translate(1px, 1.5px);
+				box-shadow: 1px 1px 0 var(--ll-ink);
 			}
 
 			/* Mobile menu toggle button (hidden on desktop) */
@@ -837,20 +911,20 @@ const isLoggedIn = !!Astro.locals.user;
 				width: 40px;
 				height: 40px;
 				padding: 0;
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(255, 255, 255, 0.16);
-				border-radius: var(--radius);
-				color: #ffffff;
+				background: var(--ll-paper);
+				border: 1.8px solid var(--ll-ink);
+				border-radius: var(--ll-radius-chip);
+				box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.22);
+				color: var(--ll-ink);
 				cursor: pointer;
 				transition:
-					background var(--transition-fast),
-					border-color var(--transition-fast);
+					background-color var(--transition-fast),
+					transform var(--transition-fast);
 			}
 
 			.mobile-menu-toggle:hover,
 			.mobile-menu-toggle:focus-visible {
-				background: rgba(255, 255, 255, 0.14);
-				border-color: var(--color-accent);
+				background: color-mix(in srgb, var(--ll-hi) 45%, var(--ll-paper));
 				outline: none;
 			}
 
@@ -865,7 +939,7 @@ const isLoggedIn = !!Astro.locals.user;
 			.hamburger-line {
 				display: block;
 				width: 100%;
-				height: 2px;
+				height: 2.2px;
 				background: currentColor;
 				border-radius: 2px;
 				transition:
@@ -885,19 +959,26 @@ const isLoggedIn = !!Astro.locals.user;
 				transform: translateY(-6px) rotate(-45deg);
 			}
 
-			/* Collapsible mobile navigation drawer */
+			/* Collapsible mobile navigation drawer — Looseleaf Yellow Legal Pad */
 			.mobile-nav-drawer {
 				display: none;
-				background: var(--color-primary);
-				border-top: 1px solid rgba(255, 255, 255, 0.1);
-				border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+				max-width: var(--wide-width);
+				margin: 0.45rem auto 0;
+				background-color: var(--ll-pad);
+				background-image: repeating-linear-gradient(
+					to bottom,
+					transparent 0,
+					transparent 43px,
+					color-mix(in srgb, var(--ll-pad-rule) 45%, transparent) 43px,
+					color-mix(in srgb, var(--ll-pad-rule) 45%, transparent) 44px
+				);
+				border: 2px solid var(--ll-ink);
+				border-radius: var(--ll-radius-sheet);
+				box-shadow: var(--ll-shadow-paper);
 			}
 
 			.mobile-nav-inner {
-				max-width: var(--wide-width);
-				margin: 0 auto;
-				padding: var(--spacing-4) var(--spacing-6) var(--spacing-6);
+				padding: var(--spacing-4) var(--spacing-5) var(--spacing-5);
 				display: flex;
 				flex-direction: column;
 				gap: var(--spacing-4);
@@ -912,43 +993,34 @@ const isLoggedIn = !!Astro.locals.user;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				padding: var(--spacing-3) var(--spacing-2);
-				font-family: var(--font-sans);
-				font-size: var(--font-size-base);
-				font-weight: 500;
-				color: rgba(255, 255, 255, 0.85);
+				padding: 0.65rem 0.5rem;
+				font-family: var(--font-hand);
+				font-size: 1.05rem;
+				font-weight: 700;
+				color: var(--ll-ink);
 				text-decoration: none;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: var(--ll-radius-chip);
 				transition:
-					color var(--transition-fast),
+					background-color var(--transition-fast),
 					padding-left var(--transition-fast);
 			}
 
-			.mobile-nav-links a:last-child {
-				border-bottom: none;
-			}
-
 			.mobile-nav-links a:hover {
-				color: #ffffff;
-				padding-left: var(--spacing-3);
+				background: color-mix(in srgb, var(--ll-hi) 42%, transparent);
+				padding-left: 0.75rem;
 			}
 
 			.mobile-nav-links a.active,
 			.mobile-nav-links a[aria-current="page"] {
-				color: var(--color-accent);
-				font-weight: 600;
+				background: var(--ll-hi-select);
+				color: var(--ll-ink);
 			}
 
 			.mobile-nav-arrow {
 				font-family: var(--font-mono);
 				font-size: var(--font-size-xs);
-				opacity: 0.6;
-			}
-
-			.mobile-nav-links a.active .mobile-nav-arrow,
-			.mobile-nav-links a[aria-current="page"] .mobile-nav-arrow {
-				opacity: 1;
-				color: var(--color-accent);
+				color: var(--ll-ink-you);
+				font-weight: 700;
 			}
 
 			.mobile-nav-actions {
@@ -960,7 +1032,8 @@ const isLoggedIn = !!Astro.locals.user;
 
 			.mobile-drawer-cta {
 				width: 100%;
-				padding: var(--spacing-3) var(--spacing-5);
+				padding: 0.7rem var(--spacing-5);
+				font-size: 1rem;
 			}
 
 			.mobile-drawer-admin {
@@ -975,27 +1048,36 @@ const isLoggedIn = !!Astro.locals.user;
 				overflow-x: clip;
 			}
 
-			/* Footer */
+			/* Footer — Looseleaf Paper Slip Resting on the Desk */
 			.site-footer {
-				background: var(--color-bg-subtle);
-				border-top: 1px solid var(--color-border-subtle);
+				background: transparent;
+				border-top: none;
+				padding: var(--spacing-8) var(--spacing-4) var(--spacing-10);
 			}
 
 			.footer-inner {
 				max-width: var(--wide-width);
 				margin: 0 auto;
-				padding: var(--spacing-16) var(--spacing-6) var(--spacing-8);
+				padding: var(--spacing-12) var(--spacing-8) var(--spacing-8);
+				background: var(--ll-slip);
+				border: 2px solid var(--ll-ink);
+				border-radius: var(--ll-radius-sheet);
+				box-shadow: var(--ll-shadow-paper);
 			}
 
 			.footer-grid {
 				display: grid;
-				grid-template-columns: 1.6fr 1fr 1fr 1.35fr 1fr;
-				gap: var(--spacing-10);
-				margin-bottom: var(--spacing-12);
+				grid-template-columns: 1.65fr 0.95fr 1fr 1.4fr 0.95fr;
+				gap: var(--spacing-8);
+				margin-bottom: var(--spacing-10);
 			}
 
 			.footer-brand {
-				max-width: 280px;
+				max-width: 290px;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: var(--spacing-4);
 			}
 
 			.footer-brand-inner {
@@ -1007,29 +1089,37 @@ const isLoggedIn = !!Astro.locals.user;
 			}
 
 			.footer-avatar {
-				width: 40px;
-				height: 40px;
-				border-radius: 50%;
+				width: 46px;
+				height: 46px;
+				padding: 3px;
+				background: var(--ll-photo);
+				border-radius: 5px;
 				object-fit: cover;
 				object-position: center top;
 				flex-shrink: 0;
-				border: 2px solid var(--color-border);
+				border: 1.8px solid var(--ll-ink);
+				box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.2);
+				transform: rotate(-2.5deg);
 			}
 
 			.footer-logo {
-				font-family: var(--font-sans);
-				font-size: var(--font-size-base);
-				font-weight: 600;
-				color: var(--color-text);
-				letter-spacing: var(--tracking-snug);
+				font-family: var(--font-script);
+				font-size: 1.45rem;
+				line-height: 1.05;
+				font-weight: 700;
+				color: var(--ll-ink);
 			}
 
 			.footer-tagline {
 				margin-top: 2px;
-				font-family: var(--font-sans);
-				font-size: var(--font-size-xs);
-				color: var(--color-muted);
+				font-family: var(--font-hand);
+				font-size: 0.85rem;
+				color: var(--ll-ink-soft);
 				line-height: var(--leading-snug);
+			}
+
+			.footer-stamp {
+				margin-top: 0.15rem;
 			}
 
 			.footer-nav {
@@ -1037,12 +1127,13 @@ const isLoggedIn = !!Astro.locals.user;
 			}
 
 			.footer-heading {
-				font-size: var(--font-size-xs);
-				font-weight: 500;
+				font-family: var(--font-mono);
+				font-size: 0.76rem;
+				font-weight: 700;
 				text-transform: uppercase;
-				letter-spacing: var(--tracking-wider);
-				color: var(--color-muted);
-				margin-bottom: var(--spacing-4);
+				letter-spacing: 0.08em;
+				color: var(--ll-ink-you);
+				margin-bottom: var(--spacing-3);
 			}
 
 			.footer-links {
@@ -1050,18 +1141,25 @@ const isLoggedIn = !!Astro.locals.user;
 			}
 
 			.footer-links li {
-				margin-bottom: var(--spacing-2);
+				margin-bottom: 0.45rem;
 			}
 
 			.footer-links a {
-				color: var(--color-text-secondary);
+				color: var(--ll-ink-soft);
 				text-decoration: none;
-				font-size: var(--font-size-sm);
-				transition: color var(--transition-fast);
+				font-size: 0.92rem;
+				font-weight: 600;
+				border-radius: var(--ll-radius-chip);
+				padding: 1px 4px;
+				margin-left: -4px;
+				transition:
+					background-color var(--transition-fast),
+					color var(--transition-fast);
 			}
 
 			.footer-links a:hover {
-				color: var(--color-text);
+				color: var(--ll-ink);
+				background: var(--ll-hi-select);
 			}
 
 			.footer-bottom {
@@ -1069,25 +1167,28 @@ const isLoggedIn = !!Astro.locals.user;
 				justify-content: space-between;
 				align-items: center;
 				padding-top: var(--spacing-6);
-				border-top: 1px solid var(--color-border);
+				border-top: 2px dashed color-mix(in srgb, var(--ll-ink) 28%, transparent);
 			}
 
 			.footer-copyright {
-				font-size: var(--font-size-sm);
-				color: var(--color-muted);
+				font-family: var(--font-mono);
+				font-size: 0.8125rem;
+				color: var(--ll-pencil-text);
 			}
 
 			.footer-copyright a {
-				color: var(--color-text-secondary);
+				color: var(--ll-ink-you);
 			}
 
-			/* Theme switcher */
+			/* Theme switcher — Hand-drawn Paper Toggle */
 			.theme-switcher {
 				display: flex;
-				gap: var(--spacing-1);
-				padding: var(--spacing-1);
-				background: var(--color-surface);
-				border-radius: var(--radius);
+				gap: 4px;
+				padding: 4px;
+				background: var(--ll-paper);
+				border: 1.6px solid var(--ll-ink);
+				border-radius: var(--ll-radius-chip);
+				box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.18);
 			}
 
 			.theme-btn {
@@ -1097,21 +1198,22 @@ const isLoggedIn = !!Astro.locals.user;
 				width: 32px;
 				height: 28px;
 				background: transparent;
-				border: none;
-				color: var(--color-muted);
-				border-radius: var(--radius);
+				border: 1.4px solid transparent;
+				color: var(--ll-pencil-text);
+				border-radius: 4px;
 				cursor: pointer;
 				transition: all var(--transition-fast);
 			}
 
 			.theme-btn:hover {
-				color: var(--color-text-secondary);
+				color: var(--ll-ink);
+				background: color-mix(in srgb, var(--ll-hi) 35%, transparent);
 			}
 
 			.theme-btn.active {
-				background: var(--color-bg);
-				color: var(--color-text);
-				box-shadow: var(--shadow-btn-active);
+				background: var(--ll-hi);
+				color: #231d19;
+				border-color: var(--ll-ink);
 			}
 
 			.theme-btn svg {
@@ -1120,6 +1222,15 @@ const isLoggedIn = !!Astro.locals.user;
 			}
 
 			@media (max-width: 960px) {
+				.nav-links {
+					gap: 0.1rem;
+					font-size: 0.875rem;
+				}
+
+				.nav-links a {
+					padding: 0.28rem 0.5rem;
+				}
+
 				.footer-grid {
 					grid-template-columns: 1fr 1fr;
 					gap: var(--spacing-8);
@@ -1128,16 +1239,29 @@ const isLoggedIn = !!Astro.locals.user;
 				.footer-brand {
 					grid-column: span 2;
 					max-width: none;
+					flex-direction: row;
+					flex-wrap: wrap;
+					justify-content: space-between;
+					align-items: center;
 				}
 			}
 
 			@media (max-width: 768px) {
+				.site-header {
+					padding: 0.5rem var(--spacing-3) 0;
+				}
+
 				.nav {
-					padding: var(--spacing-3) var(--spacing-4);
+					padding: 0.45rem var(--spacing-4);
+					min-height: 52px;
+				}
+
+				.site-title {
+					font-size: 1.45rem;
 				}
 
 				.nav-right {
-					gap: var(--spacing-3);
+					gap: var(--spacing-2);
 				}
 
 				.nav-links,
@@ -1157,6 +1281,14 @@ const isLoggedIn = !!Astro.locals.user;
 				.mobile-nav-inner {
 					padding: var(--spacing-4);
 				}
+
+				.site-footer {
+					padding: var(--spacing-6) var(--spacing-3) var(--spacing-8);
+				}
+
+				.footer-inner {
+					padding: var(--spacing-10) var(--spacing-5) var(--spacing-6);
+				}
 			}
 
 			@media (max-width: 640px) {
@@ -1166,12 +1298,20 @@ const isLoggedIn = !!Astro.locals.user;
 
 				.footer-brand {
 					grid-column: span 1;
+					flex-direction: column;
+					align-items: flex-start;
 				}
 
 				.footer-bottom {
 					flex-direction: column;
 					gap: var(--spacing-4);
 					text-align: center;
+				}
+			}
+
+			@media print {
+				.site-header {
+					display: none !important;
 				}
 			}
 		</style>

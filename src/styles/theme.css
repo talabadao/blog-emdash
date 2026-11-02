@@ -1,117 +1,346 @@
 /*
-  theme.css — Le Hoang Tin personal site theme.
-  Warm editorial palette: cream bg, deep forest green accent (from CV headings),
-  amber secondary (from CV "SEO Specialist" label).
-  Typeface + component shape (pill buttons, 12px cards) integrated from the
-  "Tin Le Hoang Design System" handoff (Claude Design), retuned to this palette.
+  theme.css — Le Hoang Tin personal site theme ("Looseleaf Stationery Desk" edition).
+  Inspired by Looseleaf (https://kevintngo.github.io/looseleaf/):
+  Sage-celadon stationery desk mat, warm fountain-pen paper stocks, index cards,
+  quad graph paper for verified SEO/GEO metrics, yellow highlighter swipes,
+  coral felt-tip marker CTAs, ballpoint blue ink, masking tape & rubber stamps.
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Playpen+Sans:wght@400;500;600;700&display=swap");
 
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-LightItalic.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-SemiBoldItalic.ttf') format('truetype'); font-weight: 600; font-style: italic; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Euclid Circular A'; src: url('/fonts/EuclidCircularA-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
-
-:root {
-	/* Warm Editorial Authority color palette — Light mode */
-	--color-bg: #F5F0E6;
-	--color-bg-subtle: #EDE8DE;
-	--color-surface: #FFFFFF;
-	--color-text: #1A2E1A;
-	--color-text-secondary: #4A4540;
-	--color-muted: #7A746E;
-	--color-text-muted: #6B7B6B;
-	--color-border: #D6CFC0;
-	--color-border-subtle: #E4DFDA;
-
-	/* Primary — dark forest green for navbar / structural chrome */
-	--color-primary: #2D4A2D;
-
-	/* Accent — warm orange CTA */
-	--color-accent: #E8772A;
-	--color-accent-hover: #D0651F;
-	--color-on-accent: #FFFFFF;
-	--color-accent-ring: color-mix(in srgb, var(--color-accent) 20%, transparent);
-
-	/* Amber secondary */
-	--color-amber: #C17F4A;
-	--color-amber-hover: #A86D3C;
-
-	/* EmDash search theming */
-	--emdash-search-bg: var(--color-bg);
-	--emdash-search-text: var(--color-text);
-	--emdash-search-muted: var(--color-muted);
-	--emdash-search-border: var(--color-border);
-	--emdash-search-hover: var(--color-surface);
-	--emdash-search-highlight: var(--color-text);
-
-	/* Font overrides — Euclid Circular A (self-hosted, from the design system handoff) */
-	--font-heading: 'Euclid Circular A', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-	--font-body: 'Euclid Circular A', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-	--font-sans: 'Euclid Circular A', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-	--font-mono: 'Source Code Pro', 'SF Mono', Menlo, Consolas, monospace;
-	--font-display: var(--font-heading);
-
-	/* Shape — from the design system (pill buttons, 12px cards) */
-	--radius-full: 9999px;
-	--radius-lg: 12px;
-
-	/* Elevation — from the design system */
-	--shadow-tile-raised: rgba(26, 46, 26, 0.06) 0 1px 2px 0;
-	--shadow-feature: rgba(26, 46, 26, 0.1) 0 4px 12px 0;
+@font-face {
+	font-family: "Kevin Sans";
+	src: url("/fonts/KevinSans-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
 }
 
-/* Dark mode — system preference */
+@font-face {
+	font-family: "Kevin Sans";
+	src: url("/fonts/KevinSans-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Kevin Sans Hand";
+	src: url("/fonts/KevinSans-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 88%;
+	ascent-override: 120.45%;
+	descent-override: 60.23%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Kevin Sans Hand";
+	src: url("/fonts/KevinSans-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 88%;
+	ascent-override: 120.45%;
+	descent-override: 60.23%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Kevin Sans Script";
+	src: url("/fonts/KevinSans-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 75%;
+	ascent-override: 128%;
+	descent-override: 40%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Kevin Sans Script";
+	src: url("/fonts/KevinSans-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 75%;
+	ascent-override: 128%;
+	descent-override: 40%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Kevin Sans Type";
+	src: url("/fonts/KevinSans-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 82%;
+	ascent-override: 85.37%;
+	descent-override: 36.59%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Kevin Sans Type";
+	src: url("/fonts/KevinSans-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	size-adjust: 82%;
+	ascent-override: 85.37%;
+	descent-override: 36.59%;
+	line-gap-override: 0%;
+}
+
+:root {
+	color-scheme: light;
+
+	/* ── Looseleaf Core Desk & Paper Stocks ── */
+	--ll-desk: #a8c8bb;
+	--ll-desk-deep: #93b4a7;
+	--ll-paper: #f8f5ee;
+	--ll-paper-shade: #ece6da;
+	--ll-slip: #fbf8f1;
+	--ll-card: #fbf6e9;
+	--ll-graph: #f4f7ef;
+	--ll-kraft: #dcc8a3;
+	--ll-check: #dfe9d8;
+	--ll-pad: #f8f2de;
+	--ll-photo: #fffdf6;
+
+	/* ── Ruled Paper Lines ── */
+	--ll-rule-blue: #8fb0d4;
+	--ll-rule-red: #d9776a;
+	--ll-pad-rule: #b2c3dc;
+	--ll-check-rule: #7fa37c;
+
+	/* ── Sticky Note Accents ── */
+	--ll-sticky-yellow: #f7e38a;
+	--ll-sticky-green: #cfe6a8;
+	--ll-sticky-orange: #f7c08e;
+	--ll-sticky-pink: #f6b8b0;
+	--ll-sticky-blue: #bcd8f0;
+
+	/* ── Fountain Pen, Ballpoint & Felt-Tip Inks ── */
+	--ll-ink: #2a2420;
+	--ll-ink-soft: #433b35;
+	--ll-ink-muted: #4a433c;
+	--ll-ink-you: #2c4f9e;
+	--ll-pencil: #57524b;
+	--ll-pencil-text: #4b453e;
+	--ll-pencil-mark: #8e887f;
+	--ll-red: #c2412d;
+	--ll-green: #2f6b45;
+	--ll-marker: #df6b3c;
+	--ll-marker-hover: #c9582b;
+	--ll-orange-text: #9e4720;
+	--ll-hi: #f8dc4c;
+	--ll-hi-deep: #a87f0c;
+	--ll-focus: #2c4f9e;
+	--ll-link: #2c4f9e;
+	--ll-link-hover: #1f3b7a;
+	--ll-input-ink: #2c4f9e;
+
+	/* ── Index Card Corner Flags ── */
+	--ll-tomato: #e8483a;
+	--ll-tangerine: #f59a2f;
+	--ll-lemon: #fbd63a;
+	--ll-grass: #5db85c;
+	--ll-teal: #2fb1a3;
+	--ll-sky: #4aa8e8;
+	--ll-grape: #8f6fd6;
+	--ll-bubblegum: #f38bb8;
+
+	/* ── Tape, Stamp & Shadow Physics ── */
+	--ll-tape: rgba(248, 245, 236, 0.78);
+	--ll-tape-edge: rgba(128, 122, 108, 0.42);
+	--ll-shade: 58 44 30;
+	--ll-shadow-k: 1;
+	--ll-hi-select: color-mix(in srgb, var(--ll-hi) 68%, transparent);
+	--ll-stamp-fill: color-mix(in srgb, var(--ll-ink-you) 12%, transparent);
+
+	--ll-shadow-hair: 0 1px 1.5px rgb(var(--ll-shade) / calc(0.18 * var(--ll-shadow-k)));
+	--ll-shadow-loose: 0 2px 0 rgb(42 36 32 / 0.14), 0 6px 16px -2px rgb(var(--ll-shade) / calc(0.18 * var(--ll-shadow-k)));
+	--ll-shadow-lift: 0 2px 0 rgb(42 36 32 / 0.18), 0 9px 18px -4px rgb(var(--ll-shade) / calc(0.24 * var(--ll-shadow-k)));
+	--ll-shadow-slip: 0 1.5px 0 rgb(42 36 32 / 0.14), 0 4px 9px -3px rgb(var(--ll-shade) / calc(0.22 * var(--ll-shadow-k)));
+	--ll-shadow-card: 2px 3px 0 rgb(42 36 32 / 0.14), 0 7px 14px -5px rgb(var(--ll-shade) / calc(0.24 * var(--ll-shadow-k)));
+	--ll-shadow-paper: 2px 3px 0 rgb(42 36 32 / 0.15), 0 12px 22px -8px rgb(var(--ll-shade) / calc(0.24 * var(--ll-shadow-k)));
+	--ll-desk-vignette: radial-gradient(ellipse 120% 100% at 50% 40%, transparent 58%, rgb(var(--ll-shade) / 0.08));
+	--ll-desk-dots: radial-gradient(rgb(42 36 32 / 0.075) 1px, transparent 1px);
+
+	/* ── Hand-Drawn Organic Radii ── */
+	--ll-radius-sheet: 4px 11px 5px 10px / 10px 5px 11px 4px;
+	--ll-radius-card: 5px 10px 4px 11px / 9px 5px 10px 4px;
+	--ll-radius-btn: 5px 11px 6px 10px / 10px 6px 11px 5px;
+	--ll-radius-chip: 3px 8px 4px 9px / 8px 3px 9px 4px;
+
+	/* ── Mapped Site Semantic Tokens ── */
+	--color-bg: var(--ll-slip);
+	--color-bg-subtle: var(--ll-paper-shade);
+	--color-surface: var(--ll-paper);
+	--color-text: var(--ll-ink);
+	--color-text-secondary: var(--ll-ink-soft);
+	--color-muted: var(--ll-pencil-text);
+	--color-text-muted: var(--ll-pencil);
+	--color-border: var(--ll-pencil-mark);
+	--color-border-subtle: color-mix(in srgb, var(--ll-pencil-mark) 42%, transparent);
+
+	/* Primary ink-blue & Marker terracotta accent (AA contrast on both cream & white) */
+	--color-primary: var(--ll-ink-you);
+	--color-accent: #b8471e;
+	--color-accent-hover: #933614;
+	--color-on-accent: #fffdf8;
+	--color-accent-ring: color-mix(in srgb, var(--ll-focus) 24%, transparent);
+
+	/* Secondary editorial terracotta */
+	--color-amber: var(--ll-orange-text);
+	--color-amber-hover: #7d3616;
+
+	/* EmDash search theming */
+	--emdash-search-bg: var(--ll-paper);
+	--emdash-search-text: var(--ll-ink);
+	--emdash-search-muted: var(--ll-pencil-text);
+	--emdash-search-border: var(--ll-ink);
+	--emdash-search-hover: var(--ll-slip);
+	--emdash-search-highlight: var(--ll-ink);
+
+	/* ── Looseleaf Font Stacks (with Playpen Sans & IBM Plex Mono for full Vietnamese coverage) ── */
+	--font-hand: "Kevin Sans Hand", "Kevin Sans", "Playpen Sans", "Bradley Hand", cursive, sans-serif;
+	--font-script: "Kevin Sans Script", "Kevin Sans", "Playpen Sans", "Bradley Hand", cursive, sans-serif;
+	--font-type: "Kevin Sans Type", "Kevin Sans", "Playpen Sans", sans-serif;
+	--font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+	--font-heading: var(--font-script);
+	--font-display: var(--font-script);
+	--font-body: var(--font-hand);
+	--font-sans: var(--font-hand);
+
+	/* Shape & Elevation overrides */
+	--radius: 5px;
+	--radius-lg: 8px;
+	--radius-full: 8px;
+	--shadow-tile-raised: var(--ll-shadow-card);
+	--shadow-feature: var(--ll-shadow-paper);
+}
+
+/* Dark mode ("Night Desk") — system preference */
 @media (prefers-color-scheme: dark) {
 	:root:not(.light) {
-		--color-bg: #161816;
-		--color-bg-subtle: #1E211E;
-		--color-surface: #232723;
-		--color-text: #F0EBE1;
-		--color-text-secondary: #B8B2A8;
-		--color-muted: #858078;
-		--color-text-muted: #98A498;
-		--color-border: #343832;
-		--color-border-subtle: #282B27;
-		--color-primary: #1F331F;
-		--color-accent: #F08A3E;
-		--color-accent-hover: #F59C55;
-		--color-amber: #D4975E;
-		--color-amber-hover: #E0A870;
-		--shadow-tile-raised: rgba(0, 0, 0, 0.28) 0 1px 3px 0;
-		--shadow-feature: rgba(0, 0, 0, 0.4) 0 6px 18px 0;
+		color-scheme: dark;
+		--ll-desk: #1c2622;
+		--ll-desk-deep: #151d1a;
+		--ll-paper: #262d2a;
+		--ll-paper-shade: #1f2523;
+		--ll-slip: #2d3531;
+		--ll-card: #29302c;
+		--ll-graph: #232b26;
+		--ll-kraft: #3a3328;
+		--ll-check: #253028;
+		--ll-pad: #2d2c22;
+		--ll-photo: #303733;
+
+		--ll-rule-blue: rgba(130, 168, 220, 0.28);
+		--ll-rule-red: rgba(226, 118, 104, 0.42);
+		--ll-pad-rule: rgba(145, 175, 215, 0.24);
+		--ll-check-rule: rgba(127, 175, 124, 0.26);
+
+		--ll-ink: #f2ece1;
+		--ll-ink-soft: #d5cec2;
+		--ll-ink-muted: #bdb5a8;
+		--ll-ink-you: #8db4ff;
+		--ll-pencil: #a9a296;
+		--ll-pencil-text: #b7b0a4;
+		--ll-pencil-mark: #67706a;
+		--ll-red: #f07b67;
+		--ll-green: #7bd095;
+		--ll-marker: #eb7b4e;
+		--ll-marker-hover: #f38d63;
+		--ll-orange-text: #f39c6b;
+		--ll-hi: #f8dc4c;
+		--ll-hi-deep: #f0ca35;
+		--ll-focus: #8db4ff;
+		--ll-link: #8db4ff;
+		--ll-link-hover: #b4ceff;
+		--ll-input-ink: #9ec0ff;
+
+		--ll-tape: rgba(236, 232, 220, 0.22);
+		--ll-tape-edge: rgba(236, 232, 220, 0.28);
+		--ll-shade: 5 8 7;
+		--ll-shadow-k: 1.5;
+		--ll-hi-select: rgba(248, 220, 76, 0.28);
+		--ll-stamp-fill: rgba(141, 180, 255, 0.14);
+		--ll-desk-dots: radial-gradient(rgba(242, 236, 225, 0.06) 1px, transparent 1px);
+
+		--color-primary: var(--ll-ink-you);
+		--color-accent: #f08a5d;
+		--color-accent-hover: #f6a079;
+		--color-on-accent: #1c1917;
+		--color-amber: #f3a66f;
+		--color-amber-hover: #f7ba8d;
 	}
 }
 
-/* Dark mode — explicit class */
+/* Dark mode ("Night Desk") — explicit class */
 :root.dark {
-	--color-bg: #161816;
-	--color-bg-subtle: #1E211E;
-	--color-surface: #232723;
-	--color-text: #F0EBE1;
-	--color-text-secondary: #B8B2A8;
-	--color-muted: #858078;
-	--color-text-muted: #98A498;
-	--color-border: #343832;
-	--color-border-subtle: #282B27;
-	--color-primary: #1F331F;
-	--color-accent: #F08A3E;
-	--color-accent-hover: #F59C55;
-	--color-amber: #D4975E;
-	--color-amber-hover: #E0A870;
-	--shadow-tile-raised: rgba(0, 0, 0, 0.28) 0 1px 3px 0;
-	--shadow-feature: rgba(0, 0, 0, 0.4) 0 6px 18px 0;
+	color-scheme: dark;
+	--ll-desk: #1c2622;
+	--ll-desk-deep: #151d1a;
+	--ll-paper: #262d2a;
+	--ll-paper-shade: #1f2523;
+	--ll-slip: #2d3531;
+	--ll-card: #29302c;
+	--ll-graph: #232b26;
+	--ll-kraft: #3a3328;
+	--ll-check: #253028;
+	--ll-pad: #2d2c22;
+	--ll-photo: #303733;
+
+	--ll-rule-blue: rgba(130, 168, 220, 0.28);
+	--ll-rule-red: rgba(226, 118, 104, 0.42);
+	--ll-pad-rule: rgba(145, 175, 215, 0.24);
+	--ll-check-rule: rgba(127, 175, 124, 0.26);
+
+	--ll-ink: #f2ece1;
+	--ll-ink-soft: #d5cec2;
+	--ll-ink-muted: #bdb5a8;
+	--ll-ink-you: #8db4ff;
+	--ll-pencil: #a9a296;
+	--ll-pencil-text: #b7b0a4;
+	--ll-pencil-mark: #67706a;
+	--ll-red: #f07b67;
+	--ll-green: #7bd095;
+	--ll-marker: #eb7b4e;
+	--ll-marker-hover: #f38d63;
+	--ll-orange-text: #f39c6b;
+	--ll-hi: #f8dc4c;
+	--ll-hi-deep: #f0ca35;
+	--ll-focus: #8db4ff;
+	--ll-link: #8db4ff;
+	--ll-link-hover: #b4ceff;
+	--ll-input-ink: #9ec0ff;
+
+	--ll-tape: rgba(236, 232, 220, 0.22);
+	--ll-tape-edge: rgba(236, 232, 220, 0.28);
+	--ll-shade: 5 8 7;
+	--ll-shadow-k: 1.5;
+	--ll-hi-select: rgba(248, 220, 76, 0.28);
+	--ll-stamp-fill: rgba(141, 180, 255, 0.14);
+	--ll-desk-dots: radial-gradient(rgba(242, 236, 225, 0.06) 1px, transparent 1px);
+
+	--color-primary: var(--ll-ink-you);
+	--color-accent: #f08a5d;
+	--color-accent-hover: #f6a079;
+	--color-on-accent: #1c1917;
+	--color-amber: #f3a66f;
+	--color-amber-hover: #f7ba8d;
 }
 
 /*
- * Typography & Layout Safeguards — unlayered rules beat @layer base in Base.astro.
+ * Typography, Desk Surface & Layout Safeguards — unlayered rules beat @layer base in Base.astro.
  */
 *,
 *::before,
@@ -119,17 +348,55 @@
 	box-sizing: border-box;
 }
 
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ll-pencil-mark) transparent;
+}
+
 html {
 	max-width: 100%;
-	overflow-x: hidden;
+	overflow-x: clip;
+	background-color: var(--ll-desk);
+	caret-color: var(--ll-ink-you);
+	accent-color: var(--ll-marker);
+	scroll-padding-top: 5.25rem;
 }
 
 body {
 	max-width: 100%;
 	width: 100%;
-	overflow-x: hidden;
+	overflow-x: clip;
 	font-family: var(--font-body);
+	font-size: 1.03125rem;
+	line-height: 1.58;
+	color: var(--ll-ink);
+	background-color: var(--ll-desk);
+	background-image: var(--ll-desk-vignette), var(--ll-desk-dots);
+	background-size: 100% 100%, 20px 20px;
+	background-attachment: scroll, scroll;
+	text-wrap: pretty;
 	position: relative;
+}
+
+::selection {
+	background-color: var(--ll-hi-select);
+	color: var(--ll-ink);
+	text-shadow: none;
+}
+
+mark,
+.ll-swipe {
+	background-color: var(--ll-hi-select);
+	color: var(--ll-ink);
+	padding-inline: 0.22em;
+	border-radius: var(--ll-radius-chip);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+:focus-visible {
+	outline: 2px solid var(--ll-focus);
+	outline-offset: 2px;
 }
 
 /* Prevent iOS Safari auto-zoom on form inputs by guaranteeing 16px font-size */
@@ -148,10 +415,21 @@ h4,
 h5,
 h6 {
 	font-family: var(--font-heading);
+	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
 	overflow-wrap: break-word;
+	text-wrap: balance;
 }
 
-/* Keep UI chrome on the sans axis (vs. the heading font, which is unified with it anyway now) */
+code,
+kbd,
+samp,
+pre {
+	font-family: var(--font-mono);
+}
+
+/* Keep UI chrome on the hand-drawn axis */
 .site-title,
 .nav-links a,
 .nav-admin,
@@ -174,25 +452,162 @@ textarea {
 	font-family: var(--font-sans);
 }
 
-/* ── Reusable Editorial Utilities ── */
+/* Global Hand-Drawn Form Controls (Stationery Slip + Ballpoint Blue Ink) */
+input:where(:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([class*="emdash"]):not([class*="ec-"])),
+select:where(:not([class*="emdash"]):not([class*="ec-"])),
+textarea:where(:not([class*="emdash"]):not([class*="ec-"])) {
+	background-color: var(--ll-slip);
+	color: var(--ll-input-ink);
+	border: 1.8px solid var(--ll-ink);
+	border-radius: var(--ll-radius-chip);
+	box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), var(--ll-shadow-hair);
+}
 
-/* Mono uppercase label in --color-amber */
-.editorial-kicker {
-	display: inline-block;
+input:where(:not([class*="emdash"]):not([class*="ec-"]))::placeholder,
+textarea:where(:not([class*="emdash"]):not([class*="ec-"]))::placeholder {
+	color: var(--ll-pencil-text);
+	opacity: 0.82;
+}
+
+input:where(:not([class*="emdash"]):not([class*="ec-"])):focus,
+select:where(:not([class*="emdash"]):not([class*="ec-"])):focus,
+textarea:where(:not([class*="emdash"]):not([class*="ec-"])):focus {
+	border-color: var(--ll-focus);
+	box-shadow: 0 0 0 3px var(--color-accent-ring);
+	outline: none;
+}
+
+/* ── Reusable Looseleaf Stationery Surfaces & Props ── */
+
+/* Masking tape strip centered at top of a card */
+.ll-tape-top {
+	position: relative;
+}
+
+.ll-tape-top::before {
+	content: "";
+	position: absolute;
+	top: -11px;
+	left: 50%;
+	width: 84px;
+	height: 22px;
+	transform: translateX(-50%) rotate(-1.8deg);
+	background: var(--ll-tape);
+	border-top: 1px solid var(--ll-tape-edge);
+	border-bottom: 1px solid var(--ll-tape-edge);
+	box-shadow: 0 1px 2px rgb(var(--ll-shade) / 0.14);
+	clip-path: polygon(
+		2% 0%, 98% 2%, 100% 24%, 97% 50%, 100% 76%, 98% 100%,
+		2% 98%, 0% 74%, 3% 48%, 0% 22%
+	);
+	pointer-events: none;
+	z-index: 4;
+}
+
+/* Quad graph paper background (22x22 faint green grid) */
+.ll-graph-paper {
+	background-color: var(--ll-graph) !important;
+	background-image:
+		linear-gradient(to right, color-mix(in srgb, var(--ll-check-rule) 22%, transparent) 1px, transparent 1px),
+		linear-gradient(to bottom, color-mix(in srgb, var(--ll-check-rule) 22%, transparent) 1px, transparent 1px) !important;
+	background-size: 22px 22px !important;
+}
+
+/* Ruled index card (red header rule + faint blue horizontal lines) */
+.ll-index-paper {
+	background-color: var(--ll-card) !important;
+	background-image:
+		linear-gradient(
+			to bottom,
+			transparent 0,
+			transparent 45px,
+			color-mix(in srgb, var(--ll-rule-red) 72%, transparent) 45px,
+			color-mix(in srgb, var(--ll-rule-red) 72%, transparent) 47px,
+			transparent 47px
+		),
+		repeating-linear-gradient(
+			to bottom,
+			transparent 0,
+			transparent 27px,
+			color-mix(in srgb, var(--ll-rule-blue) 30%, transparent) 27px,
+			color-mix(in srgb, var(--ll-rule-blue) 30%, transparent) 28px
+		) !important;
+	background-position: 0 0, 0 48px !important;
+}
+
+/* Yellow legal notebook pad */
+.ll-pad-paper {
+	background-color: var(--ll-pad) !important;
+	background-image: repeating-linear-gradient(
+		to bottom,
+		transparent 0,
+		transparent 29px,
+		color-mix(in srgb, var(--ll-pad-rule) 38%, transparent) 29px,
+		color-mix(in srgb, var(--ll-pad-rule) 38%, transparent) 30px
+	) !important;
+}
+
+/* Hand-inked Rubber Stamp */
+.ll-stamp {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0.35rem 0.85rem;
+	border: 2.2px solid var(--ll-ink-you);
+	outline: 1px solid color-mix(in srgb, var(--ll-ink-you) 55%, transparent);
+	outline-offset: -5px;
+	border-radius: 4px 7px 5px 6px / 6px 4px 7px 5px;
+	background: var(--ll-stamp-fill);
+	color: var(--ll-ink-you);
+	transform: rotate(-3.2deg);
+	text-align: center;
+	line-height: 1.1;
+	user-select: none;
+}
+
+.ll-stamp-main {
 	font-family: var(--font-mono);
-	font-size: var(--font-size-xs, 0.8125rem);
-	font-weight: 600;
-	letter-spacing: var(--tracking-wider, 0.08em);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	color: var(--color-amber);
+}
+
+.ll-stamp-sub {
+	font-family: var(--font-hand);
+	font-size: 0.76rem;
+	font-weight: 700;
+	opacity: 0.9;
+	margin-top: 2px;
+}
+
+/* ── Reusable Editorial Utilities (Looseleaf Slip & Highlighter Edition) ── */
+
+/* Mono uppercase label on a crisp paper slip with highlighter tint */
+.editorial-kicker {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--ll-ink);
+	background: color-mix(in srgb, var(--ll-hi) 52%, var(--ll-slip));
+	border: 1.5px solid var(--ll-ink);
+	border-radius: var(--ll-radius-chip);
+	box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.16);
+	padding: 0.18rem 0.6rem;
 	margin-bottom: var(--spacing-3, 0.75rem);
 }
 
-/* Section index header: Roman numeral badge (§ I), uppercase mono label, horizontal rule, optional right-aligned action link */
+/* Section index header: Roman numeral badge (§ I), uppercase mono label, dashed pencil rule, chip link */
 .section-index-header {
 	display: flex;
 	align-items: center;
-	gap: var(--spacing-4, 1rem);
+	gap: var(--spacing-3, 0.75rem);
 	margin-bottom: var(--spacing-8, 2rem);
 }
 
@@ -201,28 +616,47 @@ textarea {
 	display: inline-flex;
 	align-items: center;
 	font-family: var(--font-mono);
-	font-size: var(--font-size-xs, 0.8125rem);
-	font-weight: 600;
-	letter-spacing: var(--tracking-wider, 0.08em);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
-	color: var(--color-amber);
-	background: color-mix(in srgb, var(--color-amber) 12%, transparent);
-	border: 1px solid color-mix(in srgb, var(--color-amber) 28%, transparent);
-	border-radius: var(--radius, 4px);
-	padding: 2px var(--spacing-2, 0.5rem);
+	color: var(--ll-ink);
+	background: var(--ll-hi);
+	border: 1.6px solid var(--ll-ink);
+	border-radius: var(--ll-radius-chip);
+	box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.2);
+	padding: 2px 0.55rem;
 	white-space: nowrap;
 	flex-shrink: 0;
+	transform: rotate(-1.2deg);
+}
+
+:root.dark .section-index-badge,
+:root.dark .section-index-num {
+	color: #1c1917;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not(.light) .section-index-badge,
+	:root:not(.light) .section-index-num {
+		color: #1c1917;
+	}
 }
 
 .section-index-label,
 .section-index-title,
 .section-index-header > h2 {
 	font-family: var(--font-mono);
-	font-size: var(--font-size-xs, 0.8125rem);
+	font-size: 0.8125rem;
 	font-weight: 600;
-	letter-spacing: var(--tracking-wider, 0.08em);
+	letter-spacing: 0.07em;
 	text-transform: uppercase;
-	color: var(--color-muted);
+	color: var(--ll-ink);
+	background: var(--ll-slip);
+	border: 1.5px solid var(--ll-ink);
+	border-radius: var(--ll-radius-chip);
+	padding: 2px 0.65rem;
+	box-shadow: var(--ll-shadow-hair);
 	white-space: nowrap;
 	margin: 0;
 	flex-shrink: 0;
@@ -230,39 +664,45 @@ textarea {
 
 .section-index-rule {
 	flex: 1;
-	height: 1px;
-	background: var(--color-border);
+	height: 0;
+	background: transparent;
+	border-top: 2px dashed color-mix(in srgb, var(--ll-ink) 34%, transparent);
 	min-width: var(--spacing-4, 1rem);
 }
 
 .section-index-link,
 .section-index-header > a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
 	font-family: var(--font-sans);
-	font-size: var(--font-size-sm, 0.875rem);
-	font-weight: 500;
-	color: var(--color-accent);
+	font-size: 0.875rem;
+	font-weight: 700;
+	color: var(--ll-ink);
+	background: var(--ll-slip);
+	border: 1.5px solid var(--ll-ink);
+	border-radius: var(--ll-radius-chip);
+	box-shadow: 1.5px 2px 0 rgb(42 36 32 / 0.18);
+	padding: 0.22rem 0.72rem;
 	text-decoration: none;
 	white-space: nowrap;
 	flex-shrink: 0;
-	transition: color var(--transition-fast, 120ms ease);
+	transition:
+		background-color 120ms ease,
+		transform 120ms cubic-bezier(0.2, 0.9, 0.25, 1.12);
 }
 
 .section-index-link:hover,
 .section-index-header > a:hover {
-	color: var(--color-accent-hover);
+	background: color-mix(in srgb, var(--ll-hi) 58%, var(--ll-slip));
+	color: var(--ll-ink);
+	transform: translateY(-1px) rotate(-0.6deg);
 }
 
-/*
- * Mobile: the editorial section header is a single nowrap flex row on desktop
- * (badge · TITLE · ——rule—— · action link →). On narrow screens those nowrap,
- * non-shrinking segments force the row — and therefore the whole page — wider
- * than the viewport. Let the row wrap: title can shrink/wrap, the decorative
- * rule collapses, and the action link flows to its own line.
- */
 @media (max-width: 640px) {
 	.section-index-header {
 		flex-wrap: wrap;
-		gap: var(--spacing-2, 0.5rem) var(--spacing-3, 0.75rem);
+		gap: var(--spacing-2, 0.5rem) var(--spacing-2, 0.5rem);
 	}
 
 	.section-index-label,
@@ -280,53 +720,184 @@ textarea {
 
 	.section-index-link,
 	.section-index-header > a {
-		flex-basis: 100%;
+		width: fit-content;
 		white-space: normal;
 	}
 }
 
-/* Pill-shaped buttons with smooth transitions */
+/* ── Looseleaf Hand-Drawn Marker & Paper Buttons ── */
 .btn-primary,
 .btn-secondary {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: var(--spacing-2, 0.5rem);
-	padding: var(--spacing-3, 0.75rem) var(--spacing-6, 1.5rem);
-	border-radius: var(--radius-full, 9999px);
+	padding: 0.68rem 1.35rem;
+	border-radius: var(--ll-radius-btn);
 	font-family: var(--font-sans);
-	font-size: var(--font-size-sm, 0.875rem);
-	font-weight: 600;
+	font-size: 0.9375rem;
+	font-weight: 700;
 	line-height: 1.25;
 	text-decoration: none;
 	cursor: pointer;
 	transition:
-		background-color var(--transition-fast, 120ms ease),
-		color var(--transition-fast, 120ms ease),
-		border-color var(--transition-fast, 120ms ease),
-		box-shadow var(--transition-fast, 120ms ease),
-		transform var(--transition-fast, 120ms ease);
+		background-color 120ms ease,
+		color 120ms ease,
+		border-color 120ms ease,
+		box-shadow 120ms ease,
+		transform 120ms cubic-bezier(0.2, 0.9, 0.25, 1.12);
 }
 
 .btn-primary {
-	background-color: var(--color-accent);
-	color: var(--color-on-accent);
-	border: 1px solid transparent;
+	background-color: var(--ll-marker);
+	color: #231d19;
+	border: 2px solid var(--ll-ink);
+	box-shadow: 2px 3px 0 var(--ll-ink);
 }
 
 .btn-primary:hover {
-	background-color: var(--color-accent-hover);
-	color: var(--color-on-accent);
+	background-color: var(--ll-marker-hover);
+	color: #1c1714;
+	transform: translate(-1px, -1px) rotate(-0.8deg);
+	box-shadow: 3px 4px 0 var(--ll-ink);
+}
+
+.btn-primary:active {
+	transform: translate(1px, 2px);
+	box-shadow: 1px 1px 0 var(--ll-ink);
 }
 
 .btn-secondary {
-	background-color: transparent;
-	color: var(--color-text);
-	border: 1px solid var(--color-border);
+	background-color: var(--ll-slip);
+	color: var(--ll-ink);
+	border: 1.8px solid var(--ll-ink);
+	box-shadow: 2px 3px 0 rgb(42 36 32 / 0.24);
 }
 
 .btn-secondary:hover {
-	background-color: var(--color-bg-subtle);
-	color: var(--color-accent);
-	border-color: var(--color-accent);
+	background-color: color-mix(in srgb, var(--ll-hi) 48%, var(--ll-slip));
+	color: var(--ll-ink);
+	border-color: var(--ll-ink);
+	transform: translate(-1px, -1px) rotate(0.6deg);
+	box-shadow: 3px 4px 0 rgb(42 36 32 / 0.32);
+}
+
+.btn-secondary:active {
+	transform: translate(1px, 2px);
+	box-shadow: 1px 1px 0 rgb(42 36 32 / 0.24);
+}
+
+/* ── Global Stationery Sheet Elevation Across Inner Pages ── */
+:where(
+	.portrait-card,
+	.proof-item,
+	.marquee-brand-card,
+	.about-summary-card,
+	.skills-card,
+	.achievements-card,
+	.case-card,
+	.capability-card,
+	.tier-card,
+	.featured-card,
+	.articles-index,
+	.faq-item,
+	.touch-left-card,
+	.touch-form-card,
+	.timeline-card,
+	.stack-card,
+	.recognition-card,
+	.direct-contact-card,
+	.ai-entity-card,
+	.project-card,
+	.summary-proof-card,
+	.bottom-cta-banner,
+	.deck-slide,
+	.deck-controls-bar,
+	.inquiry-card,
+	.channel-card,
+	.process-card,
+	.pillar-card,
+	.diagnostic-card,
+	.generator-form-card,
+	.generator-output-card,
+	.fact-sheet-card,
+	.spec-card,
+	.ledger-table-wrap,
+	.guideline-card,
+	.schema-code-card,
+	.search-result-card,
+	.empty-state-card,
+	.empty-card,
+	.not-found-card,
+	.author-entity-box,
+	.post-card
+) {
+	border: 1.8px solid var(--ll-ink) !important;
+	border-radius: var(--ll-radius-card) !important;
+	box-shadow: var(--ll-shadow-card) !important;
+}
+
+/* Graph-paper treatment for KPI & metric scorecards across pages */
+:where(
+	.proof-item,
+	.summary-proof-card,
+	.case-metric-box,
+	.project-metric-box,
+	.score-summary-box
+) {
+	background-color: var(--ll-graph);
+	background-image:
+		linear-gradient(to right, color-mix(in srgb, var(--ll-check-rule) 20%, transparent) 1px, transparent 1px),
+		linear-gradient(to bottom, color-mix(in srgb, var(--ll-check-rule) 20%, transparent) 1px, transparent 1px);
+	background-size: 20px 20px;
+}
+
+/* Inner-page hero headers & CMS pages sit on crisp Looseleaf stationery sheets */
+:where(
+	.about-header,
+	.archive-header,
+	header.page-header:not(.page-article > header.page-header),
+	.page-article
+) {
+	background-color: var(--ll-paper) !important;
+	border: 2px solid var(--ll-ink) !important;
+	border-radius: var(--ll-radius-sheet) !important;
+	box-shadow: var(--ll-shadow-paper) !important;
+	padding: var(--spacing-8, 2rem) !important;
+}
+
+@media (max-width: 640px) {
+	:where(
+		.about-header,
+		.archive-header,
+		header.page-header:not(.page-article > header.page-header),
+		.page-article
+	) {
+		padding: var(--spacing-5, 1.25rem) !important;
+	}
+}
+
+/* Active filter / topic pills across Blog, Cases, and Search use yellow highlighter swipe */
+:where(.filter-pill.active, .topic-pill.active) {
+	background: var(--ll-hi) !important;
+	color: #231d19 !important;
+	border-color: var(--ll-ink) !important;
+	box-shadow: 1.5px 2px 0 var(--ll-ink) !important;
+	font-weight: 700 !important;
+}
+
+:where(.filter-pill, .topic-pill) {
+	background: var(--ll-slip);
+	border: 1.5px solid var(--ll-ink);
+	border-radius: var(--ll-radius-chip);
+}
+
+/* Print clean sheet override */
+@media print {
+	html,
+	body {
+		background: #ffffff !important;
+		background-image: none !important;
+		color: #000000 !important;
+	}
 }
